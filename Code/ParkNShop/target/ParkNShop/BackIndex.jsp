@@ -11,7 +11,7 @@
     <title>Title</title>
 </head>
 <body>
-<button onclick="location='/AdminIndex'">click</button>
+<button onclick="location='/AdminLogin'">click</button>
 
 </body>
 </html>

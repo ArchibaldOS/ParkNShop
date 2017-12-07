@@ -36,10 +36,10 @@
 					<ul class="nav navbar-nav navbar-right">
 						<li class="dropdown">
 							<a id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								admin
+								<c:out value="${sessionScope.adminAccount}"></c:out>
 							</a>
 						</li>
-						<li><a href="/AdminLogin"><span class="glyphicon glyphicon-off"></span>&nbsp;退出</a></li>
+						<li><a href="/AdminLogout"><span class="glyphicon glyphicon-off"></span>&nbsp;退出</a></li>
 					</ul>
 				</div>
 				<!--导航-->

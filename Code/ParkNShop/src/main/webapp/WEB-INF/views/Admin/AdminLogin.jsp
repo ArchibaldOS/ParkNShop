@@ -16,7 +16,7 @@
 
     <br>
 
-    <form action="" method="post" id="loginForm">
+    <form action="/AdminLoginClick" method="post" id="loginForm">
         <div>
             <input type="text" name="username" class="username" placeholder="AdminAccount" autocomplete="off"/>
         </div>

@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50713
 File Encoding         : 65001
 
-Date: 2017-12-03 17:38:25
+Date: 2017-12-08 18:37:43
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -26,12 +26,14 @@ CREATE TABLE `admins` (
   `adminName` varchar(256) NOT NULL,
   `adminBalance` float NOT NULL DEFAULT '0',
   `adminPhone` varchar(45) NOT NULL,
+  `adminStatus` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`adminId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of admins
 -- ----------------------------
+INSERT INTO `admins` VALUES ('1', 'admin', 'admin', 'admin', '0', '12345678910', '1');
 
 -- ----------------------------
 -- Table structure for buyer

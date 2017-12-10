@@ -39,7 +39,7 @@
                         <c:out value="${sessionScope.adminAccount}"></c:out>
                     </a>
                 </li>
-                <li><a href="/AdminLogout"><span class="glyphicon glyphicon-off"></span>&nbsp;LOG OUT</a></li>
+                <li><a href="/AdminLogout"><span class="glyphicon glyphicon-off"></span>&nbsp;退出</a></li>
             </ul>
         </div>
         <!--导航-->
@@ -53,75 +53,43 @@
             <div class="list-group">
                 <a href="/AdminShopManagement" class="list-group-item">Register Management</a>
                 <a href="/AdminShopList" class="list-group-item">ShopList</a>
-                <a href="/AdminSearchShopByID" class="list-group-item">SearchShop</a>
+                <a href="/AdminSearchShopBySellerName" class="list-group-item active">SearchShop</a>
                 <a href="/AdminBlackList" class="list-group-item">BlackList Management</a>
-
-
             </div>
         </div>
         <div class="col-md-10">
             <div class="page-header">
                 <h1>Shop Management</h1>
             </div>
-            <table class="table table-hover">
-                <thead>
-                <tr>
-                    <th>Attributes</th>
-                    <th>Information</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr class="hidden">
-                    <td>sellerID</td>
-                    <td >${seller.sellerid}</td>
-                </tr>
-                <tr>
-                    <td>Seller Name</td>
-                    <td>${seller.sellername}</td>
-                </tr>
-                <tr>
-                    <td>Shop Name</td>
-                    <td>${seller.shopname}</td>
-                </tr>
-                <tr>
-                    <td >Shop Introduction</td>
-                    <td>${seller.shopintroduction}</td>
-                </tr>
-                <tr>
-                    <td >Seller Phone</td>
-                    <td>${seller.sellerphone}</td>
-                </tr>
-                <tr>
-                    <td >Seller Email</td>
-                    <td>${seller.selleremail}</td>
-                </tr>
-                <tr>
-                    <td>shopStatus</td>
-                    <c:choose>
-                        <c:when test="${seller.shopstatus eq 0}"><td>Waiting for approve</td></c:when>
-                        <c:when test="${seller.shopstatus eq 1}"><td>Approved</td></c:when>
-                        <c:when test="${seller.shopstatus eq 2}"><td>Unapproved</td></c:when>
-                        <c:when test="${seller.shopstatus eq 3}"><td>BlackList</td></c:when>
-                    </c:choose>
-                </tr>
-                <tr>
-                    <td>
-                        <div style="margin:0 auto;width:200px;">
-                            <button type="button" class="btn btn-success" onclick="location='/AdminShopModify?sellerId=${seller.sellerid}'">Modify</button>
-                        </div>
-                    </td>
-                    <td>
-                        <%--<div style="margin:0 auto;width:200px;">--%>
-                            <button type="button" class="btn btn-danger" onclick="location='/AdminShopList'">Cancel</button>
-                        <%--</div>--%>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
+            <ul class="nav nav-tabs">
+                <li class="nav nav-tabs">
+                    <a href="/AdminSearchShop">Search By Shop ID</a>
+                </li>
+                <li class="nav nav-tabs">
+                    <a href="/AdminSearchShopByShopName">Search By Shop Name</a>
+                </li>
+                <li class="active">
+                    <a href="/AdminSearchShopBySellerName">Search By Seller Name</a>
+                </li>
+            </ul>
+
+            <form action="#" class="user_search">
+                <div class="form-group">
+                    <label for="sellername">Seller Name:</label>
+                    <input type="text" id="sellername" class="form-control" name="sellername" placeholder="Please input seller name:" />
+                </div>
+                <button type="submit" class="btn btn-default">Search</button>
+            </form>
 
         </div>
+
+
+
+
     </div>
 </div>
+
+
 
 <!--footer-->
 <footer>

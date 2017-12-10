@@ -50,6 +50,9 @@ public interface AdminShopService {
      * @Param: [id]
      * @Return: Seller
      */
+    Seller selectByShopname(String shopname);
+
+    Seller selectBySellername(String sellername);
 
     int selectSellerStatus(int sellerId);
 

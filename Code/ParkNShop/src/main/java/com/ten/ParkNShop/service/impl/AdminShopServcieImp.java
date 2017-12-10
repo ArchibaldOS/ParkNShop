@@ -70,6 +70,26 @@ public class AdminShopServcieImp implements AdminShopService{
 
         return sellerMapper.selectByPrimaryKey((int) id);
     }
+    public Seller selectByShopname(String shopname) {
+        /**
+         * @Author: Caihongyang
+         * @Date: 3:26 PM 8/19/2017
+         *
+         * @Description: 通过shopname查找一个Seller
+         */
+
+        return sellerMapper.selectByShopname(shopname);
+    }
+    public Seller selectBySellername(String sellername) {
+        /**
+         * @Author: Caihongyang
+         * @Date: 3:26 PM 8/19/2017
+         *
+         * @Description: 通过sellername查找一个Seller
+         */
+
+        return sellerMapper.selectBySellername(sellername);
+    }
 
 
     public int selectSellerStatus(int sellerId) {

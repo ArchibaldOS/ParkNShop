@@ -1,16 +1,11 @@
 package com.ten.ParkNShop.controller;
 
-import com.sun.org.apache.xpath.internal.operations.Mod;
 import com.ten.ParkNShop.entity.Seller;
-import com.ten.ParkNShop.service.AdminService;
 import com.ten.ParkNShop.service.AdminShopService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.HttpRequestHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -35,10 +30,19 @@ public class AdminShopManagementController {
         model.addAttribute("approvedShops",adminShopService.selectAllApprovedShop(0,5));
         return "Admin/AdminShopList";
     }
-    @RequestMapping("/AdminSearchShop")
-    public String adminSearchShop(){
-        return "Admin/AdminSearchShop";
+    @RequestMapping("/AdminSearchShopByID")
+    public String adminSearchShopByID(){
+        return "Admin/AdminSearchShopByID";
     }
+    @RequestMapping("/AdminSearchShopByShopName")
+    public String adminSearchShopByShopName(){
+        return "Admin/AdminSearchShopByShopName";
+    }
+    @RequestMapping("/AdminSearchShopBySellerName")
+    public String adminSearchShopBySellerName(){
+        return "Admin/AdminSearchShopBySellerName";
+    }
+
     @RequestMapping("/AdminBlackList")
     public String adminBlackList(Model model){
         model.addAttribute("blacklistShops",adminShopService.selectAllBlacklistShop(0,5));
@@ -99,6 +103,12 @@ public class AdminShopManagementController {
      * 0表示注册待审批，1表示审批通过，2表示审批未通过，3表示黑名单
     */
 
+
+    /**
+    * @Author: Archibald
+    * @Date: 11:52 PM 12/10/2017
+    * @Description: 执行修改
+    */
     @RequestMapping("/AdminShopModifyDO")
     public String adminShopModifyDO(HttpServletRequest httpServletRequest){
         Seller seller =new Seller();
@@ -115,10 +125,34 @@ public class AdminShopManagementController {
         return "redirect:/AdminShopList";
     }
 
+    /**
+    * @Author: Archibald
+    * @Date: 11:53 PM 12/10/2017
+    * @Description: 删除店铺
+    */
     @RequestMapping("/AdminDeleteShop")
     public String adminRemoveFromBlacklist(HttpServletRequest httpServletRequest){
         int sellerId = Integer.parseInt(httpServletRequest.getParameter("sellerId"));
         int i = adminShopService.deleteSeller(sellerId);
         return "redirect:/AdminBlackList";
+    }
+
+    @RequestMapping("/AdminDoSearchByID")
+    public String adminDoSearchByID(HttpServletRequest httpServletRequest,Model model){
+        int sellerId = Integer.parseInt(httpServletRequest.getParameter("sellerId"));
+        model.addAttribute("seller",adminShopService.selectSellerById(sellerId));
+        return "Admin/AdminShopDetail";
+    }
+    @RequestMapping("/AdminDoSearchByShopName")
+    public String adminDoSearchByShopName(HttpServletRequest httpServletRequest,Model model){
+        String shopname = httpServletRequest.getParameter("shopname");
+        model.addAttribute("seller",adminShopService.selectByShopname(shopname));
+        return "Admin/AdminShopDetail";
+    }
+    @RequestMapping("/AdminDoSearchBySellerName")
+    public String adminDoSearchBySellerName(HttpServletRequest httpServletRequest,Model model){
+        String sellername = httpServletRequest.getParameter("sellername");
+        model.addAttribute("seller",adminShopService.selectBySellername(sellername));
+        return "Admin/AdminShopDetail";
     }
 }

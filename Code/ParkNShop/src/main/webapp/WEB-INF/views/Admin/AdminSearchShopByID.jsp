@@ -53,7 +53,7 @@
                 <div class="list-group">
                     <a href="/AdminShopManagement" class="list-group-item">Register Management</a>
                     <a href="/AdminShopList" class="list-group-item">ShopList</a>
-                    <a href="/AdminSearchShop" class="list-group-item active">SearchShop</a>
+                    <a href="/AdminSearchShopByID" class="list-group-item active">SearchShop</a>
                     <a href="/AdminBlackList" class="list-group-item">BlackList Management</a>
                 </div>
             </div>
@@ -63,24 +63,23 @@
                 </div>
                 <ul class="nav nav-tabs">
                     <li class="active">
-                        <a href="(example)AdminUserList.jsp">Search By Shop ID</a>
+                        <a href="/AdminSearchShop">Search By Shop ID</a>
                     </li>
                     <li class="nav nav-tabs">
-                        <a href="(example)AdminUserList.jsp">Search By Shop Name</a>
+                        <a href="/AdminSearchShopByShopName">Search By Shop Name</a>
                     </li>
                     <li class="nav nav-tabs">
-                        <a href="(example)AdminUserList.jsp">Search By Seller Name</a>
+                        <a href="/AdminSearchShopBySellerName">Search By Seller Name</a>
                     </li>
                 </ul>
 
-                <form action="#" class="user_search">
+                <form action="/AdminDoSearchByID" class="user_search">
                     <div class="form-group">
-                        <label for="name">Shop ID:</label>
-                        <input type="text" id="name" class="form-control" placeholder="Please input shop ID:" />
+                        <label for="sellerId">Shop ID:</label>
+                        <input type="text" id="sellerId" class="form-control" name="sellerId" placeholder="Please input shop ID:" />
                     </div>
                     <button type="submit" class="btn btn-default">Search</button>
                 </form>
-
             </div>
 
 

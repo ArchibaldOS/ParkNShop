@@ -54,7 +54,7 @@
             <div class="list-group">
                 <a href="/AdminShopManagement" class="list-group-item">Register Management</a>
                 <a href="/AdminShopList" class="list-group-item">ShopList</a>
-                <a href="/AdminSearchShop" class="list-group-item">SearchShop</a>
+                <a href="/AdminSearchShopByID" class="list-group-item">SearchShop</a>
                 <a href="/AdminBlackList" class="list-group-item">BlackList Management</a>
 
 

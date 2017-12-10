@@ -38,6 +38,11 @@ public interface SellerMapper {
      */
     Seller selectByPrimaryKey(Integer sellerid);
 
+    Seller selectByShopname(String shopname);
+
+    Seller selectBySellername(String sellername);
+
+
     int selectShopStatus(int sellerId);
 
 

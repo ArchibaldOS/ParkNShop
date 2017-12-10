@@ -11,49 +11,49 @@
 
 
 <body>
-<!--导航-->
-<nav class="navbar navbar-default">
-    <div class="container">
-        <!--小屏幕导航按钮和logo-->
-        <div class="navbar-header">
-            <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a href="/AdminIndex" class="navbar-brand">ParkNShop</a>
+    <!--导航-->
+    <nav class="navbar navbar-default">
+        <div class="container">
+            <!--小屏幕导航按钮和logo-->
+            <div class="navbar-header">
+                <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="/AdminIndex" class="navbar-brand">ParkNShop</a>
+            </div>
+            <!--小屏幕导航按钮和logo-->
+            <!--导航-->
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="/AdminShopManagement"><span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;Shop Management</a></li>
+                    <li><a href="/AdminCustomerManagement"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;Customer Management</a></li>
+                    <li><a href="/AdminOrderManagement"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;Order Management</a></li>
+                    <li><a href="/AdminADManagement"><span class="glyphicon glyphicon-list-alt"></span>&nbsp;&nbsp;AD Management</a></li>
+                    <li><a href="/AdminSalesManagement"><span class="glyphicon glyphicon-list-alt"></span>&nbsp;&nbsp;Sales</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <c:out value="${sessionScope.adminAccount}"></c:out>
+                        </a>
+                    </li>
+                    <li><a href="/AdminLogout"><span class="glyphicon glyphicon-off"></span>&nbsp;退出</a></li>
+                </ul>
+            </div>
+            <!--导航-->
         </div>
-        <!--小屏幕导航按钮和logo-->
-        <!--导航-->
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="/AdminShopManagement"><span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;Shop Management</a></li>
-                <li><a href="/AdminCustomerManagement"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;Customer Management</a></li>
-                <li><a href="/AdminOrderManagement"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;Order Management</a></li>
-                <li><a href="/AdminADManagement"><span class="glyphicon glyphicon-list-alt"></span>&nbsp;&nbsp;AD Management</a></li>
-                <li><a href="/AdminSalesManagement"><span class="glyphicon glyphicon-list-alt"></span>&nbsp;&nbsp;Sales</a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li class="dropdown">
-                    <a id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        admin
-                    </a>
-                </li>
-                <li><a href="/AdminLogout"><span class="glyphicon glyphicon-off"></span>&nbsp;退出</a></li>
-            </ul>
-        </div>
-        <!--导航-->
-    </div>
-</nav>
-<!--导航-->
+    </nav>
+    <!--导航-->
 
     <div class="container">
         <div class="row">
             <div class="col-md-2">
                 <div class="list-group">
-                    <a href="AdminUserList.jsp" class="list-group-item active">用户管理</a>
-                    <a href="AdminUserSearch.jsp" class="list-group-item">用户搜索</a>
-                    <a href="AdminUserList.jsp" class="list-group-item">添加用户</a>
+                    <a href="(example)AdminUserList.jsp" class="list-group-item active">用户管理</a>
+                    <a href="(example)AdminUserSearch.jsp" class="list-group-item">用户搜索</a>
+                    <a href="(example)AdminUserList.jsp" class="list-group-item">添加用户</a>
 
                 </div>
             </div>
@@ -63,13 +63,13 @@
                 </div>
                 <ul class="nav nav-tabs">
                     <li class="active">
-                        <a href="AdminUserList.jsp">用户列表</a>
+                        <a href="(example)AdminUserList.jsp">用户列表</a>
                     </li>
                     <li>
-                        <a href="AdminUserSearch.jsp">用户搜索</a>
+                        <a href="(example)AdminUserSearch.jsp">用户搜索</a>
                     </li>
                     <li>
-                        <a href="AdminUserList.jsp">添加用户</a>
+                        <a href="(example)AdminUserList.jsp">添加用户</a>
                     </li>
                 </ul>
                 <table class="table">

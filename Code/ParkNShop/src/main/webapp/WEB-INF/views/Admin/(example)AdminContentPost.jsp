@@ -27,7 +27,7 @@
 				<!--导航-->
 				<div class="navbar-collapse collapse">
 					<ul class="nav navbar-nav">
-						<li class="active"><a href="/AdminShopManagement"><span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;Shop Management</a></li>
+						<li><a href="/AdminShopManagement"><span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;Shop Management</a></li>
 						<li><a href="/AdminCustomerManagement"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;Customer Management</a></li>
 						<li><a href="/AdminOrderManagement"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;Order Management</a></li>
 						<li><a href="/AdminADManagement"><span class="glyphicon glyphicon-list-alt"></span>&nbsp;&nbsp;AD Management</a></li>
@@ -36,10 +36,10 @@
 					<ul class="nav navbar-nav navbar-right">
 						<li class="dropdown">
 							<a id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								admin
+								<c:out value="${sessionScope.adminAccount}"></c:out>
 							</a>
 						</li>
-						<li><a href="/AdminLogin"><span class="glyphicon glyphicon-off"></span>&nbsp;退出</a></li>
+						<li><a href="/AdminLogout"><span class="glyphicon glyphicon-off"></span>&nbsp;退出</a></li>
 					</ul>
 				</div>
 				<!--导航-->
@@ -49,40 +49,47 @@
 		
 		<div class="container">
 			<div class="row">
-				<div class="col-md-12">
+				<div class="col-md-2">
+					<div class="list-group">
+						<a href="(example)AdminContent.jsp" class="list-group-item">内容管理</a>
+						<a href="##" class="list-group-item active">添加内容</a>
+						
+					</div>
+				</div>
+				<div class="col-md-10">
 					<div class="page-header">
-						<h1>标签管理</h1>
+						<h1>用户管理</h1>
 					</div>
-					<div class="col-md-12 pad0">
-						<form>
-							<div class="col-md-10">
-								<input type="text" class="form-control" placeholder="请输入要添加的标签"/>	
-							</div>
-							<div class="col-md-2">
-								<button type="submit" class="btn btn-default">添加</button>
-							</div>
-							
-							
-						</form>
-					</div>
+					<ul class="nav nav-tabs">
+						<li>
+							<a href="(example)AdminContent.jsp">内容管理</a>
+						</li>
+						<li class="active">
+							<a href="##">添加内容</a>
+						</li>
+					</ul>
 					
-					<div class="col-md-12 taglist">
-						<div class="alert alert-info alert-dismissible pull-left" role="alert">
-							<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-							<strong>bootstrap</strong> 
+					<form action="#" class="mar_t15">
+						<div class="form-group">
+							<label for="title">标题</label>
+							<input type="text" id="title" class="form-control" placeholder="请输入文章标题"/>
 						</div>
-						<div class="alert alert-info alert-dismissible pull-left" role="alert">
-							<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-							<strong>HTML</strong> 
+						<div class="form-group">
+							<label for="content">正文</label>
+							<textarea id="content" class="form-control" rows="15" cols="10" placeholder="请输入文章正文部分"></textarea>
 						</div>
-						<div class="alert alert-info alert-dismissible pull-left" role="alert">
-							<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-							<strong>JavaScript</strong> 
+						<div class="checkbox">
+							<label for="">
+								<input type="checkbox" />全局置顶
+							</label>
+							<button type="submit" class="btn btn-default pull-right">发布文章</button>
 						</div>
-					</div>
+					</form>
+					
 				</div>
 			</div>
 		</div>
+		
 		
 		
 		

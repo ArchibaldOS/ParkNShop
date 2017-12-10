@@ -70,30 +70,27 @@
                     <th>Seller Name</th>
                     <th>Shop Name</th>
                     <th>Shop Introduction</th>
-                    <th>Seller Phone</th>
-                    <th>Seller Email</th>
                     <th class="hidden">shopStatus</th>
                     <th>Operations</th>
-
-
                 </tr>
                 </thead>
                 <tbody>
+                <c:forEach var="blacklistShop" items="${blacklistShops}">
                 <tr>
-                    <th scope="row">AJ</th>
-                    <td>AJ shop</td>
-                    <td>A shop.</td>
-                    <td>12345678910</td>
-                    <td>123456@163.com</td>
+                    <td class="hidden"><c:out value="${blacklistShop.sellerid}"></c:out></td>
+                    <td><c:out value="${blacklistShop.sellername}"></c:out></td>
+                    <td><c:out value="${blacklistShop.shopname}"></c:out></td>
+                    <td><c:out value="${blacklistShop.shopintroduction}"></c:out></td>
                     <td><div role="presentation" class="dropdown">
                         <button class="dropdown-toggle btn btn-default" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Onclick <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu">
-                            <li><a href="###">View</a></li>
-                            <li><a href="###">Remove</a></li>
+                            <li><a href="/AdminShopDetail?sellerId=${blacklistShop.sellerid}">View</a></li>
+                            <li><a href="/AdminChangeShopStatusToWaitToApproved?sellerId=${blacklistShop.sellerid}">Remove</a></li>
                         </ul>
                     </div></td>
                 </tr>
+                </c:forEach>
                 </tbody>
             </table>
             <nav class="pull-right">

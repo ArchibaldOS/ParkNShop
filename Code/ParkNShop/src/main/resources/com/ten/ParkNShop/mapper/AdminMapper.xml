@@ -184,4 +184,6 @@
       adminStatus = #{adminstatus,jdbcType=INTEGER}
     where adminId = #{adminid,jdbcType=INTEGER}
   </update>
+
+
 </mapper>

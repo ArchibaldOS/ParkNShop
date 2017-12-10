@@ -73,9 +73,12 @@ public interface AdminMapper {
      * @mbggenerated
      */
     int updateByPrimaryKey(Admin record);
-    
+
+
     int updateAdminStatusToActive(String adminAcount);
 
     int updateAdminStatusToInactive(String adminAcount);
+
+
 
 }

@@ -11,8 +11,8 @@
 
 
 <body>
-    <!--导航-->
-    <nav class="navbar navbar-default">
+<!--导航-->
+<nav class="navbar navbar-default">
     <div class="container">
         <!--小屏幕导航按钮和logo-->
         <div class="navbar-header">
@@ -39,13 +39,13 @@
                         <c:out value="${sessionScope.adminAccount}"></c:out>
                     </a>
                 </li>
-                <li><a href="/AdminLogout"><span class="glyphicon glyphicon-off"></span>&nbsp;退出</a></li>
+                <li><a href="/AdminLogout"><span class="glyphicon glyphicon-off"></span>&nbsp;LOG OUT</a></li>
             </ul>
         </div>
         <!--导航-->
     </div>
 </nav>
-    <!--导航-->
+<!--导航-->
 
 <div class="container">
     <div class="row">
@@ -54,7 +54,7 @@
                 <a href="/AdminShopManagement" class="list-group-item">Register Management</a>
                 <a href="/AdminShopList" class="list-group-item">ShopList</a>
                 <a href="/AdminSearchShop" class="list-group-item">SearchShop</a>
-                <a href="/AdminBlackList" class="list-group-item active">BlackList Management</a>
+                <a href="/AdminBlackList" class="list-group-item">BlackList Management</a>
 
 
             </div>
@@ -63,55 +63,62 @@
             <div class="page-header">
                 <h1>Shop Management</h1>
             </div>
-            <table class="table">
+            <table class="table table-hover">
                 <thead>
                 <tr>
-                    <th class="hidden">sellerID</th>
-                    <th>Seller Name</th>
-                    <th>Shop Name</th>
-                    <th>Shop Introduction</th>
-                    <th class="hidden">shopStatus</th>
-                    <th>Operations</th>
+                    <th>Attributes</th>
+                    <th>Information</th>
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach var="blacklistShop" items="${blacklistShops}">
-                <tr>
-                    <td class="hidden"><c:out value="${blacklistShop.sellerid}"></c:out></td>
-                    <td><c:out value="${blacklistShop.sellername}"></c:out></td>
-                    <td><c:out value="${blacklistShop.shopname}"></c:out></td>
-                    <td><c:out value="${blacklistShop.shopintroduction}"></c:out></td>
-                    <td><div role="presentation" class="dropdown">
-                        <button class="dropdown-toggle btn btn-default" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Onclick <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a href="/AdminShopDetail?sellerId=${blacklistShop.sellerid}">View</a></li>
-                            <li><a href="/AdminChangeShopStatusToWaitToApproved?sellerId=${blacklistShop.sellerid}">Remove</a></li>
-                        </ul>
-                    </div></td>
+                <tr class="hidden">
+                    <td>sellerID</td>
+                    <td >${seller.sellerid}</td>
                 </tr>
-                </c:forEach>
+                <tr>
+                    <td>Seller Name</td>
+                    <td>${seller.sellername}</td>
+                </tr>
+                <tr>
+                    <td>Shop Name</td>
+                    <td>${seller.shopname}</td>
+                </tr>
+                <tr>
+                    <td >Shop Introduction</td>
+                    <td>${seller.shopintroduction}</td>
+                </tr>
+                <tr>
+                    <td >Seller Phone</td>
+                    <td>${seller.sellerphone}</td>
+                </tr>
+                <tr>
+                    <td >Seller Email</td>
+                    <td>${seller.selleremail}</td>
+                </tr>
+                <tr>
+                    <td>shopStatus</td>
+                    <c:choose>
+                        <c:when test="${seller.shopstatus eq 0}"><td>Waiting for approve</td></c:when>
+                        <c:when test="${seller.shopstatus eq 1}"><td>Approved</td></c:when>
+                        <c:when test="${seller.shopstatus eq 2}"><td>Unapproved</td></c:when>
+                        <c:when test="${seller.shopstatus eq 3}"><td>BlackList</td></c:when>
+                    </c:choose>
+                </tr>
+                <tr>
+                    <td>
+                        <div style="margin:0 auto;width:200px;">
+                            <button type="button" class="btn btn-success" onclick="location='/AdminShopModify?sellerId=${seller.sellerid}'">Modify</button>
+                        </div>
+                    </td>
+                    <td>
+                        <%--<div style="margin:0 auto;width:200px;">--%>
+                            <button type="button" class="btn btn-danger" onclick="location='/AdminShopList'">Cancel</button>
+                        <%--</div>--%>
+                    </td>
+                </tr>
                 </tbody>
             </table>
-            <nav class="pull-right">
-                <ul class="pagination">
-                    <li class="disabled">
-                        <a href="#" aria-label="Previous">
-                            <span aria-hidden="true">&laquo;</span>
-                        </a>
-                    </li>
-                    <li class="active"><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li>
-                        <a href="#" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
+
         </div>
     </div>
 </div>

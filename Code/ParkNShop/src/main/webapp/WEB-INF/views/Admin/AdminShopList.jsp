@@ -68,29 +68,28 @@
                     <th>Seller Name</th>
                     <th>Shop Name</th>
                     <th>Shop Introduction</th>
-                    <th>Seller Phone</th>
-                    <th>Seller Email</th>
                     <th class="hidden">shopStatus</th>
                     <th>Operations</th>
                 </tr>
                 </thead>
                 <tbody>
+                <c:forEach var="approvedShop" items="${approvedShops}">
                 <tr>
-                    <th scope="row">AJ</th>
-                    <td>AJ shop</td>
-                    <td>A shop.</td>
-                    <td>12345678910</td>
-                    <td>123456@163.com</td>
+                    <td class="hidden"><c:out value="${approvedShop.sellerid}"></c:out></td>
+                    <td><c:out value="${approvedShop.sellername}"></c:out></td>
+                    <td><c:out value="${approvedShop.shopname}"></c:out></td>
+                    <td><c:out value="${approvedShop.shopintroduction}"></c:out></td>
                     <td><div role="presentation" class="dropdown">
                         <button class="dropdown-toggle btn btn-default" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Onclick <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu">
-                            <li><a href="###">View</a></li>
-                            <li><a href="###">modify</a></li>
-                            <li><a href="###">delete</a></li>
+                            <li><a href="/AdminShopDetail?sellerId=${approvedShop.sellerid}">View</a></li>
+                            <li><a href="/AdminShopModify?sellerId=${approvedShop.sellerid}">modify</a></li>
+                            <li><a href="/AdminDeleteShop?sellerId=${approvedShop.sellerid}">delete</a></li>
                         </ul>
                     </div></td>
                 </tr>
+                </c:forEach>
                 </tbody>
             </table>
             <nav class="pull-right">

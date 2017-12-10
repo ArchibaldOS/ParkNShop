@@ -39,7 +39,7 @@
 
         <!-- table表生成对应的DoaminObject -->
         <!--在这里填你要生成的表-->
-        <table tableName="admins" domainObjectName="Admin"></table>
+        <table tableName="seller" domainObjectName="Seller"></table>
 
 
     </context>

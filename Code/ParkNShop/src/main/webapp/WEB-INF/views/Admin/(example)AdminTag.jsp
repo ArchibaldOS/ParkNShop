@@ -49,47 +49,40 @@
 		
 		<div class="container">
 			<div class="row">
-				<div class="col-md-2">
-					<div class="list-group">
-						<a href="AdminContent.jsp" class="list-group-item">内容管理</a>
-						<a href="##" class="list-group-item active">添加内容</a>
-						
-					</div>
-				</div>
-				<div class="col-md-10">
+				<div class="col-md-12">
 					<div class="page-header">
-						<h1>用户管理</h1>
+						<h1>标签管理</h1>
 					</div>
-					<ul class="nav nav-tabs">
-						<li>
-							<a href="AdminContent.jsp">内容管理</a>
-						</li>
-						<li class="active">
-							<a href="##">添加内容</a>
-						</li>
-					</ul>
+					<div class="col-md-12 pad0">
+						<form>
+							<div class="col-md-10">
+								<input type="text" class="form-control" placeholder="请输入要添加的标签"/>	
+							</div>
+							<div class="col-md-2">
+								<button type="submit" class="btn btn-default">添加</button>
+							</div>
+							
+							
+						</form>
+					</div>
 					
-					<form action="#" class="mar_t15">
-						<div class="form-group">
-							<label for="title">标题</label>
-							<input type="text" id="title" class="form-control" placeholder="请输入文章标题"/>
+					<div class="col-md-12 taglist">
+						<div class="alert alert-info alert-dismissible pull-left" role="alert">
+							<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<strong>bootstrap</strong> 
 						</div>
-						<div class="form-group">
-							<label for="content">正文</label>
-							<textarea id="content" class="form-control" rows="15" cols="10" placeholder="请输入文章正文部分"></textarea>
+						<div class="alert alert-info alert-dismissible pull-left" role="alert">
+							<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<strong>HTML</strong> 
 						</div>
-						<div class="checkbox">
-							<label for="">
-								<input type="checkbox" />全局置顶
-							</label>
-							<button type="submit" class="btn btn-default pull-right">发布文章</button>
+						<div class="alert alert-info alert-dismissible pull-left" role="alert">
+							<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<strong>JavaScript</strong> 
 						</div>
-					</form>
-					
+					</div>
 				</div>
 			</div>
 		</div>
-		
 		
 		
 		

@@ -51,9 +51,8 @@
 			<div class="row">
 				<div class="col-md-2">
 					<div class="list-group">
-						<a href="AdminUserList.jsp" class="list-group-item active">用户管理</a>
-						<a href="AdminUserSearch.jsp" class="list-group-item">用户搜索</a>
-						<a href="AdminUserList.jsp" class="list-group-item">添加用户</a>
+						<a href="(example)AdminContent.jsp" class="list-group-item active">内容管理</a>
+						<a href="(example)AdminContentPost.jsp" class="list-group-item">添加内容</a>
 						
 					</div>
 				</div>
@@ -63,147 +62,122 @@
 					</div>
 					<ul class="nav nav-tabs">
 						<li class="active">
-							<a href="AdminUserList.jsp">用户列表</a>
+							<a href="(example)AdminContent.jsp">内容管理</a>
 						</li>
 						<li>
-							<a href="AdminUserSearch.jsp">用户搜索</a>
+							<a href="(example)AdminContentPost.jsp">添加内容</a>
 						</li>
-						<li>
-							<a href="AdminUserList.jsp">添加用户</a>
-						</li>
+						
 					</ul>
 					<table class="table">
 						<thead>
 							<tr>
-								<th>ID</th>
-								<th>用户名</th>
-								<th>邮箱</th>
+								<th>文章标题</th>
+								<th>作者</th>
+								<th>发布时间</th>
 								<th>操作</th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr>
-								<th scope="row">1</th>
+								<th scope="row">泛Mooc职业教育， 效果和就业为王</th>
 								<td>张三</td>
-								<td>132456@qq.com</td>
+								<td>2018/08/08</td>
 								<td><div role="presentation" class="dropdown">
 									    <button class="dropdown-toggle btn btn-default" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">操作 <span class="caret"></span>
 									    </button>
 									    <ul class="dropdown-menu">
 									      <li><a href="###">编辑</a></li>
 									      <li><a href="###">删除</a></li>
-									      <li><a href="###">锁定</a></li>
-									      <li><a href="###">修改密码</a></li>
+									      <li><a href="###">全局置顶</a></li>
 									    </ul>
 									</div></td>
 							</tr>
 							<tr>
-								<th scope="row">2</th>
+								<th scope="row">泛Mooc职业教育， 效果和就业为王</th>
 								<td>张三</td>
-								<td>132456@qq.com</td>
-								<td>
-									<div role="presentation" class="dropdown">
-									    <button class="dropdown-toggle btn btn-default" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">操作 <span class="caret"></span>
-									    </button>
-									    <ul class="dropdown-menu">
-									      <li><a href="###">编辑</a></li>
-									      <li><a href="###">删除</a></li>
-									      <li><a href="###">锁定</a></li>
-									      <li><a href="###">修改密码</a></li>
-									    </ul>
-									</div>
-								</td>
-							</tr>
-							<tr>
-								<th scope="row">3</th>
-								<td>张三</td>
-								<td>132456@qq.com</td>
+								<td>2018/08/08</td>
 								<td><div role="presentation" class="dropdown">
 									    <button class="dropdown-toggle btn btn-default" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">操作 <span class="caret"></span>
 									    </button>
 									    <ul class="dropdown-menu">
 									      <li><a href="###">编辑</a></li>
 									      <li><a href="###">删除</a></li>
-									      <li><a href="###">锁定</a></li>
-									      <li><a href="###">修改密码</a></li>
+									      <li><a href="###">全局置顶</a></li>
 									    </ul>
 									</div></td>
 							</tr>
 							<tr>
-								<th scope="row">3</th>
+								<th scope="row">泛Mooc职业教育， 效果和就业为王</th>
 								<td>张三</td>
-								<td>132456@qq.com</td>
+								<td>2018/08/08</td>
 								<td><div role="presentation" class="dropdown">
 									    <button class="dropdown-toggle btn btn-default" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">操作 <span class="caret"></span>
 									    </button>
 									    <ul class="dropdown-menu">
 									      <li><a href="###">编辑</a></li>
 									      <li><a href="###">删除</a></li>
-									      <li><a href="###">锁定</a></li>
-									      <li><a href="###">修改密码</a></li>
+									      <li><a href="###">全局置顶</a></li>
 									    </ul>
 									</div></td>
 							</tr>
 							<tr>
-								<th scope="row">3</th>
+								<th scope="row">泛Mooc职业教育， 效果和就业为王</th>
 								<td>张三</td>
-								<td>132456@qq.com</td>
+								<td>2018/08/08</td>
 								<td><div role="presentation" class="dropdown">
 									    <button class="dropdown-toggle btn btn-default" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">操作 <span class="caret"></span>
 									    </button>
 									    <ul class="dropdown-menu">
 									      <li><a href="###">编辑</a></li>
 									      <li><a href="###">删除</a></li>
-									      <li><a href="###">锁定</a></li>
-									      <li><a href="###">修改密码</a></li>
+									      <li><a href="###">全局置顶</a></li>
 									    </ul>
 									</div></td>
 							</tr>
 							<tr>
-								<th scope="row">3</th>
+								<th scope="row">泛Mooc职业教育， 效果和就业为王</th>
 								<td>张三</td>
-								<td>132456@qq.com</td>
+								<td>2018/08/08</td>
 								<td><div role="presentation" class="dropdown">
 									    <button class="dropdown-toggle btn btn-default" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">操作 <span class="caret"></span>
 									    </button>
 									    <ul class="dropdown-menu">
 									      <li><a href="###">编辑</a></li>
 									      <li><a href="###">删除</a></li>
-									      <li><a href="###">锁定</a></li>
-									      <li><a href="###">修改密码</a></li>
+									      <li><a href="###">全局置顶</a></li>
 									    </ul>
 									</div></td>
 							</tr>
 							<tr>
-								<th scope="row">3</th>
+								<th scope="row">泛Mooc职业教育， 效果和就业为王</th>
 								<td>张三</td>
-								<td>132456@qq.com</td>
+								<td>2018/08/08</td>
 								<td><div role="presentation" class="dropdown">
 									    <button class="dropdown-toggle btn btn-default" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">操作 <span class="caret"></span>
 									    </button>
 									    <ul class="dropdown-menu">
 									      <li><a href="###">编辑</a></li>
 									      <li><a href="###">删除</a></li>
-									      <li><a href="###">锁定</a></li>
-									      <li><a href="###">修改密码</a></li>
+									      <li><a href="###">全局置顶</a></li>
 									    </ul>
 									</div></td>
 							</tr>
 							<tr>
-								<th scope="row">3</th>
+								<th scope="row">泛Mooc职业教育， 效果和就业为王</th>
 								<td>张三</td>
-								<td>132456@qq.com</td>
+								<td>2018/08/08</td>
 								<td><div role="presentation" class="dropdown">
 									    <button class="dropdown-toggle btn btn-default" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">操作 <span class="caret"></span>
 									    </button>
 									    <ul class="dropdown-menu">
 									      <li><a href="###">编辑</a></li>
 									      <li><a href="###">删除</a></li>
-									      <li><a href="###">锁定</a></li>
-									      <li><a href="###">修改密码</a></li>
+									      <li><a href="###">全局置顶</a></li>
 									    </ul>
 									</div></td>
 							</tr>
+
 						</tbody>
 					</table>
 					<nav class="pull-right">

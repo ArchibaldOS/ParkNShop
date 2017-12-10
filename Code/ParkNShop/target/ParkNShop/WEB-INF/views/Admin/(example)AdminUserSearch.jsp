@@ -51,8 +51,8 @@
 			<div class="row">
 				<div class="col-md-2">
 					<div class="list-group">
-						<a href="AdminUserList.jsp" class="list-group-item">用户管理</a>
-						<a href="AdminUserSearch.jsp" class="list-group-item active">用户搜索</a>
+						<a href="(example)AdminUserList.jsp" class="list-group-item">用户管理</a>
+						<a href="(example)AdminUserSearch.jsp" class="list-group-item active">用户搜索</a>
 						<a href="###" role="button" class="list-group-item" data-toggle="modal" data-target="#myModal">添加用户</a>
 						
 					</div>
@@ -63,10 +63,10 @@
 					</div>
 					<ul class="nav nav-tabs">
 						<li>
-							<a href="AdminUserList.jsp">用户列表</a>
+							<a href="(example)AdminUserList.jsp">用户列表</a>
 						</li>
 						<li class="active">
-							<a href="AdminUserList.jsp">用户搜索</a>
+							<a href="(example)AdminUserList.jsp">用户搜索</a>
 						</li>
 						<li>
 							<a href="" role="button" data-toggle="modal" data-target="#myModal">添加用户</a>

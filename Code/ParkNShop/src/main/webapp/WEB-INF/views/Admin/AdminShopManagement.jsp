@@ -70,31 +70,28 @@
                         <th>Seller Name</th>
                         <th>Shop Name</th>
                         <th>Shop Introduction</th>
-                        <th>Seller Phone</th>
-                        <th>Seller Email</th>
                         <th class="hidden">shopStatus</th>
                         <th>Operations</th>
-
-
                     </tr>
                     </thead>
                     <tbody>
+                    <c:forEach var="registerShop" items="${registerShops}">
                     <tr>
-                        <th scope="row">AJ</th>
-                        <td>AJ shop</td>
-                        <td>A shop.</td>
-                        <td>12345678910</td>
-                        <td>123456@163.com</td>
+                        <td class="hidden"><c:out value="${registerShop.sellerid}"></c:out></td>
+                        <td><c:out value="${registerShop.sellername}"></c:out></td>
+                        <td><c:out value="${registerShop.shopname}"></c:out></td>
+                        <td><c:out value="${registerShop.shopintroduction}"></c:out></td>
                         <td><div role="presentation" class="dropdown">
                             <button class="dropdown-toggle btn btn-default" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Onclick <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu">
-                                <li><a href="###">View</a></li>
-                                <li><a href="###">approve</a></li>
-                                <li><a href="###">disapprove</a></li>
+                                <li><a href="/AdminRegisterShopDetail?sellerId=${registerShop.sellerid}">View</a></li>
+                                <li><a href="/AdminApproveRegisterShop?sellerId=${registerShop.sellerid}">approve</a></li>
+                                <li><a href="/AdminDisapproveRegisterShop?sellerId=${registerShop.sellerid}">disapprove</a></li>
                             </ul>
                         </div></td>
                     </tr>
+                    </c:forEach>
                     </tbody>
                 </table>
                 <nav class="pull-right">

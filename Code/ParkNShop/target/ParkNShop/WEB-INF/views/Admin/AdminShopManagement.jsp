@@ -11,41 +11,41 @@
 
 
 <body>
-<!--导航-->
-<nav class="navbar navbar-default">
-    <div class="container">
-        <!--小屏幕导航按钮和logo-->
-        <div class="navbar-header">
-            <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a href="/AdminIndex" class="navbar-brand">ParkNShop</a>
+    <!--导航-->
+    <nav class="navbar navbar-default">
+        <div class="container">
+            <!--小屏幕导航按钮和logo-->
+            <div class="navbar-header">
+                <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="/AdminIndex" class="navbar-brand">ParkNShop</a>
+            </div>
+            <!--小屏幕导航按钮和logo-->
+            <!--导航-->
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="/AdminShopManagement"><span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;Shop Management</a></li>
+                    <li><a href="/AdminCustomerManagement"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;Customer Management</a></li>
+                    <li><a href="/AdminOrderManagement"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;Order Management</a></li>
+                    <li><a href="/AdminADManagement"><span class="glyphicon glyphicon-list-alt"></span>&nbsp;&nbsp;AD Management</a></li>
+                    <li><a href="/AdminSalesManagement"><span class="glyphicon glyphicon-list-alt"></span>&nbsp;&nbsp;Sales</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <c:out value="${sessionScope.adminAccount}"></c:out>
+                        </a>
+                    </li>
+                    <li><a href="/AdminLogout"><span class="glyphicon glyphicon-off"></span>&nbsp;退出</a></li>
+                </ul>
+            </div>
+            <!--导航-->
         </div>
-        <!--小屏幕导航按钮和logo-->
-        <!--导航-->
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="/AdminShopManagement"><span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;Shop Management</a></li>
-                <li><a href="/AdminCustomerManagement"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;Customer Management</a></li>
-                <li><a href="/AdminOrderManagement"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;Order Management</a></li>
-                <li><a href="/AdminADManagement"><span class="glyphicon glyphicon-list-alt"></span>&nbsp;&nbsp;AD Management</a></li>
-                <li><a href="/AdminSalesManagement"><span class="glyphicon glyphicon-list-alt"></span>&nbsp;&nbsp;Sales</a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li class="dropdown">
-                    <a id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        admin
-                    </a>
-                </li>
-                <li><a href="/AdminLogout"><span class="glyphicon glyphicon-off"></span>&nbsp;退出</a></li>
-            </ul>
-        </div>
-        <!--导航-->
-    </div>
-</nav>
-<!--导航-->
+    </nav>
+    <!--导航-->
 
     <div class="container">
         <div class="row">
@@ -70,31 +70,28 @@
                         <th>Seller Name</th>
                         <th>Shop Name</th>
                         <th>Shop Introduction</th>
-                        <th>Seller Phone</th>
-                        <th>Seller Email</th>
                         <th class="hidden">shopStatus</th>
                         <th>Operations</th>
-
-
                     </tr>
                     </thead>
                     <tbody>
+                    <c:forEach var="registerShop" items="${registerShops}">
                     <tr>
-                        <th scope="row">AJ</th>
-                        <td>AJ shop</td>
-                        <td>A shop.</td>
-                        <td>12345678910</td>
-                        <td>123456@163.com</td>
+                        <td class="hidden"><c:out value="${registerShop.sellerid}"></c:out></td>
+                        <td><c:out value="${registerShop.sellername}"></c:out></td>
+                        <td><c:out value="${registerShop.shopname}"></c:out></td>
+                        <td><c:out value="${registerShop.shopintroduction}"></c:out></td>
                         <td><div role="presentation" class="dropdown">
                             <button class="dropdown-toggle btn btn-default" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Onclick <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu">
-                                <li><a href="###">View</a></li>
-                                <li><a href="###">approve</a></li>
-                                <li><a href="###">disapprove</a></li>
+                                <li><a href="/AdminRegisterShopDetail?sellerId=${registerShop.sellerid}">View</a></li>
+                                <li><a href="/AdminApproveRegisterShop?sellerId=${registerShop.sellerid}">approve</a></li>
+                                <li><a href="/AdminDisapproveRegisterShop?sellerId=${registerShop.sellerid}">disapprove</a></li>
                             </ul>
                         </div></td>
                     </tr>
+                    </c:forEach>
                     </tbody>
                 </table>
                 <nav class="pull-right">

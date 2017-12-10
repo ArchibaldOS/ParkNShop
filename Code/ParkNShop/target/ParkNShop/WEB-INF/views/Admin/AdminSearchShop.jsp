@@ -27,7 +27,7 @@
             <!--导航-->
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="/AdminShopManagement"><span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;Shop Management</a></li>
+                    <li><a href="/AdminShopManagement"><span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;Shop Management</a></li>
                     <li><a href="/AdminCustomerManagement"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;Customer Management</a></li>
                     <li><a href="/AdminOrderManagement"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;Order Management</a></li>
                     <li><a href="/AdminADManagement"><span class="glyphicon glyphicon-list-alt"></span>&nbsp;&nbsp;AD Management</a></li>
@@ -36,7 +36,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
                         <a id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            admin
+                            <c:out value="${sessionScope.adminAccount}"></c:out>
                         </a>
                     </li>
                     <li><a href="/AdminLogout"><span class="glyphicon glyphicon-off"></span>&nbsp;退出</a></li>
@@ -63,13 +63,13 @@
                 </div>
                 <ul class="nav nav-tabs">
                     <li class="active">
-                        <a href="AdminUserList.jsp">Search By Shop ID</a>
+                        <a href="(example)AdminUserList.jsp">Search By Shop ID</a>
                     </li>
                     <li class="nav nav-tabs">
-                        <a href="AdminUserList.jsp">Search By Shop Name</a>
+                        <a href="(example)AdminUserList.jsp">Search By Shop Name</a>
                     </li>
                     <li class="nav nav-tabs">
-                        <a href="AdminUserList.jsp">Search By Seller Name</a>
+                        <a href="(example)AdminUserList.jsp">Search By Seller Name</a>
                     </li>
                 </ul>
 
@@ -78,7 +78,7 @@
                         <label for="name">Shop ID:</label>
                         <input type="text" id="name" class="form-control" placeholder="Please input shop ID:" />
                     </div>
-                    <button type="submit" class="btn btn-default">Submit</button>
+                    <button type="submit" class="btn btn-default">Search</button>
                 </form>
 
             </div>
@@ -86,51 +86,6 @@
 
 
 
-        </div>
-    </div>
-
-    <!-- Modal -->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">添加用户</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="name">用户名</label>
-                        <input type="text" id="name" class="form-control" placeholder="请输入用户名" />
-                    </div>
-                    <div class="form-group">
-                        <label for="password">用户密码</label>
-                        <input type="password" id="password" class="form-control" placeholder="请输入用户密码" />
-                    </div>
-                    <div class="form-group">
-                        <label for="repassword">确认用户密码</label>
-                        <input type="password" id="repassword" class="form-control" placeholder="请确认用户密码" />
-                    </div>
-                    <div class="form-group">
-                        <label for="uemial">用户邮箱</label>
-                        <input type="text" id="uemial" class="form-control" placeholder="请输入用户邮箱" />
-                    </div>
-                    <div class="form-group">
-                        <label for="ugroup">选择用户组名</label>
-
-                        <select id="ugroup" class="form-control">
-                            <option value="">限制会员</option>
-                            <option value="">新手上路</option>
-                            <option value="">注册会员</option>
-                            <option value="">中级会员</option>
-                            <option value="">高级会员</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                    <button type="button" class="btn btn-primary">提交</button>
-                </div>
-            </div>
         </div>
     </div>
 

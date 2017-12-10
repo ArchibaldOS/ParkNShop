@@ -27,10 +27,6 @@ public class AdminIndexController {
     public String adminIndex(){
         return "Admin/AdminIndex";
     }
-    @RequestMapping("/AdminShopManagement")
-    public String adminShopManagement(){
-        return "Admin/AdminShopManagement";
-    }
     @RequestMapping("/AdminCustomerManagement")
     public String adminCustomerManagement(){
         return "Admin/AdminCustomerManagement";

@@ -1,0 +1,4 @@
+# git 忽略文件
+
+Code/ParkNShop/.idea
+Code/ParkNShop/target

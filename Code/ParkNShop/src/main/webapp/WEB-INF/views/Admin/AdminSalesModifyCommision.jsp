@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>AdminShopManagement</title>
+    <title>AdminSalesManagement</title>
     <link rel="stylesheet" href="assets/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="assets/css/bootstrap-maizi.css"/>
 </head>
@@ -51,44 +51,30 @@
     <div class="row">
         <div class="col-md-2">
             <div class="list-group">
-                <a href="/AdminShopManagement" class="list-group-item">Register Management</a>
-                <a href="/AdminShopList" class="list-group-item">ShopList</a>
-                <a href="/AdminSearchShopByShopName" class="list-group-item active">SearchShop</a>
-                <a href="/AdminBlackList" class="list-group-item">BlackList Management</a>
+                <a href="/AdminSalesManagement" class="list-group-item">Sales&nbsp;&nbsp;&nbsp;&nbsp; Management</a>
+                <a href="/AdminSalesModifyCommision" class="list-group-item active">Modify&nbsp;&nbsp;&nbsp;&nbsp; Management</a>
+                <a href="/AdminSalesCommisionHistory" class="list-group-item">Commision&nbsp;&nbsp;&nbsp;&nbsp; Management</a>
+
             </div>
         </div>
         <div class="col-md-10">
             <div class="page-header">
-                <h1>Shop Management</h1>
+                <h1>Sales Modify Commision</h1>
             </div>
-            <ul class="nav nav-tabs">
-                <li class="nav nav-tabs">
-                    <a href="/AdminSearchShopByID">Search By Shop ID</a>
-                </li>
-                <li class="active">
-                    <a href="/AdminSearchShopByShopName">Search By Shop Name</a>
-                </li>
-                <li class="nav nav-tabs">
-                    <a href="/AdminSearchShopBySellerName">Search By Seller Name</a>
-                </li>
-            </ul>
+            <div class="panel">
+                <form action="#" method="post" id="loginForm">
+                    New Commision&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="text"><br><br>
+                    Commision Password
+                    <input type="text"><br><br>
+                    <input type="submit" value="submit">
+                    <input type="reset" value="reset">
 
-            <form action="/AdminDoSearchByShopName" class="user_search">
-                <div class="form-group">
-                    <label for="shopname">Shop Name:</label>
-                    <input type="text" id="shopname" class="form-control" name="shopname" placeholder="Please input shop Name:" />
-                </div>
-                <button type="submit" class="btn btn-default">Search</button>
-            </form>
-
+                </form>
+            </div>
         </div>
-
-
-
-
     </div>
 </div>
-
 
 
 <!--footer-->
@@ -112,3 +98,4 @@
 <script src="assets/javascripts/script.js"></script>
 </body>
 </html>
+

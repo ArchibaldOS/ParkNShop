@@ -1,9 +1,10 @@
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
-    <title>AdminShopManagement</title>
+    <title>AdminADManagement</title>
     <link rel="stylesheet" href="assets/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="assets/css/bootstrap-maizi.css"/>
 </head>
@@ -51,44 +52,70 @@
     <div class="row">
         <div class="col-md-2">
             <div class="list-group">
-                <a href="/AdminShopManagement" class="list-group-item">Register Management</a>
-                <a href="/AdminShopList" class="list-group-item">ShopList</a>
-                <a href="/AdminSearchShopByShopName" class="list-group-item active">SearchShop</a>
-                <a href="/AdminBlackList" class="list-group-item">BlackList Management</a>
+                <a href="/AdminADManagement" class="list-group-item">Top10 Products Management</a>
+                <a href="/AdminADTop5StoriesManagement" class="list-group-item active">Top5 Stories Management</a>
+                <a href="/AdminADManagementHistory" class="list-group-item">AD Management History</a>
+
             </div>
         </div>
         <div class="col-md-10">
             <div class="page-header">
-                <h1>Shop Management</h1>
+                <h1>Top5 Stores Management</h1>
             </div>
-            <ul class="nav nav-tabs">
-                <li class="nav nav-tabs">
-                    <a href="/AdminSearchShopByID">Search By Shop ID</a>
-                </li>
-                <li class="active">
-                    <a href="/AdminSearchShopByShopName">Search By Shop Name</a>
-                </li>
-                <li class="nav nav-tabs">
-                    <a href="/AdminSearchShopBySellerName">Search By Seller Name</a>
-                </li>
-            </ul>
-
-            <form action="/AdminDoSearchByShopName" class="user_search">
-                <div class="form-group">
-                    <label for="shopname">Shop Name:</label>
-                    <input type="text" id="shopname" class="form-control" name="shopname" placeholder="Please input shop Name:" />
-                </div>
-                <button type="submit" class="btn btn-default">Search</button>
-            </form>
-
+            <div>
+                <button type="button"style="margin-right: 30px;">Add</button>
+                <button type="button">Del</button>
+            </div>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Check</th>
+                    <th>Serial</th>
+                    <th>Name</th>
+                    <th>Start Time</th>
+                    <th>End Time</th>
+                    <th>Length</th>
+                    <th>Place</th>
+                    <th>Price</th>
+                    <th>Content</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td><input type="checkbox"></td>
+                    <td>1</td>
+                    <td>ShopA</td>
+                    <td>2017/12/3 20:00</td>
+                    <td>2017/12/3 22:00</td>
+                    <td>2h</td>
+                    <td>someWhere</td>
+                    <td>1000</td>
+                    <td><button type="button">View</button> </td>
+                </tr>
+                </tbody>
+            </table>
+            <nav class="pull-right">
+                <ul class="pagination">
+                    <li class="disabled">
+                        <a href="#" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <li class="active"><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#">5</a></li>
+                    <li>
+                        <a href="#" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
         </div>
-
-
-
-
     </div>
 </div>
-
 
 
 <!--footer-->

@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>AdminShopManagement</title>
+    <title>AdminSalesManagement</title>
     <link rel="stylesheet" href="assets/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="assets/css/bootstrap-maizi.css"/>
 </head>
@@ -51,44 +51,54 @@
     <div class="row">
         <div class="col-md-2">
             <div class="list-group">
-                <a href="/AdminShopManagement" class="list-group-item">Register Management</a>
-                <a href="/AdminShopList" class="list-group-item">ShopList</a>
-                <a href="/AdminSearchShopByShopName" class="list-group-item active">SearchShop</a>
-                <a href="/AdminBlackList" class="list-group-item">BlackList Management</a>
+                <a href="/AdminSalesManagement" class="list-group-item">Sales&nbsp;&nbsp;&nbsp;&nbsp; Management</a>
+                <a href="/AdminSalesModifyCommision" class="list-group-item">Modify&nbsp;&nbsp;&nbsp;&nbsp; Management</a>
+                <a href="/AdminSalesCommisionHistory" class="list-group-item active">Commision&nbsp;&nbsp;&nbsp;&nbsp; Management</a>
+
             </div>
         </div>
         <div class="col-md-10">
             <div class="page-header">
-                <h1>Shop Management</h1>
+                <h1>Sales Commision History</h1>
             </div>
-            <ul class="nav nav-tabs">
-                <li class="nav nav-tabs">
-                    <a href="/AdminSearchShopByID">Search By Shop ID</a>
-                </li>
-                <li class="active">
-                    <a href="/AdminSearchShopByShopName">Search By Shop Name</a>
-                </li>
-                <li class="nav nav-tabs">
-                    <a href="/AdminSearchShopBySellerName">Search By Seller Name</a>
-                </li>
-            </ul>
-
-            <form action="/AdminDoSearchByShopName" class="user_search">
-                <div class="form-group">
-                    <label for="shopname">Shop Name:</label>
-                    <input type="text" id="shopname" class="form-control" name="shopname" placeholder="Please input shop Name:" />
-                </div>
-                <button type="submit" class="btn btn-default">Search</button>
-            </form>
-
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>New Commision</th>
+                    <th>Time</th>
+                    <th>Operator</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>0.2</td>
+                    <td>2017/12/3 20:00</td>
+                    <td>Admin</td>
+                </tr>
+                </tbody>
+            </table>
+            <nav class="pull-right">
+                <ul class="pagination">
+                    <li class="disabled">
+                        <a href="#" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <li class="active"><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#">5</a></li>
+                    <li>
+                        <a href="#" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
         </div>
-
-
-
-
     </div>
 </div>
-
 
 
 <!--footer-->
@@ -112,3 +122,4 @@
 <script src="assets/javascripts/script.js"></script>
 </body>
 </html>
+

@@ -1,6 +1,6 @@
 var lineChartData = {
     //X坐标数据
-    labels : ["周一","周二","周三","周四","周五","周六","周末"],
+    labels : ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
     datasets : [
         {
             //统计表的背景颜色

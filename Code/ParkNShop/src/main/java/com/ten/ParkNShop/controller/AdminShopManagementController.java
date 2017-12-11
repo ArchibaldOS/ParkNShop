@@ -131,13 +131,13 @@ public class AdminShopManagementController {
     * @Description: 删除店铺
     */
     @RequestMapping("/AdminDeleteShop")
-    public String adminRemoveFromBlacklist(HttpServletRequest httpServletRequest){
+    public String adminDeleteShop(HttpServletRequest httpServletRequest){
         int sellerId = Integer.parseInt(httpServletRequest.getParameter("sellerId"));
         int i = adminShopService.deleteSeller(sellerId);
-        return "redirect:/AdminBlackList";
+        return "redirect:/AdminShopList";
     }
 
-    @RequestMapping("/AdminDoSearchByID")
+    @RequestMapping("/AdminDoSearchByShopID")
     public String adminDoSearchByID(HttpServletRequest httpServletRequest,Model model){
         int sellerId = Integer.parseInt(httpServletRequest.getParameter("sellerId"));
         model.addAttribute("seller",adminShopService.selectSellerById(sellerId));

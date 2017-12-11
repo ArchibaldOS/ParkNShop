@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>AdminShopManagement</title>
+    <title>AdminBuyerManagement</title>
     <link rel="stylesheet" href="assets/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="assets/css/bootstrap-maizi.css"/>
 </head>
@@ -51,45 +51,70 @@
     <div class="row">
         <div class="col-md-2">
             <div class="list-group">
-                <a href="/AdminShopManagement" class="list-group-item">Register Management</a>
-                <a href="/AdminShopList" class="list-group-item">ShopList</a>
-                <a href="/AdminSearchShopBySellerName" class="list-group-item active">SearchShop</a>
-                <a href="/AdminBlackList" class="list-group-item">BlackList Management</a>
+                <a href="/AdminBuyerManagement" class="list-group-item active">BuyerList</a>
+                <a href="/AdminSearchBuyerByID" class="list-group-item">SearchBuyer</a>
+                <a href="/AdminBuyerBlackList" class="list-group-item">BlackList Management</a>
             </div>
         </div>
         <div class="col-md-10">
             <div class="page-header">
-                <h1>Shop Management</h1>
+                <h1>Buyer Management</h1>
             </div>
-            <ul class="nav nav-tabs">
-                <li class="nav nav-tabs">
-                    <a href="/AdminSearchShopByID">Search By Shop ID</a>
-                </li>
-                <li class="nav nav-tabs">
-                    <a href="/AdminSearchShopByShopName">Search By Shop Name</a>
-                </li>
-                <li class="active">
-                    <a href="/AdminSearchShopBySellerName">Search By Seller Name</a>
-                </li>
-            </ul>
-
-            <form action="/AdminDoSearchBySellerName" class="user_search">
-                <div class="form-group">
-                    <label for="sellername">Seller Name:</label>
-                    <input type="text" id="sellername" class="form-control" name="sellername" placeholder="Please input seller name:" />
-                </div>
-                <button type="submit" class="btn btn-default">Search</button>
-            </form>
-
+            <table class="table">
+                <thead>
+                <tr>
+                    <th class="hidden">Buyer ID</th>
+                    <th>Buyer Name</th>
+                    <th>Buyer Address</th>
+                    <th>Buyer Phone</th>
+                    <th>Buyer Balance</th>
+                    <th class="hidden">Buyer `Status</th>
+                    <th>Operations</th>
+                </tr>
+                </thead>
+                <tbody>
+                <c:forEach var="normalBuyer" items="${normalBuyers}">
+                    <tr>
+                        <td class="hidden"><c:out value="${normalBuyer.buyerid}"></c:out></td>
+                        <td><c:out value="${normalBuyer.buyername}"></c:out></td>
+                        <td><c:out value="${normalBuyer.buyeraddress}"></c:out></td>
+                        <td><c:out value="${normalBuyer.buyerphone}"></c:out></td>
+                        <td><c:out value="${normalBuyer.buyerbalance}"></c:out></td>
+                        <td><div role="presentation" class="dropdown">
+                            <button class="dropdown-toggle btn btn-default" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Onclick <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a href="/AdminBuyerDetail?buyerId=${normalBuyer.buyerid}">View</a></li>
+                                <li><a href="/AdminBuyerModify?buyerId=${normalBuyer.buyerid}">modify</a></li>
+                                <li><a href="/AdminDeleteBuyer?buyerId=${normalBuyer.buyerid}">delete</a></li>
+                            </ul>
+                        </div></td>
+                    </tr>
+                </c:forEach>
+                </tbody>
+            </table>
+            <nav class="pull-right">
+                <ul class="pagination">
+                    <li class="disabled">
+                        <a href="#" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <li class="active"><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#">5</a></li>
+                    <li>
+                        <a href="#" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
         </div>
-
-
-
-
     </div>
 </div>
-
-
 
 <!--footer-->
 <footer>

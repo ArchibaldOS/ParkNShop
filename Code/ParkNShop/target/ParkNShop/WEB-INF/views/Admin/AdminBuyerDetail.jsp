@@ -1,9 +1,10 @@
+<%@ page import="com.ten.ParkNShop.entity.Seller" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
-    <title>AdminShopManagement</title>
+    <title>AdminBuyerManagement</title>
     <link rel="stylesheet" href="assets/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="assets/css/bootstrap-maizi.css"/>
 </head>
@@ -39,7 +40,7 @@
                         <c:out value="${sessionScope.adminAccount}"></c:out>
                     </a>
                 </li>
-                <li><a href="/AdminLogout"><span class="glyphicon glyphicon-off"></span>&nbsp;退出</a></li>
+                <li><a href="/AdminLogout"><span class="glyphicon glyphicon-off"></span>&nbsp;LOG OUT</a></li>
             </ul>
         </div>
         <!--导航-->
@@ -51,45 +52,70 @@
     <div class="row">
         <div class="col-md-2">
             <div class="list-group">
-                <a href="/AdminShopManagement" class="list-group-item">Register Management</a>
-                <a href="/AdminShopList" class="list-group-item">ShopList</a>
-                <a href="/AdminSearchShopBySellerName" class="list-group-item active">SearchShop</a>
-                <a href="/AdminBlackList" class="list-group-item">BlackList Management</a>
+                <a href="/AdminBuyerManagement" class="list-group-item">BuyerList</a>
+                <a href="/AdminSearchBuyerByID" class="list-group-item">SearchBuyer</a>
+                <a href="/AdminBuyerBlackList" class="list-group-item">BlackList Management</a>
+
             </div>
         </div>
         <div class="col-md-10">
             <div class="page-header">
-                <h1>Shop Management</h1>
+                <h1>Buyer Management</h1>
             </div>
-            <ul class="nav nav-tabs">
-                <li class="nav nav-tabs">
-                    <a href="/AdminSearchShopByID">Search By Shop ID</a>
-                </li>
-                <li class="nav nav-tabs">
-                    <a href="/AdminSearchShopByShopName">Search By Shop Name</a>
-                </li>
-                <li class="active">
-                    <a href="/AdminSearchShopBySellerName">Search By Seller Name</a>
-                </li>
-            </ul>
-
-            <form action="/AdminDoSearchBySellerName" class="user_search">
-                <div class="form-group">
-                    <label for="sellername">Seller Name:</label>
-                    <input type="text" id="sellername" class="form-control" name="sellername" placeholder="Please input seller name:" />
-                </div>
-                <button type="submit" class="btn btn-default">Search</button>
-            </form>
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>Attributes</th>
+                    <th>Information</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="hidden">
+                    <td>Buyer ID</td>
+                    <td >${buyer.buyerid}</td>
+                </tr>
+                <tr>
+                    <td>Buyer Name</td>
+                    <td>${buyer.buyername}</td>
+                </tr>
+                <tr>
+                    <td>Buyer Address</td>
+                    <td>${buyer.buyeraddress}</td>
+                </tr>
+                <tr>
+                    <td >Buyer Phone</td>
+                    <td>${buyer.buyerphone}</td>
+                </tr>
+                <tr>
+                    <td >Buyer Balance</td>
+                    <td>${buyer.buyerbalance}</td>
+                </tr>
+                <tr>
+                    <td>shopStatus</td>
+                    <c:choose>
+                        <c:when test="${buyer.buyerstatus eq 1}"><td>Normal</td></c:when>
+                        <c:when test="${buyer.buyerstatus eq 2}"><td>Frozen</td></c:when>
+                        <c:when test="${buyer.buyerstatus eq 3}"><td>BlackList</td></c:when>
+                    </c:choose>
+                </tr>
+                <tr>
+                    <td>
+                        <div style="margin:0 auto;width:200px;">
+                            <button type="button" class="btn btn-success" onclick="location='/AdminBuyerModify?buyerId=${buyer.buyerid}'">Modify</button>
+                        </div>
+                    </td>
+                    <td>
+                        <%--<div style="margin:0 auto;width:200px;">--%>
+                        <button type="button" class="btn btn-danger" onclick="location='/AdminBuyerManagement'">Cancel</button>
+                        <%--</div>--%>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
 
         </div>
-
-
-
-
     </div>
 </div>
-
-
 
 <!--footer-->
 <footer>

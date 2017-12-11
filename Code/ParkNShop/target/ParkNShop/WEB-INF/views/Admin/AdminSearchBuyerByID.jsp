@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>AdminShopManagement</title>
+    <title>AdminBuyerManagement</title>
     <link rel="stylesheet" href="assets/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="assets/css/bootstrap-maizi.css"/>
 </head>
@@ -51,36 +51,31 @@
     <div class="row">
         <div class="col-md-2">
             <div class="list-group">
-                <a href="/AdminShopManagement" class="list-group-item">Register Management</a>
-                <a href="/AdminShopList" class="list-group-item">ShopList</a>
-                <a href="/AdminSearchShopBySellerName" class="list-group-item active">SearchShop</a>
-                <a href="/AdminBlackList" class="list-group-item">BlackList Management</a>
+                <a href="/AdminBuyerManagement" class="list-group-item">BuyerList</a>
+                <a href="/AdminSearchBuyerByID" class="list-group-item active">SearchBuyer</a>
+                <a href="/AdminBuyerBlackList" class="list-group-item">BlackList Management</a>
             </div>
         </div>
         <div class="col-md-10">
             <div class="page-header">
-                <h1>Shop Management</h1>
+                <h1>Buyer Management</h1>
             </div>
             <ul class="nav nav-tabs">
-                <li class="nav nav-tabs">
-                    <a href="/AdminSearchShopByID">Search By Shop ID</a>
-                </li>
-                <li class="nav nav-tabs">
-                    <a href="/AdminSearchShopByShopName">Search By Shop Name</a>
-                </li>
                 <li class="active">
-                    <a href="/AdminSearchShopBySellerName">Search By Seller Name</a>
+                    <a href="/AdminSearchBuyerByID">Search By Buyer ID</a>
+                </li>
+                <li class="nav nav-tabs">
+                    <a href="/AdminSearchBuyerByBuyerName">Search By Buyer Name</a>
                 </li>
             </ul>
 
-            <form action="/AdminDoSearchBySellerName" class="user_search">
+            <form action="/AdminDoSearchByBuyerID" class="user_search">
                 <div class="form-group">
-                    <label for="sellername">Seller Name:</label>
-                    <input type="text" id="sellername" class="form-control" name="sellername" placeholder="Please input seller name:" />
+                    <label for="buyerId">Buyer ID:</label>
+                    <input type="text" id="buyerId" class="form-control" name="buyerId" placeholder="Please input buyer ID:" />
                 </div>
                 <button type="submit" class="btn btn-default">Search</button>
             </form>
-
         </div>
 
 

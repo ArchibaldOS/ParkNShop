@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>AdminShopManagement</title>
+    <title>AdminBuyerManagement</title>
     <link rel="stylesheet" href="assets/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="assets/css/bootstrap-maizi.css"/>
 </head>
@@ -11,8 +11,8 @@
 
 
 <body>
-    <!--导航-->
-    <nav class="navbar navbar-default">
+<!--导航-->
+<nav class="navbar navbar-default">
     <div class="container">
         <!--小屏幕导航按钮和logo-->
         <div class="navbar-header">
@@ -45,51 +45,51 @@
         <!--导航-->
     </div>
 </nav>
-    <!--导航-->
+<!--导航-->
 
 <div class="container">
     <div class="row">
         <div class="col-md-2">
             <div class="list-group">
-                <a href="/AdminShopManagement" class="list-group-item">Register Management</a>
-                <a href="/AdminShopList" class="list-group-item">ShopList</a>
-                <a href="/AdminSearchShopByID" class="list-group-item">SearchShop</a>
-                <a href="/AdminBlackList" class="list-group-item active">BlackList Management</a>
-
-
+                <a href="/AdminBuyerManagement" class="list-group-item">BuyerList</a>
+                <a href="/AdminSearchBuyerByID" class="list-group-item">SearchBuyer</a>
+                <a href="/AdminBuyerBlackList" class="list-group-item active">BlackList Management</a>
             </div>
         </div>
         <div class="col-md-10">
             <div class="page-header">
-                <h1>Shop Management</h1>
+                <h1>Buyer Management</h1>
             </div>
             <table class="table">
                 <thead>
                 <tr>
-                    <th class="hidden">sellerID</th>
-                    <th>Seller Name</th>
-                    <th>Shop Name</th>
-                    <th>Shop Introduction</th>
+                    <th class="hidden">Buyer ID</th>
+                    <th>Buyer Name</th>
+                    <th>Buyer Address</th>
+                    <th>Buyer Phone</th>
+                    <th>Buyer Balance</th>
                     <th class="hidden">shopStatus</th>
                     <th>Operations</th>
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach var="blacklistShop" items="${blacklistShops}">
-                <tr>
-                    <td class="hidden"><c:out value="${blacklistShop.sellerid}"></c:out></td>
-                    <td><c:out value="${blacklistShop.sellername}"></c:out></td>
-                    <td><c:out value="${blacklistShop.shopname}"></c:out></td>
-                    <td><c:out value="${blacklistShop.shopintroduction}"></c:out></td>
-                    <td><div role="presentation" class="dropdown">
-                        <button class="dropdown-toggle btn btn-default" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Onclick <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a href="/AdminShopDetail?sellerId=${blacklistShop.sellerid}">View</a></li>
-                            <li><a href="/AdminChangeShopStatusToWaitToApproved?sellerId=${blacklistShop.sellerid}">Remove</a></li>
-                        </ul>
-                    </div></td>
-                </tr>
+                <c:forEach var="blacklistBuyer" items="${blacklistBuyers}">
+                    <tr>
+                        <td class="hidden"><c:out value="${blacklistBuyer.buyerid}"></c:out></td>
+                        <td><c:out value="${blacklistBuyer.buyername}"></c:out></td>
+                        <td><c:out value="${blacklistBuyer.buyeraddress}"></c:out></td>
+                        <td><c:out value="${blacklistBuyer.buyerphone}"></c:out></td>
+                        <td><c:out value="${blacklistBuyer.buyerbalance}"></c:out></td>
+                        <td class="hidden"><c:out value="${blacklistBuyer.buyerstatus}"></c:out></td>
+                        <td><div role="presentation" class="dropdown">
+                            <button class="dropdown-toggle btn btn-default" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Onclick <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a href="/AdminBuyerDetail?buyerId=${blacklistBuyer.buyerid}">View</a></li>
+                                <li><a href="/AdminSetBuyerStatusToNormal?buyerId=${blacklistBuyer.buyerid}">Remove</a></li>
+                            </ul>
+                        </div></td>
+                    </tr>
                 </c:forEach>
                 </tbody>
             </table>

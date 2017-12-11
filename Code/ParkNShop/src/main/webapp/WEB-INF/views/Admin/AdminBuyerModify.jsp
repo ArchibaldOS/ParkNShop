@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>AdminShopManagement</title>
+    <title>AdminBuyerManagement</title>
     <link rel="stylesheet" href="assets/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="assets/css/bootstrap-maizi.css"/>
 </head>
@@ -51,45 +51,70 @@
     <div class="row">
         <div class="col-md-2">
             <div class="list-group">
-                <a href="/AdminShopManagement" class="list-group-item">Register Management</a>
-                <a href="/AdminShopList" class="list-group-item">ShopList</a>
-                <a href="/AdminSearchShopBySellerName" class="list-group-item active">SearchShop</a>
-                <a href="/AdminBlackList" class="list-group-item">BlackList Management</a>
+                <a href="/AdminBuyerManagement" class="list-group-item">BuyerList</a>
+                <a href="/AdminSearchBuyerByID" class="list-group-item">SearchBuyer</a>
+                <a href="/AdminBuyerBlackList" class="list-group-item">BlackList Management</a>
+
+
             </div>
         </div>
         <div class="col-md-10">
             <div class="page-header">
-                <h1>Shop Management</h1>
+                <h1>Buyer Management</h1>
             </div>
-            <ul class="nav nav-tabs">
-                <li class="nav nav-tabs">
-                    <a href="/AdminSearchShopByID">Search By Shop ID</a>
-                </li>
-                <li class="nav nav-tabs">
-                    <a href="/AdminSearchShopByShopName">Search By Shop Name</a>
-                </li>
-                <li class="active">
-                    <a href="/AdminSearchShopBySellerName">Search By Seller Name</a>
-                </li>
-            </ul>
-
-            <form action="/AdminDoSearchBySellerName" class="user_search">
+            <form class="form-horizontal" role="form" action="/AdminBuyerModifyDO">
                 <div class="form-group">
-                    <label for="sellername">Seller Name:</label>
-                    <input type="text" id="sellername" class="form-control" name="sellername" placeholder="Please input seller name:" />
+                    <label class="col-sm-2 control-label">Seller ID</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" id="focusedInput6" type="text" name="buyerid" value="${buyer.buyerid}" READONLY>
+                    </div>
                 </div>
-                <button type="submit" class="btn btn-default">Search</button>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Buyer Name</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" id="focusedInput" type="text" name="buyername" value="${buyer.buyername}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Buyer Address</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" id="focusedInput2" type="text" name="buyeraddress" value="${buyer.buyeraddress}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Buyer Phone</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" id="focusedInput3" type="text" name="buyerphone" value="${buyer.buyerphone}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Buyer Balance</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" id="focusedInput4" type="text" name="buyerbalance" value="${buyer.buyerbalance}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Buyer Status</label>
+                    <div class="col-sm-10">
+                        <select class="form-control" name="buyerstatus">
+                            <option value="1">Normal</option>
+                            <option value="2">Frozen</option>
+                            <option value="3">Ban</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div style="margin:0 auto;width:200px;">
+                    <div style="width:50%;padding:0;margin:0;float:left">
+                        <button type="submit" class="btn btn-success">Modify</button>
+                    </div>
+                    <button type="button" class="btn btn-danger" onclick="location='/AdminBuyerManagement'">Cancel</button>
+                </div>
+
             </form>
-
         </div>
-
-
-
-
     </div>
 </div>
-
-
 
 <!--footer-->
 <footer>

@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="ParkNShop:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="ParkNShop.war">
+      <element id="artifact" artifact-name="ParkNShop:war exploded" />
+    </root>
+  </artifact>
+</component>

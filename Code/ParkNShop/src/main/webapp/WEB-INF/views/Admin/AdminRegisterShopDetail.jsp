@@ -74,46 +74,46 @@
                 <tbody>
                 <tr class="hidden">
                     <td>sellerID</td>
-                    <td >${seller.sellerid}</td>
+                    <td >${seller.sellerId}</td>
                 </tr>
                 <tr>
                     <td>Seller Name</td>
-                    <td>${seller.sellername}</td>
+                    <td>${seller.sellerName}</td>
                 </tr>
                 <tr>
                     <td>Shop Name</td>
-                    <td>${seller.shopname}</td>
+                    <td>${seller.shopName}</td>
                 </tr>
                 <tr>
                     <td >Shop Introduction</td>
-                    <td>${seller.shopintroduction}</td>
+                    <td>${seller.shopIntroduction}</td>
                 </tr>
                 <tr>
                     <td >Seller Phone</td>
-                    <td>${seller.sellerphone}</td>
+                    <td>${seller.sellerPhone}</td>
                 </tr>
                 <tr>
                     <td >Seller Email</td>
-                    <td>${seller.selleremail}</td>
+                    <td>${seller.sellerEmail}</td>
                 </tr>
                 <tr>
                     <td>shopStatus</td>
                     <c:choose>
-                        <c:when test="${seller.shopstatus eq 0}"><td>Waiting for approve</td></c:when>
-                        <c:when test="${seller.shopstatus eq 1}"><td>Approved</td></c:when>
-                        <c:when test="${seller.shopstatus eq 2}"><td>Unapproved</td></c:when>
-                        <c:when test="${seller.shopstatus eq 3}"><td>BlackList</td></c:when>
+                        <c:when test="${seller.shopStatus eq 0}"><td>Waiting for approve</td></c:when>
+                        <c:when test="${seller.shopStatus eq 1}"><td>Approved</td></c:when>
+                        <c:when test="${seller.shopStatus eq 2}"><td>Unapproved</td></c:when>
+                        <c:when test="${seller.shopStatus eq 3}"><td>BlackList</td></c:when>
                     </c:choose>
                 </tr>
                 <tr>
                     <td>
                         <div style="margin:0 auto;width:200px;">
-                            <button type="button" class="btn btn-success" onclick="location='/AdminApproveRegisterShop?sellerId=${seller.sellerid}'">Approve</button>
+                            <button type="button" class="btn btn-success" onclick="location='/AdminApproveRegisterShop?sellerId=${seller.sellerId}'">Approve</button>
                         </div>
                     </td>
                     <td>
                         <%--<div style="margin:0 auto;width:200px;">--%>
-                        <button type="button" class="btn btn-danger" onclick="location='/AdminDisapproveRegisterShop?sellerId=${seller.sellerid}'">Disapprove</button>
+                        <button type="button" class="btn btn-danger" onclick="location='/AdminDisapproveRegisterShop?sellerId=${seller.sellerId}'">Disapprove</button>
                         <%--</div>--%>
                     </td>
                 </tr>

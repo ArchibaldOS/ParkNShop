@@ -39,7 +39,7 @@
                         <c:out value="${sessionScope.adminAccount}"></c:out>
                     </a>
                 </li>
-                <li><a href="/AdminLogout"><span class="glyphicon glyphicon-off"></span>&nbsp;退出</a></li>
+                <li><a href="/AdminLogout"><span class="glyphicon glyphicon-off"></span>&nbsp;LOG OUT</a></li>
             </ul>
         </div>
         <!--导航-->
@@ -77,16 +77,16 @@
                 <tbody>
                 <c:forEach var="blacklistShop" items="${blacklistShops}">
                 <tr>
-                    <td class="hidden"><c:out value="${blacklistShop.sellerid}"></c:out></td>
-                    <td><c:out value="${blacklistShop.sellername}"></c:out></td>
-                    <td><c:out value="${blacklistShop.shopname}"></c:out></td>
-                    <td><c:out value="${blacklistShop.shopintroduction}"></c:out></td>
+                    <td class="hidden"><c:out value="${blacklistShop.sellerId}"></c:out></td>
+                    <td><c:out value="${blacklistShop.sellerName}"></c:out></td>
+                    <td><c:out value="${blacklistShop.shopName}"></c:out></td>
+                    <td><c:out value="${blacklistShop.shopIntroduction}"></c:out></td>
                     <td><div role="presentation" class="dropdown">
                         <button class="dropdown-toggle btn btn-default" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Onclick <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu">
-                            <li><a href="/AdminShopDetail?sellerId=${blacklistShop.sellerid}">View</a></li>
-                            <li><a href="/AdminChangeShopStatusToWaitToApproved?sellerId=${blacklistShop.sellerid}">Remove</a></li>
+                            <li><a href="/AdminShopDetail?sellerId=${blacklistShop.sellerId}">View</a></li>
+                            <li><a href="/AdminChangeShopStatusToWaitToApproved?sellerId=${blacklistShop.sellerId}">Remove</a></li>
                         </ul>
                     </div></td>
                 </tr>

@@ -69,6 +69,11 @@ public interface SellerMapper {
     int updateShopStatusToUnapproved(int sellerId);
 
     int updateShopStatusToBan(int sellerId);
+    int sellerRegister(Seller seller);
+
+    Seller findBySellerEmail(@Param("sellerEmail") String sellerEmail,@Param("sellerPassword") String sellerPassword);
+
+    int findByEmail(String sellerEmail);
 
     List<Seller> selectAllRegisterShop(@Param("start")int start,@Param("pageSize")int pageSize);
     List<Seller> selectAllApprovedShop(@Param("start")int start,@Param("pageSize")int pageSize);

@@ -39,7 +39,7 @@
                         <c:out value="${sessionScope.adminAccount}"></c:out>
                     </a>
                 </li>
-                <li><a href="/AdminLogout"><span class="glyphicon glyphicon-off"></span>&nbsp;退出</a></li>
+                <li><a href="/AdminLogout"><span class="glyphicon glyphicon-off"></span>&nbsp;LOG OUT</a></li>
             </ul>
         </div>
         <!--导航-->

@@ -67,37 +67,37 @@
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Seller ID</label>
                     <div class="col-sm-10">
-                        <input class="form-control" id="focusedInput6" type="text" name="sellerid" value="${seller.sellerid}" READONLY>
+                        <input class="form-control" id="focusedInput6" type="text" name="sellerid" value="${seller.sellerId}" READONLY>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Seller Name</label>
                     <div class="col-sm-10">
-                        <input class="form-control" id="focusedInput" type="text" name="sellername" value="${seller.sellername}">
+                        <input class="form-control" id="focusedInput" type="text" name="sellername" value="${seller.sellerName}">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Shop Name</label>
                     <div class="col-sm-10">
-                        <input class="form-control" id="focusedInput2" type="text" name="shopname" value="${seller.shopname}">
+                        <input class="form-control" id="focusedInput2" type="text" name="shopname" value="${seller.shopName}">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Shop Introduction</label>
                     <div class="col-sm-10">
-                        <input class="form-control" id="focusedInput3" type="text" name="shopintroduction" value="${seller.shopintroduction}">
+                        <input class="form-control" id="focusedInput3" type="text" name="shopintroduction" value="${seller.shopIntroduction}">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Seller Phone</label>
                     <div class="col-sm-10">
-                        <input class="form-control" id="focusedInput4" type="text" name="sellerphone" value="${seller.sellerphone}">
+                        <input class="form-control" id="focusedInput4" type="text" name="sellerphone" value="${seller.sellerPhone}">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Seller Email</label>
                     <div class="col-sm-10">
-                        <input class="form-control" id="focusedInput5" type="text" name="selleremail" value="${seller.selleremail}">
+                        <input class="form-control" id="focusedInput5" type="text" name="selleremail" value="${seller.sellerEmail}">
                     </div>
                 </div>
                 <div class="form-group">

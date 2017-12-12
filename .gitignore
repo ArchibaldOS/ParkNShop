@@ -2,3 +2,7 @@
 
 Code/ParkNShop/.idea/
 Code/ParkNShop/target/
+
+# jdbc文件
+Code/ParkNShop/src/main/resources/init.properties
+Code/ParkNShop/src/main/resources/jdbc.properties

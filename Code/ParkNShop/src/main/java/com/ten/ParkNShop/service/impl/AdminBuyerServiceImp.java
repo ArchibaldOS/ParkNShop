@@ -70,38 +70,38 @@ public class AdminBuyerServiceImp implements AdminBuyerService{
 
         return buyerMapper.selectByPrimaryKey((int) id);
     }
-    public Buyer selectByBuyername(String buyername) {
+    public Buyer selectBybuyerName(String buyerName) {
         /**
          * @Author: Caihongyang
          * @Date: 3:26 PM 8/19/2017
          *
-         * @Description: 通过Buyername查找一个Buyer
+         * @Description: 通过buyerName查找一个Buyer
          */
 
-        return buyerMapper.selectByBuyername(buyername);
+        return buyerMapper.selectBybuyerName(buyerName);
     }
 
 
-    public int selectBuyerStatus(int buyerId) {
+    public int selectbuyerStatus(int buyerId) {
         /**
          * @Author: Archibald
          * @Date: 4:24 PM 12/6/2017
          *
-         * @Description: 查找BuyerPassword
-         * @Param: [BuyerAccount]
+         * @Description: 查找buyerPassword
+         * @Param: [buyerAccount]
          * @Return: java.lang.String
          */
-        return buyerMapper.selectBuyerStatus(buyerId);
+        return buyerMapper.selectbuyerStatus(buyerId);
     }
 
-    public int updateBuyerStatusToNormal(int buyerId){
-        return buyerMapper.updateBuyerStatusToNormal(buyerId);
+    public int updatebuyerStatusToNormal(int buyerId){
+        return buyerMapper.updatebuyerStatusToNormal(buyerId);
     }
-    public int updateBuyerStatusToFrozen(int buyerId){
-        return buyerMapper.updateBuyerStatusToFrozen(buyerId);
+    public int updatebuyerStatusToFrozen(int buyerId){
+        return buyerMapper.updatebuyerStatusToFrozen(buyerId);
     }
-    public int updateBuyerStatusToBlacklist(int buyerId){
-        return buyerMapper.updateBuyerStatusToBlacklist(buyerId);
+    public int updatebuyerStatusToBlacklist(int buyerId){
+        return buyerMapper.updatebuyerStatusToBlacklist(buyerId);
     }
 
     public List<Buyer> selectAllNormalBuyer(int offset, int size) {

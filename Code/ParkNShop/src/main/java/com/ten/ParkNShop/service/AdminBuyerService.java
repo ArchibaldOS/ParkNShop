@@ -50,16 +50,16 @@ public interface AdminBuyerService {
      * @Param: [id]
      * @Return: Buyer
      */
-    Buyer selectByBuyername(String buyername);
+    Buyer selectBybuyerName(String buyerName);
 
-    int selectBuyerStatus(int buyerId);
+    int selectbuyerStatus(int buyerId);
 
 
-    int updateBuyerStatusToNormal(int buyerId);
+    int updatebuyerStatusToNormal(int buyerId);
 
-    int updateBuyerStatusToFrozen(int buyerId);
+    int updatebuyerStatusToFrozen(int buyerId);
 
-    int updateBuyerStatusToBlacklist(int buyerId);
+    int updatebuyerStatusToBlacklist(int buyerId);
 
     List<Buyer> selectAllNormalBuyer(int start,int pageSize);
     List<Buyer> selectAllFrozenBuyer(int start,int pageSize);

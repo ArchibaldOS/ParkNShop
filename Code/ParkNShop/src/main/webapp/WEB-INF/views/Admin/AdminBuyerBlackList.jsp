@@ -64,6 +64,7 @@
                 <thead>
                 <tr>
                     <th class="hidden">Buyer ID</th>
+                    <th>Buyer Account</th>
                     <th>Buyer Name</th>
                     <th>Buyer Address</th>
                     <th>Buyer Phone</th>
@@ -75,18 +76,19 @@
                 <tbody>
                 <c:forEach var="blacklistBuyer" items="${blacklistBuyers}">
                     <tr>
-                        <td class="hidden"><c:out value="${blacklistBuyer.buyerid}"></c:out></td>
-                        <td><c:out value="${blacklistBuyer.buyername}"></c:out></td>
-                        <td><c:out value="${blacklistBuyer.buyeraddress}"></c:out></td>
-                        <td><c:out value="${blacklistBuyer.buyerphone}"></c:out></td>
-                        <td><c:out value="${blacklistBuyer.buyerbalance}"></c:out></td>
-                        <td class="hidden"><c:out value="${blacklistBuyer.buyerstatus}"></c:out></td>
+                        <td class="hidden"><c:out value="${blacklistBuyer.buyerId}"></c:out></td>
+                        <td><c:out value="${blacklistBuyer.buyerAccount}"></c:out></td>
+                        <td><c:out value="${blacklistBuyer.buyerName}"></c:out></td>
+                        <td><c:out value="${blacklistBuyer.buyerAddress}"></c:out></td>
+                        <td><c:out value="${blacklistBuyer.buyerPhone}"></c:out></td>
+                        <td><c:out value="${blacklistBuyer.buyerBalance}"></c:out></td>
+                        <td class="hidden"><c:out value="${blacklistBuyer.buyerStatus}"></c:out></td>
                         <td><div role="presentation" class="dropdown">
                             <button class="dropdown-toggle btn btn-default" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Onclick <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu">
-                                <li><a href="/AdminBuyerDetail?buyerId=${blacklistBuyer.buyerid}">View</a></li>
-                                <li><a href="/AdminSetBuyerStatusToNormal?buyerId=${blacklistBuyer.buyerid}">Remove</a></li>
+                                <li><a href="/AdminBuyerDetail?buyerId=${blacklistBuyer.buyerId}">View</a></li>
+                                <li><a href="/AdminSetBuyerStatusToNormal?buyerId=${blacklistBuyer.buyerId}">Remove</a></li>
                             </ul>
                         </div></td>
                     </tr>

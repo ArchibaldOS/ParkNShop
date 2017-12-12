@@ -64,6 +64,7 @@
                 <thead>
                 <tr>
                     <th class="hidden">Buyer ID</th>
+                    <th>Buyer Account</th>
                     <th>Buyer Name</th>
                     <th>Buyer Address</th>
                     <th>Buyer Phone</th>
@@ -75,18 +76,19 @@
                 <tbody>
                 <c:forEach var="normalBuyer" items="${normalBuyers}">
                     <tr>
-                        <td class="hidden"><c:out value="${normalBuyer.buyerid}"></c:out></td>
-                        <td><c:out value="${normalBuyer.buyername}"></c:out></td>
-                        <td><c:out value="${normalBuyer.buyeraddress}"></c:out></td>
-                        <td><c:out value="${normalBuyer.buyerphone}"></c:out></td>
-                        <td><c:out value="${normalBuyer.buyerbalance}"></c:out></td>
+                        <td class="hidden"><c:out value="${normalBuyer.buyerId}"></c:out></td>
+                        <td><c:out value="${normalBuyer.buyerAccount}"></c:out></td>
+                        <td><c:out value="${normalBuyer.buyerName}"></c:out></td>
+                        <td><c:out value="${normalBuyer.buyerAddress}"></c:out></td>
+                        <td><c:out value="${normalBuyer.buyerPhone}"></c:out></td>
+                        <td><c:out value="${normalBuyer.buyerBalance}"></c:out></td>
                         <td><div role="presentation" class="dropdown">
                             <button class="dropdown-toggle btn btn-default" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Onclick <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu">
-                                <li><a href="/AdminBuyerDetail?buyerId=${normalBuyer.buyerid}">View</a></li>
-                                <li><a href="/AdminBuyerModify?buyerId=${normalBuyer.buyerid}">modify</a></li>
-                                <li><a href="/AdminDeleteBuyer?buyerId=${normalBuyer.buyerid}">delete</a></li>
+                                <li><a href="/AdminBuyerDetail?buyerId=${normalBuyer.buyerId}">View</a></li>
+                                <li><a href="/AdminBuyerModify?buyerId=${normalBuyer.buyerId}">modify</a></li>
+                                <li><a href="/AdminDeleteBuyer?buyerId=${normalBuyer.buyerId}">delete</a></li>
                             </ul>
                         </div></td>
                     </tr>

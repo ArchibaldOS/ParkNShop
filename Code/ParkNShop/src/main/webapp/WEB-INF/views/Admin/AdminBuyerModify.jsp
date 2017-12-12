@@ -66,37 +66,43 @@
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Seller ID</label>
                     <div class="col-sm-10">
-                        <input class="form-control" id="focusedInput6" type="text" name="buyerid" value="${buyer.buyerid}" READONLY>
+                        <input class="form-control" id="focusedInput6" type="text" name="buyerId" value="${buyer.buyerId}" READONLY>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Buyer Name</label>
                     <div class="col-sm-10">
-                        <input class="form-control" id="focusedInput" type="text" name="buyername" value="${buyer.buyername}">
+                        <input class="form-control" id="focusedInput5" type="text" name="buyerAccount" value="${buyer.buyerAccount}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Buyer Name</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" id="focusedInput" type="text" name="buyerName" value="${buyer.buyerName}">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Buyer Address</label>
                     <div class="col-sm-10">
-                        <input class="form-control" id="focusedInput2" type="text" name="buyeraddress" value="${buyer.buyeraddress}">
+                        <input class="form-control" id="focusedInput2" type="text" name="buyerAddress" value="${buyer.buyerAddress}">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Buyer Phone</label>
                     <div class="col-sm-10">
-                        <input class="form-control" id="focusedInput3" type="text" name="buyerphone" value="${buyer.buyerphone}">
+                        <input class="form-control" id="focusedInput3" type="text" name="buyerPhone" value="${buyer.buyerPhone}">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Buyer Balance</label>
                     <div class="col-sm-10">
-                        <input class="form-control" id="focusedInput4" type="text" name="buyerbalance" value="${buyer.buyerbalance}">
+                        <input class="form-control" id="focusedInput4" type="text" name="buyerBalance" value="${buyer.buyerBalance}">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Buyer Status</label>
                     <div class="col-sm-10">
-                        <select class="form-control" name="buyerstatus">
+                        <select class="form-control" name="buyerStatus">
                             <option value="1">Normal</option>
                             <option value="2">Frozen</option>
                             <option value="3">Ban</option>

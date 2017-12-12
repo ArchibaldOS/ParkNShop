@@ -83,7 +83,19 @@ public class Product {
 	public void setProductPicture(String productPicture) {
 		this.productPicture = productPicture;
 	}
-	
-	
 
+	@Override
+	public String toString() {
+		return "Product{" +
+				"productId=" + productId +
+				", sellerId=" + sellerId +
+				", productName='" + productName + '\'' +
+				", productType=" + productType +
+				", productPrice=" + productPrice +
+				", storeCount=" + storeCount +
+				", soldCount=" + soldCount +
+				", productIntroduction='" + productIntroduction + '\'' +
+				", productPicture='" + productPicture + '\'' +
+				'}';
+	}
 }

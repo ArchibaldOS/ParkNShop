@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50713
 File Encoding         : 65001
 
-Date: 2017-12-11 13:27:18
+Date: 2017-12-12 21:34:45
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -34,7 +34,7 @@ CREATE TABLE `admins` (
 -- Records of admins
 -- ----------------------------
 INSERT INTO `admins` VALUES ('1', 'admin', 'admin', 'admin', '0', '12345678910', '1');
-INSERT INTO `admins` VALUES ('2', 'admin2', 'admin2', 'admin2', '0', '110', '1');
+INSERT INTO `admins` VALUES ('2', 'admin2', 'admin2', 'admin2', '0', '110', '0');
 
 -- ----------------------------
 -- Table structure for buyer
@@ -42,6 +42,7 @@ INSERT INTO `admins` VALUES ('2', 'admin2', 'admin2', 'admin2', '0', '110', '1')
 DROP TABLE IF EXISTS `buyer`;
 CREATE TABLE `buyer` (
   `buyerId` int(11) NOT NULL AUTO_INCREMENT,
+  `buyerAccount` varchar(25) NOT NULL,
   `buyerName` varchar(25) NOT NULL,
   `buyerAddress` varchar(100) NOT NULL,
   `buyerPhone` varchar(45) NOT NULL,
@@ -49,16 +50,17 @@ CREATE TABLE `buyer` (
   `buyerStatus` int(11) NOT NULL,
   `buyerBalance` float NOT NULL DEFAULT '0',
   PRIMARY KEY (`buyerId`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of buyer
 -- ----------------------------
-INSERT INTO `buyer` VALUES ('2', 'buye2', 'buy2address', '1234', 'buyer2', '1', '0');
-INSERT INTO `buyer` VALUES ('3', 'buyer3', 'buy3address', '123456788910', 'buyer3', '2', '0');
-INSERT INTO `buyer` VALUES ('4', 'buyer4', 'buy4address', '123456788910', 'buyer4', '2', '0');
-INSERT INTO `buyer` VALUES ('5', 'buyer5', 'buy5address', '123456788910', 'buyer5', '3', '0');
-INSERT INTO `buyer` VALUES ('6', 'buyer6', 'bue6address', '1234', 'buyer6', '1', '0');
+INSERT INTO `buyer` VALUES ('2', 'buyer2', 'buye2', 'buy2address', '1234', 'buyer2', '1', '0');
+INSERT INTO `buyer` VALUES ('3', 'buyer3', 'buyer3', 'buy3address', '123456788910', 'buyer3', '2', '0');
+INSERT INTO `buyer` VALUES ('4', 'buyer4', 'buyer4', 'buy4address', '123456788910', 'buyer4', '2', '0');
+INSERT INTO `buyer` VALUES ('5', 'buyer5', 'buyer5', 'buy5address', '123456788910', 'buyer5', '3', '0');
+INSERT INTO `buyer` VALUES ('6', 'buyer6', 'buyer6', 'bue6address', '1234', 'buyer6', '1', '0');
+INSERT INTO `buyer` VALUES ('7', '1112@qq.com', 'buybuybuy', '12311123', '13522212111', '111', '1', '0');
 
 -- ----------------------------
 -- Table structure for comments
@@ -164,11 +166,14 @@ CREATE TABLE `product` (
   PRIMARY KEY (`productId`),
   KEY `FK_Reference_25` (`sellerId`),
   CONSTRAINT `FK_Reference_25` FOREIGN KEY (`sellerId`) REFERENCES `seller` (`sellerId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of product
 -- ----------------------------
+INSERT INTO `product` VALUES ('1', '1', '1', '1', '1', '1', '0', '1', 'b4ac0721c2994519a487d2f926540c3a.jpg');
+INSERT INTO `product` VALUES ('2', '1', '123', '1', '11', '1', '0', '1', '17d530ab3c234e96b779b599be9e0057.jpg');
+INSERT INTO `product` VALUES ('3', '1', '123', '1', '123', '1', '0', '123', 'b3d7e407b07441eba384d3fbbcbfc478.jpg');
 
 -- ----------------------------
 -- Table structure for productad
@@ -210,17 +215,18 @@ CREATE TABLE `seller` (
   `shopIntroduction` varchar(512) NOT NULL,
   `shopStatus` int(11) NOT NULL,
   PRIMARY KEY (`sellerId`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of seller
 -- ----------------------------
-INSERT INTO `seller` VALUES ('1', 'Aj', 'Aj\'s Shop', 'aj', '123@123.com', '12345678910', '0', 'a shop', '1');
-INSERT INTO `seller` VALUES ('2', 'Aj2', 'Aj2\'s Shop', 'aj', '123@123.com', '12345678910', '0', 'a shop', '0');
-INSERT INTO `seller` VALUES ('3', 'Aj3', 'Aj3\'s Shop', 'aj', '121233@123.com', '12345678910', '0', 'a shop', '3');
-INSERT INTO `seller` VALUES ('4', 'aa', 'aa\'s Shop', 'aj', '123@123.com', '12345678910', '0', 'a shop', '1');
-INSERT INTO `seller` VALUES ('5', 'aa2', 'aa2\'s Shop', 'aj', '123@123.com', '12345678910', '0', 'a shop', '1');
-INSERT INTO `seller` VALUES ('6', 'ban', 'ban\'s Shop', 'aj', '1312323@123.com', '12345678910', '0', 'a shop', '1');
+INSERT INTO `seller` VALUES ('1', 'Aj', 'Aj\'s Shop', '111', '123@123.com', '12345678910', '0', 'a shop', '1');
+INSERT INTO `seller` VALUES ('2', 'Aj2', 'Aj2\'s Shop', '111', '1234@123.com', '12345678911', '0', 'a shop', '0');
+INSERT INTO `seller` VALUES ('3', 'Aj3', 'Aj3\'s Shop', '111', '12345@123.com', '12345678912', '0', 'a shop', '3');
+INSERT INTO `seller` VALUES ('4', 'aa', 'aa\'s Shop', '111', '123456@123.com', '12345678913', '0', 'a shop', '1');
+INSERT INTO `seller` VALUES ('5', 'aa2', 'aa2\'s Shop', '111', '1234567@123.com', '12345678914', '0', 'a shop', '1');
+INSERT INTO `seller` VALUES ('6', 'ban', 'ban\'s Shop', '111', '131232345678@123.com', '12345678915', '0', 'a shop', '1');
+INSERT INTO `seller` VALUES ('7', 'seller666', 'seller\'s shop', '123', '123@666.com', '13522111235', '0', 'asdEnter Introduction', '0');
 
 -- ----------------------------
 -- Table structure for sellerblacklist

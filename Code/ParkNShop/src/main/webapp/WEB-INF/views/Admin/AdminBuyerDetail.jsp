@@ -72,36 +72,40 @@
                 <tbody>
                 <tr class="hidden">
                     <td>Buyer ID</td>
-                    <td >${buyer.buyerid}</td>
+                    <td >${buyer.buyerId}</td>
+                </tr>
+                <tr>
+                    <td>Buyer Account</td>
+                    <td>${buyer.buyerAccount}</td>
                 </tr>
                 <tr>
                     <td>Buyer Name</td>
-                    <td>${buyer.buyername}</td>
+                    <td>${buyer.buyerName}</td>
                 </tr>
                 <tr>
                     <td>Buyer Address</td>
-                    <td>${buyer.buyeraddress}</td>
+                    <td>${buyer.buyerAddress}</td>
                 </tr>
                 <tr>
                     <td >Buyer Phone</td>
-                    <td>${buyer.buyerphone}</td>
+                    <td>${buyer.buyerPhone}</td>
                 </tr>
                 <tr>
                     <td >Buyer Balance</td>
-                    <td>${buyer.buyerbalance}</td>
+                    <td>${buyer.buyerBalance}</td>
                 </tr>
                 <tr>
                     <td>shopStatus</td>
                     <c:choose>
-                        <c:when test="${buyer.buyerstatus eq 1}"><td>Normal</td></c:when>
-                        <c:when test="${buyer.buyerstatus eq 2}"><td>Frozen</td></c:when>
-                        <c:when test="${buyer.buyerstatus eq 3}"><td>BlackList</td></c:when>
+                        <c:when test="${buyer.buyerStatus eq 1}"><td>Normal</td></c:when>
+                        <c:when test="${buyer.buyerStatus eq 2}"><td>Frozen</td></c:when>
+                        <c:when test="${buyer.buyerStatus eq 3}"><td>BlackList</td></c:when>
                     </c:choose>
                 </tr>
                 <tr>
                     <td>
                         <div style="margin:0 auto;width:200px;">
-                            <button type="button" class="btn btn-success" onclick="location='/AdminBuyerModify?buyerId=${buyer.buyerid}'">Modify</button>
+                            <button type="button" class="btn btn-success" onclick="location='/AdminBuyerModify?buyerId=${buyer.buyerId}'">Modify</button>
                         </div>
                     </td>
                     <td>

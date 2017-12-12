@@ -71,8 +71,8 @@
 
             <form action="/AdminDoSearchByBuyerName" class="user_search">
                 <div class="form-group">
-                    <label for="buyername">Buyer Name:</label>
-                    <input type="text" id="buyername" class="form-control" name="buyername" placeholder="Please input buyer name:" />
+                    <label for="buyerName">Buyer Name:</label>
+                    <input type="text" id="buyerName" class="form-control" name="buyerName" placeholder="Please input buyer name:" />
                 </div>
                 <button type="submit" class="btn btn-default">Search</button>
             </form>

@@ -10,22 +10,22 @@
 <title>Home</title>
 
 <!-- SLIDER REVOLUTION 4.x CSS SETTINGS -->
-<link rel="stylesheet" type="text/css" href="rs-plugin/css/settings.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="assets/rs-plugin/css/settings.css" media="screen" />
 
 <!-- StyleSheets -->
-<link rel="stylesheet" href="css2/ionicons.min.css">
-<link rel="stylesheet" href="css2/bootstrap.min.css">
-<link rel="stylesheet" href="css2/font-awesome.min.css">
-<link rel="stylesheet" href="css2/main.css">
-<link rel="stylesheet" href="css2/style.css">
-<link rel="stylesheet" href="css2/responsive.css">
+<link rel="stylesheet" href="assets/css2/ionicons.min.css">
+<link rel="stylesheet" href="assets/css2/bootstrap.min.css">
+<link rel="stylesheet" href="assets/css2/font-awesome.min.css">
+<link rel="stylesheet" href="assets/css2/main.css">
+<link rel="stylesheet" href="assets/css2/style.css">
+<link rel="stylesheet" href="assets/css2/responsive.css">
 
 <!-- Fonts Online -->
 <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
 
 
 <!-- JavaScripts -->
-<script src="js/vendors/modernizr.js"></script>
+<script src="assets/js/vendors/modernizr.js"></script>
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
@@ -119,7 +119,7 @@
   <!-- Header -->
   <header>
     <div class="container">
-      <div class="logo"> <a href="index.jsp"><img src="images/logo.png" alt="" ></a> </div>
+      <div class="logo"> <a href="index.jsp"><img src="assets/images/logo.png" alt="" ></a> </div>
       <div class="search-cate">
         <select class="selectpicker">
           <option> All Categories</option>
@@ -143,11 +143,11 @@
           <span>3 item(s) - $500.00</span></a>
           <ul class="dropdown-menu">
             <li>
-              <div class="media-left"> <a href="#." class="thumb"> <img src="images/item-img-1-1.jpg" class="img-responsive" alt="" > </a> </div>
+              <div class="media-left"> <a href="#." class="thumb"> <img src="assets/images/item-img-1-1.jpg" class="img-responsive" alt="" > </a> </div>
               <div class="media-body"> <a href="#." class="tittle">Funda Para Ebook 7" 128GB full HD</a> <span>250 x 1</span> </div>
             </li>
             <li>
-              <div class="media-left"> <a href="#." class="thumb"> <img src="images/item-img-1-2.jpg" class="img-responsive" alt="" > </a> </div>
+              <div class="media-left"> <a href="#." class="thumb"> <img src="assets/images/item-img-1-2.jpg" class="img-responsive" alt="" > </a> </div>
               <div class="media-body"> <a href="#." class="tittle">Funda Para Ebook 7" full HD</a> <span>250 x 1</span> </div>
             </li>
             <li class="btn-cart"> <a href="#." class="btn-round">View Cart</a> </li>
@@ -207,7 +207,7 @@
             <li><a href="index.jsp">Home </a></li>
 			<li><a href="WEB-INF/views/Buyer/About.jsp"> About </a></li>
 			<li><a href="WEB-INF/views/Buyer/ListProducts.jsp"> List Products </a></li>
-            <li><a href="WEB-INF/views/Buyer/Product-Details.jsp"> Product Details </a></li>
+            <li><a href="WEB-INF/views/Buyer/BuyerProductDetail.jsp"> Product Details </a></li>
             <li><a href="WEB-INF/views/Buyer/contact.jsp"> Contact </a></li>
           </ul>
         </div>
@@ -235,7 +235,7 @@
                   <!-- SLIDE  -->
                   <li data-transition="random" data-slotamount="7" data-masterspeed="300"  data-saveperformance="off" > 
                     <!-- MAIN IMAGE --> 
-                    <img src="images/slider-img-1.jpg"  alt="slider"  data-bgposition="center bottom" data-bgfit="cover" data-bgrepeat="no-repeat"> 
+                    <img src="assets/images/slider-img-1.jpg" alt="slider" data-bgposition="center bottom" data-bgfit="cover" data-bgrepeat="no-repeat">
                     
                     <!-- LAYER NR. 1 -->
                     <div class="tp-caption sfl tp-resizeme" 
@@ -310,7 +310,7 @@
                   <!-- SLIDE  -->
                   <li data-transition="random" data-slotamount="7" data-masterspeed="300"  data-saveperformance="off" > 
                     <!-- MAIN IMAGE --> 
-                    <img src="images/slider-img-2.jpg"  alt="slider"  data-bgposition="center bottom" data-bgfit="cover" data-bgrepeat="no-repeat"> 
+                    <img src="assets/images/slider-img-2.jpg" alt="slider" data-bgposition="center bottom" data-bgfit="cover" data-bgrepeat="no-repeat">
                     
                     <!-- LAYER NR. 1 -->
                     <div class="tp-caption sfl tp-resizeme" 
@@ -385,7 +385,7 @@
                   <!-- SLIDE  -->
                   <li data-transition="random" data-slotamount="7" data-masterspeed="300"  data-saveperformance="off" > 
                     <!-- MAIN IMAGE --> 
-                    <img src="images/slider-img-3.jpg"  alt="slider"  data-bgposition="center bottom" data-bgfit="cover" data-bgrepeat="no-repeat"> 
+                    <img src="assets/images/slider-img-3.jpg" alt="slider" data-bgposition="center bottom" data-bgfit="cover" data-bgrepeat="no-repeat">
                     
                     <!-- LAYER NR. 1 -->
                     <div class="tp-caption sfl tp-resizeme" 
@@ -545,7 +545,7 @@
             <div class="item-slide-5 with-nav"> 
               <!-- Product -->
               <div class="product">
-                <article> <img class="img-responsive" src="images/item-img-1-1.jpg" alt="" > 
+                <article> <img class="img-responsive" src="assets/images/item-img-1-1.jpg" alt="" >
                   <!-- Content --> 
                   <span class="tag">Latop</span> <a href="#." class="tittle">Laptop Alienware 15 i7 Perfect For Playing Game</a> 
                   <!-- Reviews -->
@@ -555,7 +555,7 @@
               </div>
               <!-- Product -->
               <div class="product">
-                <article> <img class="img-responsive" src="images/item-img-1-2.jpg" alt="" > <span class="sale-tag">-25%</span> 
+                <article> <img class="img-responsive" src="assets/images/item-img-1-2.jpg" alt="" > <span class="sale-tag">-25%</span>
                   
                   <!-- Content --> 
                   <span class="tag">Tablets</span> <a href="#." class="tittle">Mp3 Sumergible Deportivo Slim Con 8GB</a> 
@@ -567,7 +567,7 @@
               
               <!-- Product -->
               <div class="product">
-                <article> <img class="img-responsive" src="images/item-img-1-3.jpg" alt="" > 
+                <article> <img class="img-responsive" src="assets/images/item-img-1-3.jpg" alt="" >
                   <!-- Content --> 
                   <span class="tag">Appliances</span> <a href="#." class="tittle">Reloj Inteligente Smart Watch M26 Touch Bluetooh </a> 
                   <!-- Reviews -->
@@ -578,7 +578,7 @@
               
               <!-- Product -->
               <div class="product">
-                <article> <img class="img-responsive" src="images/item-img-1-4.jpg" alt="" > <span class="new-tag">New</span> 
+                <article> <img class="img-responsive" src="assets/images/item-img-1-4.jpg" alt="" > <span class="new-tag">New</span>
                   
                   <!-- Content --> 
                   <span class="tag">Accessories</span> <a href="#." class="tittle">Teclado Inalambrico Bluetooth Con Air Mouse</a> 
@@ -590,7 +590,7 @@
               
               <!-- Product -->
               <div class="product">
-                <article> <img class="img-responsive" src="images/item-img-1-5.jpg" alt="" > 
+                <article> <img class="img-responsive" src="assets/images/item-img-1-5.jpg" alt="" >
                   <!-- Content --> 
                   <span class="tag">Appliances</span> <a href="#." class="tittle">Funda Para Ebook 7" 128GB full HD</a> 
                   <!-- Reviews -->
@@ -601,7 +601,7 @@
               
               <!-- Product -->
               <div class="product">
-                <article> <img class="img-responsive" src="images/item-img-1-6.jpg" alt="" > <span class="sale-tag">-25%</span> 
+                <article> <img class="img-responsive" src="assets/images/item-img-1-6.jpg" alt="" > <span class="sale-tag">-25%</span>
                   
                   <!-- Content --> 
                   <span class="tag">Tablets</span> <a href="#." class="tittle">Mp3 Sumergible Deportivo Slim Con 8GB</a> 
@@ -613,7 +613,7 @@
               
               <!-- Product -->
               <div class="product">
-                <article> <img class="img-responsive" src="images/item-img-1-7.jpg" alt="" > 
+                <article> <img class="img-responsive" src="assets/images/item-img-1-7.jpg" alt="" >
                   <!-- Content --> 
                   <span class="tag">Appliances</span> <a href="#." class="tittle">Reloj Inteligente Smart Watch M26 Touch Bluetooh </a> 
                   <!-- Reviews -->
@@ -624,7 +624,7 @@
               
               <!-- Product -->
               <div class="product">
-                <article> <img class="img-responsive" src="images/item-img-1-8.jpg" alt="" > <span class="new-tag">New</span> 
+                <article> <img class="img-responsive" src="assets/images/item-img-1-8.jpg" alt="" > <span class="new-tag">New</span>
                   
                   <!-- Content --> 
                   <span class="tag">Accessories</span> <a href="#." class="tittle">Teclado Inalambrico Bluetooth Con Air Mouse</a> 
@@ -643,7 +643,7 @@
               
               <!-- Product -->
               <div class="product">
-                <article> <img class="img-responsive" src="images/item-img-1-11.jpg" alt="" > 
+                <article> <img class="img-responsive" src="assets/images/item-img-1-11.jpg" alt="" >
                   <!-- Content --> 
                   <span class="tag">Latop</span> <a href="#." class="tittle">Laptop Alienware 15 i7 Perfect For Playing Game</a> 
                   <!-- Reviews -->
@@ -654,7 +654,7 @@
               
               <!-- Product -->
               <div class="product">
-                <article> <img class="img-responsive" src="images/item-img-1-9.jpg" alt="" > <span class="sale-tag">-25%</span> 
+                <article> <img class="img-responsive" src="assets/images/item-img-1-9.jpg" alt="" > <span class="sale-tag">-25%</span>
                   
                   <!-- Content --> 
                   <span class="tag">Tablets</span> <a href="#." class="tittle">Mp3 Sumergible Deportivo Slim Con 8GB</a> 
@@ -666,7 +666,7 @@
               
               <!-- Product -->
               <div class="product">
-                <article> <img class="img-responsive" src="images/item-img-1-8.jpg" alt="" > 
+                <article> <img class="img-responsive" src="assets/images/item-img-1-8.jpg" alt="" >
                   <!-- Content --> 
                   <span class="tag">Appliances</span> <a href="#." class="tittle">Reloj Inteligente Smart Watch M26 Touch Bluetooh </a> 
                   <!-- Reviews -->
@@ -677,7 +677,7 @@
               
               <!-- Product -->
               <div class="product">
-                <article> <img class="img-responsive" src="images/item-img-1-7.jpg" alt="" > <span class="new-tag">New</span> 
+                <article> <img class="img-responsive" src="assets/images/item-img-1-7.jpg" alt="" > <span class="new-tag">New</span>
                   
                   <!-- Content --> 
                   <span class="tag">Accessories</span> <a href="#." class="tittle">Teclado Inalambrico Bluetooth Con Air Mouse</a> 
@@ -689,7 +689,7 @@
               
               <!-- Product -->
               <div class="product">
-                <article> <img class="img-responsive" src="images/item-img-1-6.jpg" alt="" > 
+                <article> <img class="img-responsive" src="assets/images/item-img-1-6.jpg" alt="" >
                   <!-- Content --> 
                   <span class="tag">Appliances</span> <a href="#." class="tittle">Funda Para Ebook 7" 128GB full HD</a> 
                   <!-- Reviews -->
@@ -707,7 +707,7 @@
               
               <!-- Product -->
               <div class="product">
-                <article> <img class="img-responsive" src="images/item-img-1-3.jpg" alt="" > 
+                <article> <img class="img-responsive" src="assets/images/item-img-1-3.jpg" alt="" >
                   <!-- Content --> 
                   <span class="tag">Latop</span> <a href="#." class="tittle">Laptop Alienware 15 i7 Perfect For Playing Game</a> 
                   <!-- Reviews -->
@@ -718,7 +718,7 @@
               
               <!-- Product -->
               <div class="product">
-                <article> <img class="img-responsive" src="images/item-img-1-1.jpg" alt="" > <span class="sale-tag">-25%</span> 
+                <article> <img class="img-responsive" src="assets/images/item-img-1-1.jpg" alt="" > <span class="sale-tag">-25%</span>
                   
                   <!-- Content --> 
                   <span class="tag">Tablets</span> <a href="#." class="tittle">Mp3 Sumergible Deportivo Slim Con 8GB</a> 
@@ -730,7 +730,7 @@
               
               <!-- Product -->
               <div class="product">
-                <article> <img class="img-responsive" src="images/item-img-1-2.jpg" alt="" > 
+                <article> <img class="img-responsive" src="assets/images/item-img-1-2.jpg" alt="" >
                   <!-- Content --> 
                   <span class="tag">Appliances</span> <a href="#." class="tittle">Reloj Inteligente Smart Watch M26 Touch Bluetooh </a> 
                   <!-- Reviews -->
@@ -741,7 +741,7 @@
               
               <!-- Product -->
               <div class="product">
-                <article> <img class="img-responsive" src="images/item-img-1-5.jpg" alt="" > <span class="new-tag">New</span> 
+                <article> <img class="img-responsive" src="assets/images/item-img-1-5.jpg" alt="" > <span class="new-tag">New</span>
                   
                   <!-- Content --> 
                   <span class="tag">Accessories</span> <a href="#." class="tittle">Teclado Inalambrico Bluetooth Con Air Mouse</a> 
@@ -753,7 +753,7 @@
               
               <!-- Product -->
               <div class="product">
-                <article> <img class="img-responsive" src="images/item-img-1-4.jpg" alt="" > 
+                <article> <img class="img-responsive" src="assets/images/item-img-1-4.jpg" alt="" >
                   <!-- Content --> 
                   <span class="tag">Appliances</span> <a href="#." class="tittle">Funda Para Ebook 7" 128GB full HD</a> 
                   <!-- Reviews -->
@@ -793,7 +793,7 @@
           
           <!-- Product -->
           <div class="product">
-            <article> <img class="img-responsive" src="images/item-img-1-6.jpg" alt="" > <span class="sale-tag">-25%</span> 
+            <article> <img class="img-responsive" src="assets/images/item-img-1-6.jpg" alt="" > <span class="sale-tag">-25%</span>
               
               <!-- Content --> 
               <span class="tag">Tablets</span> <a href="#." class="tittle">Mp3 Sumergible Deportivo Slim Con 8GB</a> 
@@ -805,7 +805,7 @@
           
           <!-- Product -->
           <div class="product">
-            <article> <img class="img-responsive" src="images/item-img-1-7.jpg" alt="" > 
+            <article> <img class="img-responsive" src="assets/images/item-img-1-7.jpg" alt="" >
               <!-- Content --> 
               <span class="tag">Appliances</span> <a href="#." class="tittle">Reloj Inteligente Smart Watch M26 Touch Bluetooh </a> 
               <!-- Reviews -->
@@ -816,7 +816,7 @@
           
           <!-- Product -->
           <div class="product">
-            <article> <img class="img-responsive" src="images/item-img-1-8.jpg" alt="" > <span class="new-tag">New</span> 
+            <article> <img class="img-responsive" src="assets/images/item-img-1-8.jpg" alt="" > <span class="new-tag">New</span>
               
               <!-- Content --> 
               <span class="tag">Accessories</span> <a href="#." class="tittle">Teclado Inalambrico Bluetooth Con Air Mouse</a> 
@@ -828,7 +828,7 @@
           
           <!-- Product -->
           <div class="product">
-            <article> <img class="img-responsive" src="images/item-img-1-9.jpg" alt="" > 
+            <article> <img class="img-responsive" src="assets/images/item-img-1-9.jpg" alt="" >
               <!-- Content --> 
               <span class="tag">Appliances</span> <a href="#." class="tittle">Funda Para Ebook 7" 128GB full HD</a> 
               <!-- Reviews -->
@@ -839,7 +839,7 @@
           
           <!-- Product -->
           <div class="product">
-            <article> <img class="img-responsive" src="images/item-img-1-10.jpg" alt="" > 
+            <article> <img class="img-responsive" src="assets/images/item-img-1-10.jpg" alt="" >
               <!-- Content --> 
               <span class="tag">Appliances</span> <a href="#." class="tittle">Reloj Inteligente Smart Watch M26 Touch Bluetooh </a> 
               <!-- Reviews -->
@@ -850,7 +850,7 @@
           
           <!-- Product -->
           <div class="product">
-            <article> <img class="img-responsive" src="images/item-img-1-11.jpg" alt="" > <span class="new-tag">New</span> 
+            <article> <img class="img-responsive" src="assets/images/item-img-1-11.jpg" alt="" > <span class="new-tag">New</span>
               
               <!-- Content --> 
               <span class="tag">Accessories</span> <a href="#." class="tittle">Teclado Inalambrico Bluetooth Con Air Mouse</a> 
@@ -862,7 +862,7 @@
           
           <!-- Product -->
           <div class="product">
-            <article> <img class="img-responsive" src="images/item-img-1-12.jpg" alt="" > 
+            <article> <img class="img-responsive" src="assets/images/item-img-1-12.jpg" alt="" >
               <!-- Content --> 
               <span class="tag">Appliances</span> <a href="#." class="tittle">Funda Para Ebook 7" 128GB full HD</a> 
               <!-- Reviews -->
@@ -873,7 +873,7 @@
           
           <!-- Product -->
           <div class="product">
-            <article> <img class="img-responsive" src="images/item-img-1-13.jpg" alt="" > 
+            <article> <img class="img-responsive" src="assets/images/item-img-1-13.jpg" alt="" >
               <!-- Content --> 
               <span class="tag">Appliances</span> <a href="#." class="tittle">Reloj Inteligente Smart Watch M26 Touch Bluetooh </a> 
               <!-- Reviews -->
@@ -906,7 +906,7 @@
             <div class="item-slide-5 with-bullet no-nav"> 
               <!-- Product -->
               <div class="product">
-                <article> <img class="img-responsive" src="images/item-img-1-1.jpg" alt="" > 
+                <article> <img class="img-responsive" src="assets/images/item-img-1-1.jpg" alt="" >
                   <!-- Content --> 
                   <span class="tag">Latop</span> <a href="#." class="tittle">Laptop Alienware 15 i7 Perfect For Playing Game</a> 
                   <!-- Reviews -->
@@ -916,7 +916,7 @@
               </div>
               <!-- Product -->
               <div class="product">
-                <article> <img class="img-responsive" src="images/item-img-1-2.jpg" alt="" > <span class="sale-tag">-25%</span> 
+                <article> <img class="img-responsive" src="assets/images/item-img-1-2.jpg" alt="" > <span class="sale-tag">-25%</span>
                   
                   <!-- Content --> 
                   <span class="tag">Tablets</span> <a href="#." class="tittle">Mp3 Sumergible Deportivo Slim Con 8GB</a> 
@@ -928,7 +928,7 @@
               
               <!-- Product -->
               <div class="product">
-                <article> <img class="img-responsive" src="images/item-img-1-3.jpg" alt="" > 
+                <article> <img class="img-responsive" src="assets/images/item-img-1-3.jpg" alt="" >
                   <!-- Content --> 
                   <span class="tag">Appliances</span> <a href="#." class="tittle">Reloj Inteligente Smart Watch M26 Touch Bluetooh </a> 
                   <!-- Reviews -->
@@ -939,7 +939,7 @@
               
               <!-- Product -->
               <div class="product">
-                <article> <img class="img-responsive" src="images/item-img-1-4.jpg" alt="" > <span class="new-tag">New</span> 
+                <article> <img class="img-responsive" src="assets/images/item-img-1-4.jpg" alt="" > <span class="new-tag">New</span>
                   
                   <!-- Content --> 
                   <span class="tag">Accessories</span> <a href="#." class="tittle">Teclado Inalambrico Bluetooth Con Air Mouse</a> 
@@ -951,7 +951,7 @@
               
               <!-- Product -->
               <div class="product">
-                <article> <img class="img-responsive" src="images/item-img-1-5.jpg" alt="" > 
+                <article> <img class="img-responsive" src="assets/images/item-img-1-5.jpg" alt="" >
                   <!-- Content --> 
                   <span class="tag">Appliances</span> <a href="#." class="tittle">Funda Para Ebook 7" 128GB full HD</a> 
                   <!-- Reviews -->
@@ -962,7 +962,7 @@
               
               <!-- Product -->
               <div class="product">
-                <article> <img class="img-responsive" src="images/item-img-1-6.jpg" alt="" > <span class="sale-tag">-25%</span> 
+                <article> <img class="img-responsive" src="assets/images/item-img-1-6.jpg" alt="" > <span class="sale-tag">-25%</span>
                   
                   <!-- Content --> 
                   <span class="tag">Tablets</span> <a href="#." class="tittle">Mp3 Sumergible Deportivo Slim Con 8GB</a> 
@@ -974,7 +974,7 @@
               
               <!-- Product -->
               <div class="product">
-                <article> <img class="img-responsive" src="images/item-img-1-7.jpg" alt="" > 
+                <article> <img class="img-responsive" src="assets/images/item-img-1-7.jpg" alt="" >
                   <!-- Content --> 
                   <span class="tag">Appliances</span> <a href="#." class="tittle">Reloj Inteligente Smart Watch M26 Touch Bluetooh </a> 
                   <!-- Reviews -->
@@ -985,7 +985,7 @@
               
               <!-- Product -->
               <div class="product">
-                <article> <img class="img-responsive" src="images/item-img-1-8.jpg" alt="" > <span class="new-tag">New</span> 
+                <article> <img class="img-responsive" src="assets/images/item-img-1-8.jpg" alt="" > <span class="new-tag">New</span>
                   
                   <!-- Content --> 
                   <span class="tag">Accessories</span> <a href="#." class="tittle">Teclado Inalambrico Bluetooth Con Air Mouse</a> 
@@ -997,7 +997,7 @@
               
               <!-- Product -->
               <div class="product">
-                <article> <img class="img-responsive" src="images/item-img-1-9.jpg" alt="" > <span class="sale-tag">-25%</span> 
+                <article> <img class="img-responsive" src="assets/images/item-img-1-9.jpg" alt="" > <span class="sale-tag">-25%</span>
                   
                   <!-- Content --> 
                   <span class="tag">Tablets</span> <a href="#." class="tittle">Mp3 Sumergible Deportivo Slim Con 8GB</a> 
@@ -1009,7 +1009,7 @@
               
               <!-- Product -->
               <div class="product">
-                <article> <img class="img-responsive" src="images/item-img-1-10.jpg" alt="" > 
+                <article> <img class="img-responsive" src="assets/images/item-img-1-10.jpg" alt="" >
                   <!-- Content --> 
                   <span class="tag">Appliances</span> <a href="#." class="tittle">Reloj Inteligente Smart Watch M26 Touch Bluetooh </a> 
                   <!-- Reviews -->
@@ -1020,7 +1020,7 @@
               
               <!-- Product -->
               <div class="product">
-                <article> <img class="img-responsive" src="images/item-img-1-11.jpg" alt="" > <span class="new-tag">New</span> 
+                <article> <img class="img-responsive" src="assets/images/item-img-1-11.jpg" alt="" > <span class="new-tag">New</span>
                   
                   <!-- Content --> 
                   <span class="tag">Accessories</span> <a href="#." class="tittle">Teclado Inalambrico Bluetooth Con Air Mouse</a> 
@@ -1039,7 +1039,7 @@
               
               <!-- Product -->
               <div class="product">
-                <article> <img class="img-responsive" src="images/item-img-1-11.jpg" alt="" > <span class="sale-tag">-25%</span> 
+                <article> <img class="img-responsive" src="assets/images/item-img-1-11.jpg" alt="" > <span class="sale-tag">-25%</span>
                   
                   <!-- Content --> 
                   <span class="tag">Accessories</span> <a href="#." class="tittle">Teclado Inalambrico Bluetooth Con Air Mouse</a> 
@@ -1051,7 +1051,7 @@
               
               <!-- Product -->
               <div class="product">
-                <article> <img class="img-responsive" src="images/item-img-1-8.jpg" alt="" > 
+                <article> <img class="img-responsive" src="assets/images/item-img-1-8.jpg" alt="" >
                   <!-- Content --> 
                   <span class="tag">Appliances</span> <a href="#." class="tittle">Funda Para Ebook 7" 128GB full HD</a> 
                   <!-- Reviews -->
@@ -1062,7 +1062,7 @@
               
               <!-- Product -->
               <div class="product">
-                <article> <img class="img-responsive" src="images/item-img-1-5.jpg" alt="" > 
+                <article> <img class="img-responsive" src="assets/images/item-img-1-5.jpg" alt="" >
                   <!-- Content --> 
                   <span class="tag">Appliances</span> <a href="#." class="tittle">Reloj Inteligente Smart Watch M26 Touch Bluetooh </a> 
                   <!-- Reviews -->
@@ -1073,7 +1073,7 @@
               
               <!-- Product -->
               <div class="product">
-                <article> <img class="img-responsive" src="images/item-img-1-17.jpg" alt="" > <span class="new-tag">New</span> 
+                <article> <img class="img-responsive" src="assets/images/item-img-1-17.jpg" alt="" > <span class="new-tag">New</span>
                   
                   <!-- Content --> 
                   <span class="tag">Accessories</span> <a href="#." class="tittle">Teclado Inalambrico Bluetooth Con Air Mouse</a> 
@@ -1085,7 +1085,7 @@
               
               <!-- Product -->
               <div class="product">
-                <article> <img class="img-responsive" src="images/item-img-1-15.jpg" alt="" > 
+                <article> <img class="img-responsive" src="assets/images/item-img-1-15.jpg" alt="" >
                   <!-- Content --> 
                   <span class="tag">Appliances</span> <a href="#." class="tittle">Funda Para Ebook 7" 128GB full HD</a> 
                   <!-- Reviews -->
@@ -1103,7 +1103,7 @@
               
               <!-- Product -->
               <div class="product">
-                <article> <img class="img-responsive" src="images/item-img-1-2.jpg" alt="" > <span class="sale-tag">-25%</span> 
+                <article> <img class="img-responsive" src="assets/images/item-img-1-2.jpg" alt="" > <span class="sale-tag">-25%</span>
                   
                   <!-- Content --> 
                   <span class="tag">Accessories</span> <a href="#." class="tittle">Teclado Inalambrico Bluetooth Con Air Mouse</a> 
@@ -1115,7 +1115,7 @@
               
               <!-- Product -->
               <div class="product">
-                <article> <img class="img-responsive" src="images/item-img-1-3.jpg" alt="" > 
+                <article> <img class="img-responsive" src="assets/images/item-img-1-3.jpg" alt="" >
                   <!-- Content --> 
                   <span class="tag">Appliances</span> <a href="#." class="tittle">Funda Para Ebook 7" 128GB full HD</a> 
                   <!-- Reviews -->
@@ -1126,7 +1126,7 @@
               
               <!-- Product -->
               <div class="product">
-                <article> <img class="img-responsive" src="images/item-img-1-4.jpg" alt="" > 
+                <article> <img class="img-responsive" src="assets/images/item-img-1-4.jpg" alt="" >
                   <!-- Content --> 
                   <span class="tag">Appliances</span> <a href="#." class="tittle">Reloj Inteligente Smart Watch M26 Touch Bluetooh </a> 
                   <!-- Reviews -->
@@ -1137,7 +1137,7 @@
               
               <!-- Product -->
               <div class="product">
-                <article> <img class="img-responsive" src="images/item-img-1-13.jpg" alt="" > <span class="new-tag">New</span> 
+                <article> <img class="img-responsive" src="assets/images/item-img-1-13.jpg" alt="" > <span class="new-tag">New</span>
                   
                   <!-- Content --> 
                   <span class="tag">Accessories</span> <a href="#." class="tittle">Teclado Inalambrico Bluetooth Con Air Mouse</a> 
@@ -1149,7 +1149,7 @@
               
               <!-- Product -->
               <div class="product">
-                <article> <img class="img-responsive" src="images/item-img-1-15.jpg" alt="" > 
+                <article> <img class="img-responsive" src="assets/images/item-img-1-15.jpg" alt="" >
                   <!-- Content --> 
                   <span class="tag">Appliances</span> <a href="#." class="tittle">Funda Para Ebook 7" 128GB full HD</a> 
                   <!-- Reviews -->
@@ -1167,7 +1167,7 @@
               
               <!-- Product -->
               <div class="product">
-                <article> <img class="img-responsive" src="images/item-img-1-9.jpg" alt="" > <span class="sale-tag">-25%</span> 
+                <article> <img class="img-responsive" src="assets/images/item-img-1-9.jpg" alt="" > <span class="sale-tag">-25%</span>
                   
                   <!-- Content --> 
                   <span class="tag">Accessories</span> <a href="#." class="tittle">Teclado Inalambrico Bluetooth Con Air Mouse</a> 
@@ -1179,7 +1179,7 @@
               
               <!-- Product -->
               <div class="product">
-                <article> <img class="img-responsive" src="images/item-img-1-1.jpg" alt="" > 
+                <article> <img class="img-responsive" src="assets/images/item-img-1-1.jpg" alt="" >
                   <!-- Content --> 
                   <span class="tag">Appliances</span> <a href="#." class="tittle">Funda Para Ebook 7" 128GB full HD</a> 
                   <!-- Reviews -->
@@ -1190,7 +1190,7 @@
               
               <!-- Product -->
               <div class="product">
-                <article> <img class="img-responsive" src="images/item-img-1-5.jpg" alt="" > 
+                <article> <img class="img-responsive" src="assets/images/item-img-1-5.jpg" alt="" >
                   <!-- Content --> 
                   <span class="tag">Appliances</span> <a href="#." class="tittle">Reloj Inteligente Smart Watch M26 Touch Bluetooh </a> 
                   <!-- Reviews -->
@@ -1201,7 +1201,7 @@
               
               <!-- Product -->
               <div class="product">
-                <article> <img class="img-responsive" src="images/item-img-1-3.jpg" alt="" > <span class="new-tag">New</span> 
+                <article> <img class="img-responsive" src="assets/images/item-img-1-3.jpg" alt="" > <span class="new-tag">New</span>
                   
                   <!-- Content --> 
                   <span class="tag">Accessories</span> <a href="#." class="tittle">Teclado Inalambrico Bluetooth Con Air Mouse</a> 
@@ -1213,7 +1213,7 @@
               
               <!-- Product -->
               <div class="product">
-                <article> <img class="img-responsive" src="images/item-img-1-2.jpg" alt="" > 
+                <article> <img class="img-responsive" src="assets/images/item-img-1-2.jpg" alt="" >
                   <!-- Content --> 
                   <span class="tag">Appliances</span> <a href="#." class="tittle">Funda Para Ebook 7" 128GB full HD</a> 
                   <!-- Reviews -->
@@ -1231,7 +1231,7 @@
               
               <!-- Product -->
               <div class="product">
-                <article> <img class="img-responsive" src="images/item-img-1-8.jpg" alt="" > <span class="sale-tag">-25%</span> 
+                <article> <img class="img-responsive" src="assets/images/item-img-1-8.jpg" alt="" > <span class="sale-tag">-25%</span>
                   
                   <!-- Content --> 
                   <span class="tag">Accessories</span> <a href="#." class="tittle">Teclado Inalambrico Bluetooth Con Air Mouse</a> 
@@ -1243,7 +1243,7 @@
               
               <!-- Product -->
               <div class="product">
-                <article> <img class="img-responsive" src="images/item-img-1-9.jpg" alt="" > 
+                <article> <img class="img-responsive" src="assets/images/item-img-1-9.jpg" alt="" >
                   <!-- Content --> 
                   <span class="tag">Appliances</span> <a href="#." class="tittle">Funda Para Ebook 7" 128GB full HD</a> 
                   <!-- Reviews -->
@@ -1254,7 +1254,7 @@
               
               <!-- Product -->
               <div class="product">
-                <article> <img class="img-responsive" src="images/item-img-1-17.jpg" alt="" > 
+                <article> <img class="img-responsive" src="assets/images/item-img-1-17.jpg" alt="" >
                   <!-- Content --> 
                   <span class="tag">Appliances</span> <a href="#." class="tittle">Reloj Inteligente Smart Watch M26 Touch Bluetooh </a> 
                   <!-- Reviews -->
@@ -1265,7 +1265,7 @@
               
               <!-- Product -->
               <div class="product">
-                <article> <img class="img-responsive" src="images/item-img-1-16.jpg" alt="" > <span class="new-tag">New</span> 
+                <article> <img class="img-responsive" src="assets/images/item-img-1-16.jpg" alt="" > <span class="new-tag">New</span>
                   
                   <!-- Content --> 
                   <span class="tag">Accessories</span> <a href="#." class="tittle">Teclado Inalambrico Bluetooth Con Air Mouse</a> 
@@ -1277,7 +1277,7 @@
               
               <!-- Product -->
               <div class="product">
-                <article> <img class="img-responsive" src="images/item-img-1-12.jpg" alt="" > 
+                <article> <img class="img-responsive" src="assets/images/item-img-1-12.jpg" alt="" >
                   <!-- Content --> 
                   <span class="tag">Appliances</span> <a href="#." class="tittle">Funda Para Ebook 7" 128GB full HD</a> 
                   <!-- Reviews -->
@@ -1295,7 +1295,7 @@
               
               <!-- Product -->
               <div class="product">
-                <article> <img class="img-responsive" src="images/item-img-1-11.jpg" alt="" > <span class="sale-tag">-25%</span> 
+                <article> <img class="img-responsive" src="assets/images/item-img-1-11.jpg" alt="" > <span class="sale-tag">-25%</span>
                   
                   <!-- Content --> 
                   <span class="tag">Accessories</span> <a href="#." class="tittle">Teclado Inalambrico Bluetooth Con Air Mouse</a> 
@@ -1307,7 +1307,7 @@
               
               <!-- Product -->
               <div class="product">
-                <article> <img class="img-responsive" src="images/item-img-1-12.jpg" alt="" > 
+                <article> <img class="img-responsive" src="assets/images/item-img-1-12.jpg" alt="" >
                   <!-- Content --> 
                   <span class="tag">Appliances</span> <a href="#." class="tittle">Funda Para Ebook 7" 128GB full HD</a> 
                   <!-- Reviews -->
@@ -1318,7 +1318,7 @@
               
               <!-- Product -->
               <div class="product">
-                <article> <img class="img-responsive" src="images/item-img-1-16.jpg" alt="" > 
+                <article> <img class="img-responsive" src="assets/images/item-img-1-16.jpg" alt="" >
                   <!-- Content --> 
                   <span class="tag">Appliances</span> <a href="#." class="tittle">Reloj Inteligente Smart Watch M26 Touch Bluetooh </a> 
                   <!-- Reviews -->
@@ -1329,7 +1329,7 @@
               
               <!-- Product -->
               <div class="product">
-                <article> <img class="img-responsive" src="images/item-img-1-15.jpg" alt="" > <span class="new-tag">New</span> 
+                <article> <img class="img-responsive" src="assets/images/item-img-1-15.jpg" alt="" > <span class="new-tag">New</span>
                   
                   <!-- Content --> 
                   <span class="tag">Accessories</span> <a href="#." class="tittle">Teclado Inalambrico Bluetooth Con Air Mouse</a> 
@@ -1341,7 +1341,7 @@
               
               <!-- Product -->
               <div class="product">
-                <article> <img class="img-responsive" src="images/item-img-1-14.jpg" alt="" > 
+                <article> <img class="img-responsive" src="assets/images/item-img-1-14.jpg" alt="" >
                   <!-- Content --> 
                   <span class="tag">Appliances</span> <a href="#." class="tittle">Funda Para Ebook 7" 128GB full HD</a> 
                   <!-- Reviews -->
@@ -1437,16 +1437,16 @@
 <!-- End Page Wrapper --> 
 
 <!-- JavaScripts --> 
-<script src="js2/vendors/jquery/jquery.min.js"></script>
-<script src="js2/vendors/wow.min.js"></script>
-<script src="js2/vendors/bootstrap.min.js"></script>
-<script src="js2/vendors/own-menu.js"></script>
-<script src="js2/vendors/jquery.sticky.js"></script>
-<script src="js2/vendors/owl.carousel.min.js"></script>
+<script src="assets/js2/vendors/jquery/jquery.min.js"></script>
+<script src="assets/js2/vendors/wow.min.js"></script>
+<script src="assets/js2/vendors/bootstrap.min.js"></script>
+<script src="assets/js2/vendors/own-menu.js"></script>
+<script src="assets/js2/vendors/jquery.sticky.js"></script>
+<script src="assets/js2/vendors/owl.carousel.min.js"></script>
 
 <!-- SLIDER REVOLUTION 4.x SCRIPTS  --> 
-<script type="text/javascript" src="rs-plugin/js/jquery.tp.t.min.js"></script>
-<script type="text/javascript" src="rs-plugin/js/jquery.tp.min.js"></script>
-<script src="js2/main.js"></script>
+<script type="text/javascript" src="assets/rs-plugin/js/jquery.tp.t.min.js"></script>
+<script type="text/javascript" src="assets/rs-plugin/js/jquery.tp.min.js"></script>
+<script src="assets/js2/main.js"></script>
 </body>
 </html>

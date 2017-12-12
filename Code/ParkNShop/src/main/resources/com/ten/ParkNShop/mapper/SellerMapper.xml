@@ -305,19 +305,19 @@
       shopStatus = #{shopStatus,jdbcType=INTEGER}
     where sellerId = #{sellerId,jdbcType=INTEGER}
   </update>
-  <insert id="sellerRegister" parameterType="Seller" keyProperty="sellerId">
+  <insert id="sellerRegister" parameterType="com.ten.ParkNShop.entity.Seller" keyProperty="sellerId">
     insert into seller(sellerName,shopName,sellerPassword,sellerEmail,sellerPhone,sellerBalance,shopIntroduction,shopStatus)
     values( #{sellerName}, #{shopName}, #{sellerPassword}, #{sellerEmail}, #{sellerPhone}, 0, #{shopIntroduction}, 0 )
   </insert>
 
-  <select id="findBySellerEmail" parameterType="String" resultType="Seller">
+  <select id="findBySellerEmail" parameterType="java.lang.String" resultType="com.ten.ParkNShop.entity.Seller">
     SELECT
     *
     FROM seller
     WHERE sellerEmail = #{sellerEmail} and sellerPassword = #{sellerPassword}
   </select>
 
-  <select id="findByEmail" parameterType="String" resultType="int">
+  <select id="findByEmail" parameterType="java.lang.String" resultType="int">
     SELECT
     count(1)
     FROM

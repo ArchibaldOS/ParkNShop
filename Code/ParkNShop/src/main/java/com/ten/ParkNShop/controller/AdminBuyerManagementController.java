@@ -59,19 +59,19 @@ public class AdminBuyerManagementController {
     @RequestMapping("/AdminSetBuyerStatusToNormal")
     public String adminSetBuyerStatusToNormal(HttpServletRequest httpServletRequest){
         int buyerId = Integer.parseInt(httpServletRequest.getParameter("buyerId"));
-        int i = adminBuyerService.updateBuyerStatusToNormal(buyerId);
+        int i = adminBuyerService.updatebuyerStatusToNormal(buyerId);
         return "redirect:/AdminBuyerManagement";
     }
     @RequestMapping("/AdminSetBuyerStatusToFrozen")
     public String adminSetBuyerStatusToFrozen(HttpServletRequest httpServletRequest){
         int buyerId = Integer.parseInt(httpServletRequest.getParameter("buyerId"));
-        int i = adminBuyerService.updateBuyerStatusToFrozen(buyerId);
+        int i = adminBuyerService.updatebuyerStatusToFrozen(buyerId);
         return "redirect:/AdminBuyerManagement";
     }
     @RequestMapping("/AdminSetBuyerStatusToBlacklist")
-    public String AdminSetBuyerStatusToBlacklist(HttpServletRequest httpServletRequest){
+    public String adminSetBuyerStatusToBlacklist(HttpServletRequest httpServletRequest){
         int buyerId = Integer.parseInt(httpServletRequest.getParameter("buyerId"));
-        int i = adminBuyerService.updateBuyerStatusToBlacklist(buyerId);
+        int i = adminBuyerService.updatebuyerStatusToBlacklist(buyerId);
         return "redirect:/AdminBuyerManagement";
     }
     /**
@@ -90,12 +90,13 @@ public class AdminBuyerManagementController {
     @RequestMapping("/AdminBuyerModifyDO")
     public String adminBuyerModifyDO(HttpServletRequest httpServletRequest){
         Buyer buyer =new Buyer();
-        buyer.setBuyerid(Integer.valueOf((httpServletRequest.getParameter("buyerid"))));
-        buyer = adminBuyerService.selectBuyerById(buyer.getBuyerid());
-        buyer.setBuyername(httpServletRequest.getParameter("buyername"));
-        buyer.setBuyerphone(httpServletRequest.getParameter("buyerphone"));
-        buyer.setBuyeraddress(httpServletRequest.getParameter("buyeraddress"));
-        buyer.setBuyerstatus(Integer.valueOf(httpServletRequest.getParameter("buyerstatus")));
+        buyer.setbuyerId(Integer.valueOf((httpServletRequest.getParameter("buyerId"))));
+        buyer = adminBuyerService.selectBuyerById(buyer.getbuyerId());
+        buyer.setbuyerAccount(httpServletRequest.getParameter("buyerAccount"));
+        buyer.setbuyerName(httpServletRequest.getParameter("buyerName"));
+        buyer.setbuyerPhone(httpServletRequest.getParameter("buyerPhone"));
+        buyer.setbuyerAddress(httpServletRequest.getParameter("buyerAddress"));
+        buyer.setbuyerStatus(Integer.valueOf(httpServletRequest.getParameter("buyerStatus")));
         adminBuyerService.updateBuyer(buyer);
         System.out.println(buyer);
         return "redirect:/AdminBuyerManagement";
@@ -113,7 +114,7 @@ public class AdminBuyerManagementController {
         return "redirect:/AdminBuyerManagement";
     }
 
-    @RequestMapping("/AdminDoSearchByBuyerID")
+    @RequestMapping("/AdminDoSearchByBuyerId")
     public String adminDoSearchByID(HttpServletRequest httpServletRequest,Model model){
         int buyerId = Integer.parseInt(httpServletRequest.getParameter("buyerId"));
         model.addAttribute("buyer",adminBuyerService.selectBuyerById(buyerId));
@@ -121,8 +122,8 @@ public class AdminBuyerManagementController {
     }
     @RequestMapping("/AdminDoSearchByBuyerName")
     public String adminDoSearchByBuyerName(HttpServletRequest httpServletRequest,Model model){
-        String buyername = httpServletRequest.getParameter("buyername");
-        model.addAttribute("buyer",adminBuyerService.selectByBuyername(buyername));
+        String buyerName = httpServletRequest.getParameter("buyerName");
+        model.addAttribute("buyer",adminBuyerService.selectBybuyerName(buyerName));
         return "Admin/AdminBuyerDetail";
     }
 

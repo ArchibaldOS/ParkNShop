@@ -55,7 +55,7 @@ public class SellerIndexController {
 			model.addAttribute("emailUsed", null);
 			return "Seller/sellerLogin";
 		}else{
-			return "Seller/sellerTestFaild";
+			return "Seller/sellerRegister";
 		}
 	}
 	

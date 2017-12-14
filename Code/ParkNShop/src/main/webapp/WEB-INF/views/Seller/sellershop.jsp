@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html class="no-js" lang="en">
 
@@ -26,9 +27,9 @@
             <link rel="stylesheet" type="text/css" href="assets/rs-plugin/css/settings.css" media="screen" />
 
    <!-- StyleSheets -->
-<link rel="stylesheet" href="assets/css2/ionicons.min.css">
-<link rel="stylesheet" href="assets/css2/bootstrap.min.css">
-<link rel="stylesheet" href="assets/css2/font-awesome.min.css">
+<link rel="stylesheet" href="assets/css2/ionicons.min.css"/>
+<link rel="stylesheet" href="assets/css2/bootstrap.min.css"/>
+<link rel="stylesheet" href="assets/css2/font-awesome.min.css"/>
 <link rel="stylesheet" href="assets/css2/main.css">
 <link rel="stylesheet" href="assets/css2/style.css">
 <link rel="stylesheet" href="assets/css2/responsive.css">
@@ -71,7 +72,7 @@ border-radius: 20px;
 								if (user == null) {
 						%>
 						<ul>
-							<li><a href="Userlogin.jsp">login</a></li>
+							<li><a href="">login</a></li>
 							<li><a href="Userregister.jsp">register</a></li>
 						</ul>
 						<%
@@ -121,7 +122,7 @@ border-radius: 20px;
         <div class="collapse navbar-collapse" id="nav-open-btn">
           <ul class="nav" >
             <li><a href="/sellerHome">Home</a></li>
-            <li><a href="/productList">Shop</a></li>
+            <li><a href="/sellerProductList">Product</a></li>
           </ul>
         </div>
         
@@ -141,14 +142,14 @@ border-radius: 20px;
             </div>
            <c:set var="page" value="${requestScope.page }" /> 
            <c:choose>
-           <c:when test="${page ne null and page.list ne null }">
+           <c:when test="${page ne null and page.list ne null and fn:length(page.list) ne 0}">
            <div style="margin-left:10%;margin-right:10%;">
 		     <c:forEach items="${page.list }" var="p">
 			   <!-- single-product-start -->
                 <div class="single-product" style="float:left;width:15%;margin-left:2.5%;margin-right:2.5%;margin-top:3%" >
                     <div class="single-product-img">
                         <a href="#">
-                            <img src="${pageContext.request.contextPath}/upload/productPicture/${p.productPicture}" alt="" height="80%"/>
+                            <img src="${pageContext.request.contextPath}/upload/productPicture/${p.productPicture}"/>
                         </a>
                         
                     </div>
@@ -164,6 +165,10 @@ border-radius: 20px;
                         <div class="product-action">
                             <button class="button btn btn-default add-cart" title="add to cart">
                             update</button>  
+                        </div>
+                        <div class="product-action">
+                            <button class="button btn btn-default add-cart" onclick="window.location.href='/deleteProduct?productId=${p.productId}'">
+                            delete</button>  
                         </div>
                     </div>
                 </div>

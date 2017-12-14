@@ -34,6 +34,30 @@ public class SellerProductServiceImpl implements SellerProductService {
 		
 		return page;
 	}
+
+	@Override
+	public int deleteProduct(int productId) {
+		
+		return productMapper.delete(productId);
+	}
+
+	@Override
+	public Product getProductById(int productId) {
+		
+		return productMapper.findByProductId(productId);
+	}
+
+	@Override
+	public int updateProduct1(Product product) {
+		
+		return productMapper.updateProduct1(product);
+	}
+
+	@Override
+	public int updateProduct2(Product product) {
+		
+		return productMapper.updateProduct2(product);
+	}
 	
 
 }

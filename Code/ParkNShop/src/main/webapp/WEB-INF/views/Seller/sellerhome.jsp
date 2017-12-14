@@ -141,7 +141,7 @@ li .aaa{
         <div class="collapse navbar-collapse" id="nav-open-btn">
           <ul class="nav aaa" >
             <li><a href="/sellerHome">Home</a></li>
-            <li><a href="/productList">Shop</a></li>
+            <li><a href="/sellerProductList">Product</a></li>
           </ul>
         </div>
         

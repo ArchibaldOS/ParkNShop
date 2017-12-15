@@ -9,9 +9,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class AdminADManagementController {
 
-    @Autowired
-    private AdminService adminService;
 
+    @RequestMapping("/AdminADManagement")
+    public String adminADManagement(){
+        return "Admin/AdminADManagement";
+    }
 
     @RequestMapping("/AdminADTop5StoriesManagement")
     public String adminADTop5StoriesManagement(){

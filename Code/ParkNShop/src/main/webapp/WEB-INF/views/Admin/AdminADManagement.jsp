@@ -54,7 +54,6 @@
                     <a href="/AdminADManagement" class="list-group-item active">Top10 Products Management</a>
                     <a href="/AdminADTop5StoriesManagement" class="list-group-item">Top5 Stories Management</a>
                     <a href="/AdminADManagementHistory" class="list-group-item">AD Management History</a>
-
                 </div>
             </div>
             <div class="col-md-10">

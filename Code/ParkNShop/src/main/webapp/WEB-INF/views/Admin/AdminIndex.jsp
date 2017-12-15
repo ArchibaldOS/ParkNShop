@@ -7,9 +7,7 @@
 		<link rel="stylesheet" href="assets/css/bootstrap.min.css"/>
 		<link rel="stylesheet" href="assets/css/bootstrap-maizi.css"/>
 	</head>
-	
-	
-	
+
 	<body>
 		<!--导航-->
 		<nav class="navbar navbar-default">

@@ -33,7 +33,7 @@ CREATE TABLE `admins` (
 -- ----------------------------
 -- Records of admins
 -- ----------------------------
-INSERT INTO `admins` VALUES ('1', 'admin', 'admin', 'admin', '0', '12345678910', '1');
+INSERT INTO `admins` VALUES ('1', 'admin', 'admin', 'admin', '0', '12345678910', '0');
 INSERT INTO `admins` VALUES ('2', 'admin2', 'admin2', 'admin2', '0', '110', '0');
 
 -- ----------------------------

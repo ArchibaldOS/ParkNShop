@@ -91,8 +91,8 @@ li .aaa{
 								if (user == null) {
 						%>
 						<ul>
-							<li><a href="Userlogin.jsp">login</a></li>
-							<li><a href="Userregister.jsp">register</a></li>
+							<li><a href="/sellerLogin">login</a></li>
+							<li><a href="/sellerRegister">register</a></li>
 						</ul>
 						<%
 							}

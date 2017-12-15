@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html class="no-js" lang="en">
 
@@ -124,11 +125,14 @@ background-color: blue;
     </nav>
    
   </header>
-   <form class="form-horizontal" role="form" action="/productAdd" method="post" enctype="multipart/form-data" name="formen">
+  <c:set var="p" value="${requestScope.product }" /> 
+   <form class="form-horizontal" role="form" action="/updateProduct" method="post" enctype="multipart/form-data" name="formen">
+   <input type="hidden" name="productId" value="${p.productId }"  />
+   
    <div class="form-group" style="margin-top:20px">
       <label class="col-sm-5 control-label">product name</label>
       <div class="col-sm-3">
-         <input class="form-control" type="text" name="productName" autocomplete="off">
+         <input class="form-control" type="text" name="productName" autocomplete="off" value="${p.productName}"/>
       </div>
    </div>
 
@@ -152,22 +156,21 @@ background-color: blue;
     <div class="form-group">
       <label class="col-sm-5 control-label">product price</label>
       <div class="col-sm-3">
-         <input type="text" class="form-control" name="productPrice" autocomplete="off">
+         <input type="text" class="form-control" name="productPrice"  value="${p.productPrice}"/>
       </div>
    </div>
 
    <div class="form-group">
       <label for="firstname" class="col-sm-5 control-label">store count</label>
       <div class="col-sm-3">
-         <input type="text" class="form-control" name="storeCount" autocomplete="off">
+         <input type="text" class="form-control" name="storeCount" value="${p.storeCount}" />
       </div>
    </div>
 
    <div class="form-group">
       <label for="lastname" class="col-sm-5 control-label" >product introduction</label>
       <div class="col-sm-5">
-         <textarea class="input-xlarge" id="textarea" rows="3" cols="37" name="productIntroduction" style="overflow-x:hidden;"></textarea>
-
+         <textarea class="input-xlarge" id="textarea" rows="3" cols="37" name="productIntroduction" style="overflow-x:hidden;">${p.productIntroduction}</textarea>
       </div>
    </div>
    
@@ -183,7 +186,7 @@ background-color: blue;
 	
    <div class="form-actions" style="margin-left: 45%;">
         <button class="btn  btn-default add-cart aaa" type="submit">
-                Upload</button>
+                Update</button>
     </div>
 	
 	

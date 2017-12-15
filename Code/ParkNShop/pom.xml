@@ -118,6 +118,7 @@
   </dependencies>
   <build>
     <finalName>ParkNShop</finalName>
+    <pluginManagement>
     <plugins>
       <plugin>
         <groupId>org.mybatis.generator</groupId>
@@ -145,5 +146,6 @@
         </dependencies>
       </plugin>
     </plugins>
+    </pluginManagement>
   </build>
 </project>

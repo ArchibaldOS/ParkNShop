@@ -1,7 +1,5 @@
 package com.ten.ParkNShop.controller;
 
-import java.io.OutputStream;
-
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +27,11 @@ public class SellerProductController {
 		return "Seller/productAdd";
 	}
 	
+	@RequestMapping(value="/productUpdate",method=RequestMethod.GET)
+	public String update(int productId,Model model){
+		model.addAttribute("product", sellerProductService.getProductById(productId));
+		return "Seller/productUpdate";
+	}
 	
 	@RequestMapping(value = "/productAdd", method = RequestMethod.POST)
 	public String addProduct(String productName, int productType, float productPrice, int storeCount,
@@ -64,7 +67,10 @@ public class SellerProductController {
 		System.out.println(page.getList());
 		
 		model.addAttribute("seller",session.getAttribute("seller"));
-		model.addAttribute("page", page);
+		if(page.getList().size()>0)
+			model.addAttribute("page", page);
+		else
+			model.addAttribute("page", null);
 		
 		return "Seller/sellershop";
 		
@@ -85,7 +91,7 @@ public class SellerProductController {
 			String productIntroduction,@RequestParam(required = false) CommonsMultipartFile file, HttpSession session) throws Exception {
 
 		if (file.getSize() > 0) {
-			String path = session.getServletContext().getRealPath("upload\\head\\");
+			String path = session.getServletContext().getRealPath("/upload/productPicture");
 			System.out.println(path);
 			String filePath = FileUtil.uploadFile(file, path);
 			Product product = sellerProductService.getProductById(productId);

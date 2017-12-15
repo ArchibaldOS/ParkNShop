@@ -27,9 +27,9 @@
             <link rel="stylesheet" type="text/css" href="assets/rs-plugin/css/settings.css" media="screen" />
 
    <!-- StyleSheets -->
-<link rel="stylesheet" href="assets/css2/ionicons.min.css"/>
-<link rel="stylesheet" href="assets/css2/bootstrap.min.css"/>
-<link rel="stylesheet" href="assets/css2/font-awesome.min.css"/>
+<link rel="stylesheet" href="assets/css2/ionicons.min.css">
+<link rel="stylesheet" href="assets/css2/bootstrap.min.css">
+<link rel="stylesheet" href="assets/css2/font-awesome.min.css">
 <link rel="stylesheet" href="assets/css2/main.css">
 <link rel="stylesheet" href="assets/css2/style.css">
 <link rel="stylesheet" href="assets/css2/responsive.css">
@@ -72,8 +72,8 @@ border-radius: 20px;
 								if (user == null) {
 						%>
 						<ul>
-							<li><a href="">login</a></li>
-							<li><a href="Userregister.jsp">register</a></li>
+							<li><a href="/sellerLogin">login</a></li>
+							<li><a href="/sellerRegister">register</a></li>
 						</ul>
 						<%
 							}
@@ -136,24 +136,23 @@ border-radius: 20px;
             
             <div style="width:100%;text-align:right">
                <div style="width:95%;">
-                <button class="button  btn-default add-cart aaa" onclick="window.location.href='/addProduct' ">
+                <button class="button btn btn-default add-cart" onclick="window.location.href='/addProduct' ">
                 Add new product</button>
                </div>
             </div>
            <c:set var="page" value="${requestScope.page }" /> 
            <c:choose>
-           <c:when test="${page ne null and page.list ne null and fn:length(page.list) ne 0}">
+           <c:when test="${page ne null and page.list ne null }">
            <div style="margin-left:10%;margin-right:10%;">
 		     <c:forEach items="${page.list }" var="p">
 			   <!-- single-product-start -->
                 <div class="single-product" style="float:left;width:15%;margin-left:2.5%;margin-right:2.5%;margin-top:3%" >
-                    <div class="single-product-img">
-                        <a href="#">
-                            <img src="${pageContext.request.contextPath}/upload/productPicture/${p.productPicture}"/>
-                        </a>
+                    <div class="single-product-img" style="width:100%;height:250px">
+
+                            <img src="${pageContext.request.contextPath}/upload/productPicture/${p.productPicture}" alt="parknshop" width="100%" height="100%"/>
                         
                     </div>
-                    <div class="single-product-content" id="productName">
+                    <div class="single-product-content" style="width:100%" id="productName">
                         <div class="product-title">
                             <h5>
                                 <a href="#">${p.productName }</a>
@@ -163,7 +162,7 @@ border-radius: 20px;
                             <span class="price">￥${p.productPrice }</span>                                            
                         </div>
                         <div class="product-action">
-                            <button class="button btn btn-default add-cart" title="add to cart">
+                            <button class="button btn btn-default add-cart" onclick="window.location.href='/productUpdate?productId=${p.productId}'">
                             update</button>  
                         </div>
                         <div class="product-action">
@@ -177,7 +176,7 @@ border-radius: 20px;
 		    </div>
 	       </c:when> 
 	       <c:otherwise>
-		     <div>no found data!</div>
+		     <div style="text-align: center;"><font size="10px"><strong>no found data!</strong></font></div>
 	       </c:otherwise>                        
          </c:choose>
             <!-- mobile-menu-area-start -->

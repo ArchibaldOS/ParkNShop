@@ -74,7 +74,8 @@ public class SellerIndexController {
 	}
 	
 	@RequestMapping(value="/sellerHome",method=RequestMethod.GET)
-	public String sellHome(){
+	public String sellHome(HttpSession session){
+		session.setAttribute("seller", session.getAttribute("seller"));
 		return "Seller/sellerhome";
 	}
 	

@@ -8,8 +8,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class AdminSalesManagementController {
 
-    @Autowired
-    private AdminService adminService;
+
+    @RequestMapping("/AdminSalesManagement")
+    public String adminSalesManagement(){
+        return "Admin/AdminSalesManagement";
+    }
 
     @RequestMapping("/AdminSalesModifyCommision")
     public String adminSalesModifyCommision(){

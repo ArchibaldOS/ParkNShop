@@ -1,3 +1,4 @@
+<%@ page import="com.ten.ParkNShop.entity.Seller" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
@@ -51,59 +52,66 @@
     <div class="row">
         <div class="col-md-2">
             <div class="list-group">
-                <a href="/AdminBuyerManagement" class="list-group-item">BuyerList</a>
-                <a href="/AdminSearchBuyerByID" class="list-group-item">SearchBuyer</a>
-                <a href="/AdminBuyerBlackList" class="list-group-item">BlackList Management</a>
+                <a href="/AdminOrderManagement" class="list-group-item active">Order&nbsp;&nbsp;&nbsp;&nbsp; Management</a>
+                <a href="/AdminOrderSearchByID" class="list-group-item">SerachOrder</a>
             </div>
         </div>
         <div class="col-md-10">
             <div class="page-header">
-                <h1>Buyer Management</h1>
+                <h1>Order Modify</h1>
             </div>
-            <form class="form-horizontal" role="form" action="/AdminBuyerModifyDO">
+            <form class="form-horizontal" role="form" action="/AdminOrderModifyDo">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Order ID</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" id="focusedInput6" type="text" name="orderId" value="${order.orderid}" READONLY>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Buyer ID</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" id="focusedInput5" type="text" name="buyerId" value="${order.buyerid}">
+                    </div>
+                </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Seller ID</label>
                     <div class="col-sm-10">
-                        <input class="form-control" id="focusedInput6" type="text" name="buyerId" value="${buyer.buyerId}" READONLY>
+                        <input class="form-control" id="focusedInput" type="text" name="sellerId" value="${order.sellerid}">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label">Buyer Name</label>
+                    <label class="col-sm-2 control-label">Product ID</label>
                     <div class="col-sm-10">
-                        <input class="form-control" id="focusedInput5" type="text" name="buyerAccount" value="${buyer.buyerAccount}">
+                        <input class="form-control" id="focusedInput2" type="text" name="productId" value="${order.productid}">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label">Buyer Name</label>
+                    <label class="col-sm-2 control-label">Count</label>
                     <div class="col-sm-10">
-                        <input class="form-control" id="focusedInput" type="text" name="buyerName" value="${buyer.buyerName}">
+                        <input class="form-control" id="focusedInput3" type="text" name="count" value="${order.count}">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label">Buyer Address</label>
+                    <label class="col-sm-2 control-label">Order Total Price</label>
                     <div class="col-sm-10">
-                        <input class="form-control" id="focusedInput2" type="text" name="buyerAddress" value="${buyer.buyerAddress}">
+                        <input class="form-control" id="focusedInput4" type="text" name="totalPrice" value="${order.totalprice}">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label">Buyer Phone</label>
+                    <label class="col-sm-2 control-label">Order Address</label>
                     <div class="col-sm-10">
-                        <input class="form-control" id="focusedInput3" type="text" name="buyerPhone" value="${buyer.buyerPhone}">
+                        <input class="form-control" id="focusedInput8" type="text" name="address" value="${order.address}">
                     </div>
                 </div>
+
                 <div class="form-group">
-                    <label class="col-sm-2 control-label">Buyer Balance</label>
+                    <label class="col-sm-2 control-label">Order Status</label>
                     <div class="col-sm-10">
-                        <input class="form-control" id="focusedInput4" type="text" name="buyerBalance" value="${buyer.buyerBalance}">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">Buyer Status</label>
-                    <div class="col-sm-10">
-                        <select class="form-control" name="buyerStatus">
-                            <option value="1">Normal</option>
-                            <option value="2">Frozen</option>
-                            <option value="3">Ban</option>
+                        <select class="form-control" name="orderStatus">
+                            <option value="1">未付款</option>
+                            <option value="2">已付款，未发货</option>
+                            <option value="3">已付款，已发货</option>
+                            <option value="4">已签收</option>
                         </select>
                     </div>
                 </div>
@@ -112,10 +120,11 @@
                     <div style="width:50%;padding:0;margin:0;float:left">
                         <button type="submit" class="btn btn-success">Modify</button>
                     </div>
-                    <button type="button" class="btn btn-danger" onclick="location='/AdminBuyerManagement'">Cancel</button>
+                    <button type="button" class="btn btn-danger" onclick="location='/AdminOrderManagement'">Cancel</button>
                 </div>
 
             </form>
+
         </div>
     </div>
 </div>
@@ -141,3 +150,4 @@
 <script src="assets/javascripts/script.js"></script>
 </body>
 </html>
+

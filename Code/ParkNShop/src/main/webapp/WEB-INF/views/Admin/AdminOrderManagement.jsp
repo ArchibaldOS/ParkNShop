@@ -51,62 +51,52 @@
         <div class="row">
             <div class="col-md-2">
                 <div class="list-group">
-                    <a href="./AdminOrderManagement" class="list-group-item active">Order&nbsp;&nbsp;&nbsp;&nbsp; Management</a>
-
+                    <a href="/AdminOrderManagement" class="list-group-item active">Order&nbsp;&nbsp;&nbsp;&nbsp; Management</a>
+                    <a href="/AdminOrderSearchByID" class="list-group-item">SerachOrder</a>
                 </div>
             </div>
             <div class="col-md-10">
                 <div class="page-header">
                     <h1>Order Management</h1>
                 </div>
-
-                <div>
-                    <input value="Search OrderID" class="glyphicon-search">
-                    <%--<li class="active">--%>
-                        <%--<a href="AdminUserList.jsp">用户列表</a>--%>
-                    <%--</li>--%>
-                    <%--<li>--%>
-                        <%--<a href="AdminUserSearch.jsp">用户搜索</a>--%>
-                    <%--</li>--%>
-                    <%--<li>--%>
-                        <%--<a href="AdminUserList.jsp">添加用户</a>--%>
-                    <%--</li>--%>
-                </div>
                 <table class="table">
                     <thead>
                     <tr>
                         <th>OrderID</th>
+                        <th>Seller</th>
                         <th>Buyer</th>
-                        <th>Shop</th>
-                        <th>ShopOwner</th>
-                        <th>Time</th>
-                        <th>Content</th>
-                        <th>Price</th>
+                        <th>ProductID</th>
+                        <th>Count</th>
+                        <th>TotalPrice</th>
+                        <th>Address</th>
                         <th>Status</th>
+                        <th>Time</th>
+                        <th>Operation</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <th scope="row">00000001</th>
-                        <td>liu</td>
-                        <td>AJ's Shop</td>
-                        <td>AJ</td>
-                        <td>2017/12/3 22:00</td>
-                        <td>A Computer</td>
-                        <td>8999</td>
-                        <td>completed</td>
-                        <%--可能有的操作--%>
-                        <%--<td><div role="presentation" class="dropdown">--%>
-                            <%--<button class="dropdown-toggle btn btn-default" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">操作 <span class="caret"></span>--%>
-                            <%--</button>--%>
-                            <%--<ul class="dropdown-menu">--%>
-                                <%--<li><a href="###">编辑</a></li>--%>
-                                <%--<li><a href="###">删除</a></li>--%>
-                                <%--<li><a href="###">锁定</a></li>--%>
-                                <%--<li><a href="###">修改密码</a></li>--%>
-                            <%--</ul>--%>
-                        <%--</div></td>--%>
-                    </tr>
+                    <c:forEach var="order" items="${orders}">
+                        <tr>
+                            <td><c:out value="${order.orderid}"></c:out></td>
+                            <td><c:out value="${order.sellerid}"></c:out></td>
+                            <td><c:out value="${order.buyerid}"></c:out></td>
+                            <td><c:out value="${order.productid}"></c:out></td>
+                            <td><c:out value="${order.count}"></c:out></td>
+                            <td><c:out value="${order.totalprice}"></c:out></td>
+                            <td><c:out value="${order.address}"></c:out></td>
+                            <td><c:out value="${order.orderstatus}"></c:out></td>
+                            <td><c:out value="${order.ordertime}"></c:out></td>
+                            <td><div role="presentation" class="dropdown">
+                                <button class="dropdown-toggle btn btn-default" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Onclick <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a href="/AdminOrderDetail?orderID=${order.orderid}">View</a></li>
+                                    <li><a href="/AdminOrderModify?orderID=${order.orderid}">modify</a></li>
+                                    <li><a href="/AdminOrderDelete?orderID=${order.orderid}">delete</a></li>
+                                </ul>
+                            </div></td>
+                        </tr>
+                    </c:forEach>
                     </tbody>
                 </table>
                 <nav class="pull-right">

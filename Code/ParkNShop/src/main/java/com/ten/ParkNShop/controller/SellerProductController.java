@@ -1,5 +1,7 @@
 package com.ten.ParkNShop.controller;
 
+import java.io.OutputStream;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +22,7 @@ import com.ten.ParkNShop.service.SellerProductService;
 public class SellerProductController {
 
 	@Autowired
-	private SellerProductService productService;
+	private SellerProductService sellerProductService;
 	
 	@RequestMapping(value="/addProduct",method=RequestMethod.GET)
 	public String add(){
@@ -45,39 +47,48 @@ public class SellerProductController {
 			product.setProductIntroduction(productIntroduction);
 			product.setProductPicture(filePath);
 			if (productName != null && !"".equals(productName) && filePath != null && !"".equals(filePath)
-					&& ( productService.addProduct(product)) != 0) {
+					&& ( sellerProductService.addProduct(product)) != 0) {
 
-				return "redirect:/productList";
+				return "redirect:/sellerProductList";
 			}
 		}
 		return "Seller/sellerTestFaild";
 	}
 	
-	@RequestMapping(value = "/productList", method = RequestMethod.GET)
+	@RequestMapping(value = "/sellerProductList", method = RequestMethod.GET)
 	public String listProduct(HttpSession session,Model model){
 		
 		int sellerId = ((Seller)session.getAttribute("seller")).getSellerId();
 		
-		Page page = productService.getProducts(sellerId);
+		Page page = sellerProductService.getProducts(sellerId);
+		System.out.println(page.getList());
 		
-		
+		model.addAttribute("seller",session.getAttribute("seller"));
 		model.addAttribute("page", page);
 		
 		return "Seller/sellershop";
 		
 	}
 	
+	@RequestMapping(value = "/deleteProduct", method = RequestMethod.GET)
+	public String deleteProduct(@RequestParam("productId") int productId){
+		
+		sellerProductService.deleteProduct(productId);
+		
+		return "forward:/sellerProductList";
+		
+	}
 	
 	
-	/*@RequestMapping(value = "/modifyProduct", method = RequestMethod.POST)
+	@RequestMapping(value = "/updateProduct", method = RequestMethod.POST)
 	public String updateProduct(int productId,String productName, int productType, float productPrice, int storeCount,
-			String productIntroduction, CommonsMultipartFile file, HttpServletRequest request) throws Exception {
+			String productIntroduction,@RequestParam(required = false) CommonsMultipartFile file, HttpSession session) throws Exception {
 
 		if (file.getSize() > 0) {
-			String path = request.getSession().getServletContext().getRealPath("upload\\head\\");
+			String path = session.getServletContext().getRealPath("upload\\head\\");
 			System.out.println(path);
 			String filePath = FileUtil.uploadFile(file, path);
-			Product product = new Product();
+			Product product = sellerProductService.getProductById(productId);
 			product.setProductName(productName);
 			product.setProductType(productType);
 			product.setProductPrice(productPrice);
@@ -85,13 +96,23 @@ public class SellerProductController {
 			product.setProductIntroduction(productIntroduction);
 			product.setProductPicture(filePath);
 			if (productName != null && !"".equals(productName) && filePath != null && !"".equals(filePath)
-					&& ( productService.addProduct(product)) != 0) {
+					&& ( sellerProductService.updateProduct1(product)) != 0) {
 
-				return "Seller/SuccessUploadingProduct";
+				return "redirect:/sellerProductList";
 			}
+		}else{
+			Product product2 = sellerProductService.getProductById(productId);
+			product2.setProductName(productName);
+			product2.setProductType(productType);
+			product2.setProductPrice(productPrice);
+			product2.setStoreCount(storeCount);
+			product2.setProductIntroduction(productIntroduction);
+			if(sellerProductService.updateProduct2(product2) != 0 )
+				return "redirect:/sellerProductList";
 		}
+		
 		return "Seller/UploadingProduct";
-	}*/
+	}
 	
 	
 }

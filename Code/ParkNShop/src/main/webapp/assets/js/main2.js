@@ -188,15 +188,7 @@
         itemsMobile: [479, 1],
     });
 
-    /*----------------------------
-     scrollUp
-    ---------------------------- */
-    $.scrollUp({
-        scrollText: '<i class="fa fa-arrow-up" aria-hidden="true"></i>',
-        easingType: 'linear',
-        scrollSpeed: 900,
-        animation: 'fade'
-    });
+
 
     /*-----------------
     meanmenu 

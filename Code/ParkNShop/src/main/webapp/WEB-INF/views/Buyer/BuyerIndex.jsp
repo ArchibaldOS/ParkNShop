@@ -1,3 +1,6 @@
+<%@ page import="java.util.List" %>
+<%@ page import="com.ten.ParkNShop.entity.Product" %>
+<%@ page import="java.util.ArrayList" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!doctype html>
@@ -98,19 +101,48 @@
       <%--判断是否为游客，若为游客则点击购物车跳转到用户登录界面--%>
       <%--若不是游客，则判断其购物车是否为空，若为空则显示购物车内暂无商品--%>
       <%--若购物车内有商品则显示购物车内商品--%>
+      <%
+        try{
+          String user = (String)session.getAttribute( "Buyer" );
+          if ( user == null )
+          {
+      %>
+      <ul class="nav navbar-right cart-pop" href="/BuyerLogin"></ul>
+      <%
+        }
+      }catch(Exception e) {
+
+        }
+      %>
+      
       <ul class="nav navbar-right cart-pop">
-        <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-          <span class="itm-cont">3</span> <i class="flaticon-shopping-bag"></i>
+        <c:choose>
+        <c:when test="${buyerCart.getItems eq null}">
+          <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+          <span class="itm-cont">0</span> <i class="flaticon-shopping-bag"></i>
           <strong>My Cart</strong> <br>
-          <span>3 item(s) - $500.00</span></a>
+          <span>0 item - $0</span></a>
           <ul class="dropdown-menu">
+              No product yet
+          </ul>
+        </li>
+        </c:when>
+        <c:otherwise>
+        <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+          <span class="itm-cont">${buyerCart.getProductAmount}</span> <i class="flaticon-shopping-bag"></i>
+          <strong>My Cart</strong> <br>
+          <span>${buyerCart.getProductAmount} item(s) - ${buyerCart.getTotalPrice}</span></a>
+          <ul class="dropdown-menu">
+            <c:forEach var="buyerItem" items="${buyerCart.getItems}">
             <li>
               <div class="media-left"> <a href="#." class="thumb"> <img src="assets/images/item-img-1-1.jpg" class="img-responsive" alt="" > </a> </div>
-              <div class="media-body"> <a href="#." class="tittle">Funda Para Ebook 7" 128GB full HD</a> <span>250 x 1</span> </div>
-            </li>
+              <div class="media-body"> <a href="#." class="tittle"></a> <span> ${buyerItem.getProduct.getProductPrice}* ${buyerItem.getAmount}</span> </div>
+            </li></c:forEach>
             <li class="btn-cart"> <a href="/BuyerCart" class="btn-round">View Cart</a> </li>
           </ul>
         </li>
+        </c:otherwise>
+        </c:choose>
       </ul>
     </div>
     <br>

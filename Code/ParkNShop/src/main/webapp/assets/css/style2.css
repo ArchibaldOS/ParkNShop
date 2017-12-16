@@ -1530,7 +1530,7 @@ body {
 9. news-letter-area
 ------------------------------*/
 .news-letter-area {
-  background: rgba(0, 0, 0, 0) url("../img/banner/bg3.jpg") no-repeat fixed center center / cover ;
+  background: rgba(0, 0, 0, 0) url("../../../../../../../前端样例/服装类/moban2116/img/banner/bg3.jpg") no-repeat fixed center center / cover ;
   padding: 80px 0;
   position: relative;
 }
@@ -1949,7 +1949,7 @@ footer ul li a {
   padding: 80px 0;
 }
 .heading-banner {
-    background: rgba(0, 0, 0, 0) url("../img/bg/prodet.jpg") no-repeat fixed 0 0;
+    background: rgba(0, 0, 0, 0) url("../../../../../../../前端样例/服装类/moban2116/img/bg/prodet.jpg") no-repeat fixed 0 0;
     position: relative;
 }
 .heading-banner::before {
@@ -2869,7 +2869,7 @@ option {
 16. about
 ------------------------------*/
 .heading-banner.about-banner {
-    background: rgba(0, 0, 0, 0) url("../img/bg/about.jpg") no-repeat fixed 0 0;
+    background: rgba(0, 0, 0, 0) url("../../../../../../../前端样例/服装类/moban2116/img/bg/about.jpg") no-repeat fixed 0 0;
 }
 .about-us {
   padding: 80px 0;
@@ -3092,7 +3092,7 @@ option {
 17. contact
 ------------------------------*/
 .heading-banner.contact-banner {
-    background: rgba(0, 0, 0, 0) url("../img/bg/contact.jpg") no-repeat fixed 0 0;
+    background: rgba(0, 0, 0, 0) url("../../../../../../../前端样例/服装类/moban2116/img/bg/contact.jpg") no-repeat fixed 0 0;
 }
 .contact-info h3, .contact-form h3 {
   border-bottom: 2px solid #e8e8e9;
@@ -3196,7 +3196,7 @@ option {
 ------------------------------*/
 
 .heading-banner.blog-banner {
-    background: rgba(0, 0, 0, 0) url("../img/bg/blog.jpg") no-repeat fixed 0 0;
+    background: rgba(0, 0, 0, 0) url("../../../../../../../前端样例/服装类/moban2116/img/bg/blog.jpg") no-repeat fixed 0 0;
 }
 .blog-heading > h2 {
     font-size: 18px;
@@ -3220,7 +3220,7 @@ option {
 ------------------------------*/
 
 .heading-banner.login-banner {
-    background: rgba(0, 0, 0, 0) url("../img/bg/login.jpg") no-repeat fixed 0 0;
+    background: rgba(0, 0, 0, 0) url("../../../../../../../前端样例/服装类/moban2116/img/bg/login.jpg") no-repeat fixed 0 0;
 }
 .login-area {
   background: #f7f7f7 none repeat scroll 0 0;
@@ -3327,7 +3327,7 @@ option {
 ------------------------------*/
 
 .heading-banner.checkout-banner {
-    background: rgba(0, 0, 0, 0) url("../img/bg/check.jpg") no-repeat fixed 0 0;
+    background: rgba(0, 0, 0, 0) url("../../../../../../../前端样例/服装类/moban2116/img/bg/check.jpg") no-repeat fixed 0 0;
 }
 .checkout-area {
   background: #f7f7f7 none repeat scroll 0 0;
@@ -3460,7 +3460,7 @@ p.cart_product_name a {
 ------------------------------*/
 
 .heading-banner.wishlist-banner {
-    background: rgba(0, 0, 0, 0) url("../img/bg/wish.jpg") no-repeat fixed 0 0;
+    background: rgba(0, 0, 0, 0) url("../../../../../../../前端样例/服装类/moban2116/img/bg/wish.jpg") no-repeat fixed 0 0;
 }
 .cart_product_add > a {
     background: #ff6464 none repeat scroll 0 0;
@@ -3506,7 +3506,7 @@ p.cart_product_name a {
 ------------------------------*/
 
 .heading-banner.error-banner {
-    background: rgba(0, 0, 0, 0) url("../img/bg/404.jpg") no-repeat fixed 0 0;
+    background: rgba(0, 0, 0, 0) url("../../../../../../../前端样例/服装类/moban2116/img/bg/404.jpg") no-repeat fixed 0 0;
     margin: auto;
 }
 .error-area {
@@ -3559,7 +3559,7 @@ p.cart_product_name a {
 ------------------------------*/
 
 .heading-banner.blog-details-banner {
-    background: rgba(0, 0, 0, 0) url("../img/bg/blogdet.jpg") no-repeat fixed 0 0;
+    background: rgba(0, 0, 0, 0) url("../../../../../../../前端样例/服装类/moban2116/img/bg/blogdet.jpg") no-repeat fixed 0 0;
 }
 .shop-area .blog-content > p {
     margin-bottom: 15px;
@@ -3745,7 +3745,7 @@ blockquote {
 25. bestseller-area
 ------------------------------*/
 .bestseller-area {
-  background: rgba(0, 0, 0, 0) url("../img/bg/best1.jpg") no-repeat fixed center center / cover ;
+  background: rgba(0, 0, 0, 0) url("../../../../../../../前端样例/服装类/moban2116/img/bg/best1.jpg") no-repeat fixed center center / cover ;
   padding: 80px 0;
   position: relative;
 }
@@ -3961,7 +3961,7 @@ blockquote {
   padding: 80px 0;
 }
 .home-4 {
-    background: rgba(0, 0, 0, 0) url("../img/bg/4body.png") repeat scroll center center;
+    background: rgba(0, 0, 0, 0) url("../../../../../../../前端样例/服装类/moban2116/img/bg/4body.png") repeat scroll center center;
 }
 .home-4-wraper {
     background: white none repeat scroll 0 0;

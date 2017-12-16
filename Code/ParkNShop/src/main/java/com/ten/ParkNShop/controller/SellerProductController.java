@@ -76,6 +76,29 @@ public class SellerProductController {
 		
 	}
 	
+	@RequestMapping(value = "/sellerProduct")
+	public String product(HttpSession session,Model model){
+		
+		Seller seller = (Seller)session.getAttribute("seller");
+		
+		int status = seller.getShopStatus();
+		System.out.println(status);
+		if(status == 1){
+			model.addAttribute("status", null);
+			return "forward:/sellerProductList";
+		}else if(status == 0){
+			model.addAttribute("status", 0);
+			return "Seller/sellerhome";
+		}else if(status == 2){
+			model.addAttribute("status", 2);
+			return "Seller/sellerhome";
+		}else{
+			model.addAttribute("status", 3);
+			return "Seller/sellerhome";
+		}
+		
+	}
+	
 	@RequestMapping(value = "/deleteProduct", method = RequestMethod.GET)
 	public String deleteProduct(@RequestParam("productId") int productId){
 		

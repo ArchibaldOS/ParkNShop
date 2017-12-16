@@ -27,4 +27,9 @@ public class SellerIndexIndexServiceImpl implements SellerIndexService {
 		return sellerMapper.findByEmail(sellerEmail);
 	}
 
+	@Override
+	public int sellerUpdate(Seller seller) {
+		return sellerMapper.updateBySellerId(seller);
+	}
+
 }

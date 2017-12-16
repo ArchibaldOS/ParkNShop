@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html class="no-js" lang="en">
 
     <head>
         <meta charset="utf-8">
-        <title>Add Product</title>
+        <title>Update Product</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
         <!-- Mobile Specific Meta  -->
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -115,7 +115,7 @@ background-color: blue;
         <div class="collapse navbar-collapse" id="nav-open-btn">
           <ul class="nav" >
             <li><a href="/sellerHome">Home</a></li>
-            <li><a href="/sellerProductList">Product</a></li>
+            <li><a href="/sellerProduct">Product</a></li>
           </ul>
         </div>
         

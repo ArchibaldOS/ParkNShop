@@ -80,6 +80,8 @@ public interface SellerMapper {
     List<Seller> selectAllUnapprovedShop(@Param("start")int start,@Param("pageSize")int pageSize);
     List<Seller> selectAllBlacklistShop(@Param("start")int start,@Param("pageSize")int pageSize);
 
+	int updateBySellerId(Seller seller);
+
 
 
 }

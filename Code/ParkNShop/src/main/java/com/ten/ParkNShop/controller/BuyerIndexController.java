@@ -24,6 +24,10 @@ public class BuyerIndexController {
         return "Buyer/BuyerLogin";
     }
 
+    @RequestMapping("/BuyerIndex")
+    public String buyerIndex(){
+        return "Buyer/BuyerIndex";
+    }
     @RequestMapping("/BuyerRegister")
     public String buyerRegister(){
         return "Buyer/BuyerRegister";
@@ -31,6 +35,10 @@ public class BuyerIndexController {
     @RequestMapping("/BuyerProductDetail")
     public String buyerProductDetail(){
         return "Buyer/BuyerProductDetail";
+    }
+    @RequestMapping("/ContactManager")
+    public String contactManager(){
+        return "Buyer/ContactManager";
     }
     @RequestMapping("/SearchProducts")
     public String listProducts(){
@@ -43,7 +51,7 @@ public class BuyerIndexController {
             return "redirect:/BuyerLogin";
         }
         session.setAttribute("Buyer",buyerService.buyerLogin(buyerAccount,buyerPassword));
-        return "redirect:index.jsp";
+        return "redirect:BuyerIndex.jsp";
     }
 
     @RequestMapping("/BuyerRegisterClick")

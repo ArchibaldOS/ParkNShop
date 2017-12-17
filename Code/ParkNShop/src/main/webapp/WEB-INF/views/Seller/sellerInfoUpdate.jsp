@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html class="no-js" lang="en">
 
     <head>
         <meta charset="utf-8">
-        <title>Add Product</title>
+        <title>Modify Information</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
         <!-- Mobile Specific Meta  -->
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -124,68 +125,48 @@ background-color: blue;
     </nav>
    
   </header>
-   <form class="form-horizontal" role="form" action="/productAdd" method="post" enctype="multipart/form-data" name="formen">
+  <c:set var="s" value="${requestScope.seller }" /> 
+   <form class="form-horizontal" role="form" action="/updateSeller" method="post" enctype="multipart/form-data" name="formen">
+   
    <div class="form-group" style="margin-top:20px">
-      <label class="col-sm-5 control-label">product name</label>
+      <label class="col-sm-5 control-label">seller name</label>
       <div class="col-sm-3">
-         <input class="form-control" type="text" name="productName" autocomplete="off">
+         <input class="form-control" type="text" name="sellerName" autocomplete="off" value="${s.sellerName}"/>
       </div>
    </div>
-
-   <div class="form-group">
-      <label for="disabledSelect" class="col-sm-5 control-label">product type</label>
-      <div class="col-sm-3">
-        <select id="disabledSelect" name="productType" class="form-control">
-          <option value="1">TV& Home Theater</option>
-          <option value="2">Computers & Tablets</option>
-          <option value="3">Cell Phones</option>
-          <option value="4">Cameras & Camcorders</option>
-          <option value="5">Audio</option>
-          <option value="6">Car Electronics & GPS</option>
-          <option value="7">Video, Games, Movies & Music</option>
-          <option value="8">Health, Fitness & Sports</option>
-          <option value="9">Home & Office</option>
-        </select>
-      </div>
-    </div>
 
     <div class="form-group">
-      <label class="col-sm-5 control-label">product price</label>
+      <label class="col-sm-5 control-label">shop name</label>
       <div class="col-sm-3">
-         <input type="text" class="form-control" name="productPrice" autocomplete="off">
+         <input type="text" class="form-control" name="shopName"  value="${s.shopName}"/>
       </div>
    </div>
 
    <div class="form-group">
-      <label for="firstname" class="col-sm-5 control-label">store count</label>
+      <label for="firstname" class="col-sm-5 control-label">shop E-mail</label>
       <div class="col-sm-3">
-         <input type="text" class="form-control" name="storeCount" autocomplete="off">
+         <input type="text" class="form-control" name="sellerEmail" value="${s.sellerEmail}" />
       </div>
    </div>
 
+	<div class="form-group">
+      <label for="firstname" class="col-sm-5 control-label">shop phone</label>
+      <div class="col-sm-3">
+         <input type="text" class="form-control" name="sellerPhone" value="${s.sellerPhone}" />
+      </div>
+   </div>
+  
    <div class="form-group">
-      <label for="lastname" class="col-sm-5 control-label" >product introduction</label>
+      <label for="lastname" class="col-sm-5 control-label" >shop introduction</label>
       <div class="col-sm-5">
-         <textarea class="input-xlarge" id="textarea" rows="3" cols="37" name="productIntroduction" style="overflow-x:hidden;"></textarea>
-
+         <textarea class="input-xlarge" id="textarea" rows="3" cols="37" name="shopIntroduction" style="overflow-x:hidden;">${s.shopIntroduction}</textarea>
       </div>
    </div>
-   
-   <div class="form-group">
-       
-     <label class="col-sm-5 control-label" for="fileInput">product picture</label>
-     <div class="col-sm-3">
-         <input type="file" name="file" id="picpath" style="display:none" onChange="document.formen.path.value=this.value"/>
-         <input name="path" readonly/> <input type="button" value="Browse" onclick="document.formen.file.click()"/>
-     </div>
-   </div>
 
-	
    <div class="form-actions" style="margin-left: 45%;">
         <button class="btn  btn-default add-cart aaa" type="submit">
-                Upload</button>
-    </div>
-	
+                Update</button>
+   </div>
 	
 </form>
 
@@ -202,5 +183,12 @@ background-color: blue;
 <script type="text/javascript" src="assets/rs-plugin/js/jquery.tp.min.js"></script>
 <script src="assets/js2/main.js"></script>
 </body>
+<%
+	 if(request.getAttribute("emailUsed") != null){
+	 
+		 	out.println("<script type=\"text/javascript\">alert('Update Fails! The E-mail has been registered...')</script>");
+		}
+	 
+%> 
 </html>
    

@@ -1,7 +1,5 @@
 package com.ten.ParkNShop.controller;
 
-import java.io.OutputStream;
-
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +27,11 @@ public class SellerProductController {
 		return "Seller/productAdd";
 	}
 	
+	@RequestMapping(value="/productUpdate",method=RequestMethod.GET)
+	public String update(int productId,Model model){
+		model.addAttribute("product", sellerProductService.getProductById(productId));
+		return "Seller/productUpdate";
+	}
 	
 	@RequestMapping(value = "/productAdd", method = RequestMethod.POST)
 	public String addProduct(String productName, int productType, float productPrice, int storeCount,
@@ -64,9 +67,35 @@ public class SellerProductController {
 		System.out.println(page.getList());
 		
 		model.addAttribute("seller",session.getAttribute("seller"));
-		model.addAttribute("page", page);
+		if(page.getList().size()>0)
+			model.addAttribute("page", page);
+		else
+			model.addAttribute("page", null);
 		
 		return "Seller/sellershop";
+		
+	}
+	
+	@RequestMapping(value = "/sellerProduct")
+	public String product(HttpSession session,Model model){
+		
+		Seller seller = (Seller)session.getAttribute("seller");
+		
+		int status = seller.getShopStatus();
+		System.out.println(status);
+		if(status == 1){
+			model.addAttribute("status", null);
+			return "forward:/sellerProductList";
+		}else if(status == 0){
+			model.addAttribute("status", 0);
+			return "Seller/sellerhome";
+		}else if(status == 2){
+			model.addAttribute("status", 2);
+			return "Seller/sellerhome";
+		}else{
+			model.addAttribute("status", 3);
+			return "Seller/sellerhome";
+		}
 		
 	}
 	
@@ -85,7 +114,7 @@ public class SellerProductController {
 			String productIntroduction,@RequestParam(required = false) CommonsMultipartFile file, HttpSession session) throws Exception {
 
 		if (file.getSize() > 0) {
-			String path = session.getServletContext().getRealPath("upload\\head\\");
+			String path = session.getServletContext().getRealPath("/upload/productPicture");
 			System.out.println(path);
 			String filePath = FileUtil.uploadFile(file, path);
 			Product product = sellerProductService.getProductById(productId);

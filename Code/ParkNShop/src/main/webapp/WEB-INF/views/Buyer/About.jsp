@@ -72,106 +72,74 @@
   <!-- Header -->
   <header>
     <div class="container">
-      <div class="logo"> <a href="assets/index.jsp"><img src="assets/images/logo.png" alt="" ></a> </div>
-      <div class="search-cate">
-        <select class="selectpicker">
-          <option> All Categories</option>
-          <option> Home Audio & Theater</option>
-          <option> TV & Video</option>
-          <option> Camera, Photo & Video</option>
-          <option> Cell Phones & Accessories</option>
-          <option> Headphones</option>
-          <option> Video Games</option>
-          <option> Bluetooth & Wireless </option>
-          <option> Gaming Console</option>
-          <option> Computers & Tablets</option>
-          <option> Monitors </option>
+      <div class="logo"> <a href="/BuyerIndex"><img src="assets/images/logo.png"></a> </div>
+      <form class="search-cate" action="/buyerSearchProduct">
+        <select class="selectpicker" name="searchType">
+          <option value="0"> All Categories</option>
+          <option value="1"> TV& Home Theater</option>
+          <option value="2"> Computers & Tablets</option>
+          <option value="3"> Cell Phones</option>
+          <option value="4"> Cameras & Camcorders</option>
+          <option value="5"> Audio</option>
+          <option value="6"> Car Electronics & GPS</option>
+          <option value="7"> Video, Games, Movies & Music </option>
+          <option value="8"> Health, Fitness & Sports</option>
+          <option value="9"> Home & Office</option>
         </select>
-        <input type="search" placeholder="Search entire store here...">
+        <input type="search" placeholder="Search entire store here..." name="searchInfo">
         <button class="submit" type="submit"><i class="icon-magnifier"></i></button>
-      </div>
-      
+      </form>
+
       <!-- Cart Part -->
+      <%--添加一个判断--%>
+      <%--判断是否为游客，若为游客则点击购物车跳转到用户登录界面--%>
+      <%--若不是游客，则判断其购物车是否为空，若为空则显示购物车内暂无商品--%>
+      <%--若购物车内有商品则显示购物车内商品--%>
+      <%
+        try{
+          String user = (String)session.getAttribute( "Buyer" );
+          if ( user == null )
+          {
+      %>
+      <ul class="nav navbar-right cart-pop" href="/BuyerLogin"></ul>
+      <%
+          }
+        }catch(Exception e) {
+
+        }
+      %>
+
       <ul class="nav navbar-right cart-pop">
-        <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="itm-cont">3</span> <i class="flaticon-shopping-bag"></i> <strong>My Cart</strong> <br>
-          <span>3 item(s) - $500.00</span></a>
-          <ul class="dropdown-menu">
-            <li>
-              <div class="media-left"> <a href="#." class="thumb"> <img src="assets/images/item-img-1-1.jpg" class="img-responsive" alt="" > </a> </div>
-              <div class="media-body"> <a href="#." class="tittle">Funda Para Ebook 7" 128GB full HD</a> <span>250 x 1</span> </div>
+        <c:choose>
+          <c:when test="${buyerCart.getItems eq null}">
+            <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+              <span class="itm-cont">0</span> <i class="flaticon-shopping-bag"></i>
+              <strong>My Cart</strong> <br>
+              <span>0 item - $0</span></a>
+              <ul class="dropdown-menu">
+                No product yet
+              </ul>
             </li>
-            <li>
-              <div class="media-left"> <a href="#." class="thumb"> <img src="assets/images/item-img-1-2.jpg" class="img-responsive" alt="" > </a> </div>
-              <div class="media-body"> <a href="#." class="tittle">Funda Para Ebook 7" full HD</a> <span>250 x 1</span> </div>
+          </c:when>
+          <c:otherwise>
+            <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+              <span class="itm-cont">${buyerCart.getProductAmount}</span> <i class="flaticon-shopping-bag"></i>
+              <strong>My Cart</strong> <br>
+              <span>${buyerCart.getProductAmount} item(s) - ${buyerCart.getTotalPrice}</span></a>
+              <ul class="dropdown-menu">
+                <c:forEach var="buyerItem" items="${buyerCart.getItems}">
+                  <li>
+                    <div class="media-left"> <a href="#." class="thumb"> <img src="assets/images/item-img-1-1.jpg" class="img-responsive" alt="" > </a> </div>
+                    <div class="media-body"> <a href="#." class="tittle"></a> <span> ${buyerItem.getProduct.getProductPrice}* ${buyerItem.getAmount}</span> </div>
+                  </li></c:forEach>
+                <li class="btn-cart"> <a href="/BuyerCart" class="btn-round">View Cart</a> </li>
+              </ul>
             </li>
-            <li class="btn-cart"> <a href="#." class="btn-round">View Cart</a> </li>
-          </ul>
-        </li>
+          </c:otherwise>
+        </c:choose>
       </ul>
     </div>
-    
-    <!-- Nav -->
-    <nav class="navbar ownmenu">
-      <div class="container"> 
-        
-        <!-- Categories -->
-        <div class="cate-lst"> <a  data-toggle="collapse" class="cate-style" href="#cater"><i class="fa fa-list-ul"></i> Our Categories </a>
-          <div class="cate-bar-in">
-            <div id="cater" class="collapse">
-              <ul>
-                  <li><a href="#."> Home Audio & Theater</a></li>
-                  <li><a href="#."> TV & Video</a></li>
-                  <li><a href="#."> Camera, Photo & Video</a></li>
-                  <li class="sub-menu"><a href="#."> Cell Phones & Accessories</a>
-                    <ul>
-                      <li><a href="#."> TV & Video</a></li>
-                      <li><a href="#."> Camera, Photo & Video</a></li>
-                      <li><a href="#."> Cell Phones & Accessories</a>
-                    </ul>
-                  </li>
-                  <li><a href="#."> Headphones</a></li>
-                  <li><a href="#."> Video Games</a></li>
-                  <li class="sub-menu"><a href="#."> Bluetooth & Wireless Speakers</a>
-                    <ul>
-                      <li><a href="#."> TV & Video</a></li>
-                      <li><a href="#."> Camera, Photo & Video</a></li>
-                      <li><a href="#."> Cell Phones & Accessories</a>
-                    </ul>
-                  </li>
-                  <li class="sub-menu"><a href="#."> Gaming Console</a>
-                    <ul>
-                      <li><a href="#."> TV & Video</a></li>
-                      <li><a href="#."> Camera, Photo & Video</a></li>
-                      <li><a href="#."> Cell Phones & Accessories</a>
-                    </ul>
-                  </li>
-                  <li><a href="#."> Computers & Tablets</a></li>
-                  <li><a href="#."> Monitors</a></li>
-                  <li><a href="#."> Home Appliances</a></li>
-                  <li><a href="#."> Office Supplies</a></li>
-                </ul>
-            </div>
-          </div>
-        </div>
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav-open-btn" aria-expanded="false"> <span><i class="fa fa-navicon"></i></span> </button>
-        </div>
-        
-        <!-- NAV -->
-        <div class="collapse navbar-collapse" id="nav-open-btn">
-          <ul class="nav">
-            <li><a href="assets/index.jsp">Home </a></li>
-			<li><a href="About.jsp"> About </a></li>
-			<li><a href="ListProducts.jsp"> List Products </a></li>
-            <li><a href="BuyerProductDetail.jsp"> Product Details </a></li>
-            <li><a href="contact.jsp"> Contact </a></li>
-          </ul>
-        </div>
-        
-        <!-- NAV RIGHT -->
-        <div class="nav-right"> </div>
-      </div>
-    </nav>
+    <br>
   </header>
   
   <!-- Content -->
@@ -369,71 +337,34 @@
   
   <!-- Footer -->
   <footer>
-    <div class="container"> 
-      
+    <div class="container">
+
       <!-- Footer Upside Links -->
-      <div class="foot-link">
-        <ul>
-          <li><a href="#."> About us </a></li>
-          <li><a href="#."> Customer Service </a></li>
-          <li><a href="#."> Privacy Policy </a></li>
-          <li><a href="#."> Site Map </a></li>
-          <li><a href="#."> Search Terms </a></li>
-          <li><a href="#."> Advanced Search </a></li>
-          <li><a href="#."> Orders and Returns </a></li>
-          <li><a href="#."> Contact Us</a></li>
-        </ul>
-      </div>
-      <div class="row"> 
-        
+
+      <div class="row">
+
         <!-- Contact -->
-        <div class="col-md-4">
-          <h4>Contact SmartTech!</h4>
-          <p>Address: 45 Grand Central Terminal New York, NY 1017
-            United State USA</p>
-          <p>Phone: (+100) 123 456 7890</p>
-          <p>Email: Support@smarttech.com</p>
-          <!-- Social Links -->
-          <div class="social-links"> <a href="#."><i class="fa fa-facebook"></i></a> <a href="#."><i class="fa fa-twitter"></i></a> <a href="#."><i class="fa fa-linkedin"></i></a> <a href="#."><i class="fa fa-pinterest"></i></a> <a href="#."><i class="fa fa-instagram"></i></a> <a href="#."><i class="fa fa-google"></i></a> </div>
+        <div class="col-md-9">
+          <h4>Contact Park N Shop!</h4>
+          <br>
+          <p>Address: Xidian University,Xi'an,China</p>
+          <p>Phone: (+100) 666</p>
+          <p>Email: 666@666.com</p>
         </div>
-        
-        <!-- Categories -->
+
         <div class="col-md-3">
-          <h4>Categories</h4>
-          <ul class="links-footer">
-            <li><a href="#.">Home Audio & Theater</a></li>
-            <li><a href="#."> TV & Video</a></li>
-            <li><a href="#."> Camera, Photo & Video</a></li>
-            <li><a href="#."> Cell Phones & Accessories</a></li>
-            <li><a href="#."> Headphones</a></li>
-            <li><a href="#."> Video Games</a></li>
-            <li><a href="#."> Bluetooth & Wireless</a></li>
-          </ul>
-        </div>
-        
-        <!-- Categories -->
-        <div class="col-md-3">
-          <h4>Customer Services</h4>
-          <ul class="links-footer">
-            <li><a href="#.">Shipping & Returns</a></li>
-            <li><a href="#."> Secure Shopping</a></li>
-            <li><a href="#."> International Shipping</a></li>
-            <li><a href="#."> Affiliates</a></li>
-            <li><a href="#."> Contact </a></li>
-          </ul>
-        </div>
-        
-        <!-- Categories -->
-        <div class="col-md-2">
           <h4>Information</h4>
           <ul class="links-footer">
-            <li><a href="#.">Our Blog</a></li>
-            <li><a href="#."> About Our Shop</a></li>
-            <li><a href="#."> Secure Shopping</a></li>
-            <li><a href="#."> Delivery infomation</a></li>
-            <li><a href="#."> Store Locations</a></li>
-            <li><a href="#."> FAQs</a></li>
+            <li><a href="/About"> About Us</a></li>
+            <li><a href="/BuyerFAQs"> FAQs</a></li>
+            <li><a href="/SecureShopping"> Secure Shopping</a></li>
+            <li><a href="/JoinUs"> Join Us</a></li>
           </ul>
+        </div>
+
+        <div class="col-md-12" align="center">
+          <br>
+          Copyright © 2017-2018  www.ParkNShop.com  陕ICP备666666号-6
         </div>
       </div>
     </div>

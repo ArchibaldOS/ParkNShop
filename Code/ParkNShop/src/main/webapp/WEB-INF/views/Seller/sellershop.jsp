@@ -7,7 +7,7 @@
 
     <head>
         <meta charset="utf-8"/>
-        <title>Seller Home</title>
+        <title>Product Management</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
         <!-- Mobile Specific Meta  -->
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -27,13 +27,13 @@
             <link rel="stylesheet" type="text/css" href="assets/rs-plugin/css/settings.css" media="screen" />
 
    <!-- StyleSheets -->
-<link rel="stylesheet" href="assets/css2/ionicons.min.css"/>
-<link rel="stylesheet" href="assets/css2/bootstrap.min.css"/>
-<link rel="stylesheet" href="assets/css2/font-awesome.min.css"/>
+<link rel="stylesheet" href="assets/css2/ionicons.min.css">
+<link rel="stylesheet" href="assets/css2/bootstrap.min.css">
+<link rel="stylesheet" href="assets/css2/font-awesome.min.css">
 <link rel="stylesheet" href="assets/css2/main.css">
 <link rel="stylesheet" href="assets/css2/style.css">
 <link rel="stylesheet" href="assets/css2/responsive.css">
-
+<link rel="stylesheet" href="assets/css2/button.css">
 <!-- Fonts Online -->
 <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
 
@@ -72,8 +72,8 @@ border-radius: 20px;
 								if (user == null) {
 						%>
 						<ul>
-							<li><a href="">login</a></li>
-							<li><a href="Userregister.jsp">register</a></li>
+							<li><a href="/sellerLogin">login</a></li>
+							<li><a href="/sellerRegister">register</a></li>
 						</ul>
 						<%
 							}
@@ -93,7 +93,7 @@ border-radius: 20px;
   
   <header>
     <div class="container">
-      <div class="logo"> <a href="#"><img src="assets/images/logo.png" alt="" ></a> </div>
+      <div class="logo"> <a href="#"><img src="assets/images/logo.png" alt="parknshop" ></a> </div>
       <div class="search-cate">
         <select class="selectpicker">
           <option> All Categories</option>
@@ -122,7 +122,7 @@ border-radius: 20px;
         <div class="collapse navbar-collapse" id="nav-open-btn">
           <ul class="nav" >
             <li><a href="/sellerHome">Home</a></li>
-            <li><a href="/sellerProductList">Product</a></li>
+            <li><a href="/sellerProduct">Product</a></li>
           </ul>
         </div>
         
@@ -135,25 +135,22 @@ border-radius: 20px;
 
             
             <div style="width:100%;text-align:right">
-               <div style="width:95%;">
-                <button class="button  btn-default add-cart aaa" onclick="window.location.href='/addProduct' ">
+               <div style="margin-top:20px;width:95%;">
+                <button class="button button-highlight button-pill button-large" onclick="window.location.href='/addProduct' ">
                 Add new product</button>
                </div>
             </div>
            <c:set var="page" value="${requestScope.page }" /> 
            <c:choose>
-           <c:when test="${page ne null and page.list ne null and fn:length(page.list) ne 0}">
+           <c:when test="${page ne null and page.list ne null }">
            <div style="margin-left:10%;margin-right:10%;">
 		     <c:forEach items="${page.list }" var="p">
 			   <!-- single-product-start -->
-                <div class="single-product" style="float:left;width:15%;margin-left:2.5%;margin-right:2.5%;margin-top:3%" >
-                    <div class="single-product-img">
-                        <a href="#">
-                            <img src="${pageContext.request.contextPath}/upload/productPicture/${p.productPicture}"/>
-                        </a>
-                        
+                <div class="single-product" style="float:left;width:19%;margin-left:2%;margin-right:2%;margin-top:3%" >
+                    <div class="single-product-img" style="width:100%;height:270px">
+                            <img src="${pageContext.request.contextPath}/upload/productPicture/${p.productPicture}" alt="parknshop" width="100%" height="100%"/>
                     </div>
-                    <div class="single-product-content" id="productName">
+                    <div class="single-product-content" style="width:100%" id="productName">
                         <div class="product-title">
                             <h5>
                                 <a href="#">${p.productName }</a>
@@ -162,13 +159,15 @@ border-radius: 20px;
                         <div class="price-box">
                             <span class="price">￥${p.productPrice }</span>                                            
                         </div>
-                        <div class="product-action">
-                            <button class="button btn btn-default add-cart" title="add to cart">
-                            update</button>  
-                        </div>
-                        <div class="product-action">
-                            <button class="button btn btn-default add-cart" onclick="window.location.href='/deleteProduct?productId=${p.productId}'">
-                            delete</button>  
+                        <div style="width:100%;height:50px">
+                            <div style="width:100px;height:50px;float:left">
+                                <a class="button button-pill button-small" href="/productUpdate?productId=${p.productId}">
+                                update</a>
+                            </div>
+                            <div style="width:100px;height:50px;float:right">
+                                <a class="button button-pill button-small" href="/deleteProduct?productId=${p.productId}">
+                                delete</a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -177,7 +176,7 @@ border-radius: 20px;
 		    </div>
 	       </c:when> 
 	       <c:otherwise>
-		     <div>no found data!</div>
+		     <div style="text-align: center;"><font size="10px"><strong>no found data!</strong></font></div>
 	       </c:otherwise>                        
          </c:choose>
             <!-- mobile-menu-area-start -->

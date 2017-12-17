@@ -326,4 +326,11 @@
     sellerEmail = #{sellerEmail};
   </select>
 
+	
+  <update id="updateBySellerId" parameterType="Seller">
+		update seller set sellerName = #{sellerName}, shopName = #{shopName}, sellerPhone = #{sellerPhone}, sellerEmail = #{sellerEmail}, shopIntroduction = #{shopIntroduction}
+		where sellerId = #{sellerId} 
+  </update>
+	
+
 </mapper>

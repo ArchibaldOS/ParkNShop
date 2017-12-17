@@ -70,27 +70,27 @@
                 <tbody>
                 <tr>
                     <td>Order ID</td>
-                    <td >${order.orderid}</td>
+                    <td >${order.orderId}</td>
                 </tr>
                 <tr>
                     <td>Seller ID</td>
-                    <td>${order.sellerid}</td>
+                    <td>${order.sellerId}</td>
                 </tr>
                 <tr>
                     <td>Buyer ID</td>
-                    <td>${order.buyerid}</td>
+                    <td>${order.buyerId}</td>
                 </tr>
                 <tr>
                     <td>Product ID</td>
-                    <td>${order.productid}</td>
+                    <td>${order.productId}</td>
                 </tr>
                 <tr>
                     <td>Count</td>
                     <td>${order.count}</td>
                 </tr>
                 <tr>
-                    <td>TotalPrice</td>
-                    <td>${order.totalprice}</td>
+                    <td>totalPrice</td>
+                    <td>${order.totalPrice}</td>
                 </tr>
                 <tr>
                     <td>Address</td>
@@ -98,16 +98,16 @@
                 </tr>
                 <tr>
                     <td>Status</td>
-                    <td>${order.orderstatus}</td>
+                    <td>${order.orderStatus}</td>
                 </tr>
                 <tr>
                     <td>Time</td>
-                    <td>${order.ordertime}</td>
+                    <td>${order.orderTime}</td>
                 </tr>
                 <tr>
                     <td>
                         <div style="margin:0 auto;width:200px;">
-                            <button type="button" class="btn btn-success" onclick="location='/AdminOrderModify?orderID=${order.orderid}'">Modify</button>
+                            <button type="button" class="btn btn-success" onclick="location='/AdminOrderModify?orderId=${order.orderId}'">Modify</button>
                         </div>
                     </td>
                     <td>

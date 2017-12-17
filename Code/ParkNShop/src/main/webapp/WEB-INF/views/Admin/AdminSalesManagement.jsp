@@ -8,8 +8,6 @@
     <link rel="stylesheet" href="assets/css/bootstrap-maizi.css"/>
 </head>
 
-
-
 <body>
 <!--导航-->
 <nav class="navbar navbar-default">
@@ -52,91 +50,82 @@
             <div class="col-md-2">
                 <div class="list-group">
                     <a href="/AdminSalesManagement" class="list-group-item active">Sales&nbsp;&nbsp;&nbsp;&nbsp; Management</a>
-                    <a href="/AdminSalesModifyCommision" class="list-group-item">Modify&nbsp;&nbsp;&nbsp;&nbsp; Management</a>
-                    <a href="/AdminSalesCommisionHistory" class="list-group-item">Commision&nbsp;&nbsp;&nbsp;&nbsp; Management</a>
-
+                    <a href="/AdminSalesModifyCommission" class="list-group-item">Modify&nbsp;&nbsp;&nbsp;&nbsp; Management</a>
+                    <a href="/AdminSalesCommissionHistory" class="list-group-item">Commision&nbsp;&nbsp;&nbsp;&nbsp; Management</a>
                 </div>
             </div>
             <div class="col-md-10">
                 <div class="page-header">
-                    <h1>Sales History</h1>
+                    <h1>Sales Management</h1>
                 </div>
                 <div class="row">
                     <div class="col-md-6">
-                        <div class="panel panel-default">
-                            <ul class="nav nav-tabs">
-                                <li class="active">
-                                    <a href="#">
-                                        Sales
-                                    </a>
-                                </li>
-                                <li class="nav nav-tabs">
-                                    <a href="#">
-                                        ADs
-                                    </a>
-                                </li>
-                            </ul >
-                            <ul class="nav nav-tabs">
-                                <li class="active">
-                                    <a href="#">
-                                        Daily
-                                    </a>
-                                </li>
-                                <li class="nav nav-tabs">
-                                    <a href="#">
-                                        Weekly
-                                    </a>
-                                </li>
-                                <li class="nav nav-tabs">
-                                    <a href="#">
-                                        Monthly
-                                    </a>
-                                </li>
-                                <li class="nav nav-tabs">
-                                    <a href="#">
-                                        Yearly
-                                    </a>
-                                </li>
+                        <ul class="nav nav-tabs">
+                            <li class="active">
+                                <a href="">
+                                    Sales
+                                </a>
+                            </li>
+                            <li class="nav nav-tabs">
+                                <a href="#">
+                                    ADs
+                                </a>
+                            </li>
+                        </ul >
+                        <ul class="nav nav-tabs">
+                            <li class="active">
+                                <a href="#">
+                                    Daily
+                                </a>
+                            </li>
+                            <li class="nav nav-tabs">
+                                <a href="#">
+                                    Weekly
+                                </a>
+                            </li>
+                            <li class="nav nav-tabs">
+                                <a href="#">
+                                    Monthly
+                                </a>
+                            </li>
+                            <li class="nav nav-tabs">
+                                <a href="#">
+                                    Yearly
+                                </a>
+                            </li>
 
-                            </ul>
-                            <div class="panel-heading">Sales's Condition</div>
-                            <div class="panel-body">
-                                <canvas id="canvas" class="col-md-12"></canvas>
-                            </div>
+                        </ul>
+                        <div class="panel-heading">Sales's Condition</div>
+                        <div class="panel-body">
+                            <canvas id="canvas" class="col-md-12"></canvas>
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <div>
-                            <button type="button">Calculate Income</button>
-                            <span style="margin-left: 50px">Commision:0.2</span>
-                            <div style="border:1px #0f0f0f">
-                                <table class="table table-bordered">
-                                    <thead>
-                                    <tr>
-                                        <th>Aspect</th>
-                                        <th>Income</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <th scope="row">Sales</th>
-                                        <td>50000</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">ADs</th>
-                                        <td>10000</td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                                <span>Income:60000</span>
-                            </div>
-                        </div>
+                        <span>Commission:0.2</span>
+                        <table class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <th>Aspect</th>
+                                <th>Income</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <th scope="row">Sales</th>
+                                <td>50000</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">ADs</th>
+                                <td>10000</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <span>Income:60000</span>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
 
     <!--footer-->
     <footer>

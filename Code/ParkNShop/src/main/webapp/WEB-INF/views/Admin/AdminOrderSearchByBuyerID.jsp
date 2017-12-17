@@ -64,20 +64,20 @@
                     <a href="/AdminOrderSearchByID">Search By Order ID</a>
                 </li>
                 <li class="active">
-                    <a href="/AdminOrderSearchByBuyerID">Search By Buyer ID</a>
+                    <a href="/AdminOrderSearchBybuyerId">Search By Buyer ID</a>
                 </li>
                 <li class="nav nav-tabs">
-                    <a href="/AdminOrderSearchBySellerID">Search By Seller ID</a>
+                    <a href="/AdminOrderSearchBysellerId">Search By Seller ID</a>
                 </li>
                 <li class="nav nav-tabs">
-                    <a href="/AdminOrderSearchByProductID">Search By Product ID</a>
+                    <a href="/AdminOrderSearchByproductId">Search By Product ID</a>
                 </li>
             </ul>
 
-            <form action="/AdminOrderSearchByBuyerIDDo" class="user_search">
+            <form action="/AdminOrderSearchBybuyerIdDo" class="user_search">
                 <div class="form-group">
                     <label for="buyerId">Buyer ID:</label>
-                    <input type="text" id="buyerId" class="form-control" name="buyerID" placeholder="Please input buyer ID:" />
+                    <input type="text" id="buyerId" class="form-control" name="buyerId" placeholder="Please input buyer ID:" />
                 </div>
                 <button type="submit" class="btn btn-default">Search</button>
             </form>

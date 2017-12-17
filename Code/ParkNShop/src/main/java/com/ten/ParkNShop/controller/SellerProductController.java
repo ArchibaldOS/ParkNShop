@@ -38,8 +38,8 @@ public class SellerProductController {
 			String path = session.getServletContext().getRealPath("/upload/productPicture");
 			String filePath = FileUtil.uploadFile(file, path);
 			Product product = new Product();
-			int sellerId = ((Seller)session.getAttribute("seller")).getSellerId();
-			product.setSellerId(sellerId);
+			int sellerId = ((Seller)session.getAttribute("seller")).getsellerId();
+			product.setsellerId(sellerId);
 			product.setProductName(productName);
 			product.setProductType(productType);
 			product.setProductPrice(productPrice);
@@ -58,7 +58,7 @@ public class SellerProductController {
 	@RequestMapping(value = "/sellerProductList", method = RequestMethod.GET)
 	public String listProduct(HttpSession session,Model model){
 		
-		int sellerId = ((Seller)session.getAttribute("seller")).getSellerId();
+		int sellerId = ((Seller)session.getAttribute("seller")).getsellerId();
 		
 		Page page = sellerProductService.getProducts(sellerId);
 		System.out.println(page.getList());

@@ -52,50 +52,47 @@
         <div class="col-md-2">
             <div class="list-group">
                 <a href="/AdminSalesManagement" class="list-group-item">Sales&nbsp;&nbsp;&nbsp;&nbsp; Management</a>
-                <a href="/AdminSalesModifyCommision" class="list-group-item">Modify&nbsp;&nbsp;&nbsp;&nbsp; Management</a>
-                <a href="/AdminSalesCommisionHistory" class="list-group-item active">Commision&nbsp;&nbsp;&nbsp;&nbsp; Management</a>
-
+                <a href="/AdminSalesModifyCommission" class="list-group-item active">Modify&nbsp;&nbsp;&nbsp;&nbsp; Commission</a>
+                <a href="/AdminSalesCommissionHistory" class="list-group-item">Commission&nbsp;&nbsp;&nbsp;&nbsp; Management</a>
             </div>
         </div>
         <div class="col-md-10">
             <div class="page-header">
-                <h1>Sales Commision History</h1>
+                <h1>Sales Modify Commission</h1>
             </div>
-            <table class="table">
-                <thead>
-                <tr>
-                    <th>New Commision</th>
-                    <th>Time</th>
-                    <th>Operator</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>0.2</td>
-                    <td>2017/12/3 20:00</td>
-                    <td>Admin</td>
-                </tr>
-                </tbody>
-            </table>
-            <nav class="pull-right">
-                <ul class="pagination">
-                    <li class="disabled">
-                        <a href="#" aria-label="Previous">
-                            <span aria-hidden="true">&laquo;</span>
-                        </a>
-                    </li>
-                    <li class="active"><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li>
-                        <a href="#" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
+            <form class="form-horizontal" role="form" action="/AdminSalesModifyCommissionDo">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Old Commission</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" id="focusedInput1" type="text" name="oldCommission" value="${oldCommission}" READONLY>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">New Commission</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" id="focusedInput2" type="text" name="newCommission" value="0.0">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Operator</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" id="focusedInput3" type="text" name="adminAccount" value="${sessionScope.adminAccount}" READONLY>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">AdminPassWord</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" id="focusedInput4" type="text" name="adminPassWord" value="">
+                    </div>
+                </div>
+                <div style="margin:0 auto;width:200px;">
+                    <div style="width:50%;padding:0;margin:0;float:left">
+                        <button type="submit" class="btn btn-success">Modify</button>
+                    </div>
+                    <button type="button" class="btn btn-danger" onclick="location='/AdminCommissionModify'">Cancel</button>
+                </div>
+
+            </form>
         </div>
     </div>
 </div>

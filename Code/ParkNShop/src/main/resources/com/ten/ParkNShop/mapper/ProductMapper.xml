@@ -11,17 +11,17 @@
 	</insert>
 	
     <delete id="delete" parameterType="int">
-		delete from product where productId = ${productId} 
+		delete from product where productId = ${productId}
 	</delete>
 	
 	<update id="updateProduct1" parameterType="Product">
 		update product set productName = #{productName}, productType = #{productType}, productPrice = #{productPrice}, storeCount = #{storeCount}, productIntroduction = #{productIntroduction}, productPicture = #{productPicture}
-		where productId = #{productId} 
+		where productId = #{productId}
 	</update>
 	
 	<update id="updateProduct2" parameterType="Product">
 		update product set productName = #{productName}, productType = #{productType}, productPrice = #{productPrice}, storeCount = #{storeCount}, productIntroduction = #{productIntroduction}
-		where productId = #{productId} 
+		where productId = #{productId}
 	</update>
 	
 	<select id="count" resultType="int">
@@ -32,7 +32,7 @@
 		WHERE sellerId = #{sellerId}
 	</select>
 	
-	<select id="findAllBySellerId" parameterType="int" resultType="Product">
+	<select id="findAllBysellerId" parameterType="int" resultType="Product">
 		SELECT 
 			*
 		FROM product
@@ -40,7 +40,7 @@
 		ORDER BY productId
 	</select> 
 	
-	<select id="findByProductId" resultType="Product">
+	<select id="findByproductId" resultType="Product">
 		SELECT 
 			*
 		FROM product

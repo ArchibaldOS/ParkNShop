@@ -12,19 +12,19 @@ public class Product {
 	private String productIntroduction;
 	private String productPicture;
 	
-	public int getProductId() {
+	public int getproductId() {
 		return productId;
 	}
 	
-	public void setProductId(int productId) {
+	public void setproductId(int productId) {
 		this.productId = productId;
 	}
 	
-	public int getSellerId() {
+	public int getsellerId() {
 		return sellerId;
 	}
 	
-	public void setSellerId(int sellerId) {
+	public void setsellerId(int sellerId) {
 		this.sellerId = sellerId;
 	}
 	

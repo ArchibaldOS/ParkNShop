@@ -43,66 +43,66 @@ public class AdminOrderManagementController  {
 
     @RequestMapping("/AdminOrderSearchByIDDo")
     public String adminOrderSearchByIDDo(HttpServletRequest httpServletRequest,Model model){
-        int orderID = Integer.parseInt(httpServletRequest.getParameter("orderID"));
-        model.addAttribute("order", adminOrderService.selectOrderById(orderID));
+        int orderId = Integer.parseInt(httpServletRequest.getParameter("orderId"));
+        model.addAttribute("order", adminOrderService.selectOrderById(orderId));
         return "Admin/AdminOrderDetail";
     }
 
 
-    @RequestMapping("/AdminOrderSearchByBuyerID")
-    public String adminOrderSearchByBuyerID(){
-        return "Admin/AdminOrderSearchByBuyerID";
+    @RequestMapping("/AdminOrderSearchBybuyerId")
+    public String adminOrderSearchBybuyerId(){
+        return "Admin/AdminOrderSearchBybuyerId";
     }
 
-    @RequestMapping("/AdminOrderSearchByBuyerIDDo")
-    public String adminOrderSearchByBuyerIDDo(HttpServletRequest httpServletRequest, Model model){
-        int buyerID = Integer.parseInt(httpServletRequest.getParameter("buyerID"));
+    @RequestMapping("/AdminOrderSearchBybuyerIdDo")
+    public String adminOrderSearchBybuyerIdDo(HttpServletRequest httpServletRequest, Model model){
+        int buyerId = Integer.parseInt(httpServletRequest.getParameter("buyerId"));
         // TODO 结果分页 验证 ID
-        model.addAttribute("orders", adminOrderService.selectOrderByBuyerID(buyerID, 0, 20));
+        model.addAttribute("orders", adminOrderService.selectOrderBybuyerId(buyerId, 0, 20));
         return "Admin/AdminOrderSearchResult";
     }
 
-    @RequestMapping("/AdminOrderSearchBySellerID")
-    public String adminOrderSearchBySellerID(){
-        return "Admin/AdminOrderSearchBySellerID";
+    @RequestMapping("/AdminOrderSearchBysellerId")
+    public String adminOrderSearchBysellerId(){
+        return "Admin/AdminOrderSearchBysellerId";
     }
 
-    @RequestMapping("/AdminOrderSearchBySellerIDDo")
-    public String adminOrderSearchBySellerIDDo(HttpServletRequest httpServletRequest, Model model){
-        int sellerID = Integer.parseInt(httpServletRequest.getParameter("sellerID"));
+    @RequestMapping("/AdminOrderSearchBysellerIdDo")
+    public String adminOrderSearchBysellerIdDo(HttpServletRequest httpServletRequest, Model model){
+        int sellerId = Integer.parseInt(httpServletRequest.getParameter("sellerId"));
         // TODO 结果分页 验证 ID
-        model.addAttribute("orders", adminOrderService.selectOrderBySellerID(sellerID, 0, 20));
+        model.addAttribute("orders", adminOrderService.selectOrderBysellerId(sellerId, 0, 20));
         return "Admin/AdminOrderSearchResult";
     }
 
-    @RequestMapping("/AdminOrderSearchByProductID")
-    public String adminOrderSearchByProductID(){
-        return "Admin/AdminOrderSearchByProductID";
+    @RequestMapping("/AdminOrderSearchByproductId")
+    public String adminOrderSearchByproductId(){
+        return "Admin/AdminOrderSearchByproductId";
     }
 
-    @RequestMapping("/AdminOrderSearchByProductIDDo")
-    public String adminOrderSearchByProductIDDo(HttpServletRequest httpServletRequest, Model model){
-        int productID = Integer.parseInt(httpServletRequest.getParameter("productID"));
+    @RequestMapping("/AdminOrderSearchByproductIdDo")
+    public String adminOrderSearchByproductIdDo(HttpServletRequest httpServletRequest, Model model){
+        int productId = Integer.parseInt(httpServletRequest.getParameter("productId"));
         // TODO 结果分页 验证 ID
-        model.addAttribute("orders", adminOrderService.selectOrderByProductID(productID, 0, 20));
+        model.addAttribute("orders", adminOrderService.selectOrderByproductId(productId, 0, 20));
         return "Admin/AdminOrderSearchResult";
     }
 
     /**
-     * @Description 通过一个 OrderID 获取一个 Order 的 具体信息
+     * @Description 通过一个 orderId 获取一个 Order 的 具体信息
      * @return
      */
     @RequestMapping("/AdminOrderDetail")
     public String adminOrderDetail(HttpServletRequest httpServletRequest,Model model){
-        int orderID = Integer.parseInt(httpServletRequest.getParameter("orderID"));
-        model.addAttribute("order", adminOrderService.selectOrderById(orderID));
+        int orderId = Integer.parseInt(httpServletRequest.getParameter("orderId"));
+        model.addAttribute("order", adminOrderService.selectOrderById(orderId));
         return "Admin/AdminOrderDetail";
     }
 
     @RequestMapping("/AdminOrderModify")
     public String adminOrderModify(HttpServletRequest httpServletRequest,Model model){
-        int orderID = Integer.parseInt(httpServletRequest.getParameter("orderID"));
-        model.addAttribute("order", adminOrderService.selectOrderById(orderID));
+        int orderId = Integer.parseInt(httpServletRequest.getParameter("orderId"));
+        model.addAttribute("order", adminOrderService.selectOrderById(orderId));
         return "Admin/AdminOrderModify";
     }
 
@@ -117,16 +117,16 @@ public class AdminOrderManagementController  {
     @RequestMapping("/AdminOrderModifyDo")
     public String adminOrderModifyDo(HttpServletRequest httpServletRequest){
         Order order = new Order();
-        order.setOrderid(Integer.valueOf(httpServletRequest.getParameter("orderId")));
-        order.setBuyerid(Integer.valueOf(httpServletRequest.getParameter("buyerId")));
-        order.setSellerid(Integer.valueOf(httpServletRequest.getParameter("sellerId")));
-        order.setProductid(Integer.valueOf(httpServletRequest.getParameter("productId")));
+        order.setorderId(Integer.valueOf(httpServletRequest.getParameter("orderId")));
+        order.setbuyerId(Integer.valueOf(httpServletRequest.getParameter("buyerId")));
+        order.setsellerId(Integer.valueOf(httpServletRequest.getParameter("sellerId")));
+        order.setproductId(Integer.valueOf(httpServletRequest.getParameter("productId")));
         order.setCount(Integer.valueOf(httpServletRequest.getParameter("count")));
-        order.setTotalprice(Float.valueOf(httpServletRequest.getParameter("totalPrice")));
+        order.settotalPrice(Float.valueOf(httpServletRequest.getParameter("totalPrice")));
         order.setAddress(httpServletRequest.getParameter("address"));
-        order.setOrderstatus(Integer.valueOf(httpServletRequest.getParameter("orderStatus")));
+        order.setorderStatus(Integer.valueOf(httpServletRequest.getParameter("orderStatus")));
         // 将订单的时间设置为当前时间
-        order.setOrdertime(new java.sql.Date(new Date().getTime()));
+        order.setorderTime(new java.sql.Date(new Date().getTime()));
 
         adminOrderService.updateOrder(order);
         System.out.println(order);
@@ -137,9 +137,9 @@ public class AdminOrderManagementController  {
 
     @RequestMapping("/AdminOrderDelete")
     public String adminOrderDelete(HttpServletRequest httpServletRequest){
-        int orderID = Integer.valueOf(httpServletRequest.getParameter("orderID"));
-        adminOrderService.deleteOrder(orderID);
-        System.out.println("Delete order id:" + orderID);
+        int orderId = Integer.valueOf(httpServletRequest.getParameter("orderId"));
+        adminOrderService.deleteOrder(orderId);
+        System.out.println("Delete order id:" + orderId);
         return "redirect:/AdminOrderManagement";
     }
 

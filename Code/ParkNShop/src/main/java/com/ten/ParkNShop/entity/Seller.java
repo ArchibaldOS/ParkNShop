@@ -11,10 +11,10 @@ public class Seller {
     private float sellerBalance;
     private String shopIntroduction;
     private int shopStatus;
-    public int getSellerId() {
+    public int getsellerId() {
         return sellerId;
     }
-    public void setSellerId(int sellerId) {
+    public void setsellerId(int sellerId) {
         this.sellerId = sellerId;
     }
     public String getSellerName() {

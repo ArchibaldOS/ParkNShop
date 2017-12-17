@@ -67,7 +67,7 @@
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Seller ID</label>
                     <div class="col-sm-10">
-                        <input class="form-control" id="focusedInput6" type="text" name="sellerid" value="${seller.sellerId}" READONLY>
+                        <input class="form-control" id="focusedInput6" type="text" name="sellerId" value="${seller.sellerId}" READONLY>
                     </div>
                 </div>
                 <div class="form-group">

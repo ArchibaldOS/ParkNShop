@@ -100,7 +100,7 @@
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Buyer Status</label>
                     <div class="col-sm-10">
-                        <select class="form-control" name="buyerStatus">
+                        <select class="form-control" name="buyerStatus" id="buyerStatus">
                             <option value="1">Normal</option>
                             <option value="2">Frozen</option>
                             <option value="3">Ban</option>
@@ -139,5 +139,11 @@
 <script src="assets/javascripts/bootstrap.min.js"></script>
 <script src="assets/javascripts/Chart.js"></script>
 <script src="assets/javascripts/script.js"></script>
+<script type="text/javascript" >
+    function change(){
+        document.getElementById("buyerStatus")[${buyer.buyerStatus}].selected=true;
+    }
+    window.onload = change;
+</script>
 </body>
 </html>

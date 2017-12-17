@@ -29,7 +29,7 @@ public interface AdminOrderService {
 
 
     /**
-     * @Description 通过 OrderID 选择一个 Order
+     * @Description 通过 orderId 选择一个 Order
      * @param id
      * @return Order
      */
@@ -46,32 +46,32 @@ public interface AdminOrderService {
     List<Order> selectAllOrder(int start, int pageSize);
 
     /**
-     * @Description 通过一个BuyerID 查找这个买家的所有 Order，并从返回的结果集中截取一部分，从 start 开始， 大小为 pageSize
+     * @Description 通过一个buyerId 查找这个买家的所有 Order，并从返回的结果集中截取一部分，从 start 开始， 大小为 pageSize
      * @param id
      * @param start
      * @param pageSize
      * @return
      */
-    List<Order> selectOrderByBuyerID(int buyerID, int start, int pageSize);
+    List<Order> selectOrderBybuyerId(int buyerId, int start, int pageSize);
 
 
     /**
-     * @Description 通过一个SellerID 查找这个卖家的所有 Order，并从返回的结果集中截取一部分，从 start 开始， 大小为 pageSize
+     * @Description 通过一个sellerId 查找这个卖家的所有 Order，并从返回的结果集中截取一部分，从 start 开始， 大小为 pageSize
      * @param id
      * @param start
      * @param pageSize
      * @return
      */
-    List<Order> selectOrderBySellerID(int sellerID, int start, int pageSize);
+    List<Order> selectOrderBysellerId(int sellerId, int start, int pageSize);
 
     /**
-     * @Description 通过一个ProductID 查找这个产品的所有 Order，并从返回的结果集中截取一部分，从 start 开始， 大小为 pageSize
+     * @Description 通过一个productId 查找这个产品的所有 Order，并从返回的结果集中截取一部分，从 start 开始， 大小为 pageSize
      * @param id
      * @param start
      * @param pageSize
      * @return
      */
-    List<Order> selectOrderByProductID(int productID, int start, int pageSize);
+    List<Order> selectOrderByproductId(int productId, int start, int pageSize);
 
 
 

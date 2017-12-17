@@ -66,7 +66,7 @@
                 <table class="table">
                     <thead>
                     <tr>
-                        <th class="hidden">sellerID</th>
+                        <th class="hidden">sellerId</th>
                         <th>Seller Name</th>
                         <th>Shop Name</th>
                         <th>Shop Introduction</th>

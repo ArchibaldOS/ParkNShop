@@ -12,11 +12,11 @@ public interface ProductMapper {
 
 	int count(int sellerId);
 
-	List<Product> findAllBySellerId(int sellerId);
+	List<Product> findAllBysellerId(int sellerId);
 	
 	int delete(@Param("productId")int productId);
 
-	Product findByProductId(int productId);
+	Product findByproductId(int productId);
 
 	int updateProduct1(Product product);
 	

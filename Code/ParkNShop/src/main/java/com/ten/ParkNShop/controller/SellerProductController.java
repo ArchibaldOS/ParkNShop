@@ -42,7 +42,7 @@ public class SellerProductController {
 			String filePath = FileUtil.uploadFile(file, path);
 			Product product = new Product();
 			int sellerId = ((Seller)session.getAttribute("seller")).getsellerId();
-			product.setsellerId(sellerId);
+			product.setSellerId(sellerId);
 			product.setProductName(productName);
 			product.setProductType(productType);
 			product.setProductPrice(productPrice);

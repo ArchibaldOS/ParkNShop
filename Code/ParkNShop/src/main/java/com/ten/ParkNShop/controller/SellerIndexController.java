@@ -28,6 +28,12 @@ public class SellerIndexController {
 		return "Seller/sellerRegister";
 	}
 	
+	@RequestMapping(value="/sellerUpdate",method=RequestMethod.GET)
+	public String sellupdate(HttpSession session,Model model){
+		model.addAttribute("seller", session.getAttribute("seller"));
+		return "Seller/sellerInfoUpdate";
+	}
+	
 	@RequestMapping(value="/sellerLogout",method=RequestMethod.GET)
 	public String sellLogout(HttpSession session){
 		session.setAttribute("seller", null);
@@ -59,18 +65,43 @@ public class SellerIndexController {
 		}
 	}
 	
+	@RequestMapping(value="/updateSeller",method=RequestMethod.POST)
+	public String updateSeller(String sellerName, String shopName, String sellerPhone,String sellerEmail,String shopIntroduction,Model model,HttpSession session){
+		
+		Seller seller = (Seller)session.getAttribute("seller");
+		seller.setSellerName(sellerName);
+		seller.setShopName(shopName);
+		seller.setSellerPhone(sellerPhone);
+		seller.setShopIntroduction(shopIntroduction);
+		int resultEmail = sellerService.validation(sellerEmail);
+		if(resultEmail!=0 && !seller.getSellerEmail().equals(sellerEmail)){
+			model.addAttribute("emailUsed", 1);
+			model.addAttribute("seller",session.getAttribute("seller"));
+			return "Seller/sellerInfoUpdate";
+		}
+		seller.setSellerEmail(sellerEmail);
+		int result = sellerService.sellerUpdate(seller);
+		if(result == 1){
+			model.addAttribute("emailUsed", null);
+			session.setAttribute("seller", seller);
+			return "Seller/sellerhome";
+		}else{
+			return "Seller/sellerInfoUpdate";
+		}
+	}
+	
 	@RequestMapping(value="/loginSeller",method=RequestMethod.POST)
 	public String loginSeller(String sellerEmail,String sellerPassword,HttpSession session,Model model){
 		
 		Seller seller = sellerService.login(sellerEmail, sellerPassword);
-		 if(seller == null){
-			 model.addAttribute("logfail", 1);
-			 return "Seller/sellerLogin";
-		 }else{
-			 model.addAttribute("logfail", null);
-			 session.setAttribute("seller", seller);
-			 return "Seller/sellerhome";
-		 }
+		if(seller == null){
+			model.addAttribute("logfail", 1);
+			return "Seller/sellerLogin";
+		}else{
+			model.addAttribute("logfail", null);
+			session.setAttribute("seller", seller);
+			return "Seller/sellerhome";
+		}
 	}
 	
 	@RequestMapping(value="/sellerHome",method=RequestMethod.GET)
@@ -80,18 +111,4 @@ public class SellerIndexController {
 	}
 	
 	
-	
-	@RequestMapping(value="/test",method=RequestMethod.GET)
-	public String sellwe(){
-		return "Seller/sellerTestSucceed";
-	}
-	
-	@RequestMapping(value="/testSellerEmail",method=RequestMethod.GET)
-	public @ResponseBody int testSellerEmail(String sellerEmail){
-		
-		int result = sellerService.validation(sellerEmail);
-		
-		return result;
-		
-	}
 }

@@ -73,7 +73,7 @@
                 </thead>
                 <tbody>
                 <tr class="hidden">
-                    <td>sellerID</td>
+                    <td>sellerId</td>
                     <td >${seller.sellerId}</td>
                 </tr>
                 <tr>

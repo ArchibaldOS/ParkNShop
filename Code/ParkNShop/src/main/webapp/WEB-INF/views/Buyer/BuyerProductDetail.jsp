@@ -40,7 +40,7 @@
   <!-- Top bar -->
   <div class="top-bar">
     <div class="container">
-      <p>Welcome to SmartTech center!</p>
+      <p>Welcome to ParkNShop!</p>
       <div class="right-sec">
         <ul>
           <li><a href="#.">Login/Register </a></li>

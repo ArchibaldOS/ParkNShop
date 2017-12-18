@@ -3912,6 +3912,9 @@ footer .social p a {
 .in-stock {
 	color: #71a403;
 }
+.sold-out {
+	color: #FF0000;
+}
 .weekly-deal ul {
 	margin: 10px 0;
 	margin-bottom: 20px;

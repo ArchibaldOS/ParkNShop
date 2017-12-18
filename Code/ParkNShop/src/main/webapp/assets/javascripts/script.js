@@ -16,25 +16,25 @@ var lineChartData = {
             //鼠标触发时点边框的颜色
             pointHighlightStroke : "#000",
             //Y坐标数据,以数组中的最大值来确定y轴的最大值
-            data : [300,555,655,714,899,905,1000]
-        },{
-            fillColor : "rgba(0,255,0,0.5)",
-            strokeColor : "rgba(92, 184, 92, 1)",
-            pointColor : "rgba(23, 126, 23, 1)",
-            pointStrokeColor : "#fff",
-            pointHighlightFill : "#fff",
-            pointHighlightStroke : "rgba(151,187,205,1)",
-            data : [314,455,755,814,999,905,1000]
-        }
-        ,{
-            fillColor : "rgba(255,0,0,0.5)",
-            strokeColor : "blue",
-            pointColor : "rgba(23, 126, 23, 1)",
-            pointStrokeColor : "#fff",
-            pointHighlightFill : "#fff",
-            pointHighlightStroke : "rgba(151,187,205,1)",
-            data : [114,255,455,414,599,605,500]
-        }
+            data : [300,555,655,714,899,905,1000]}
+        // },{
+        //     fillColor : "rgba(0,255,0,0.5)",
+        //     strokeColor : "rgba(92, 184, 92, 1)",
+        //     pointColor : "rgba(23, 126, 23, 1)",
+        //     pointStrokeColor : "#fff",
+        //     pointHighlightFill : "#fff",
+        //     pointHighlightStroke : "rgba(151,187,205,1)",
+        //     data : [314,455,755,814,999,905,1000]
+        // }
+        // ,{
+        //     fillColor : "rgba(255,0,0,0.5)",
+        //     strokeColor : "blue",
+        //     pointColor : "rgba(23, 126, 23, 1)",
+        //     pointStrokeColor : "#fff",
+        //     pointHighlightFill : "#fff",
+        //     pointHighlightStroke : "rgba(151,187,205,1)",
+        //     data : [114,255,455,414,599,605,500]
+        // }
     ]
 
 }

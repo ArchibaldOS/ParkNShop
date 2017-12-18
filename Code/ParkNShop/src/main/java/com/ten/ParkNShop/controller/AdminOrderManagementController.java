@@ -1,6 +1,5 @@
 package com.ten.ParkNShop.controller;
 
-import com.sun.org.apache.xpath.internal.SourceTree;
 import com.ten.ParkNShop.entity.Order;
 import com.ten.ParkNShop.service.AdminOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.jws.WebParam;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 
@@ -49,9 +47,9 @@ public class AdminOrderManagementController  {
     }
 
 
-    @RequestMapping("/AdminOrderSearchByBuyerID")
-    public String adminOrderSearchByBuyerID(){
-        return "Admin/AdminOrderSearchByBuyerID";
+    @RequestMapping("/AdminOrderSearchBybuyerId")
+    public String adminOrderSearchBybuyerId(){
+        return "Admin/AdminOrderSearchByBuyerId";
     }
 
     @RequestMapping("/AdminOrderSearchByBuyerIDDo")
@@ -62,9 +60,9 @@ public class AdminOrderManagementController  {
         return "Admin/AdminOrderSearchResult";
     }
 
-    @RequestMapping("/AdminOrderSearchBySellerID")
-    public String adminOrderSearchBySellerID(){
-        return "Admin/AdminOrderSearchBySellerID";
+    @RequestMapping("/AdminOrderSearchBysellerId")
+    public String adminOrderSearchBysellerId(){
+        return "Admin/AdminOrderSearchBySellerId";
     }
 
     @RequestMapping("/AdminOrderSearchBySellerIDDo")
@@ -75,9 +73,9 @@ public class AdminOrderManagementController  {
         return "Admin/AdminOrderSearchResult";
     }
 
-    @RequestMapping("/AdminOrderSearchByProductID")
-    public String adminOrderSearchByProductID(){
-        return "Admin/AdminOrderSearchByProductID";
+    @RequestMapping("/AdminOrderSearchByproductId")
+    public String adminOrderSearchByproductId(){
+        return "Admin/AdminOrderSearchByProductId";
     }
 
     @RequestMapping("/AdminOrderSearchByProductIDDo")
@@ -117,16 +115,16 @@ public class AdminOrderManagementController  {
     @RequestMapping("/AdminOrderModifyDo")
     public String adminOrderModifyDo(HttpServletRequest httpServletRequest){
         Order order = new Order();
-        order.setOrderid(Integer.valueOf(httpServletRequest.getParameter("orderId")));
-        order.setBuyerid(Integer.valueOf(httpServletRequest.getParameter("buyerId")));
-        order.setSellerid(Integer.valueOf(httpServletRequest.getParameter("sellerId")));
-        order.setProductid(Integer.valueOf(httpServletRequest.getParameter("productId")));
+        order.setorderId(Integer.valueOf(httpServletRequest.getParameter("orderId")));
+        order.setbuyerId(Integer.valueOf(httpServletRequest.getParameter("buyerId")));
+        order.setsellerId(Integer.valueOf(httpServletRequest.getParameter("sellerId")));
+        order.setproductId(Integer.valueOf(httpServletRequest.getParameter("productId")));
         order.setCount(Integer.valueOf(httpServletRequest.getParameter("count")));
-        order.setTotalprice(Float.valueOf(httpServletRequest.getParameter("totalPrice")));
+        order.settotalPrice(Float.valueOf(httpServletRequest.getParameter("totalPrice")));
         order.setAddress(httpServletRequest.getParameter("address"));
-        order.setOrderstatus(Integer.valueOf(httpServletRequest.getParameter("orderStatus")));
+        order.setorderStatus(Integer.valueOf(httpServletRequest.getParameter("orderStatus")));
         // 将订单的时间设置为当前时间
-        order.setOrdertime(new java.sql.Date(new Date().getTime()));
+        order.setorderTime(new java.sql.Date(new Date().getTime()));
 
         adminOrderService.updateOrder(order);
         System.out.println(order);

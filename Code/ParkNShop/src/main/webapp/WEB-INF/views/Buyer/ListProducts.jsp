@@ -9,28 +9,32 @@
 <!-- Document Title -->
 <title></title>
 
-<!-- SLIDER REVOLUTION 4.x CSS SETTINGS -->
-<link rel="stylesheet" type="text/css" href="assets/rs-plugin/css/settings.css" media="screen" />
+  <!-- SLIDER REVOLUTION 4.x CSS SETTINGS -->
+  <link rel="stylesheet" type="text/css" href="assets/rs-plugin/css/settings.css" media="screen" />
 
-<!-- StyleSheets -->
-<link rel="stylesheet" href="assets/css/ionicons.min.css">
-<link rel="stylesheet" href="assets/css/bootstrap.min.css">
-<link rel="stylesheet" href="assets/css/font-awesome.min.css">
-<link rel="stylesheet" href="assets/css/main.css">
-<link rel="stylesheet" href="assets/css/style.css">
-<link rel="stylesheet" href="assets/css/responsive.css">
+  <!-- StyleSheets -->
+  <link rel="stylesheet" href="assets/css2/ionicons.min.css">
+  <link rel="stylesheet" href="assets/css2/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/css2/font-awesome.min.css">
+  <link rel="stylesheet" href="assets/css2/main.css">
+  <link rel="stylesheet" href="assets/css2/style.css">
+  <link rel="stylesheet" href="assets/css2/responsive.css">
 
-<!-- Fonts Online -->
-<link href="https://fonts.googleapis.com/css?family=Lato:100i,300,400,700,900" rel="stylesheet">
+  <!-- Fonts Online -->
+  <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
 
-<!-- JavaScripts -->
-<script src="assets/js/vendors/modernizr.js"></script>
-<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-<!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-<![endif]-->
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,300,700,900,100' rel='stylesheet' type='text/css'>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="assets/css/bootstrap.min2.css" />
+  <link rel="stylesheet" href="assets/css/font-awesome.min2.css" />
+  <!-- Custom CSS -->
+  <link href="assets/css/style3.css" rel="stylesheet">
+
+
+  <!-- JavaScripts -->
+  <script src="assets/js/vendors/modernizr.js"></script>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 </head>
 <body>
 
@@ -42,12 +46,10 @@
     <div class="container">
       <p>Welcome to ParkNShop!</p>
       <div class="right-sec">
-
         <ul>
           <%
             try{
               String user = (String)session.getAttribute( "Buyer" );
-
               if ( user == null )
               {
           %>
@@ -59,18 +61,15 @@
             }
           }catch(Exception e){
           %>
-          <li>${ sessionScope.Buyer.buyerAccount}</li>
-
-
+          <li>${sessionScope.Buyer.buyerAccount}</li>
           <%
               out.println( "<a href = '/buyerLogout' >Logout</a>" );
 
             }
           %>
-          <li><a href="#.">My Account</a></li>
-          <li><a href="#.">Seller Center</a></li>
-          <li><a href="/contactManager">Contact Manager</a></li>
-          <li><a href="#.">FAQ </a></li>
+          <li><a href="/BuyerAccount">My Account</a></li>
+          <li><a href="/sellerLogin">Seller Center</a></li>
+          <li><a href="/ContactManager">Contact Manager</a></li>
         </ul>
       </div>
     </div>
@@ -80,7 +79,7 @@
   <header>
     <div class="container">
       <div class="logo"> <a href="/BuyerIndex"><img src="assets/images/logo.png"></a> </div>
-      <form class="search-cate" action="/buyerSearchProduct">
+      <form class="search-cate" action="/SearchProducts">
         <select class="selectpicker" name="searchType">
           <option value="0"> All Categories</option>
           <option value="1"> TV& Home Theater</option>
@@ -136,10 +135,10 @@
               <ul class="dropdown-menu">
                 <c:forEach var="buyerItem" items="${buyerCart.getItems}">
                   <li>
-                    <div class="media-left"> <a href="#." class="thumb"> <img src="assets/images/item-img-1-1.jpg" class="img-responsive" alt="" > </a> </div>
-                    <div class="media-body"> <a href="#." class="tittle"></a> <span> ${buyerItem.getProduct.getProductPrice}* ${buyerItem.getAmount}</span> </div>
+                    <div class="media-left"> <a href="/BuyerProductDetail?productId=${buyerItem.getProduct.productId}" class="thumb"> <img src="${pageContext.request.contextPath}/upload/productPicture/${buyerItem.getProduct.productPicture}" class="img-responsive" alt="" > </a> </div>
+                    <div class="media-body"> <a href="/BuyerProductDetail?productId=${buyerItem.getProduct.productId}" class="tittle"></a> <span> ${buyerItem.getProduct.getProductPrice}* ${buyerItem.getAmount}</span> </div>
                   </li></c:forEach>
-                <li class="btn-cart"> <a href="/BuyerCart" class="btn-round">View Cart</a> </li>
+                <li class="btn-cart"> <a href="/BuyerCart?buyerId=${sessionScope.Buyer.buyerId}" class="btn-round">View Cart</a> </li>
               </ul>
             </li>
           </c:otherwise>
@@ -150,15 +149,6 @@
   </header>
 
 
-  <!-- Linking -->
-  <div class="linking">
-    <div class="container">
-      <ol class="breadcrumb">
-        <li><a href="#">Home</a></li>
-        <li class="active">Cell Phones & Accessories</li>
-      </ol>
-    </div>
-  </div>
   
   <!-- Content -->
   <div id="content"> 
@@ -169,212 +159,32 @@
         <div class="row"> 
           
           <!-- Shop Side Bar -->
-          <div class="col-md-3">
-            <div class="shop-side-bar"> 
-              
-              <!-- Categories -->
-              <h6>Categories</h6>
-              <div class="checkbox checkbox-primary">
-                <ul>
-                  <li>
-                    <input id="cate1" class="styled" type="checkbox" >
-                    <label for="cate1"> Home Audio & Theater </label>
-                  </li>
-                  <li>
-                    <input id="cate2" class="styled" type="checkbox" >
-                    <label for="cate2"> TV & Video</label>
-                  </li>
-                  <li>
-                    <input id="cate3" class="styled" type="checkbox" >
-                    <label for="cate3"> Camera, Photo & Video</label>
-                  </li>
-                  <li>
-                    <input id="cate4" class="styled" type="checkbox" >
-                    <label for="cate4"> Cell Phones & Accessories</label>
-                  </li>
-                  <li>
-                    <input id="cate5" class="styled" type="checkbox" >
-                    <label for="cate5"> Headphones</label>
-                  </li>
-                  <li>
-                    <input id="cate6" class="styled" type="checkbox" >
-                    <label for="cate6"> Video Games</label>
-                  </li>
-                  <li>
-                    <input id="cate7" class="styled" type="checkbox" >
-                    <label for="cate7"> Bluetooth & Wireless Speakers</label>
-                  </li>
-                  <li>
-                    <input id="cate8" class="styled" type="checkbox" >
-                    <label for="cate8"> Gaming Console</label>
-                  </li>
-                  <li>
-                    <input id="cate9" class="styled" type="checkbox" >
-                    <label for="cate9"> Computers & Tablets</label>
-                  </li>
-                  <li>
-                    <input id="cate10" class="styled" type="checkbox" >
-                    <label for="cate10"> Monitors</label>
-                  </li>
-                  <li>
-                    <input id="cate11" class="styled" type="checkbox" >
-                    <label for="cate11"> Home Appliances</label>
-                  </li>
-                  <li>
-                    <input id="cate12" class="styled" type="checkbox" >
-                    <label for="cate12">Office Supplies </label>
-                  </li>
-                </ul>
-              </div>
-              
-              <!-- Categories -->
-              <h6>Price</h6>
-              <!-- PRICE -->
-              <div class="cost-price-content">
-                <div id="price-range" class="price-range"></div>
-                <span id="price-min" class="price-min">20</span> <span id="price-max" class="price-max">80</span> <a href="#." class="btn-round" >Filter</a> </div>
-              
-              <!-- Featured Brands -->
-              <h6>Featured Brands</h6>
-              <div class="checkbox checkbox-primary">
-                <ul>
-                  <li>
-                    <input id="brand1" class="styled" type="checkbox" >
-                    <label for="brand1"> Apple <span>(217)</span> </label>
-                  </li>
-                  <li>
-                    <input id="brand2" class="styled" type="checkbox" >
-                    <label for="brand2"> Acer <span>(79)</span> </label>
-                  </li>
-                  <li>
-                    <input id="brand3" class="styled" type="checkbox" >
-                    <label for="brand3"> Asus <span>(283)</span> </label>
-                  </li>
-                  <li>
-                    <input id="brand4" class="styled" type="checkbox" >
-                    <label for="brand4">Samsung <span>(116)</span> </label>
-                  </li>
-                  <li>
-                    <input id="brand5" class="styled" type="checkbox" >
-                    <label for="brand5"> LG <span>(29)</span> </label>
-                  </li>
-                  <li>
-                    <input id="brand6" class="styled" type="checkbox" >
-                    <label for="brand6"> Electrolux <span>(179)</span> </label>
-                  </li>
-                  <li>
-                    <input id="brand7" class="styled" type="checkbox" >
-                    <label for="brand7"> Toshiba <span>(38)</span> </label>
-                  </li>
-                  <li>
-                    <input id="brand8" class="styled" type="checkbox" >
-                    <label for="brand8"> Sharp <span>(205)</span> </label>
-                  </li>
-                  <li>
-                    <input id="brand9" class="styled" type="checkbox" >
-                    <label for="brand9"> Sony <span>(35)</span> </label>
-                  </li>
-                  <li>
-                    <input id="brand10" class="styled" type="checkbox" >
-                    <label for="brand10"> HTC <span>(59)</span> </label>
-                  </li>
-                  <li>
-                    <input id="brand11" class="styled" type="checkbox" >
-                    <label for="brand11"> Lenovo <span>(68)</span> </label>
-                  </li>
-                  <li>
-                    <input id="brand12" class="styled" type="checkbox" >
-                    <label for="brand12">Sanyo  (19) </label>
-                  </li>
-                </ul>
-              </div>
-              
-              <!-- Rating -->
-              <h6>Rating</h6>
-              <div class="rating">
-                <ul>
-                  <li><a href="#."><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i> <span>(218)</span></a></li>
-                  <li><a href="#."><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i> <span>(178)</span></a></li>
-                  <li><a href="#."><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i> <span>(79)</span></a></li>
-                  <li><a href="#."><i class="fa fa-star"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i> <span>(188)</span></a></li>
-                </ul>
-              </div>
-              
-              <!-- Colors -->
-              <h6>Size</h6>
-              <div class="sizes"> <a href="#.">S</a> <a href="#.">M</a> <a href="#.">L</a> <a href="#.">XL</a> </div>
-              
-              <!-- Colors -->
-              <h6>Colors</h6>
-              <div class="checkbox checkbox-primary">
-                <ul>
-                  <li>
-                    <input id="colr1" class="styled" type="checkbox" >
-                    <label for="colr1"> Red <span>(217)</span> </label>
-                  </li>
-                  <li>
-                    <input id="colr2" class="styled" type="checkbox" >
-                    <label for="colr2"> Yellow <span> (179) </span> </label>
-                  </li>
-                  <li>
-                    <input id="colr3" class="styled" type="checkbox" >
-                    <label for="colr3"> Black <span>(79)</span> </label>
-                  </li>
-                  <li>
-                    <input id="colr4" class="styled" type="checkbox" >
-                    <label for="colr4">Blue <span>(283) </span></label>
-                  </li>
-                  <li>
-                    <input id="colr5" class="styled" type="checkbox" >
-                    <label for="colr5"> Grey <span> (116)</span> </label>
-                  </li>
-                  <li>
-                    <input id="colr6" class="styled" type="checkbox" >
-                    <label for="colr6"> Pink<span> (29) </span></label>
-                  </li>
-                  <li>
-                    <input id="colr7" class="styled" type="checkbox" >
-                    <label for="colr7"> White <span> (38)</span> </label>
-                  </li>
-                  <li>
-                    <input id="colr8" class="styled" type="checkbox" >
-                    <label for="colr8">Green <span>(205)</span></label>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
+
           
           <!-- Products -->
-          <div class="col-md-9"> 
-            
+          <div class="col-md-12">
+
             <!-- Short List -->
             <div class="short-lst">
-              <h2>Cell Phones & Accessories</h2>
+              <h2>
+                <c:choose>
+                  <c:when test="${param.searchType eq 0}">All Categories</c:when>
+                  <c:when test="${param.searchType eq 1}">TV& Home Theater</c:when>
+                  <c:when test="${param.searchType eq 2}">Computers & Tablets</c:when>
+                  <c:when test="${param.searchType eq 3}">Cell Phones</c:when>
+                  <c:when test="${param.searchType eq 4}">Cameras & Camcorders</c:when>
+                  <c:when test="${param.searchType eq 5}">Audio</c:when>
+                  <c:when test="${param.searchType eq 6}">Car Electronics & GPS</c:when>
+                  <c:when test="${param.searchType eq 7}">Video, Games, Movies & Music</c:when>
+                  <c:when test="${param.searchType eq 8}">Health, Fitness & Sports</c:when>
+                  <c:when test="${param.searchType eq 9}">Home & Office</c:when>
+                </c:choose>
+              </h2>
               <ul>
                 <!-- Short List -->
                 <li>
-                  <p>Showing 1–12 of 756 results</p>
+                  <p>Showing ${searchNum} results</p>
                 </li>
-                <!-- Short  -->
-                <li >
-                  <select class="selectpicker">
-                    <option>Show 12 </option>
-                    <option>Show 24 </option>
-                    <option>Show 32 </option>
-                  </select>
-                </li>
-                <!-- by Default -->
-                <li>
-                  <select class="selectpicker">
-                    <option>Sort by Default </option>
-                    <option>Sort by Default </option>
-                    <option>Sort by Default</option>
-                  </select>
-                </li>
-                
-                <!-- Grid Layer -->
-                <li class="grid-layer"> <a href="#."><i class="fa fa-list margin-right-10"></i></a> <a href="#."><i class="fa fa-th"></i></a> </li>
               </ul>
             </div>
             
@@ -382,211 +192,39 @@
             <div class="col-list"> 
               <!-- Product -->
               <div class="product">
-                <article>                   
+                <article>
+                  <c:forEach var="searchProduct" items="${searchProducts}">
                   <!-- Product img -->
                   <div class="media-left">
-                    <div class="item-img"> <img class="img-responsive" src="assets/images/item-img-1-14.jpg" alt="" >  </div>
+                    <div class="item-img"> <img class="img-responsive" src="${pageContext.request.contextPath}/upload/productPicture/${searchProduct.productPicture}" >  </div>
                   </div>                  
                   <!-- Content -->
                   <div class="media-body">
                     <div class="row">                       
                       <!-- Content Left -->
-                      <div class="col-sm-7"> <span class="tag">Tablets</span> <a href="#." class="tittle">Mp3 Sumergible Deportivo Slim Con 8GB</a> 
+                      <div class="col-sm-7"> <span class="tag">${searchProduct.productType}</span> <a href="/BuyerProductDetail?productId=${searchProduct.productId}" class="tittle">${searchProduct.productName}</a>
                         <!-- Reviews -->
-                        <p class="rev"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> <i class="fa fa-star"></i> <span class="margin-left-10">5 Review(s)</span></p>
-                        <ul class="bullet-round-list">
-                          <li>Screen: 1920 x 1080 pixels</li>
-                          <li>Processor: 2.5 GHz None</li>
-                          <li>RAM: 8 GB</li>
-                          <li>Hard Drive: Flash memory solid state</li>
-                          <li>Graphics : Intel HD Graphics 520 Integrated</li>
-                        </ul>
+                        <p>${searchProduct.productIntroduction}</p>
                       </div>                      
                       <!-- Content Right -->
-                      <div class="col-sm-5 text-center"> <a href="#." class="heart"><i class="fa fa-heart"></i></a> <a href="#." class="heart navi"><i class="fa fa-navicon"></i></a>
+                      <div class="col-sm-5 text-center"> <a href="/MoveToBuyerFavorite?productId=${searchProduct.productId}&buyerId=${sessionScope.Buyer.buyerId}" class="heart"><i class="fa fa-heart"></i></a> <a href="#." class="heart navi"><i class="fa fa-navicon"></i></a>
                         <div class="position-center-center">
-                          <div class="price">$350.00</div>
-                          <p>Availability: <span class="in-stock">In stock</span></p>
-                          <a href="#." class="btn-round"><i class="icon-basket-loaded"></i> Add to Cart</a> </div>
+                          <div class="price">$${searchProduct.productPrice}</div>
+                          <c:choose>
+                            <c:when test="${searchProduct.storeCount gt 0}">
+                              <p>Availability: <span class="in-stock">In stock</span></p>
+                            </c:when>
+                            <c:otherwise>
+                              <p>Availability: <span class="sold-out">Sold out</span></p></c:otherwise>
+                          </c:choose>
+
+                          <a href="/AddToCart?buyerId=${sessionScope.Buyer.buyerId}&productId=${searchProduct.productId}" class="btn-round"><i class="icon-basket-loaded"></i> Add to Cart</a> </div>
                       </div>
                     </div>
                   </div>
                 </article>
               </div>
-              
-              <!-- Product -->
-              <div class="product">
-                <article>                   
-                  <!-- Product img -->
-                  <div class="media-left">
-                    <div class="item-img"> <img class="img-responsive" src="assets/images/item-img-1-15.jpg" alt="" >  </div>
-                  </div>                  
-                  <!-- Content -->
-                  <div class="media-body">
-                    <div class="row">                       
-                      <!-- Content Left -->
-                      <div class="col-sm-7"> <span class="tag">Tablets</span> <a href="#." class="tittle">Mp3 Sumergible Deportivo Slim Con 8GB</a> 
-                        <!-- Reviews -->
-                        <p class="rev"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> <i class="fa fa-star"></i> <span class="margin-left-10">5 Review(s)</span></p>
-                        <ul class="bullet-round-list">
-                          <li>Screen: 1920 x 1080 pixels</li>
-                          <li>Processor: 2.5 GHz None</li>
-                          <li>RAM: 8 GB</li>
-                          <li>Hard Drive: Flash memory solid state</li>
-                          <li>Graphics : Intel HD Graphics 520 Integrated</li>
-                        </ul>
-                      </div>                      
-                      <!-- Content Right -->
-                      <div class="col-sm-5 text-center"> <a href="#." class="heart"><i class="fa fa-heart"></i></a> <a href="#." class="heart navi"><i class="fa fa-navicon"></i></a>
-                        <div class="position-center-center">
-                          <div class="price">$350.00</div>
-                          <p>Availability: <span class="in-stock">In stock</span></p>
-                          <a href="#." class="btn-round"><i class="icon-basket-loaded"></i> Add to Cart</a> </div>
-                      </div>
-                    </div>
-                  </div>
-                </article>
-              </div>
-              
-              <!-- Product -->
-              <div class="product">
-                <article>                   
-                  <!-- Product img -->
-                  <div class="media-left">
-                    <div class="item-img"> <img class="img-responsive" src="assets/images/item-img-1-16.jpg" alt="" >  </div>
-                  </div>                  
-                  <!-- Content -->
-                  <div class="media-body">
-                    <div class="row">                       
-                      <!-- Content Left -->
-                      <div class="col-sm-7"> <span class="tag">Tablets</span> <a href="#." class="tittle">Mp3 Sumergible Deportivo Slim Con 8GB</a> 
-                        <!-- Reviews -->
-                        <p class="rev"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> <i class="fa fa-star"></i> <span class="margin-left-10">5 Review(s)</span></p>
-                        <ul class="bullet-round-list">
-                          <li>Screen: 1920 x 1080 pixels</li>
-                          <li>Processor: 2.5 GHz None</li>
-                          <li>RAM: 8 GB</li>
-                          <li>Hard Drive: Flash memory solid state</li>
-                          <li>Graphics : Intel HD Graphics 520 Integrated</li>
-                        </ul>
-                      </div>                      
-                      <!-- Content Right -->
-                      <div class="col-sm-5 text-center"> <a href="#." class="heart"><i class="fa fa-heart"></i></a> <a href="#." class="heart navi"><i class="fa fa-navicon"></i></a>
-                        <div class="position-center-center">
-                          <div class="price">$350.00</div>
-                          <p>Availability: <span class="in-stock">In stock</span></p>
-                          <a href="#." class="btn-round"><i class="icon-basket-loaded"></i> Add to Cart</a> </div>
-                      </div>
-                    </div>
-                  </div>
-                </article>
-              </div>
-              
-              <!-- Product -->
-              <div class="product">
-                <article>                   
-                  <!-- Product img -->
-                  <div class="media-left">
-                    <div class="item-img"> <img class="img-responsive" src="assets/images/item-img-1-17.jpg" alt="" >  </div>
-                  </div>                  
-                  <!-- Content -->
-                  <div class="media-body">
-                    <div class="row">                       
-                      <!-- Content Left -->
-                      <div class="col-sm-7"> <span class="tag">Tablets</span> <a href="#." class="tittle">Mp3 Sumergible Deportivo Slim Con 8GB</a> 
-                        <!-- Reviews -->
-                        <p class="rev"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> <i class="fa fa-star"></i> <span class="margin-left-10">5 Review(s)</span></p>
-                        <ul class="bullet-round-list">
-                          <li>Screen: 1920 x 1080 pixels</li>
-                          <li>Processor: 2.5 GHz None</li>
-                          <li>RAM: 8 GB</li>
-                          <li>Hard Drive: Flash memory solid state</li>
-                          <li>Graphics : Intel HD Graphics 520 Integrated</li>
-                        </ul>
-                      </div>                      
-                      <!-- Content Right -->
-                      <div class="col-sm-5 text-center"> <a href="#." class="heart"><i class="fa fa-heart"></i></a> <a href="#." class="heart navi"><i class="fa fa-navicon"></i></a>
-                        <div class="position-center-center">
-                          <div class="price">$350.00</div>
-                          <p>Availability: <span class="in-stock">In stock</span></p>
-                          <a href="#." class="btn-round"><i class="icon-basket-loaded"></i> Add to Cart</a> </div>
-                      </div>
-                    </div>
-                  </div>
-                </article>
-              </div>
-              
-              <!-- Product -->
-              <div class="product">
-                <article>                   
-                  <!-- Product img -->
-                  <div class="media-left">
-                    <div class="item-img"> <img class="img-responsive" src="assets/images/item-img-1-18.jpg" alt="" >  </div>
-                  </div>                  
-                  <!-- Content -->
-                  <div class="media-body">
-                    <div class="row">                       
-                      <!-- Content Left -->
-                      <div class="col-sm-7"> <span class="tag">Tablets</span> <a href="#." class="tittle">Mp3 Sumergible Deportivo Slim Con 8GB</a> 
-                        <!-- Reviews -->
-                        <p class="rev"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> <i class="fa fa-star"></i> <span class="margin-left-10">5 Review(s)</span></p>
-                        <ul class="bullet-round-list">
-                          <li>Screen: 1920 x 1080 pixels</li>
-                          <li>Processor: 2.5 GHz None</li>
-                          <li>RAM: 8 GB</li>
-                          <li>Hard Drive: Flash memory solid state</li>
-                          <li>Graphics : Intel HD Graphics 520 Integrated</li>
-                        </ul>
-                      </div>                      
-                      <!-- Content Right -->
-                      <div class="col-sm-5 text-center"> <a href="#." class="heart"><i class="fa fa-heart"></i></a> <a href="#." class="heart navi"><i class="fa fa-navicon"></i></a>
-                        <div class="position-center-center">
-                          <div class="price">$350.00</div>
-                          <p>Availability: <span class="in-stock">In stock</span></p>
-                          <a href="#." class="btn-round"><i class="icon-basket-loaded"></i> Add to Cart</a> </div>
-                      </div>
-                    </div>
-                  </div>
-                </article>
-              </div>
-              
-              <!-- Product -->
-              <div class="product">
-                <article>                   
-                  <!-- Product img -->
-                  <div class="media-left">
-                    <div class="item-img"> <img class="img-responsive" src="assets/images/item-img-1-15.jpg" alt="" >  </div>
-                  </div>                  
-                  <!-- Content -->
-                  <div class="media-body">
-                    <div class="row">                       
-                      <!-- Content Left -->
-                      <div class="col-sm-7"> <span class="tag">Tablets</span> <a href="#." class="tittle">Mp3 Sumergible Deportivo Slim Con 8GB</a> 
-                        <!-- Reviews -->
-                        <p class="rev"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> <i class="fa fa-star"></i> <span class="margin-left-10">5 Review(s)</span></p>
-                        <ul class="bullet-round-list">
-                          <li>Screen: 1920 x 1080 pixels</li>
-                          <li>Processor: 2.5 GHz None</li>
-                          <li>RAM: 8 GB</li>
-                          <li>Hard Drive: Flash memory solid state</li>
-                          <li>Graphics : Intel HD Graphics 520 Integrated</li>
-                        </ul>
-                      </div>                      
-                      <!-- Content Right -->
-                      <div class="col-sm-5 text-center"> <a href="#." class="heart"><i class="fa fa-heart"></i></a> <a href="#." class="heart navi"><i class="fa fa-navicon"></i></a>
-                        <div class="position-center-center">
-                          <div class="price">$350.00</div>
-                          <p>Availability: <span class="in-stock">In stock</span></p>
-                          <a href="#." class="btn-round"><i class="icon-basket-loaded"></i> Add to Cart</a> </div>
-                      </div>
-                    </div>
-                  </div>
-                </article>
-              </div>
-              
-              
-              
-              
+              </c:forEach>
               <!-- pagination -->
               <ul class="pagination">
                 <li> <a href="#" aria-label="Previous"> <i class="fa fa-angle-left"></i> </a> </li>
@@ -600,146 +238,10 @@
         </div>
       </div>
     </section>
-    
-    <!-- Your Recently Viewed Items -->
-    <section class="padding-bottom-60">
-      <div class="container"> 
-        
-        <!-- heading -->
-        <div class="heading">
-          <h2>Your Recently Viewed Items</h2>
-          <hr>
-        </div>
-        <!-- Items Slider -->
-        <div class="item-slide-5 with-nav"> 
-          <!-- Product -->
-          <div class="product">
-            <article> <img class="img-responsive" src="assets/images/item-img-1-1.jpg" alt="" >
-              <!-- Content --> 
-              <span class="tag">Latop</span> <a href="#." class="tittle">Laptop Alienware 15 i7 Perfect For Playing Game</a> 
-              <!-- Reviews -->
-              <p class="rev"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> <i class="fa fa-star-o"></i> <span class="margin-left-10">5 Review(s)</span></p>
-              <div class="price">$350.00 </div>
-              <a href="#." class="cart-btn"><i class="icon-basket-loaded"></i></a> </article>
-          </div>
-          <!-- Product -->
-          <div class="product">
-            <article> <img class="img-responsive" src="assets/images/item-img-1-2.jpg" alt="" > <span class="sale-tag">-25%</span>
-              
-              <!-- Content --> 
-              <span class="tag">Tablets</span> <a href="#." class="tittle">Mp3 Sumergible Deportivo Slim Con 8GB</a> 
-              <!-- Reviews -->
-              <p class="rev"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> <i class="fa fa-star-o"></i> <span class="margin-left-10">5 Review(s)</span></p>
-              <div class="price">$350.00 <span>$200.00</span></div>
-              <a href="#." class="cart-btn"><i class="icon-basket-loaded"></i></a> </article>
-          </div>
-          
-          <!-- Product -->
-          <div class="product">
-            <article> <img class="img-responsive" src="assets/images/item-img-1-3.jpg" alt="" >
-              <!-- Content --> 
-              <span class="tag">Appliances</span> <a href="#." class="tittle">Reloj Inteligente Smart Watch M26 Touch Bluetooh </a> 
-              <!-- Reviews -->
-              <p class="rev"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> <i class="fa fa-star-o"></i> <span class="margin-left-10">5 Review(s)</span></p>
-              <div class="price">$350.00</div>
-              <a href="#." class="cart-btn"><i class="icon-basket-loaded"></i></a> </article>
-          </div>
-          
-          <!-- Product -->
-          <div class="product">
-            <article> <img class="img-responsive" src="assets/images/item-img-1-4.jpg" alt="" > <span class="new-tag">New</span>
-              
-              <!-- Content --> 
-              <span class="tag">Accessories</span> <a href="#." class="tittle">Teclado Inalambrico Bluetooth Con Air Mouse</a> 
-              <!-- Reviews -->
-              <p class="rev"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> <i class="fa fa-star-o"></i> <span class="margin-left-10">5 Review(s)</span></p>
-              <div class="price">$350.00</div>
-              <a href="#." class="cart-btn"><i class="icon-basket-loaded"></i></a> </article>
-          </div>
-          
-          <!-- Product -->
-          <div class="product">
-            <article> <img class="img-responsive" src="assets/images/item-img-1-5.jpg" alt="" >
-              <!-- Content --> 
-              <span class="tag">Appliances</span> <a href="#." class="tittle">Funda Para Ebook 7" 128GB full HD</a> 
-              <!-- Reviews -->
-              <p class="rev"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> <i class="fa fa-star-o"></i> <span class="margin-left-10">5 Review(s)</span></p>
-              <div class="price">$350.00</div>
-              <a href="#." class="cart-btn"><i class="icon-basket-loaded"></i></a> </article>
-          </div>
-          
-          <!-- Product -->
-          <div class="product">
-            <article> <img class="img-responsive" src="assets/images/item-img-1-6.jpg" alt="" > <span class="sale-tag">-25%</span>
-              
-              <!-- Content --> 
-              <span class="tag">Tablets</span> <a href="#." class="tittle">Mp3 Sumergible Deportivo Slim Con 8GB</a> 
-              <!-- Reviews -->
-              <p class="rev"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> <i class="fa fa-star-o"></i> <span class="margin-left-10">5 Review(s)</span></p>
-              <div class="price">$350.00 <span>$200.00</span></div>
-              <a href="#." class="cart-btn"><i class="icon-basket-loaded"></i></a> </article>
-          </div>
-          
-          <!-- Product -->
-          <div class="product">
-            <article> <img class="img-responsive" src="assets/images/item-img-1-7.jpg" alt="" >
-              <!-- Content --> 
-              <span class="tag">Appliances</span> <a href="#." class="tittle">Reloj Inteligente Smart Watch M26 Touch Bluetooh </a> 
-              <!-- Reviews -->
-              <p class="rev"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> <i class="fa fa-star-o"></i> <span class="margin-left-10">5 Review(s)</span></p>
-              <div class="price">$350.00</div>
-              <a href="#." class="cart-btn"><i class="icon-basket-loaded"></i></a> </article>
-          </div>
-          
-          <!-- Product -->
-          <div class="product">
-            <article> <img class="img-responsive" src="assets/images/item-img-1-8.jpg" alt="" > <span class="new-tag">New</span>
-              
-              <!-- Content --> 
-              <span class="tag">Accessories</span> <a href="#." class="tittle">Teclado Inalambrico Bluetooth Con Air Mouse</a> 
-              <!-- Reviews -->
-              <p class="rev"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> <i class="fa fa-star-o"></i> <span class="margin-left-10">5 Review(s)</span></p>
-              <div class="price">$350.00</div>
-              <a href="#." class="cart-btn"><i class="icon-basket-loaded"></i></a> </article>
-          </div>
-        </div>
-      </div>
-    </section>
-    
-    <!-- Clients img -->
-    <section class="light-gry-bg clients-img">
-      <div class="container">
-        <ul>
-          <li><img src="assets/images/c-img-1.png" alt="" ></li>
-          <li><img src="assets/images/c-img-2.png" alt="" ></li>
-          <li><img src="assets/images/c-img-3.png" alt="" ></li>
-          <li><img src="assets/images/c-img-4.png" alt="" ></li>
-          <li><img src="assets/images/c-img-5.png" alt="" ></li>
-        </ul>
-      </div>
-    </section>
-    
-    <!-- Newslatter -->
-    <section class="newslatter">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-6">
-            <h3>Subscribe our Newsletter <span>Get <strong>25% Off</strong> first purchase!</span></h3>
-          </div>
-          <div class="col-md-6">
-            <form>
-              <input type="email" placeholder="Your email address here...">
-              <button type="submit">Subscribe!</button>
-            </form>
-          </div>
-        </div>
-      </div>
-    </section>
-  </div>
-  <!-- End Content --> 
-  
+
   <!-- Footer -->
   <footer>
+    <hr>
     <div class="container">
 
       <!-- Footer Upside Links -->
@@ -773,17 +275,7 @@
     </div>
   </footer>
   
-  <!-- Rights -->
-  <div class="rights">
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-6">
-          <p>Copyright &copy; 2017.Company name All rights reserved.<a target="_blank" href="http://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a></p>
-        </div>
-        <div class="col-sm-6 text-right"> <img src="assets/images/card-icon.png" alt=""> </div>
-      </div>
-    </div>
-  </div>
+
   
   <!-- End Footer --> 
   

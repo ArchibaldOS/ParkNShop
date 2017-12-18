@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import com.ten.ParkNShop.util.FileUtil;
@@ -41,7 +42,7 @@ public class SellerProductController {
 			String path = session.getServletContext().getRealPath("/upload/productPicture");
 			String filePath = FileUtil.uploadFile(file, path);
 			Product product = new Product();
-			int sellerId = ((Seller)session.getAttribute("seller")).getSellerId();
+			int sellerId = ((Seller)session.getAttribute("seller")).getsellerId();
 			product.setSellerId(sellerId);
 			product.setProductName(productName);
 			product.setProductType(productType);
@@ -61,10 +62,9 @@ public class SellerProductController {
 	@RequestMapping(value = "/sellerProductList", method = RequestMethod.GET)
 	public String listProduct(HttpSession session,Model model){
 		
-		int sellerId = ((Seller)session.getAttribute("seller")).getSellerId();
+		int sellerId = ((Seller)session.getAttribute("seller")).getsellerId();
 		
 		Page page = sellerProductService.getProducts(sellerId);
-		System.out.println(page.getList());
 		
 		model.addAttribute("seller",session.getAttribute("seller"));
 		if(page.getList().size()>0)
@@ -73,6 +73,49 @@ public class SellerProductController {
 			model.addAttribute("page", null);
 		
 		return "Seller/sellershop";
+		
+	}
+	
+	@RequestMapping(value = "/sellerShopHome", method = RequestMethod.GET)
+	public String shopHome(HttpSession session,Model model,@RequestParam("sellerId") int sellerId,@RequestParam(name="cur", defaultValue="1") int cur){
+		
+		Page page = sellerProductService.getProductsByPage(sellerId,cur);
+		
+		model.addAttribute("page", page);
+		model.addAttribute("sellerId", sellerId);
+		
+		return "Seller/shopHome";
+		
+	}
+	
+	@RequestMapping(value="/shopProductsList",method=RequestMethod.GET)
+	public @ResponseBody Page listProducts(@RequestParam(name="cur", defaultValue="1") int cur,@RequestParam("sellerId") int sellerId){
+		
+		
+		Page page = sellerProductService.getProductsByPage(sellerId,cur);
+	
+		return page;
+	}
+	
+	@RequestMapping(value = "/sellerProduct")
+	public String product(HttpSession session,Model model){
+		
+		Seller seller = (Seller)session.getAttribute("seller");
+		
+		int status = seller.getShopStatus();
+		if(status == 1){
+			model.addAttribute("status", null);
+			return "forward:/sellerProductList";
+		}else if(status == 0){
+			model.addAttribute("status", 0);
+			return "Seller/sellerhome";
+		}else if(status == 2){
+			model.addAttribute("status", 2);
+			return "Seller/sellerhome";
+		}else{
+			model.addAttribute("status", 3);
+			return "Seller/sellerhome";
+		}
 		
 	}
 	

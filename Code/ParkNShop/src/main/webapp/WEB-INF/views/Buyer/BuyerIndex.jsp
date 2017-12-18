@@ -79,7 +79,7 @@
   <header>
     <div class="container">
       <div class="logo"> <a href="/BuyerIndex"><img src="assets/images/logo.png"></a> </div>
-      <form class="search-cate" action="/buyerSearchProduct">
+      <form class="search-cate" action="/SearchProducts">
         <select class="selectpicker" name="searchType">
           <option value="0"> All Categories</option>
           <option value="1"> TV& Home Theater</option>
@@ -88,7 +88,7 @@
           <option value="4"> Cameras & Camcorders</option>
           <option value="5"> Audio</option>
           <option value="6"> Car Electronics & GPS</option>
-          <option value="7"> Video, Games, Movies & Music </option>
+          <option value="7"> Video, Games, Movies & Music</option>
           <option value="8"> Health, Fitness & Sports</option>
           <option value="9"> Home & Office</option>
         </select>
@@ -135,10 +135,10 @@
           <ul class="dropdown-menu">
             <c:forEach var="buyerItem" items="${buyerCart.getItems}">
             <li>
-              <div class="media-left"> <a href="#." class="thumb"> <img src="assets/images/item-img-1-1.jpg" class="img-responsive" alt="" > </a> </div>
-              <div class="media-body"> <a href="#." class="tittle"></a> <span> ${buyerItem.getProduct.getProductPrice}* ${buyerItem.getAmount}</span> </div>
+              <div class="media-left"> <a href="/BuyerProductDetail?productId=${buyerItem.getProduct.productId}" class="thumb"> <img src="${pageContext.request.contextPath}/upload/productPicture/${buyerItem.getProduct.productPicture}" class="img-responsive" alt="" > </a> </div>
+              <div class="media-body"> <a href="/BuyerProductDetail?productId=${buyerItem.getProduct.productId}" class="tittle"></a> <span> ${buyerItem.getProduct.getProductPrice}* ${buyerItem.getAmount}</span> </div>
             </li></c:forEach>
-            <li class="btn-cart"> <a href="/BuyerCart" class="btn-round">View Cart</a> </li>
+            <li class="btn-cart"> <a href="/BuyerCart?buyerId=${sessionScope.Buyer.buyerId}" class="btn-round">View Cart</a> </li>
           </ul>
         </li>
         </c:otherwise>
@@ -240,7 +240,7 @@
 
         <!-- Nav tabs -->
         <ul class="nav nav-tabs nav-pills margin-bottom-40" role="tablist">
-          <li role="presentation" class="active"><a href="#featur" aria-controls="featur" role="tab" data-toggle="tab">Featured</a></li>
+          <li role="presentation" class="active"><a href="#featur" aria-controls="featured" role="tab" data-toggle="tab">Featured</a></li>
           <li role="presentation"><a href="#special" aria-controls="special" role="tab" data-toggle="tab">Special</a></li>
           <li role="presentation"><a href="#on-sal" aria-controls="on-sal" role="tab" data-toggle="tab">Onsale</a></li>
         </ul>
@@ -248,19 +248,20 @@
         <!-- Tab panes -->
         <div class="tab-content">
           <!-- Featured -->
-          <div role="tabpanel" class="tab-pane active fade in" id="featur">
+          <div role="tabpanel" class="tab-pane active fade in" id="featured">
             <!-- Items Slider -->
             <div class="item-slide-5 with-nav">
+              <c:forEach var="featuredProduct" items="${featuredProducts}">
               <!-- Product -->
               <div class="product">
-                <article> <img class="img-responsive" src="assets/images/item-img-1-1.jpg" alt="" >
+                <article> <img class="img-responsive" src="${pageContext.request.contextPath}/upload/productPicture/${featuredProduct.productPicture}" alt="" >
                   <!-- Content -->
-                  <span class="tag">Latop</span> <a href="#." class="tittle">Laptop Alienware 15 i7 Perfect For Playing Game</a>
+                  <span class="tag">${featuredProduct.productType}</span> <a href="/BuyerProductDetail?productId=${featuredProduct.productId}" class="tittle">${featuredProduct.productName}</a>
                   <!-- Reviews -->
-                  <p class="rev"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> <i class="fa fa-star-o"></i> <span class="margin-left-10">5 Review(s)</span></p>
-                  <div class="price">$350.00 </div>
-                  <a href="#." class="cart-btn"><i class="icon-basket-loaded"></i></a> </article>
+                  <div class="price">${featuredProduct.productPrice} </div>
+                  <a href="/AddToCart?buyerId=${sessionScope.Buyer.buyerId}&productId=${featuredProduct.productId}" class="cart-btn"><i class="icon-basket-loaded"></i></a> </article>
               </div>
+              </c:forEach>
             </div>
           </div>
 
@@ -268,17 +269,17 @@
           <div role="tabpanel" class="tab-pane fade" id="special">
             <!-- Items Slider -->
             <div class="item-col-5">
-
-              <!-- Product -->
-              <div class="product">
-                <article> <img class="img-responsive" src="assets/images/item-img-1-11.jpg" alt="" >
-                  <!-- Content -->
-                  <span class="tag">Latop</span> <a href="#." class="tittle">Laptop Alienware 15 i7 Perfect For Playing Game</a>
-                  <!-- Reviews -->
-                  <p class="rev"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> <i class="fa fa-star-o"></i> <span class="margin-left-10">5 Review(s)</span></p>
-                  <div class="price">$350.00 </div>
-                  <a href="#." class="cart-btn"><i class="icon-basket-loaded"></i></a> </article>
-              </div>
+              <c:forEach var="specialProduct" items="${specialProducts}">
+                <!-- Product -->
+                <div class="product">
+                  <article> <img class="img-responsive" src="${pageContext.request.contextPath}/upload/productPicture/${specialProduct.productPicture}" alt="" >
+                    <!-- Content -->
+                    <span class="tag">${specialProduct.productType}</span> <a href="/BuyerProductDetail?productId=${specialProduct.productId}" class="tittle">${specialProduct.productName}</a>
+                    <!-- Reviews -->
+                    <div class="price">${specialProduct.productPrice} </div>
+                    <a href="/AddToCart?buyerId=${sessionScope.Buyer.buyerId}&productId=${specialProduct.productId}" class="cart-btn"><i class="icon-basket-loaded"></i></a> </article>
+                </div>
+              </c:forEach>
             </div>
           </div>
 
@@ -286,17 +287,17 @@
           <div role="tabpanel" class="tab-pane fade" id="on-sal">
             <!-- Items Slider -->
             <div class="item-col-5">
-
-              <!-- Product -->
-              <div class="product">
-                <article> <img class="img-responsive" src="assets/images/item-img-1-3.jpg" alt="" >
-                  <!-- Content -->
-                  <span class="tag">Latop</span> <a href="#." class="tittle">Laptop Alienware 15 i7 Perfect For Playing Game</a>
-                  <!-- Reviews -->
-                  <p class="rev"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> <i class="fa fa-star-o"></i> <span class="margin-left-10">5 Review(s)</span></p>
-                  <div class="price">$350.00 </div>
-                  <a href="#." class="cart-btn"><i class="icon-basket-loaded"></i></a> </article>
-              </div>
+              <c:forEach var="onsaleProduct" items="${onsaleProducts}">
+                <!-- Product -->
+                <div class="product">
+                  <article> <img class="img-responsive" src="${pageContext.request.contextPath}/upload/productPicture/${onsaleProduct.productPicture}" alt="" >
+                    <!-- Content -->
+                    <span class="tag">${onsaleProduct.productType}</span> <a href="/BuyerProductDetail?productId=${onsaleProduct.productId}" class="tittle">${onsaleProduct.productName}</a>
+                    <!-- Reviews -->
+                    <div class="price">${onsaleProduct.productPrice} </div>
+                    <a href="/AddToCart?buyerId=${sessionScope.Buyer.buyerId}&productId=${onsaleProduct.productId}" class="cart-btn"><i class="icon-basket-loaded"></i></a> </article>
+                </div>
+              </c:forEach>
             </div>
           </div>
         </div>
@@ -315,30 +316,49 @@
 
         <!-- Items -->
         <div class="item-col-5">
-
-          <!-- Product -->
-          <div class="product col-2x">
-            <div class="like-bnr">
-              <div class="position-center-center">
-                <h5>Smart Watch 2.0</h5>
-                <p>Space Gray Aluminum Case
-                  with Black/Volt Real Sport Band <span>38mm | 42mm</span> </p>
-                <a href="#." class="btn-round">View Detail</a> </div>
-            </div>
-          </div>
-
+          <c:forEach var="topSellingProduct" items="${topSellingProducts}">
           <!-- Product -->
           <div class="product">
-            <article> <img class="img-responsive" src="assets/images/item-img-1-6.jpg" alt="" > <span class="sale-tag">-25%</span>
-
+            <article> <img class="img-responsive" src="${pageContext.request.contextPath}/upload/productPicture/${topSellingProduct.productPicture}" alt="" >
+              <%--打折标识--%>
+              <%--<span class="sale-tag">-25%</span>--%>
               <!-- Content -->
-              <span class="tag">Tablets</span> <a href="#." class="tittle">Mp3 Sumergible Deportivo Slim Con 8GB</a>
+              <span class="tag">${topSellingProduct.productType}</span> <a href="/BuyerProductDetail?productId=${topSellingProduct.productId}" class="tittle">${topSellingProduct.productName}</a>
               <!-- Reviews -->
-              <p class="rev"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> <i class="fa fa-star"></i> <span class="margin-left-10">5 Review(s)</span></p>
-              <div class="price">$350.00 <span>$200.00</span></div>
-              <a href="#." class="cart-btn"><i class="icon-basket-loaded"></i></a> </article>
+              <div class="price">${topSellingProduct.productPrice} </div>
+              <a href="/AddToCart?buyerId=${sessionScope.Buyer.buyerId}&productId=${topSellingProduct.productId}" class="cart-btn"><i class="icon-basket-loaded"></i></a> </article>
           </div>
         </div>
+        </c:forEach>
+      </div>
+    </section>
+    <!-- Top Sales Shop Week -->
+    <section class="light-gry-bg padding-top-60 padding-bottom-30">
+      <div class="container">
+
+        <!-- heading -->
+        <div class="heading">
+          <h2>Top Sales Shop Week</h2>
+          <hr>
+        </div>
+
+        <!-- Items -->
+        <div class="item-col-5">
+          <c:forEach var="topSalesShop" items="${topSalesShops}">
+          <!-- Product -->
+          <div class="product">
+            <article> <img class="img-responsive" src="${pageContext.request.contextPath}/upload/productPicture/${topSalesShop.productPicture}" alt="" >
+                <%--打折标识--%>
+                <%--<span class="sale-tag">-25%</span>--%>
+              <!-- Content -->
+              <%--记得添加店铺链接--%>
+               <a href="#." class="tittle">${topSalesShop.shopName}</a>
+              <!-- Reviews -->
+              <div class="price">${topSalesShop.shopIntroduction} </div>
+            </article>
+          </div>
+        </div>
+        </c:forEach>
       </div>
     </section>
 
@@ -356,154 +376,128 @@
 
         <!-- Tab panes -->
         <div class="tab-content">
-          <!-- TV & Audios -->
+          <!-- TV& Home Theater -->
 
           <div role="tabpanel" class="tab-pane active fade in" id="tv-au">
             <!-- Items -->
             <div class="item-col-5">
-
+              <c:forEach var="type1product" items="${type1products}">
               <!-- Product -->
               <div class="product">
-                <article> <img class="img-responsive" src="assets/images/item-img-1-11.jpg" alt="" > <span class="sale-tag">-25%</span>
+                <article> <img class="img-responsive" src="${pageContext.request.contextPath}/upload/productPicture/${type1product.productPicture}" alt="" >
 
                   <!-- Content -->
-                  <span class="tag">Accessories</span> <a href="#." class="tittle">Teclado Inalambrico Bluetooth Con Air Mouse</a>
+                  <span class="tag">${type1product.productType}</span> <a href="/BuyerProductDetail?productId=${type1product.productId}" class="tittle">${type1product.productName}</a>
                   <!-- Reviews -->
-                  <p class="rev"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> <i class="fa fa-star-o"></i> <span class="margin-left-10">5 Review(s)</span></p>
-                  <div class="price">$350.00</div>
-                  <a href="#." class="cart-btn"><i class="icon-basket-loaded"></i></a> </article>
+                  <div class="price">${type1product.productPrice}</div>
+                  <a href="/AddToCart?buyerId=${sessionScope.Buyer.buyerId}&productId=${type1product.productId}" class="cart-btn"><i class="icon-basket-loaded"></i></a> </article>
               </div>
-
-              <!-- Product -->
-              <div class="product">
-                <article> <img class="img-responsive" src="assets/images/item-img-1-8.jpg" alt="" >
-                  <!-- Content -->
-                  <span class="tag">Appliances</span> <a href="#." class="tittle">Funda Para Ebook 7" 128GB full HD</a>
-                  <!-- Reviews -->
-                  <p class="rev"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> <i class="fa fa-star-o"></i> <span class="margin-left-10">5 Review(s)</span></p>
-                  <div class="price">$350.00</div>
-                  <a href="#." class="cart-btn"><i class="icon-basket-loaded"></i></a> </article>
-              </div>
+              </c:forEach>
             </div>
           </div>
 
-          <!-- Smartphones -->
+          <!-- Computers & Tablets -->
           <div role="tabpanel" class="tab-pane fade" id="smart">
             <!-- Items -->
             <div class="item-col-5">
+              <c:forEach var="type2product" items="${type2products}">
+                <!-- Product -->
+                <div class="product">
+                  <article> <img class="img-responsive" src="${pageContext.request.contextPath}/upload/productPicture/${type2product.productPicture}" alt="" >
 
-              <!-- Product -->
-              <div class="product">
-                <article> <img class="img-responsive" src="assets/images/item-img-1-11.jpg" alt="" > <span class="sale-tag">-25%</span>
-
-                  <!-- Content -->
-                  <span class="tag">Accessories</span> <a href="#." class="tittle">Teclado Inalambrico Bluetooth Con Air Mouse</a>
-                  <!-- Reviews -->
-                  <p class="rev"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> <i class="fa fa-star-o"></i> <span class="margin-left-10">5 Review(s)</span></p>
-                  <div class="price">$350.00</div>
-                  <a href="#." class="cart-btn"><i class="icon-basket-loaded"></i></a> </article>
-              </div>
-
-              <!-- Product -->
-              <div class="product">
-                <article> <img class="img-responsive" src="assets/images/item-img-1-8.jpg" alt="" >
-                  <!-- Content -->
-                  <span class="tag">Appliances</span> <a href="#." class="tittle">Funda Para Ebook 7" 128GB full HD</a>
-                  <!-- Reviews -->
-                  <p class="rev"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> <i class="fa fa-star-o"></i> <span class="margin-left-10">5 Review(s)</span></p>
-                  <div class="price">$350.00</div>
-                  <a href="#." class="cart-btn"><i class="icon-basket-loaded"></i></a> </article>
-              </div>
+                    <!-- Content -->
+                    <span class="tag">${type2product.productType}</span> <a href="/BuyerProductDetail?productId=${type2product.productId}" class="tittle">${type2product.productName}</a>
+                    <!-- Reviews -->
+                    <div class="price">${type2product.productPrice}</div>
+                    <a href="/AddToCart?buyerId=${sessionScope.Buyer.buyerId}&productId=${type2product.productId}" class="cart-btn"><i class="icon-basket-loaded"></i></a> </article>
+                </div>
+              </c:forEach>
             </div>
           </div>
-          <!-- Game Console -->
+          <!-- Cell Phones -->
           <div role="tabpanel" class="tab-pane fade" id="game-com">
 
             <!-- Items -->
             <div class="item-col-5">
 
-              <!-- Product -->
-              <div class="product">
-                <article> <img class="img-responsive" src="assets/images/item-img-1-9.jpg" alt="" > <span class="sale-tag">-25%</span>
+              <c:forEach var="type3product" items="${type3products}">
+                <!-- Product -->
+                <div class="product">
+                  <article> <img class="img-responsive" src="${pageContext.request.contextPath}/upload/productPicture/${type3product.productPicture}" alt="" >
 
-                  <!-- Content -->
-                  <span class="tag">Accessories</span> <a href="#." class="tittle">Teclado Inalambrico Bluetooth Con Air Mouse</a>
-                  <!-- Reviews -->
-                  <p class="rev"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> <i class="fa fa-star-o"></i> <span class="margin-left-10">5 Review(s)</span></p>
-                  <div class="price">$350.00</div>
-                  <a href="#." class="cart-btn"><i class="icon-basket-loaded"></i></a> </article>
-              </div>
-
-              <!-- Product -->
-              <div class="product">
-                <article> <img class="img-responsive" src="assets/images/item-img-1-1.jpg" alt="" >
-                  <!-- Content -->
-                  <span class="tag">Appliances</span> <a href="#." class="tittle">Funda Para Ebook 7" 128GB full HD</a>
-                  <!-- Reviews -->
-                  <p class="rev"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> <i class="fa fa-star-o"></i> <span class="margin-left-10">5 Review(s)</span></p>
-                  <div class="price">$350.00</div>
-                  <a href="#." class="cart-btn"><i class="icon-basket-loaded"></i></a> </article>
-              </div>
+                    <!-- Content -->
+                    <span class="tag">${type3product.productType}</span> <a href="/BuyerProductDetail?productId=${type3product.productId}" class="tittle">${type3product.productName}</a>
+                    <!-- Reviews -->
+                    <div class="price">${type3product.productPrice}</div>
+                    <a href="/AddToCart?buyerId=${sessionScope.Buyer.buyerId}&productId=${type3product.productId}" class="cart-btn"><i class="icon-basket-loaded"></i></a> </article>
+                </div>
+              </c:forEach>
             </div>
           </div>
-          <!-- Watches -->
+          <!-- Cameras & Camcorders -->
           <div role="tabpanel" class="tab-pane fade" id="watches">
 
             <!-- Items -->
             <div class="item-col-5">
 
-              <!-- Product -->
-              <div class="product">
-                <article> <img class="img-responsive" src="assets/images/item-img-1-8.jpg" alt="" > <span class="sale-tag">-25%</span>
+              <c:forEach var="type4product" items="${type4products}">
+                <!-- Product -->
+                <div class="product">
+                  <article> <img class="img-responsive" src="${pageContext.request.contextPath}/upload/productPicture/${type4product.productPicture}" alt="" >
 
-                  <!-- Content -->
-                  <span class="tag">Accessories</span> <a href="#." class="tittle">Teclado Inalambrico Bluetooth Con Air Mouse</a>
-                  <!-- Reviews -->
-                  <p class="rev"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> <i class="fa fa-star-o"></i> <span class="margin-left-10">5 Review(s)</span></p>
-                  <div class="price">$350.00</div>
-                  <a href="#." class="cart-btn"><i class="icon-basket-loaded"></i></a> </article>
-              </div>
+                    <!-- Content -->
+                    <span class="tag">${type4product.productType}</span> <a href="/BuyerProductDetail?productId=${type4product.productId}" class="tittle">${type4product.productName}</a>
+                    <!-- Reviews -->
+                    <div class="price">${type4product.productPrice}</div>
+                    <a href="/AddToCart?buyerId=${sessionScope.Buyer.buyerId}&productId=${type4product.productId}" class="cart-btn"><i class="icon-basket-loaded"></i></a> </article>
+                </div>
+              </c:forEach>
 
-              <!-- Product -->
-              <div class="product">
-                <article> <img class="img-responsive" src="assets/images/item-img-1-9.jpg" alt="" >
-                  <!-- Content -->
-                  <span class="tag">Appliances</span> <a href="#." class="tittle">Funda Para Ebook 7" 128GB full HD</a>
-                  <!-- Reviews -->
-                  <p class="rev"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> <i class="fa fa-star-o"></i> <span class="margin-left-10">5 Review(s)</span></p>
-                  <div class="price">$350.00</div>
-                  <a href="#." class="cart-btn"><i class="icon-basket-loaded"></i></a> </article>
-              </div>
             </div>
           </div>
-          <!-- Accessories -->
+          <!-- Audio  -->
           <div role="tabpanel" class="tab-pane fade" id="access">
 
             <!-- Items -->
             <div class="item-col-5">
 
-              <!-- Product -->
-              <div class="product">
-                <article> <img class="img-responsive" src="assets/images/item-img-1-11.jpg" alt="" > <span class="sale-tag">-25%</span>
+              <c:forEach var="type5product" items="${type5products}">
+                <!-- Product -->
+                <div class="product">
+                  <article> <img class="img-responsive" src="${pageContext.request.contextPath}/upload/productPicture/${type5product.productPicture}" alt="" >
 
-                  <!-- Content -->
-                  <span class="tag">Accessories</span> <a href="#." class="tittle">Teclado Inalambrico Bluetooth Con Air Mouse</a>
-                  <!-- Reviews -->
-                  <p class="rev"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> <i class="fa fa-star-o"></i> <span class="margin-left-10">5 Review(s)</span></p>
-                  <div class="price">$350.00</div>
-                  <a href="#." class="cart-btn"><i class="icon-basket-loaded"></i></a> </article>
-              </div>
+                    <!-- Content -->
+                    <span class="tag">${type5product.productType}</span> <a href="/BuyerProductDetail?productId=${type5product.productId}" class="tittle">${type5product.productName}</a>
+                    <!-- Reviews -->
+                    <div class="price">${type5product.productPrice}</div>
+                    <a href="/AddToCart?buyerId=${sessionScope.Buyer.buyerId}&productId=${type5product.productId}" class="cart-btn"><i class="icon-basket-loaded"></i></a> </article>
+                </div>
+              </c:forEach>
 
-              <!-- Product -->
-              <div class="product">
-                <article> <img class="img-responsive" src="assets/images/item-img-1-12.jpg" alt="" >
-                  <!-- Content -->
-                  <span class="tag">Appliances</span> <a href="#." class="tittle">Funda Para Ebook 7" 128GB full HD</a>
-                  <!-- Reviews -->
-                  <p class="rev"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> <i class="fa fa-star-o"></i> <span class="margin-left-10">5 Review(s)</span></p>
-                  <div class="price">$350.00</div>
-                  <a href="#." class="cart-btn"><i class="icon-basket-loaded"></i></a> </article>
-              </div>
+
+            </div>
+          </div>
+
+          <!-- Video, Games, Movies & Music  -->
+          <div role="tabpanel" class="tab-pane fade" id="fun">
+
+            <!-- Items -->
+            <div class="item-col-5">
+
+              <c:forEach var="type7product" items="${type7products}">
+                <!-- Product -->
+                <div class="product">
+                  <article> <img class="img-responsive" src="${pageContext.request.contextPath}/upload/productPicture/${type7product.productPicture}" alt="" >
+
+                    <!-- Content -->
+                    <span class="tag">${type7product.productType}</span> <a href="/BuyerProductDetail?productId=${type7product.productId}" class="tittle">${type7product.productName}</a>
+                    <!-- Reviews -->
+                    <div class="price">${type7product.productPrice}</div>
+                    <a href="/AddToCart?buyerId=${sessionScope.Buyer.buyerId}&productId=${type7product.productId}" class="cart-btn"><i class="icon-basket-loaded"></i></a> </article>
+                </div>
+              </c:forEach>
+
+
             </div>
           </div>
         </div>
@@ -511,11 +505,10 @@
     </section>
   </div>
   <!-- End Content -->
-  <section>
-    <hr>
-  </section>
+
   <!-- Footer -->
   <footer>
+    <hr>
     <div class="container">
 
       <!-- Footer Upside Links -->

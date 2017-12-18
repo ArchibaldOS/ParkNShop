@@ -62,37 +62,46 @@
                 <table class="table">
                     <thead>
                     <tr>
-                        <th>OrderID</th>
+                        <th>orderId</th>
                         <th>Seller</th>
                         <th>Buyer</th>
-                        <th>ProductID</th>
+                        <th>productId</th>
                         <th>Count</th>
-                        <th>TotalPrice</th>
-                        <th>Address</th>
+                        <th>totalPrice</th>
+                        <th class="hidden">Address</th>
                         <th>Status</th>
-                        <th>Time</th>
+                        <th class="hidden">Time</th>
                         <th>Operation</th>
                     </tr>
                     </thead>
                     <tbody>
                     <c:forEach var="order" items="${orders}">
                         <tr>
-                            <td><c:out value="${order.orderid}"></c:out></td>
-                            <td><c:out value="${order.sellerid}"></c:out></td>
-                            <td><c:out value="${order.buyerid}"></c:out></td>
-                            <td><c:out value="${order.productid}"></c:out></td>
+                            <td><c:out value="${order.orderId}"></c:out></td>
+                            <td><c:out value="${order.sellerId}"></c:out></td>
+                            <td><c:out value="${order.buyerId}"></c:out></td>
+                            <td><c:out value="${order.productId}"></c:out></td>
                             <td><c:out value="${order.count}"></c:out></td>
-                            <td><c:out value="${order.totalprice}"></c:out></td>
-                            <td><c:out value="${order.address}"></c:out></td>
-                            <td><c:out value="${order.orderstatus}"></c:out></td>
-                            <td><c:out value="${order.ordertime}"></c:out></td>
+                            <td><c:out value="${order.totalPrice}"></c:out></td>
+                            <td class="hidden"><c:out value="${order.address}"></c:out></td>
+                            <c:choose>
+                                <c:when test="${order.orderStatus eq 1}"><td>Submitted,Unpaid</td></c:when>
+                                <c:when test="${order.orderStatus eq 2}"><td>Cancelled</td></c:when>
+                                <c:when test="${order.orderStatus eq 3}"><td>Paid,Unshipped</td></c:when>
+                                <c:when test="${order.orderStatus eq 4}"><td>Paid,Shipped</td></c:when>
+                                <c:when test="${order.orderStatus eq 5}"><td>Success</td></c:when>
+                                <c:when test="${order.orderStatus eq 6}"><td>Refunding</td></c:when>
+                                <c:when test="${order.orderStatus eq 7}"><td>Refund Succeed</td></c:when>
+                                <c:when test="${order.orderStatus eq 8}"><td>Refund Failed</td></c:when>
+                            </c:choose>
+                            <td class="hidden"><c:out value="${order.orderTime}"></c:out></td>
                             <td><div role="presentation" class="dropdown">
                                 <button class="dropdown-toggle btn btn-default" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Onclick <span class="caret"></span>
                                 </button>
                                 <ul class="dropdown-menu">
-                                    <li><a href="/AdminOrderDetail?orderID=${order.orderid}">View</a></li>
-                                    <li><a href="/AdminOrderModify?orderID=${order.orderid}">modify</a></li>
-                                    <li><a href="/AdminOrderDelete?orderID=${order.orderid}">delete</a></li>
+                                    <li><a href="/AdminOrderDetail?orderId=${order.orderId}">View</a></li>
+                                    <li><a href="/AdminOrderModify?orderId=${order.orderId}">modify</a></li>
+                                    <li><a href="/AdminOrderDelete?orderId=${order.orderId}">delete</a></li>
                                 </ul>
                             </div></td>
                         </tr>

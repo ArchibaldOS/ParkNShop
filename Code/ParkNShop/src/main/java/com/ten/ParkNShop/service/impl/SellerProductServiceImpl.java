@@ -27,7 +27,7 @@ public class SellerProductServiceImpl implements SellerProductService {
 		
 		int count = productMapper.count(sellerId);
 		
-		List<Product> products = productMapper.findAllBySellerId(sellerId);
+		List<Product> products = productMapper.findAllBysellerId(sellerId);
 		
 		page.setCount(count);
 		page.setList(products);
@@ -44,7 +44,7 @@ public class SellerProductServiceImpl implements SellerProductService {
 	@Override
 	public Product getProductById(int productId) {
 		
-		return productMapper.findByProductId(productId);
+		return productMapper.findByproductId(productId);
 	}
 
 	@Override
@@ -57,6 +57,21 @@ public class SellerProductServiceImpl implements SellerProductService {
 	public int updateProduct2(Product product) {
 		
 		return productMapper.updateProduct2(product);
+	}
+
+	@Override
+	public Page getProductsByPage(int sellerId, int cur) {
+		
+		Page page = new Page(cur);
+		
+		int count = productMapper.count(sellerId);
+		
+		List<Product> products = productMapper.sellerFindByPage(sellerId,page.getOffset(),page.getSize());
+		
+		page.setCount(count);
+		page.setList(products);
+		
+		return page;
 	}
 	
 

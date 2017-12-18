@@ -9,6 +9,7 @@ public interface SellerIndexService {
 	Seller login(String sellerEmail, String sellerPassword);
 
 	int validation(String sellerEmail);
-	
+
+	int sellerUpdate(Seller seller);
 
 }

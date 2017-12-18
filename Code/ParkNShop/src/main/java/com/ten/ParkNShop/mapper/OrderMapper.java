@@ -89,4 +89,20 @@ public interface OrderMapper {
      * @return java.util.List<com.ten.ParkNShop.entity.Order>
      */
     List<Order> selectOrderByProductID(@Param("productID")int buyerID, @Param("start") int start, @Param("pageSize")int pageSize);
+
+    /**
+     * @Author tad
+     * @Date created in 9:15 PM 12/18/2017
+     * @Description 获取一段时间之内的所有的成功订单
+     *
+     * @params [startTime, endTime, type]
+     * @return java.util.List<com.ten.ParkNShop.entity.Order>
+     */
+    List<Order> selectAllOrdersBetweenTime(@Param("startTime") String startTime, @Param("endTime") String endTime);
+
+
+    int countCompleted(@Param("sellerId")int sellerId);
+
+
+    List<Order> findCompleted(@Param("sellerId")int sellerId,@Param("start") int start, @Param("pageSize")int pageSize);
 }

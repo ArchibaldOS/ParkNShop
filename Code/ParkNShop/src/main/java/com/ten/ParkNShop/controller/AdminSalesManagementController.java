@@ -1,6 +1,7 @@
 package com.ten.ParkNShop.controller;
 
 import com.ten.ParkNShop.entity.Commission;
+import com.ten.ParkNShop.entity.Order;
 import com.ten.ParkNShop.service.AdminCommissionService;
 import com.ten.ParkNShop.service.AdminOrderService;
 import com.ten.ParkNShop.service.AdminService;
@@ -11,8 +12,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.net.ssl.HttpsURLConnection;
 import javax.servlet.http.HttpServletRequest;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 @Controller
 public class AdminSalesManagementController {
@@ -25,22 +30,84 @@ public class AdminSalesManagementController {
     @Autowired
     AdminOrderService adminOrderService;
 
+
     @RequestMapping("/AdminSalesManagement")
     public String adminSalesManagement(HttpServletRequest httpServletRequest, Model model){
-        // 查看收入的类型 sales 与 ads
-        String type = httpServletRequest.getParameter("type");
-        // 时间范围 一天 一周 一月 一年
-        String timeType = httpServletRequest.getParameter("timeType");
-
-        if(httpServletRequest.getParameter("type") != null){
-
-            if(type.equals("sales")){
-
-            }else{
-
-            }
+        String timeType = httpServletRequest.getParameter("select_type");
+        String time = httpServletRequest.getParameter("time");
+        if(timeType == null){
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+            timeType = "Daily";
+            time = df.format(new Date());
         }
+        if(timeType.equals("Daily")){
+            model.addAttribute("time", time);
+            String[] labels = {"0:00", "4:00", "8:00", "12:00", "16:00", "20:00"};
+            model.addAttribute("labels", labels);
+            // 获取信息
+            List<Object> salesCondition= getHoursCountAndSales(time);
+            List<Integer> counts = (List<Integer>) salesCondition.get(0);
+            List<Float> moneys = (List<Float>) salesCondition.get(1);
+            System.out.println(counts);
+            System.out.println(moneys);
+            model.addAttribute("counts", counts);
+            model.addAttribute("moneys", moneys);
+
+        }else if(timeType.equals("Weekly")){
+            String[] labels = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
+            model.addAttribute("labels", labels);
+
+
+        }else if(timeType.equals("Monthly")){
+
+            // 获取一个月的最后一天
+            int year = Integer.valueOf(time.split(time)[0]);
+            int month = Integer.valueOf(time.split("-")[1]);
+            Calendar calendar = Calendar.getInstance();
+            calendar.set(year, month, 1);
+            int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
+
+            String[] labels = {"0", "5", "10", "15", "20", "25", String.valueOf(dayOfMonth)};
+            model.addAttribute("labels", labels);
+
+        }else{
+            String[] labels = {"Jan", "Feb","Mar","Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov","Dec"};
+            model.addAttribute("labels", labels);
+
+        }
+
+
         return "Admin/AdminSalesManagement";
+    }
+
+    /**
+     * @Author tad
+     * @Date created in 9:32 PM 12/18/2017
+     * @Description 获取一段各个小时内的销售量和销售额
+     *
+     * @params []
+     * @return List<Object> 包含两条数据，第一条数据是List<Integer> 表示销量情况 第二条是 List<Float> 表示 销售额的情况
+     * @param time
+     */
+    private List<Object> getHoursCountAndSales(String time) {
+        List<Integer> counts = new ArrayList<Integer>();
+        List<Float> moneys = new ArrayList<Float>();
+        for(int hour = 0; hour < 24; hour = hour + 4 ){
+            String startTime = time + " " + hour + ":00";
+            String endtTime = time + " " + (hour + 4) + ":00";
+            List<Order> orders = adminOrderService.selectAllOrdersBetweenTime(startTime, endtTime, 2);
+            float money = 0;
+            for(Order order: orders){
+                money += order.gettotalPrice();
+            }
+            counts.add(orders.size());
+            moneys.add(money);
+        }
+        List<Object> salesCondition = new ArrayList<Object>();
+        salesCondition.add(counts);
+        salesCondition.add(moneys);
+        return salesCondition;
+
     }
 
     /**

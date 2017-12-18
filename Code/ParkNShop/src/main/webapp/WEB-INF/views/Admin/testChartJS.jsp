@@ -123,27 +123,5 @@
         responsive: true
     });
 </script>
-<script>
-    function selectType() {
-        var type = document.getElementById("selectTimeType").value;
-        console.log(type);
-        var inputTimeType = document.getElementById("timeType");
-        if(type == "daily"){
-            inputTimeType.type = "date";
-            var date = new Date();
-            var y = date.getFullYear();
-            var m = "0"+(date.getMonth()+1);
-            var d = "0"+date.getDate();
-            var ydate = y+"-"+m.substring(m.length-2,m.length)+"-"+d.substring(d.length-2,d.length);
-            inputTimeType.value = ydate;
-        }else if(type == "weekly"){
-            inputTimeType.type = "week";
-        }else if(type == "monthly"){
-            inputTimeType.type = "month";
-        }else{
-
-        }
-    }
-</script>
 </body>
 </html>

@@ -47,7 +47,7 @@ public interface AdminOrderService {
 
     /**
      * @Description 通过一个BuyerID 查找这个买家的所有 Order，并从返回的结果集中截取一部分，从 start 开始， 大小为 pageSize
-     * @param id
+     * @param buyerID
      * @param start
      * @param pageSize
      * @return
@@ -57,7 +57,7 @@ public interface AdminOrderService {
 
     /**
      * @Description 通过一个SellerID 查找这个卖家的所有 Order，并从返回的结果集中截取一部分，从 start 开始， 大小为 pageSize
-     * @param id
+     * @param sellerID
      * @param start
      * @param pageSize
      * @return
@@ -66,13 +66,23 @@ public interface AdminOrderService {
 
     /**
      * @Description 通过一个ProductID 查找这个产品的所有 Order，并从返回的结果集中截取一部分，从 start 开始， 大小为 pageSize
-     * @param id
+     * @param productID
      * @param start
      * @param pageSize
      * @return
      */
     List<Order> selectOrderByProductID(int productID, int start, int pageSize);
 
+    /**
+     * 获取一段时间之内的所有的成功订单
+     * @param startTime
+     * @param endTime
+     * @param type type 为获取的类型，1 ：最小单位是 一天 ；2 最小单位是 秒
+     * @return
+     */
+
+
+    List<Order> selectAllOrdersBetweenTime(String startTime, String endTime, int type);
 
 
 }

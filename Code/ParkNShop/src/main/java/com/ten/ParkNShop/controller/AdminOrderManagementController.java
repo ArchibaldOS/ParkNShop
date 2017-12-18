@@ -35,7 +35,7 @@ public class AdminOrderManagementController  {
     }
 
     @RequestMapping("/AdminOrderSearchByID")
-    public String adminOrderSearchByID(){
+    public String adminOrderSearchById(){
         return "Admin/AdminOrderSearchByID";
     }
 
@@ -79,7 +79,7 @@ public class AdminOrderManagementController  {
     }
 
     @RequestMapping("/AdminOrderSearchByProductIDDo")
-    public String adminOrderSearchByProductIDDo(HttpServletRequest httpServletRequest, Model model){
+    public String adminOrderSearchByProductIdDo(HttpServletRequest httpServletRequest, Model model){
         int productID = Integer.parseInt(httpServletRequest.getParameter("productID"));
         // TODO 结果分页 验证 ID
         model.addAttribute("orders", adminOrderService.selectOrderByProductID(productID, 0, 20));

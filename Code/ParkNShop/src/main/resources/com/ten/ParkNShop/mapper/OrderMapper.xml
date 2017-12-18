@@ -269,6 +269,16 @@
         WHERE productId=#{productId}
         LIMIT #{start},#{pageSize}
     </select>
+
+    <!--选择一段时间之内的所有订单（成功完成）-->
+    <select id="selectAllOrdersBetweenTime" resultMap="BaseResultMap" parameterType="String">
+        SELECT
+        *
+        FROM
+        orders
+        WHERE
+        orderTime BETWEEN #{startTime} AND #{endTime}
+    </select>
     
     <select id="countCompleted" parameterType="int" resultType="int">
 		SELECT

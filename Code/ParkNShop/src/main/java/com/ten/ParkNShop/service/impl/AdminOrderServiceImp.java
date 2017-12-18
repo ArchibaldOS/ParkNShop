@@ -117,4 +117,22 @@ public class AdminOrderServiceImp implements AdminOrderService{
         List<Order> orders = orderMapper.selectOrderByProductID(productID, start, pageSize);
         return orders;
     }
+
+    /**
+     * 获取一段时间之内的所有的成功订单
+     * @param startTime
+     * @param endTime
+     * @param type type 为获取的类型，1 ：最小单位是 一天 ；2 最小单位是 秒
+     * @return
+     */
+    public List<Order> selectAllOrdersBetweenTime(String startTime, String endTime, int type) {
+        List<Order> orders = null;
+        if(type == 1){
+            orders = orderMapper.selectAllOrdersBetweenTime(startTime + " 0:00", endTime + " 24:00");
+        }else{
+            orders = orderMapper.selectAllOrdersBetweenTime(startTime, endTime);
+        }
+
+        return orders;
+    }
 }

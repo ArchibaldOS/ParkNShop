@@ -2,6 +2,7 @@ package com.ten.ParkNShop.mapper;
 
 import java.util.List;
 
+import com.ten.ParkNShop.entity.SearchInfo;
 import org.apache.ibatis.annotations.Param;
 
 import com.ten.ParkNShop.entity.Product;
@@ -21,5 +22,17 @@ public interface ProductMapper {
 	int updateProduct1(Product product);
 	
 	int updateProduct2(Product product);
+
+	List<Product> searchByProductName(String productName);
+
+	List<Product> searchBySearchType(@Param("searchType")int searchType,@Param("start")int start,@Param("pageSize")int pageSize);
+
+	List<Product> searchByProductNameAndSearchType(SearchInfo searchInfo);
+
+	List<Product> searchTopSalesProducts(int topNum);
+
+	int countByProductName(String productName);
+
+
 
 }

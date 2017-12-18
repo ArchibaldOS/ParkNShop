@@ -75,21 +75,38 @@
 <div id="wrap">
 
 <!-- Top bar -->
-<div class="top-bar">
-    <div class="container">
-        <p>Welcome to ParkNShop!</p>
-        <div class="right-sec">
-            <ul>
-                <li><a href="userlogin.jsp">Login</a></li>
-                <li><a href="register.jsp">Register</a></li>
-                <li><a href="#.">My Account</a></li>
-                <li><a href="#.">Seller Center</a></li>
-                <li><a href="#.">Contact Manager</a></li>
-                <li><a href="#.">FAQ </a></li>
-            </ul>
+    <div class="top-bar">
+        <div class="container">
+            <p>Welcome to ParkNShop!</p>
+            <div class="right-sec">
+                <ul>
+                    <%
+                        try{
+                            String user = (String)session.getAttribute( "Buyer" );
+                            if ( user == null )
+                            {
+                    %>
+                    <ul>
+                        <li><a href="/BuyerLogin">Login</a></li>
+                        <li><a href="/BuyerRegister">Register</a></li>
+                    </ul>
+                    <%
+                        }
+                    }catch(Exception e){
+                    %>
+                    <li>${ sessionScope.Buyer.buyerAccount}</li>
+                    <%
+                            out.println( "<a href = '/buyerLogout' >Logout</a>" );
+
+                        }
+                    %>
+                    <li><a href="/BuyerAccount">My Account</a></li>
+                    <li><a href="/sellerLogin">Seller Center</a></li>
+                    <li><a href="/ContactManager">Contact Manager</a></li>
+                </ul>
+            </div>
         </div>
     </div>
-</div>
 
 <!-- Header -->
 <div class="services">

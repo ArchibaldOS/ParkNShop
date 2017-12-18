@@ -2,10 +2,14 @@ package com.ten.ParkNShop.service.impl;
 
 
 import com.ten.ParkNShop.entity.Buyer;
+import com.ten.ParkNShop.entity.Product;
+import com.ten.ParkNShop.entity.SearchInfo;
 import com.ten.ParkNShop.mapper.BuyerMapper;
 import com.ten.ParkNShop.service.BuyerIndexService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class BuyerIndexServiceImp implements BuyerIndexService {
@@ -22,4 +26,6 @@ public class BuyerIndexServiceImp implements BuyerIndexService {
         Buyer buyer = buyerMapper.findBuyer(buyerAccount, buyerPassword);
         return buyer;
     }
+
+
 }

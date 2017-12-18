@@ -64,7 +64,6 @@ public class SellerProductController {
 		int sellerId = ((Seller)session.getAttribute("seller")).getsellerId();
 		
 		Page page = sellerProductService.getProducts(sellerId);
-		System.out.println(page.getList());
 		
 		model.addAttribute("seller",session.getAttribute("seller"));
 		if(page.getList().size()>0)
@@ -82,7 +81,6 @@ public class SellerProductController {
 		Seller seller = (Seller)session.getAttribute("seller");
 		
 		int status = seller.getShopStatus();
-		System.out.println(status);
 		if(status == 1){
 			model.addAttribute("status", null);
 			return "forward:/sellerProductList";

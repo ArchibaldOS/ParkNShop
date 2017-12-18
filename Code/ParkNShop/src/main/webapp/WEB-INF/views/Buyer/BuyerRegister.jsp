@@ -5,15 +5,15 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<title>PackNShop</title>
+<title>ParkNShop</title>
 <link rel="stylesheet" href="assets/css/log-reg-style.css" />
 <body>
 
 <div class="register-container">
-	<h1>ShareLink</h1>
+	<h1>ParkNShop</h1>
 	
 	<div class="connect">
-		<p>Link the world. Share to world.</p>
+		<p>buyer register</p>
 	</div>
 	
 	<form action="/BuyerRegisterClick" method="post" id="registerForm">

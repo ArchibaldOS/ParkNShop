@@ -13,5 +13,7 @@ public interface BuyerIndexService {
 
     Buyer buyerLogin(String buyerAccount,String buyerPassword);
 
+
+
 }
 

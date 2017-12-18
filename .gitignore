@@ -6,4 +6,9 @@ Code/ParkNShop/target/
 # jdbc文件
 Code/ParkNShop/src/main/resources/init.properties
 Code/ParkNShop/src/main/resources/jdbc.properties
+
+# maven 项目配置文件
 Code/ParkNShop/pom.xml
+
+# mybatis 配置文件
+Code/ParkNShop/src/main/resources/mybatis-generator/generatorConfig.xml

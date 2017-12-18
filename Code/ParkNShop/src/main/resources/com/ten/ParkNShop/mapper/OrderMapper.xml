@@ -269,4 +269,22 @@
         WHERE productId=#{productId}
         LIMIT #{start},#{pageSize}
     </select>
+    
+    <select id="countCompleted" parameterType="int" resultType="int">
+		SELECT
+			count(1)
+		FROM
+			orders
+		WHERE
+		    sellerId = #{sellerId} AND orderStatus = 5
+	</select>
+	
+	<select id="findCompleted" resultMap="BaseResultMap" parameterType="int">
+        SELECT
+        *
+        FROM
+        orders
+        WHERE sellerId=#{sellerId} AND orderStatus = 5
+        LIMIT #{start},#{pageSize}
+    </select>
 </mapper>

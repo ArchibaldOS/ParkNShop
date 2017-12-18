@@ -40,31 +40,33 @@
   <!-- Top bar -->
   <div class="top-bar">
     <div class="container">
-      <p>Welcome to SmartTech center!</p>
+      <p>Welcome to ParkNShop!</p>
       <div class="right-sec">
         <ul>
-          <li><a href="#.">Login/Register </a></li>
-          <li><a href="#.">Store Location </a></li>
-          <li><a href="#.">FAQ </a></li>
-          <li><a href="#.">Newsletter </a></li>
-          <li>
-            <select class="selectpicker">
-              <option>French</option>
-              <option>German</option>
-              <option>Italian</option>
-              <option>Japanese</option>
-            </select>
-          </li>
-          <li>
-            <select class="selectpicker">
-              <option>(USD)Dollar</option>
-              <option>GBP</option>
-              <option>Euro</option>
-              <option>JPY</option>
-            </select>
-          </li>
+          <%
+            try{
+              String user = (String)session.getAttribute( "Buyer" );
+              if ( user == null )
+              {
+          %>
+          <ul>
+            <li><a href="/BuyerLogin">Login</a></li>
+            <li><a href="/BuyerRegister">Register</a></li>
+          </ul>
+          <%
+            }
+          }catch(Exception e){
+          %>
+          <li>${ sessionScope.Buyer.buyerAccount}</li>
+          <%
+              out.println( "<a href = '/buyerLogout' >Logout</a>" );
+
+            }
+          %>
+          <li><a href="/BuyerAccount">My Account</a></li>
+          <li><a href="/sellerLogin">Seller Center</a></li>
+          <li><a href="/ContactManager">Contact Manager</a></li>
         </ul>
-        <div class="social-top"> <a href="#."><i class="fa fa-facebook"></i></a> <a href="#."><i class="fa fa-twitter"></i></a> <a href="#."><i class="fa fa-linkedin"></i></a> <a href="#."><i class="fa fa-dribbble"></i></a> <a href="#."><i class="fa fa-pinterest"></i></a> </div>
       </div>
     </div>
   </div>
@@ -73,7 +75,7 @@
   <header>
     <div class="container">
       <div class="logo"> <a href="/BuyerIndex"><img src="assets/images/logo.png"></a> </div>
-      <form class="search-cate" action="/buyerSearchProduct">
+      <form class="search-cate" action="/SearchProducts">
         <select class="selectpicker" name="searchType">
           <option value="0"> All Categories</option>
           <option value="1"> TV& Home Theater</option>

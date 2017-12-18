@@ -114,7 +114,7 @@ public class AdminBuyerManagementController {
         return "redirect:/AdminBuyerManagement";
     }
 
-    @RequestMapping("/AdminDoSearchBybuyerId")
+    @RequestMapping("/AdminDoSearchByBuyerId")
     public String adminDoSearchByID(HttpServletRequest httpServletRequest,Model model){
         int buyerId = Integer.parseInt(httpServletRequest.getParameter("buyerId"));
         model.addAttribute("buyer",adminBuyerService.selectBuyerById(buyerId));

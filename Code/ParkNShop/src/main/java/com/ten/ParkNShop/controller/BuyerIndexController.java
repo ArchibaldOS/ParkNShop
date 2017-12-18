@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 @Controller
@@ -24,10 +25,6 @@ public class BuyerIndexController {
         return "Buyer/BuyerLogin";
     }
 
-    @RequestMapping("/BuyerIndex")
-    public String buyerIndex(){
-        return "Buyer/BuyerIndex";
-    }
     @RequestMapping("/BuyerRegister")
     public String buyerRegister(){
         return "Buyer/BuyerRegister";
@@ -40,10 +37,7 @@ public class BuyerIndexController {
     public String contactManager(){
         return "Buyer/ContactManager";
     }
-    @RequestMapping("/SearchProducts")
-    public String listProducts(){
-        return "Buyer/ListProducts";
-    }
+
     @RequestMapping("/BuyerLoginClick")
     public String buyerLoginClick(String buyerAccount, String buyerPassword,HttpSession session){
 
@@ -51,7 +45,7 @@ public class BuyerIndexController {
             return "redirect:/BuyerLogin";
         }
         session.setAttribute("Buyer",buyerService.buyerLogin(buyerAccount,buyerPassword));
-        return "redirect:BuyerIndex.jsp";
+        return "redirect:/BuyerIndex";
     }
 
     @RequestMapping("/BuyerRegisterClick")

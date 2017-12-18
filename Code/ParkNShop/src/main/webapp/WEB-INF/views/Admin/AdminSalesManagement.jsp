@@ -50,8 +50,8 @@
             <div class="col-md-2">
                 <div class="list-group">
                     <a href="/AdminSalesManagement" class="list-group-item active">Sales&nbsp;&nbsp;&nbsp;&nbsp; Management</a>
-                    <a href="/AdminSalesModifyCommission" class="list-group-item">Modify&nbsp;&nbsp;&nbsp;&nbsp; Management</a>
-                    <a href="/AdminSalesCommissionHistory" class="list-group-item">Commision&nbsp;&nbsp;&nbsp;&nbsp; Management</a>
+                    <a href="/AdminSalesModifyCommission" class="list-group-item">Modify&nbsp;&nbsp;&nbsp;&nbsp; Commission</a>
+                    <a href="/AdminSalesCommissionHistory" class="list-group-item">Commission&nbsp;&nbsp;&nbsp;&nbsp; Management</a>
                 </div>
             </div>
             <div class="col-md-10">
@@ -59,7 +59,8 @@
                     <h1>Sales Management</h1>
                 </div>
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-8">
+                        <input size="100" type="date" id="month" name="month" value="Choose Month">
                         <ul class="nav nav-tabs">
                             <li class="active">
                                 <a href="">
@@ -93,14 +94,13 @@
                                     Yearly
                                 </a>
                             </li>
-
                         </ul>
                         <div class="panel-heading">Sales's Condition</div>
                         <div class="panel-body">
                             <canvas id="canvas" class="col-md-12"></canvas>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <span>Commission:0.2</span>
                         <table class="table table-bordered">
                             <thead>

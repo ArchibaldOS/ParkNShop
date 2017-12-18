@@ -55,7 +55,7 @@ public class AdminOrderServiceImp implements AdminOrderService{
     /**
      * @Author tad
      * @Date created in 11:06 AM 12/15/2017
-     * @Description 通过 orderId  查找出一个 Order
+     * @Description 通过 orderID  查找出一个 Order
      *
      * @params [id]  
      * @return com.ten.ParkNShop.entity.Order
@@ -81,40 +81,40 @@ public class AdminOrderServiceImp implements AdminOrderService{
     /**
      * @Author: tad
      * @Date: created in 11:04 AM 12/15/2017
-     * @Description: 通过 buyerId 查找该用户的从 start 开始的 pageSize 个 Order
+     * @Description: 通过 BuyerID 查找该用户的从 start 开始的 pageSize 个 Order
      *
      * @params [id, start, pageSize]
      * @return java.util.List<com.ten.ParkNShop.entity.Order>
      */
-    public List<Order> selectOrderBybuyerId(int buyerId, int start, int pageSize) {
+    public List<Order> selectOrderByBuyerID(int buyerID, int start, int pageSize) {
 
-        List<Order> orders = orderMapper.selectOrderBybuyerId(buyerId, start, pageSize);
+        List<Order> orders = orderMapper.selectOrderByBuyerID(buyerID, start, pageSize);
         return orders;
     }
 
     /**
      * @Author: tad
      * @Date: created in 11:04 AM 12/15/2017
-     * @Description: 通过 sellerId 查找该用户的从 start 开始的 pageSize 个 Order
+     * @Description: 通过 SellerID 查找该用户的从 start 开始的 pageSize 个 Order
      *
      * @params [id, start, pageSize]  
      * @return java.util.List<com.ten.ParkNShop.entity.Order>
      */
-    public List<Order> selectOrderBysellerId(int sellerId, int start, int pageSize) {
-        List<Order> orders = orderMapper.selectOrderBysellerId(sellerId, start, pageSize);
+    public List<Order> selectOrderBySellerID(int sellerID, int start, int pageSize) {
+        List<Order> orders = orderMapper.selectOrderBySellerID(sellerID, start, pageSize);
         return orders;
     }
 
     /**
      * @Author: tad
      * @Date: created in 11:05 AM 12/15/2017
-     * @Description: 通过 productId 查找该产品的从 start 开始的 pageSize 个 Order
+     * @Description: 通过 ProductID 查找该产品的从 start 开始的 pageSize 个 Order
      *
      * @params [id, start, pageSize]  
      * @return java.util.List<com.ten.ParkNShop.entity.Order>
      */
-    public List<Order> selectOrderByproductId(int productId, int start, int pageSize) {
-        List<Order> orders = orderMapper.selectOrderByproductId(productId, start, pageSize);
+    public List<Order> selectOrderByProductID(int productID, int start, int pageSize) {
+        List<Order> orders = orderMapper.selectOrderByProductID(productID, start, pageSize);
         return orders;
     }
 }

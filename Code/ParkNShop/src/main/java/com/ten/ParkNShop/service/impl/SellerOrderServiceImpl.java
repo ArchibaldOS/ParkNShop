@@ -15,8 +15,7 @@ public class SellerOrderServiceImpl implements SellerOrderService {
 
 	@Autowired
 	private OrderMapper orderMapper;
-	
-	@Override
+
 	public Page getCompletedOrders(int sellerId, int cur) {
 		Page page = new Page(cur);
 		

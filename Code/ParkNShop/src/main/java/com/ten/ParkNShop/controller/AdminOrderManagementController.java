@@ -1,6 +1,5 @@
 package com.ten.ParkNShop.controller;
 
-import com.sun.org.apache.xpath.internal.SourceTree;
 import com.ten.ParkNShop.entity.Order;
 import com.ten.ParkNShop.service.AdminOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.jws.WebParam;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 
@@ -43,66 +41,66 @@ public class AdminOrderManagementController  {
 
     @RequestMapping("/AdminOrderSearchByIDDo")
     public String adminOrderSearchByIDDo(HttpServletRequest httpServletRequest,Model model){
-        int orderId = Integer.parseInt(httpServletRequest.getParameter("orderId"));
-        model.addAttribute("order", adminOrderService.selectOrderById(orderId));
+        int orderID = Integer.parseInt(httpServletRequest.getParameter("orderID"));
+        model.addAttribute("order", adminOrderService.selectOrderById(orderID));
         return "Admin/AdminOrderDetail";
     }
 
 
     @RequestMapping("/AdminOrderSearchBybuyerId")
     public String adminOrderSearchBybuyerId(){
-        return "Admin/AdminOrderSearchBybuyerId";
+        return "Admin/AdminOrderSearchByBuyerId";
     }
 
-    @RequestMapping("/AdminOrderSearchBybuyerIdDo")
-    public String adminOrderSearchBybuyerIdDo(HttpServletRequest httpServletRequest, Model model){
-        int buyerId = Integer.parseInt(httpServletRequest.getParameter("buyerId"));
+    @RequestMapping("/AdminOrderSearchByBuyerIDDo")
+    public String adminOrderSearchByBuyerIDDo(HttpServletRequest httpServletRequest, Model model){
+        int buyerID = Integer.parseInt(httpServletRequest.getParameter("buyerID"));
         // TODO 结果分页 验证 ID
-        model.addAttribute("orders", adminOrderService.selectOrderBybuyerId(buyerId, 0, 20));
+        model.addAttribute("orders", adminOrderService.selectOrderByBuyerID(buyerID, 0, 20));
         return "Admin/AdminOrderSearchResult";
     }
 
     @RequestMapping("/AdminOrderSearchBysellerId")
     public String adminOrderSearchBysellerId(){
-        return "Admin/AdminOrderSearchBysellerId";
+        return "Admin/AdminOrderSearchBySellerId";
     }
 
-    @RequestMapping("/AdminOrderSearchBysellerIdDo")
-    public String adminOrderSearchBysellerIdDo(HttpServletRequest httpServletRequest, Model model){
-        int sellerId = Integer.parseInt(httpServletRequest.getParameter("sellerId"));
+    @RequestMapping("/AdminOrderSearchBySellerIDDo")
+    public String adminOrderSearchBySellerIDDo(HttpServletRequest httpServletRequest, Model model){
+        int sellerID = Integer.parseInt(httpServletRequest.getParameter("sellerID"));
         // TODO 结果分页 验证 ID
-        model.addAttribute("orders", adminOrderService.selectOrderBysellerId(sellerId, 0, 20));
+        model.addAttribute("orders", adminOrderService.selectOrderBySellerID(sellerID, 0, 20));
         return "Admin/AdminOrderSearchResult";
     }
 
     @RequestMapping("/AdminOrderSearchByproductId")
     public String adminOrderSearchByproductId(){
-        return "Admin/AdminOrderSearchByproductId";
+        return "Admin/AdminOrderSearchByProductId";
     }
 
-    @RequestMapping("/AdminOrderSearchByproductIdDo")
-    public String adminOrderSearchByproductIdDo(HttpServletRequest httpServletRequest, Model model){
-        int productId = Integer.parseInt(httpServletRequest.getParameter("productId"));
+    @RequestMapping("/AdminOrderSearchByProductIDDo")
+    public String adminOrderSearchByProductIDDo(HttpServletRequest httpServletRequest, Model model){
+        int productID = Integer.parseInt(httpServletRequest.getParameter("productID"));
         // TODO 结果分页 验证 ID
-        model.addAttribute("orders", adminOrderService.selectOrderByproductId(productId, 0, 20));
+        model.addAttribute("orders", adminOrderService.selectOrderByProductID(productID, 0, 20));
         return "Admin/AdminOrderSearchResult";
     }
 
     /**
-     * @Description 通过一个 orderId 获取一个 Order 的 具体信息
+     * @Description 通过一个 OrderID 获取一个 Order 的 具体信息
      * @return
      */
     @RequestMapping("/AdminOrderDetail")
     public String adminOrderDetail(HttpServletRequest httpServletRequest,Model model){
-        int orderId = Integer.parseInt(httpServletRequest.getParameter("orderId"));
-        model.addAttribute("order", adminOrderService.selectOrderById(orderId));
+        int orderID = Integer.parseInt(httpServletRequest.getParameter("orderID"));
+        model.addAttribute("order", adminOrderService.selectOrderById(orderID));
         return "Admin/AdminOrderDetail";
     }
 
     @RequestMapping("/AdminOrderModify")
     public String adminOrderModify(HttpServletRequest httpServletRequest,Model model){
-        int orderId = Integer.parseInt(httpServletRequest.getParameter("orderId"));
-        model.addAttribute("order", adminOrderService.selectOrderById(orderId));
+        int orderID = Integer.parseInt(httpServletRequest.getParameter("orderID"));
+        model.addAttribute("order", adminOrderService.selectOrderById(orderID));
         return "Admin/AdminOrderModify";
     }
 
@@ -137,9 +135,9 @@ public class AdminOrderManagementController  {
 
     @RequestMapping("/AdminOrderDelete")
     public String adminOrderDelete(HttpServletRequest httpServletRequest){
-        int orderId = Integer.valueOf(httpServletRequest.getParameter("orderId"));
-        adminOrderService.deleteOrder(orderId);
-        System.out.println("Delete order id:" + orderId);
+        int orderID = Integer.valueOf(httpServletRequest.getParameter("orderID"));
+        adminOrderService.deleteOrder(orderID);
+        System.out.println("Delete order id:" + orderID);
         return "redirect:/AdminOrderManagement";
     }
 

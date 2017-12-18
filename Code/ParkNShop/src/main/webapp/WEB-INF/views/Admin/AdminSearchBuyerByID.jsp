@@ -69,7 +69,7 @@
                 </li>
             </ul>
 
-            <form action="/AdminDoSearchBybuyerId" class="user_search">
+            <form action="/AdminDoSearchByBuyerId" class="user_search">
                 <div class="form-group">
                     <label for="buyerId">Buyer ID:</label>
                     <input type="text" id="buyerId" class="form-control" name="buyerId" placeholder="Please input buyer ID:" />

@@ -8,8 +8,6 @@
     <link rel="stylesheet" href="assets/css/bootstrap-maizi.css"/>
 </head>
 
-
-
 <body>
 <!--导航-->
 <nav class="navbar navbar-default">
@@ -51,57 +49,33 @@
     <div class="row">
         <div class="col-md-2">
             <div class="list-group">
-                <a href="/AdminSalesManagement" class="list-group-item">Sales&nbsp;&nbsp;&nbsp;&nbsp; Management</a>
-                <a href="/AdminSalesModifyCommission" class="list-group-item">Modify&nbsp;&nbsp;&nbsp;&nbsp; Commission</a>
-                <a href="/AdminSalesCommissionHistory" class="list-group-item active">Commission&nbsp;&nbsp;&nbsp;&nbsp; Management</a>
-
+                <a href="/AdminSalesManagement" class="list-group-item active">Sales&nbsp;&nbsp;&nbsp;&nbsp; Management</a>
+                <a href="/AdminSalesModifyCommission" class="list-group-item">Modify&nbsp;&nbsp;&nbsp;&nbsp; Management</a>
+                <a href="/AdminSalesCommissionHistory" class="list-group-item">Commision&nbsp;&nbsp;&nbsp;&nbsp; Management</a>
             </div>
         </div>
         <div class="col-md-10">
             <div class="page-header">
-                <h1>Sales Commission History</h1>
+                <h1>Sales Management</h1>
             </div>
-            <table class="table">
-                <thead>
-                <tr>
-                    <th>New Commission</th>
-                    <th>Operator</th>
-                    <th>Time</th>
-                </tr>
-                </thead>
-                <tbody>
-                <c:forEach var="commission" items="${commissions}">
-                <tr>
-                    <td><c:out value="${commission.commission}"></c:out></td>
-                    <td><c:out value="${commission.operatorAccount}"></c:out></td>
-                    <td><c:out value="${commission.time}"></c:out></td>
-                </tr>
-                </c:forEach>
-                </tbody>
-            </table>
-            <nav class="pull-right">
-                <ul class="pagination">
-                    <li class="disabled">
-                        <a href="#" aria-label="Previous">
-                            <span aria-hidden="true">&laquo;</span>
-                        </a>
-                    </li>
-                    <li class="active"><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li>
-                        <a href="#" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
+            <div class="row">
+                <span>KKKKKKKK kkkkkkkk</span>
+                <form>
+                    <select onchange="selectType()" id="selectTimeType">
+                        <option></option>
+                        <option value="daily">daily</option>
+                        <option value="weekly">weekly</option>
+                        <option value="monthly">monthly</option>
+                        <option value="yearly">yearly</option>
+                    </select>
+                    <input type="date" id="timeType">
+                </form>
+                <canvas id="myChart" width="400" height=""></canvas>
+                <button onclick="changeChart"> Button</button>
+            </div>
         </div>
     </div>
 </div>
-
 
 <!--footer-->
 <footer>
@@ -121,7 +95,55 @@
 <script src="assets/javascripts/jquery.min.js"></script>
 <script src="assets/javascripts/bootstrap.min.js"></script>
 <script src="assets/javascripts/Chart.js"></script>
-<script src="assets/javascripts/script.js"></script>
+<script>
+    var ctx = document.getElementById("myChart").getContext("2d");
+    var lineChartData = {
+        //X坐标数据
+        labels : [${label[0]}, ${label[1]},${label[2]},${label[3]},${label[4]},${label[5]}],
+        datasets : [
+            {
+                //统计表的背景颜色
+                fillColor : "rgba(0,0,255,0.5)",
+                //统计表画笔颜色
+                strokeColor : "#f60",
+                //点的颜色
+                pointColor : "#000;",
+                //点边框的颜色
+                pointStrokeColor : "red",
+                //鼠标触发时点的颜色
+                pointHighlightFill : "red",
+                //鼠标触发时点边框的颜色
+                pointHighlightStroke : "#000",
+                //Y坐标数据,以数组中的最大值来确定y轴的最大值
+                data : [${data[0]}, ${data[1]},${data[2]},${data[3]},${data[4]},${data[5]}]
+            }
+        ]
+    };
+    var myNewChart = new Chart(ctx).Line(lineChartData, {
+        responsive: true
+    });
+</script>
+<script>
+    function selectType() {
+        var type = document.getElementById("selectTimeType").value;
+        console.log(type);
+        var inputTimeType = document.getElementById("timeType");
+        if(type == "daily"){
+            inputTimeType.type = "date";
+            var date = new Date();
+            var y = date.getFullYear();
+            var m = "0"+(date.getMonth()+1);
+            var d = "0"+date.getDate();
+            var ydate = y+"-"+m.substring(m.length-2,m.length)+"-"+d.substring(d.length-2,d.length);
+            inputTimeType.value = ydate;
+        }else if(type == "weekly"){
+            inputTimeType.type = "week";
+        }else if(type == "monthly"){
+            inputTimeType.type = "month";
+        }else{
+
+        }
+    }
+</script>
 </body>
 </html>
-

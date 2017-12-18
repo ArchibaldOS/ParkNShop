@@ -1,6 +1,5 @@
 package com.ten.ParkNShop.controller;
 
-import com.sun.org.apache.xpath.internal.SourceTree;
 import com.ten.ParkNShop.entity.Order;
 import com.ten.ParkNShop.service.AdminOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.jws.WebParam;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 
@@ -51,7 +49,7 @@ public class AdminOrderManagementController  {
 
     @RequestMapping("/AdminOrderSearchBybuyerId")
     public String adminOrderSearchBybuyerId(){
-        return "Admin/AdminOrderSearchBybuyerId";
+        return "Admin/AdminOrderSearchByBuyerId";
     }
 
     @RequestMapping("/AdminOrderSearchBybuyerIdDo")
@@ -64,7 +62,7 @@ public class AdminOrderManagementController  {
 
     @RequestMapping("/AdminOrderSearchBysellerId")
     public String adminOrderSearchBysellerId(){
-        return "Admin/AdminOrderSearchBysellerId";
+        return "Admin/AdminOrderSearchBySellerId";
     }
 
     @RequestMapping("/AdminOrderSearchBysellerIdDo")
@@ -77,7 +75,7 @@ public class AdminOrderManagementController  {
 
     @RequestMapping("/AdminOrderSearchByproductId")
     public String adminOrderSearchByproductId(){
-        return "Admin/AdminOrderSearchByproductId";
+        return "Admin/AdminOrderSearchByProductId";
     }
 
     @RequestMapping("/AdminOrderSearchByproductIdDo")

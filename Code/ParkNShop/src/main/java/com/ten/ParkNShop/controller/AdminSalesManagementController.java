@@ -2,6 +2,7 @@ package com.ten.ParkNShop.controller;
 
 import com.ten.ParkNShop.entity.Commission;
 import com.ten.ParkNShop.service.AdminCommissionService;
+import com.ten.ParkNShop.service.AdminOrderService;
 import com.ten.ParkNShop.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.net.ssl.HttpsURLConnection;
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.Date;
 
 @Controller
@@ -20,8 +22,24 @@ public class AdminSalesManagementController {
     @Autowired
     AdminService adminService;
 
+    @Autowired
+    AdminOrderService adminOrderService;
+
     @RequestMapping("/AdminSalesManagement")
-    public String adminSalesManagement(){
+    public String adminSalesManagement(HttpServletRequest httpServletRequest, Model model){
+        // 查看收入的类型 sales 与 ads
+        String type = httpServletRequest.getParameter("type");
+        // 时间范围 一天 一周 一月 一年
+        String timeType = httpServletRequest.getParameter("timeType");
+
+        if(httpServletRequest.getParameter("type") != null){
+
+            if(type.equals("sales")){
+
+            }else{
+
+            }
+        }
         return "Admin/AdminSalesManagement";
     }
 
@@ -51,6 +69,7 @@ public class AdminSalesManagementController {
         }
         return "redirect:/AdminSalesModifyCommission";
     }
+
     /**
      * @Author tad
      * @Date created in 2:45 PM 12/17/2017
@@ -69,5 +88,15 @@ public class AdminSalesManagementController {
             model.addAttribute("commissions", adminCommissionService.selectSomneCommission(start, pageSize));
         }
         return "Admin/AdminSalesCommissionHistory";
+    }
+    @RequestMapping("/testChartJS")
+    public String testChartJS(Model model){
+        model.addAttribute("type", "sales");
+        model.addAttribute("timeType", "daily");
+        String[] strs = {"1","2","3","4","5","6"};
+        model.addAttribute("label",strs);
+        int[] data = {1, 2, 5 , 7 , 9, 10};
+        model.addAttribute("data", data);
+        return "Admin/testChartJS";
     }
 }

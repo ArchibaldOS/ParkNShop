@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : localhost_3306
-Source Server Version : 50713
+Source Server         : MySQLRoot
+Source Server Version : 50718
 Source Host           : localhost:3306
 Source Database       : parknshop
 
 Target Server Type    : MYSQL
-Target Server Version : 50713
+Target Server Version : 50718
 File Encoding         : 65001
 
-Date: 2017-12-12 21:34:45
+Date: 2017-12-18 17:42:22
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -27,7 +27,8 @@ CREATE TABLE `admins` (
   `adminBalance` float NOT NULL DEFAULT '0',
   `adminPhone` varchar(45) NOT NULL,
   `adminStatus` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`adminId`)
+  PRIMARY KEY (`adminId`),
+  KEY `adminAccount` (`adminAccount`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -55,7 +56,7 @@ CREATE TABLE `buyer` (
 -- ----------------------------
 -- Records of buyer
 -- ----------------------------
-INSERT INTO `buyer` VALUES ('2', 'buyer2', 'buye2', 'buy2address', '1234', 'buyer2', '1', '0');
+INSERT INTO `buyer` VALUES ('2', 'buyer2', 'buye2', 'buy2address', '123456', 'buyer2', '1', '0');
 INSERT INTO `buyer` VALUES ('3', 'buyer3', 'buyer3', 'buy3address', '123456788910', 'buyer3', '2', '0');
 INSERT INTO `buyer` VALUES ('4', 'buyer4', 'buyer4', 'buy4address', '123456788910', 'buyer4', '2', '0');
 INSERT INTO `buyer` VALUES ('5', 'buyer5', 'buyer5', 'buy5address', '123456788910', 'buyer5', '3', '0');
@@ -83,6 +84,29 @@ CREATE TABLE `comments` (
 -- ----------------------------
 -- Records of comments
 -- ----------------------------
+
+-- ----------------------------
+-- Table structure for commission
+-- ----------------------------
+DROP TABLE IF EXISTS `commission`;
+CREATE TABLE `commission` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `commission` float NOT NULL,
+  `operatoraccount` varchar(255) NOT NULL,
+  `time` timestamp NOT NULL ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `operatoraccount` (`operatoraccount`),
+  KEY `commission` (`commission`),
+  CONSTRAINT `operatoraccount` FOREIGN KEY (`operatoraccount`) REFERENCES `admins` (`adminAccount`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of commission
+-- ----------------------------
+INSERT INTO `commission` VALUES ('1', '0.2', 'admin', '2017-12-16 16:34:56');
+INSERT INTO `commission` VALUES ('2', '0.3', 'admin', '2017-12-16 17:05:32');
+INSERT INTO `commission` VALUES ('3', '0.35', 'admin', '2017-12-16 17:08:36');
+INSERT INTO `commission` VALUES ('4', '0', 'admin', '2017-12-17 20:15:24');
 
 -- ----------------------------
 -- Table structure for favouriteproduct
@@ -143,11 +167,18 @@ CREATE TABLE `orders` (
   CONSTRAINT `FK_Reference_14` FOREIGN KEY (`buyerId`) REFERENCES `buyer` (`buyerId`),
   CONSTRAINT `FK_Reference_2` FOREIGN KEY (`sellerId`) REFERENCES `seller` (`sellerId`),
   CONSTRAINT `FK_Reference_24` FOREIGN KEY (`productId`) REFERENCES `product` (`productId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of orders
 -- ----------------------------
+INSERT INTO `orders` VALUES ('1', '2', '4', '2', '2', '5', '12346544', '2', '2017-12-16 14:50:09');
+INSERT INTO `orders` VALUES ('2', '2', '4', '3', '1', '12', '123', '5', '2017-12-15 19:31:46');
+INSERT INTO `orders` VALUES ('3', '2', '2', '1', '2', '3', '13212', '1', '2017-12-16 14:01:57');
+INSERT INTO `orders` VALUES ('4', '5', '6', '3', '1', '2', '336', '3', '2017-12-15 16:39:56');
+INSERT INTO `orders` VALUES ('5', '6', '3', '1', '1', '56', '123456', '4', '2017-11-01 19:34:02');
+INSERT INTO `orders` VALUES ('6', '6', '3', '1', '1', '56', '123456', '4', '2017-12-17 19:33:14');
+INSERT INTO `orders` VALUES ('7', '6', '3', '1', '1', '56', '123456', '4', '2017-12-17 19:33:14');
 
 -- ----------------------------
 -- Table structure for product

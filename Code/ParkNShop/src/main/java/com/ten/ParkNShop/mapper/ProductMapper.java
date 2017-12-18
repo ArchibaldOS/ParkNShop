@@ -22,6 +22,8 @@ public interface ProductMapper {
 	int updateProduct1(Product product);
 	
 	int updateProduct2(Product product);
+	
+	List<Product> sellerFindByPage(@Param("sellerId")int sellerId, @Param("start") int start, @Param("pageSize")int pageSize);
 
 	List<Product> searchByProductName(String productName);
 

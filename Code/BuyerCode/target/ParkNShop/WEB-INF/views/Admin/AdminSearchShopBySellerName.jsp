@@ -28,7 +28,7 @@
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li><a href="/AdminShopManagement"><span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;Shop Management</a></li>
-                <li><a href="/AdminCustomerManagement"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;Customer Management</a></li>
+                <li><a href="/AdminBuyerManagement"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;Buyer Management</a></li>
                 <li><a href="/AdminOrderManagement"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;Order Management</a></li>
                 <li><a href="/AdminADManagement"><span class="glyphicon glyphicon-list-alt"></span>&nbsp;&nbsp;AD Management</a></li>
                 <li><a href="/AdminSalesManagement"><span class="glyphicon glyphicon-list-alt"></span>&nbsp;&nbsp;Sales</a></li>
@@ -39,7 +39,7 @@
                         <c:out value="${sessionScope.adminAccount}"></c:out>
                     </a>
                 </li>
-                <li><a href="/AdminLogout"><span class="glyphicon glyphicon-off"></span>&nbsp;退出</a></li>
+                <li><a href="/AdminLogout"><span class="glyphicon glyphicon-off"></span>&nbsp;LOG OUT</a></li>
             </ul>
         </div>
         <!--导航-->
@@ -63,7 +63,7 @@
             </div>
             <ul class="nav nav-tabs">
                 <li class="nav nav-tabs">
-                    <a href="/AdminSearchShop">Search By Shop ID</a>
+                    <a href="/AdminSearchShopByID">Search By Shop ID</a>
                 </li>
                 <li class="nav nav-tabs">
                     <a href="/AdminSearchShopByShopName">Search By Shop Name</a>
@@ -73,7 +73,7 @@
                 </li>
             </ul>
 
-            <form action="#" class="user_search">
+            <form action="/AdminDoSearchBySellerName" class="user_search">
                 <div class="form-group">
                     <label for="sellername">Seller Name:</label>
                     <input type="text" id="sellername" class="form-control" name="sellername" placeholder="Please input seller name:" />

@@ -28,7 +28,7 @@
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li><a href="/AdminShopManagement"><span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;Shop Management</a></li>
-                <li><a href="/AdminCustomerManagement"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;Customer Management</a></li>
+                <li><a href="/AdminBuyerManagement"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;Buyer Management</a></li>
                 <li><a href="/AdminOrderManagement"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;Order Management</a></li>
                 <li><a href="/AdminADManagement"><span class="glyphicon glyphicon-list-alt"></span>&nbsp;&nbsp;AD Management</a></li>
                 <li><a href="/AdminSalesManagement"><span class="glyphicon glyphicon-list-alt"></span>&nbsp;&nbsp;Sales</a></li>
@@ -39,7 +39,7 @@
                         <c:out value="${sessionScope.adminAccount}"></c:out>
                     </a>
                 </li>
-                <li><a href="/AdminLogout"><span class="glyphicon glyphicon-off"></span>&nbsp;退出</a></li>
+                <li><a href="/AdminLogout"><span class="glyphicon glyphicon-off"></span>&nbsp;LOG OUT</a></li>
             </ul>
         </div>
         <!--导航-->
@@ -51,180 +51,88 @@
         <div class="row">
             <div class="col-md-2">
                 <div class="list-group">
-                    <a href="(example)AdminUserList.jsp" class="list-group-item active">用户管理</a>
-                    <a href="(example)AdminUserSearch.jsp" class="list-group-item">用户搜索</a>
-                    <a href="(example)AdminUserList.jsp" class="list-group-item">添加用户</a>
+                    <a href="/AdminSalesManagement" class="list-group-item active">Sales&nbsp;&nbsp;&nbsp;&nbsp; Management</a>
+                    <a href="/AdminSalesModifyCommision" class="list-group-item">Modify&nbsp;&nbsp;&nbsp;&nbsp; Management</a>
+                    <a href="/AdminSalesCommisionHistory" class="list-group-item">Commision&nbsp;&nbsp;&nbsp;&nbsp; Management</a>
 
                 </div>
             </div>
             <div class="col-md-10">
                 <div class="page-header">
-                    <h1>用户管理</h1>
+                    <h1>Sales History</h1>
                 </div>
-                <ul class="nav nav-tabs">
-                    <li class="active">
-                        <a href="(example)AdminUserList.jsp">用户列表</a>
-                    </li>
-                    <li>
-                        <a href="(example)AdminUserSearch.jsp">用户搜索</a>
-                    </li>
-                    <li>
-                        <a href="(example)AdminUserList.jsp">添加用户</a>
-                    </li>
-                </ul>
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>用户名</th>
-                        <th>邮箱</th>
-                        <th>操作</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>张三</td>
-                        <td>132456@qq.com</td>
-                        <td><div role="presentation" class="dropdown">
-                            <button class="dropdown-toggle btn btn-default" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">操作 <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a href="###">编辑</a></li>
-                                <li><a href="###">删除</a></li>
-                                <li><a href="###">锁定</a></li>
-                                <li><a href="###">修改密码</a></li>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="panel panel-default">
+                            <ul class="nav nav-tabs">
+                                <li class="active">
+                                    <a href="#">
+                                        Sales
+                                    </a>
+                                </li>
+                                <li class="nav nav-tabs">
+                                    <a href="#">
+                                        ADs
+                                    </a>
+                                </li>
+                            </ul >
+                            <ul class="nav nav-tabs">
+                                <li class="active">
+                                    <a href="#">
+                                        Daily
+                                    </a>
+                                </li>
+                                <li class="nav nav-tabs">
+                                    <a href="#">
+                                        Weekly
+                                    </a>
+                                </li>
+                                <li class="nav nav-tabs">
+                                    <a href="#">
+                                        Monthly
+                                    </a>
+                                </li>
+                                <li class="nav nav-tabs">
+                                    <a href="#">
+                                        Yearly
+                                    </a>
+                                </li>
+
                             </ul>
-                        </div></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>张三</td>
-                        <td>132456@qq.com</td>
-                        <td>
-                            <div role="presentation" class="dropdown">
-                                <button class="dropdown-toggle btn btn-default" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">操作 <span class="caret"></span>
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li><a href="###">编辑</a></li>
-                                    <li><a href="###">删除</a></li>
-                                    <li><a href="###">锁定</a></li>
-                                    <li><a href="###">修改密码</a></li>
-                                </ul>
+                            <div class="panel-heading">Sales's Condition</div>
+                            <div class="panel-body">
+                                <canvas id="canvas" class="col-md-12"></canvas>
                             </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>张三</td>
-                        <td>132456@qq.com</td>
-                        <td><div role="presentation" class="dropdown">
-                            <button class="dropdown-toggle btn btn-default" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">操作 <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a href="###">编辑</a></li>
-                                <li><a href="###">删除</a></li>
-                                <li><a href="###">锁定</a></li>
-                                <li><a href="###">修改密码</a></li>
-                            </ul>
-                        </div></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>张三</td>
-                        <td>132456@qq.com</td>
-                        <td><div role="presentation" class="dropdown">
-                            <button class="dropdown-toggle btn btn-default" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">操作 <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a href="###">编辑</a></li>
-                                <li><a href="###">删除</a></li>
-                                <li><a href="###">锁定</a></li>
-                                <li><a href="###">修改密码</a></li>
-                            </ul>
-                        </div></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>张三</td>
-                        <td>132456@qq.com</td>
-                        <td><div role="presentation" class="dropdown">
-                            <button class="dropdown-toggle btn btn-default" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">操作 <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a href="###">编辑</a></li>
-                                <li><a href="###">删除</a></li>
-                                <li><a href="###">锁定</a></li>
-                                <li><a href="###">修改密码</a></li>
-                            </ul>
-                        </div></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>张三</td>
-                        <td>132456@qq.com</td>
-                        <td><div role="presentation" class="dropdown">
-                            <button class="dropdown-toggle btn btn-default" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">操作 <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a href="###">编辑</a></li>
-                                <li><a href="###">删除</a></li>
-                                <li><a href="###">锁定</a></li>
-                                <li><a href="###">修改密码</a></li>
-                            </ul>
-                        </div></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>张三</td>
-                        <td>132456@qq.com</td>
-                        <td><div role="presentation" class="dropdown">
-                            <button class="dropdown-toggle btn btn-default" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">操作 <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a href="###">编辑</a></li>
-                                <li><a href="###">删除</a></li>
-                                <li><a href="###">锁定</a></li>
-                                <li><a href="###">修改密码</a></li>
-                            </ul>
-                        </div></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>张三</td>
-                        <td>132456@qq.com</td>
-                        <td><div role="presentation" class="dropdown">
-                            <button class="dropdown-toggle btn btn-default" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">操作 <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a href="###">编辑</a></li>
-                                <li><a href="###">删除</a></li>
-                                <li><a href="###">锁定</a></li>
-                                <li><a href="###">修改密码</a></li>
-                            </ul>
-                        </div></td>
-                    </tr>
-                    </tbody>
-                </table>
-                <nav class="pull-right">
-                    <ul class="pagination">
-                        <li class="disabled">
-                            <a href="#" aria-label="Previous">
-                                <span aria-hidden="true">&laquo;</span>
-                            </a>
-                        </li>
-                        <li class="active"><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                        <li>
-                            <a href="#" aria-label="Next">
-                                <span aria-hidden="true">&raquo;</span>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div>
+                            <button type="button">Calculate Income</button>
+                            <span style="margin-left: 50px">Commision:0.2</span>
+                            <div style="border:1px #0f0f0f">
+                                <table class="table table-bordered">
+                                    <thead>
+                                    <tr>
+                                        <th>Aspect</th>
+                                        <th>Income</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <th scope="row">Sales</th>
+                                        <td>50000</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">ADs</th>
+                                        <td>10000</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <span>Income:60000</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

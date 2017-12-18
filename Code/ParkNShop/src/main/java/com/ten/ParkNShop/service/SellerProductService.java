@@ -16,5 +16,7 @@ public interface SellerProductService {
 	public int updateProduct1(Product product);
 	
 	public int updateProduct2(Product product);
+
+	public Page getProductsByPage(int sellerId, int cur);
 	
 }

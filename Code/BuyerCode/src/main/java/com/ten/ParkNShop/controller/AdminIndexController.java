@@ -3,7 +3,6 @@ package com.ten.ParkNShop.controller;
 import com.ten.ParkNShop.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpSession;
@@ -27,22 +26,7 @@ public class AdminIndexController {
     public String adminIndex(){
         return "Admin/AdminIndex";
     }
-    @RequestMapping("/AdminCustomerManagement")
-    public String adminCustomerManagement(){
-        return "Admin/AdminCustomerManagement";
-    }
-    @RequestMapping("/AdminOrderManagement")
-    public String adminOrderManagement(){
-        return "Admin/AdminOrderManagement";
-    }
-    @RequestMapping("/AdminADManagement")
-    public String adminADManagement(){
-        return "Admin/AdminADManagement";
-    }
-    @RequestMapping("/AdminSalesManagement")
-    public String adminSalesManagement(){
-        return "Admin/AdminSalesManagement";
-    }
+
     /**
     * @Author: Archibald
     * @Date: 4:06 PM 12/5/2017

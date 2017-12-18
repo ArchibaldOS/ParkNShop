@@ -28,7 +28,7 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><a href="/AdminShopManagement"><span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;Shop Management</a></li>
-                    <li><a href="/AdminCustomerManagement"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;Customer Management</a></li>
+                    <li><a href="/AdminBuyerManagement"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;Buyer Management</a></li>
                     <li><a href="/AdminOrderManagement"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;Order Management</a></li>
                     <li><a href="/AdminADManagement"><span class="glyphicon glyphicon-list-alt"></span>&nbsp;&nbsp;AD Management</a></li>
                     <li><a href="/AdminSalesManagement"><span class="glyphicon glyphicon-list-alt"></span>&nbsp;&nbsp;Sales</a></li>
@@ -39,7 +39,7 @@
                             <c:out value="${sessionScope.adminAccount}"></c:out>
                         </a>
                     </li>
-                    <li><a href="/AdminLogout"><span class="glyphicon glyphicon-off"></span>&nbsp;退出</a></li>
+                    <li><a href="/AdminLogout"><span class="glyphicon glyphicon-off"></span>&nbsp;LOG OUT</a></li>
                 </ul>
             </div>
             <!--导航-->
@@ -77,17 +77,17 @@
                     <tbody>
                     <c:forEach var="registerShop" items="${registerShops}">
                     <tr>
-                        <td class="hidden"><c:out value="${registerShop.sellerid}"></c:out></td>
-                        <td><c:out value="${registerShop.sellername}"></c:out></td>
-                        <td><c:out value="${registerShop.shopname}"></c:out></td>
-                        <td><c:out value="${registerShop.shopintroduction}"></c:out></td>
+                        <td class="hidden"><c:out value="${registerShop.sellerId}"></c:out></td>
+                        <td><c:out value="${registerShop.sellerName}"></c:out></td>
+                        <td><c:out value="${registerShop.shopName}"></c:out></td>
+                        <td><c:out value="${registerShop.shopIntroduction}"></c:out></td>
                         <td><div role="presentation" class="dropdown">
                             <button class="dropdown-toggle btn btn-default" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Onclick <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu">
-                                <li><a href="/AdminRegisterShopDetail?sellerId=${registerShop.sellerid}">View</a></li>
-                                <li><a href="/AdminApproveRegisterShop?sellerId=${registerShop.sellerid}">approve</a></li>
-                                <li><a href="/AdminDisapproveRegisterShop?sellerId=${registerShop.sellerid}">disapprove</a></li>
+                                <li><a href="/AdminRegisterShopDetail?sellerId=${registerShop.sellerId}">View</a></li>
+                                <li><a href="/AdminApproveRegisterShop?sellerId=${registerShop.sellerId}">approve</a></li>
+                                <li><a href="/AdminDisapproveRegisterShop?sellerId=${registerShop.sellerId}">disapprove</a></li>
                             </ul>
                         </div></td>
                     </tr>

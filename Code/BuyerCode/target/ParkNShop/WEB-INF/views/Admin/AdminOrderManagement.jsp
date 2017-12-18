@@ -28,7 +28,7 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><a href="/AdminShopManagement"><span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;Shop Management</a></li>
-                    <li><a href="/AdminCustomerManagement"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;Customer Management</a></li>
+                    <li><a href="/AdminBuyerManagement"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;Buyer Management</a></li>
                     <li><a href="/AdminOrderManagement"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;Order Management</a></li>
                     <li><a href="/AdminADManagement"><span class="glyphicon glyphicon-list-alt"></span>&nbsp;&nbsp;AD Management</a></li>
                     <li><a href="/AdminSalesManagement"><span class="glyphicon glyphicon-list-alt"></span>&nbsp;&nbsp;Sales</a></li>
@@ -39,7 +39,7 @@
                             <c:out value="${sessionScope.adminAccount}"></c:out>
                         </a>
                     </li>
-                    <li><a href="/AdminLogout"><span class="glyphicon glyphicon-off"></span>&nbsp;退出</a></li>
+                    <li><a href="/AdminLogout"><span class="glyphicon glyphicon-off"></span>&nbsp;LOG OUT</a></li>
                 </ul>
             </div>
             <!--导航-->
@@ -51,159 +51,52 @@
         <div class="row">
             <div class="col-md-2">
                 <div class="list-group">
-                    <a href="(example)AdminUserList.jsp" class="list-group-item active">用户管理</a>
-                    <a href="(example)AdminUserSearch.jsp" class="list-group-item">用户搜索</a>
-                    <a href="(example)AdminUserList.jsp" class="list-group-item">添加用户</a>
-
+                    <a href="/AdminOrderManagement" class="list-group-item active">Order&nbsp;&nbsp;&nbsp;&nbsp; Management</a>
+                    <a href="/AdminOrderSearchByID" class="list-group-item">SerachOrder</a>
                 </div>
             </div>
             <div class="col-md-10">
                 <div class="page-header">
-                    <h1>用户管理</h1>
+                    <h1>Order Management</h1>
                 </div>
-                <ul class="nav nav-tabs">
-                    <li class="active">
-                        <a href="(example)AdminUserList.jsp">用户列表</a>
-                    </li>
-                    <li>
-                        <a href="(example)AdminUserSearch.jsp">用户搜索</a>
-                    </li>
-                    <li>
-                        <a href="(example)AdminUserList.jsp">添加用户</a>
-                    </li>
-                </ul>
                 <table class="table">
                     <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>用户名</th>
-                        <th>邮箱</th>
-                        <th>操作</th>
+                        <th>OrderID</th>
+                        <th>Seller</th>
+                        <th>Buyer</th>
+                        <th>ProductID</th>
+                        <th>Count</th>
+                        <th>TotalPrice</th>
+                        <th>Address</th>
+                        <th>Status</th>
+                        <th>Time</th>
+                        <th>Operation</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>张三</td>
-                        <td>132456@qq.com</td>
-                        <td><div role="presentation" class="dropdown">
-                            <button class="dropdown-toggle btn btn-default" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">操作 <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a href="###">编辑</a></li>
-                                <li><a href="###">删除</a></li>
-                                <li><a href="###">锁定</a></li>
-                                <li><a href="###">修改密码</a></li>
-                            </ul>
-                        </div></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>张三</td>
-                        <td>132456@qq.com</td>
-                        <td>
-                            <div role="presentation" class="dropdown">
-                                <button class="dropdown-toggle btn btn-default" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">操作 <span class="caret"></span>
+                    <c:forEach var="order" items="${orders}">
+                        <tr>
+                            <td><c:out value="${order.orderid}"></c:out></td>
+                            <td><c:out value="${order.sellerid}"></c:out></td>
+                            <td><c:out value="${order.buyerid}"></c:out></td>
+                            <td><c:out value="${order.productid}"></c:out></td>
+                            <td><c:out value="${order.count}"></c:out></td>
+                            <td><c:out value="${order.totalprice}"></c:out></td>
+                            <td><c:out value="${order.address}"></c:out></td>
+                            <td><c:out value="${order.orderstatus}"></c:out></td>
+                            <td><c:out value="${order.ordertime}"></c:out></td>
+                            <td><div role="presentation" class="dropdown">
+                                <button class="dropdown-toggle btn btn-default" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Onclick <span class="caret"></span>
                                 </button>
                                 <ul class="dropdown-menu">
-                                    <li><a href="###">编辑</a></li>
-                                    <li><a href="###">删除</a></li>
-                                    <li><a href="###">锁定</a></li>
-                                    <li><a href="###">修改密码</a></li>
+                                    <li><a href="/AdminOrderDetail?orderID=${order.orderid}">View</a></li>
+                                    <li><a href="/AdminOrderModify?orderID=${order.orderid}">modify</a></li>
+                                    <li><a href="/AdminOrderDelete?orderID=${order.orderid}">delete</a></li>
                                 </ul>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>张三</td>
-                        <td>132456@qq.com</td>
-                        <td><div role="presentation" class="dropdown">
-                            <button class="dropdown-toggle btn btn-default" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">操作 <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a href="###">编辑</a></li>
-                                <li><a href="###">删除</a></li>
-                                <li><a href="###">锁定</a></li>
-                                <li><a href="###">修改密码</a></li>
-                            </ul>
-                        </div></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>张三</td>
-                        <td>132456@qq.com</td>
-                        <td><div role="presentation" class="dropdown">
-                            <button class="dropdown-toggle btn btn-default" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">操作 <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a href="###">编辑</a></li>
-                                <li><a href="###">删除</a></li>
-                                <li><a href="###">锁定</a></li>
-                                <li><a href="###">修改密码</a></li>
-                            </ul>
-                        </div></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>张三</td>
-                        <td>132456@qq.com</td>
-                        <td><div role="presentation" class="dropdown">
-                            <button class="dropdown-toggle btn btn-default" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">操作 <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a href="###">编辑</a></li>
-                                <li><a href="###">删除</a></li>
-                                <li><a href="###">锁定</a></li>
-                                <li><a href="###">修改密码</a></li>
-                            </ul>
-                        </div></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>张三</td>
-                        <td>132456@qq.com</td>
-                        <td><div role="presentation" class="dropdown">
-                            <button class="dropdown-toggle btn btn-default" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">操作 <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a href="###">编辑</a></li>
-                                <li><a href="###">删除</a></li>
-                                <li><a href="###">锁定</a></li>
-                                <li><a href="###">修改密码</a></li>
-                            </ul>
-                        </div></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>张三</td>
-                        <td>132456@qq.com</td>
-                        <td><div role="presentation" class="dropdown">
-                            <button class="dropdown-toggle btn btn-default" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">操作 <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a href="###">编辑</a></li>
-                                <li><a href="###">删除</a></li>
-                                <li><a href="###">锁定</a></li>
-                                <li><a href="###">修改密码</a></li>
-                            </ul>
-                        </div></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>张三</td>
-                        <td>132456@qq.com</td>
-                        <td><div role="presentation" class="dropdown">
-                            <button class="dropdown-toggle btn btn-default" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">操作 <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a href="###">编辑</a></li>
-                                <li><a href="###">删除</a></li>
-                                <li><a href="###">锁定</a></li>
-                                <li><a href="###">修改密码</a></li>
-                            </ul>
-                        </div></td>
-                    </tr>
+                            </div></td>
+                        </tr>
+                    </c:forEach>
                     </tbody>
                 </table>
                 <nav class="pull-right">

@@ -65,67 +65,81 @@ public class Buyer {
      */
     private String buyerAccount;
 
-    public Integer getBuyerId() {
+    public Integer getbuyerId() {
         return buyerId;
     }
 
-    public void setBuyerId(Integer buyerId) {
+    public void setbuyerId(Integer buyerId) {
         this.buyerId = buyerId;
     }
 
-    public String getBuyerName() {
+    public String getbuyerName() {
         return buyerName;
     }
 
-    public void setBuyerName(String buyerName) {
+    public void setbuyerName(String buyerName) {
         this.buyerName = buyerName;
     }
 
-    public String getBuyerAddress() {
+    public String getbuyerAddress() {
         return buyerAddress;
     }
 
-    public void setBuyerAddress(String buyerAddress) {
+    public void setbuyerAddress(String buyerAddress) {
         this.buyerAddress = buyerAddress;
     }
 
-    public String getBuyerPhone() {
+    public String getbuyerPhone() {
         return buyerPhone;
     }
 
-    public void setBuyerPhone(String buyerPhone) {
+    public void setbuyerPhone(String buyerPhone) {
         this.buyerPhone = buyerPhone;
     }
 
-    public String getBuyerPassword() {
+    public String getbuyerPassword() {
         return buyerPassword;
     }
 
-    public void setBuyerPassword(String buyerPassword) {
+    public void setbuyerPassword(String buyerPassword) {
         this.buyerPassword = buyerPassword;
     }
 
-    public Integer getBuyerStatus() {
+    public Integer getbuyerStatus() {
         return buyerStatus;
     }
 
-    public void setBuyerStatus(Integer buyerStatus) {
+    public void setbuyerStatus(Integer buyerStatus) {
         this.buyerStatus = buyerStatus;
     }
 
-    public Float getBuyerBalance() {
+    public Float getbuyerBalance() {
         return buyerBalance;
     }
 
-    public void setBuyerBalance(Float buyerBalance) {
+    public void setbuyerBalance(Float buyerBalance) {
         this.buyerBalance = buyerBalance;
     }
 
-    public String getBuyerAccount() {
+    public String getbuyerAccount() {
         return buyerAccount;
     }
 
-    public void setBuyerAccount(String buyerAccount) {
+    public void setbuyerAccount(String buyerAccount) {
         this.buyerAccount = buyerAccount;
+    }
+
+    @Override
+    public String toString() {
+        return "Buyer{" +
+                "buyerId=" + buyerId +
+                ", buyerName='" + buyerName + '\'' +
+                ", buyerAddress='" + buyerAddress + '\'' +
+                ", buyerPhone='" + buyerPhone + '\'' +
+                ", buyerPassword='" + buyerPassword + '\'' +
+                ", buyerStatus=" + buyerStatus +
+                ", buyerBalance=" + buyerBalance +
+                ", buyerAccount='" + buyerAccount + '\'' +
+                '}';
     }
 }

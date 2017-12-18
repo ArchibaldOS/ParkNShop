@@ -56,7 +56,7 @@
 		WHERE sellerId = #{sellerId}
 	</select>
 	
-	<select id="findAllBySellerId" parameterType="int" resultType="com.ten.ParkNShop.entity.Product">
+	<select id="findAllBySellerId" parameterType="int" resultType="Product">
 		SELECT 
 			*
 		FROM product
@@ -69,7 +69,19 @@
 			*
 		FROM product
 		WHERE productId = #{productId}
-	</select>
+
+	</select> 
+	
+	<select id="sellerFindByPage" resultMap="BaseResultMap" parameterType="int">
+        SELECT
+        *
+        FROM
+        product
+        WHERE sellerId=#{sellerId}
+        LIMIT #{start},#{pageSize}
+    </select>
+	
+
 
 	<select id="searchByProductName" parameterType="java.lang.String" resultMap="BaseResultMap">
 		SELECT
@@ -112,5 +124,6 @@
 		FROM product
 		WHERE productName = #{productName}
 	</select>
+
 
 </mapper>

@@ -29,4 +29,18 @@ public class SellerOrderServiceImpl implements SellerOrderService {
 		return page;
 	}
 
+	@Override
+	public Page getUncompletedOrders(int sellerId, int cur) {
+		Page page = new Page(cur);
+		
+		int count = orderMapper.countUncompleted(sellerId);
+		
+		List<Order> orders = orderMapper.findUncompleted(sellerId,page.getOffset(), page.getSize());
+		
+		page.setCount(count);
+		page.setList(orders);
+		
+		return page;
+	}
+
 }

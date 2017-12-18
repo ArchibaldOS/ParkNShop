@@ -11,7 +11,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>PackNShop</title>
+    <title>ParkNShop</title>
     <meta name="keywords" content="" />
     <meta name="description" content="" />
     <link rel="stylesheet" href="assets/css/log-reg-style.css" />
@@ -19,9 +19,11 @@
 <body>
 
 <div class="login-container">
-    <h1>PackNShop</h1>
+    <h1>ParkNShop</h1>
 
-    <br>
+    <div class="connect">
+		<p>buyer login</p>
+	</div>
 
     <form action="/BuyerLoginClick" method="post" id="buyerLoginForm">
         <div>

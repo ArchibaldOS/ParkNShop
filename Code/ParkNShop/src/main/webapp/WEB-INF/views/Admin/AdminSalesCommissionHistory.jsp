@@ -52,26 +52,52 @@
         <div class="col-md-2">
             <div class="list-group">
                 <a href="/AdminSalesManagement" class="list-group-item">Sales&nbsp;&nbsp;&nbsp;&nbsp; Management</a>
-                <a href="/AdminSalesModifyCommision" class="list-group-item active">Modify&nbsp;&nbsp;&nbsp;&nbsp; Management</a>
-                <a href="/AdminSalesCommisionHistory" class="list-group-item">Commision&nbsp;&nbsp;&nbsp;&nbsp; Management</a>
+                <a href="/AdminSalesModifyCommission" class="list-group-item">Modify&nbsp;&nbsp;&nbsp;&nbsp; Management</a>
+                <a href="/AdminSalesCommissionHistory" class="list-group-item active">Commision&nbsp;&nbsp;&nbsp;&nbsp; Management</a>
 
             </div>
         </div>
         <div class="col-md-10">
             <div class="page-header">
-                <h1>Sales Modify Commision</h1>
+                <h1>Sales Commission History</h1>
             </div>
-            <div class="panel">
-                <form action="#" method="post" id="loginForm">
-                    New Commision&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <input type="text"><br><br>
-                    Commision Password
-                    <input type="text"><br><br>
-                    <input type="submit" value="submit">
-                    <input type="reset" value="reset">
-
-                </form>
-            </div>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>New Commission</th>
+                    <th>Operator</th>
+                    <th>Time</th>
+                </tr>
+                </thead>
+                <tbody>
+                <c:forEach var="commission" items="${commissions}">
+                <tr>
+                    <td><c:out value="${commission.commission}"></c:out></td>
+                    <td><c:out value="${commission.operatorAccount}"></c:out></td>
+                    <td><c:out value="${commission.time}"></c:out></td>
+                </tr>
+                </c:forEach>
+                </tbody>
+            </table>
+            <nav class="pull-right">
+                <ul class="pagination">
+                    <li class="disabled">
+                        <a href="#" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <li class="active"><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#">5</a></li>
+                    <li>
+                        <a href="#" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
         </div>
     </div>
 </div>

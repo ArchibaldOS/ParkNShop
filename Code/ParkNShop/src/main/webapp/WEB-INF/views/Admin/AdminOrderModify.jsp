@@ -58,60 +58,105 @@
         </div>
         <div class="col-md-10">
             <div class="page-header">
-                <h1>Order Modify</h1>
+                <c:choose>
+                    <c:when test="${order.orderStatus eq 1}">
+                        <h1>Order Not Paid</h1>
+                    </c:when>
+                    <c:when test="${order.orderStatus eq 2}">
+                        <h1>Order Has Paid</h1>
+                    </c:when>
+                </c:choose>
             </div>
             <form class="form-horizontal" role="form" action="/AdminOrderModifyDo">
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Order ID</label>
                     <div class="col-sm-10">
-                        <input class="form-control" id="focusedInput6" type="text" name="orderId" value="${order.orderid}" READONLY>
+                        <input class="form-control" id="focusedInput6" type="text" name="orderId" value="${order.orderId}" READONLY>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Buyer ID</label>
                     <div class="col-sm-10">
-                        <input class="form-control" id="focusedInput5" type="text" name="buyerId" value="${order.buyerid}">
+                        <input class="form-control" id="focusedInput5" type="text" name="buyerId" value="${order.buyerId}" READONLY>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Seller ID</label>
                     <div class="col-sm-10">
-                        <input class="form-control" id="focusedInput" type="text" name="sellerId" value="${order.sellerid}">
+                        <input class="form-control" id="focusedInput" type="text" name="sellerId" value="${order.sellerId}" READONLY>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Product ID</label>
                     <div class="col-sm-10">
-                        <input class="form-control" id="focusedInput2" type="text" name="productId" value="${order.productid}">
+                        <input class="form-control" id="focusedInput2" type="text" name="productId" value="${order.productId}" READONLY>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">Count</label>
-                    <div class="col-sm-10">
-                        <input class="form-control" id="focusedInput3" type="text" name="count" value="${order.count}">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">Order Total Price</label>
-                    <div class="col-sm-10">
-                        <input class="form-control" id="focusedInput4" type="text" name="totalPrice" value="${order.totalprice}">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">Order Address</label>
-                    <div class="col-sm-10">
-                        <input class="form-control" id="focusedInput8" type="text" name="address" value="${order.address}">
-                    </div>
-                </div>
-
+                <c:choose>
+                    <c:when test="${order.orderStatus eq 1}">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Count</label>
+                            <div class="col-sm-10">
+                                <input class="form-control" id="focusedInput3" type="text" name="count" value="${order.count}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Order Total Price</label>
+                            <div class="col-sm-10">
+                                <input class="form-control" id="focusedInput4" type="text" name="totalPrice" value="${order.totalPrice}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Order Address</label>
+                            <div class="col-sm-10">
+                                <input class="form-control" id="focusedInput8" type="text" name="address" value="${order.address}">
+                            </div>
+                        </div>
+                        <%--<div class="form-group">--%>
+                            <%--<label class="col-sm-2 control-label">Order Status</label>--%>
+                            <%--<div class="col-sm-10">--%>
+                                <%--<select class="form-control" name="orderStatus" id="orderStatus">--%>
+                                    <%--<option id="123" value="1">未付款</option>--%>
+                                    <%--<option id="124"value="2">已付款，未发货</option>--%>
+                                    <%--<option value="3">已付款，已发货</option>--%>
+                                    <%--<option value="4">已签收</option>--%>
+                                <%--</select>--%>
+                            <%--</div>--%>
+                        <%--</div>--%>
+                    </c:when>
+                    <c:when test="${order.orderStatus eq 2}">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Count</label>
+                            <div class="col-sm-10">
+                                <input class="form-control" id="focusedInput11" type="text" name="count" value="${order.count}" READONLY>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Order Total Price</label>
+                            <div class="col-sm-10">
+                                <input class="form-control" id="focusedInput12" type="text" name="totalPrice" value="${order.totalPrice}" READONLY>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Order Address</label>
+                            <div class="col-sm-10">
+                                <input class="form-control" id="focusedInput13" type="text" name="address" value="${order.address}">
+                            </div>
+                        </div>
+                    </c:when>
+                </c:choose>
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Order Status</label>
                     <div class="col-sm-10">
-                        <select class="form-control" name="orderStatus">
-                            <option value="1">未付款</option>
-                            <option value="2">已付款，未发货</option>
-                            <option value="3">已付款，已发货</option>
-                            <option value="4">已签收</option>
+                        <select class="form-control" name="orderStatus" id="orderStatus">
+                            <option value="1">Submitted,Unpaid</option>
+                            <option value="2">Cancelled</option>
+                            <option value="3">Paid,Unshipped</option>
+                            <option value="4">Paid,Shipped</option>
+                            <option value="5">Success</option>
+                            <option value="6">Refunding</option>
+                            <option value="7">Refund Succeed</option>
+                            <option value="8">Refund Failed</option>
                         </select>
                     </div>
                 </div>
@@ -148,6 +193,12 @@
 <script src="assets/javascripts/bootstrap.min.js"></script>
 <script src="assets/javascripts/Chart.js"></script>
 <script src="assets/javascripts/script.js"></script>
+<script  type = "text/javascript" >
+    function change(){
+        document.getElementById("orderStatus")[${order.orderStatus}].selected=true;
+    }
+    window.onload = change;
+</script>
 </body>
 </html>
 

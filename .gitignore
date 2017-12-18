@@ -8,3 +8,7 @@ Code/ParkNShop/src/main/resources/init.properties
 Code/ParkNShop/src/main/resources/jdbc.properties
 Code/ParkNShop/pom.xml
 Code/ParkNShop/src/main/resources/jdbc.properties
+Code/ParkNShop/src/main/java/com/ten/ParkNShop/controller/AdminOrderManagementController.java
+Code/ParkNShop/src/main/resources/jdbc.properties
+Code/ParkNShop/src/main/resources/mybatis-generator/generatorConfig.xml
+Code/ParkNShop/src/main/java/com/ten/ParkNShop/controller/AdminOrderManagementController.java

@@ -112,8 +112,8 @@ public class AdminShopManagementController {
     @RequestMapping("/AdminShopModifyDO")
     public String adminShopModifyDO(HttpServletRequest httpServletRequest){
         Seller seller =new Seller();
-        seller.setSellerId(Integer.valueOf(httpServletRequest.getParameter("sellerid")));
-        seller = adminShopService.selectSellerById(seller.getSellerId());
+        seller.setsellerId(Integer.valueOf(httpServletRequest.getParameter("sellerId")));
+        seller = adminShopService.selectSellerById(seller.getsellerId());
         seller.setSellerName(httpServletRequest.getParameter("sellername"));
         seller.setShopName(httpServletRequest.getParameter("shopname"));
         seller.setShopIntroduction(httpServletRequest.getParameter("shopintroduction"));

@@ -41,8 +41,8 @@ public class SellerProductController {
 			String path = session.getServletContext().getRealPath("/upload/productPicture");
 			String filePath = FileUtil.uploadFile(file, path);
 			Product product = new Product();
-			int sellerId = ((Seller)session.getAttribute("seller")).getSellerId();
-			product.setSellerId(sellerId);
+			int sellerId = ((Seller)session.getAttribute("seller")).getsellerId();
+			product.setsellerId(sellerId);
 			product.setProductName(productName);
 			product.setProductType(productType);
 			product.setProductPrice(productPrice);
@@ -61,10 +61,9 @@ public class SellerProductController {
 	@RequestMapping(value = "/sellerProductList", method = RequestMethod.GET)
 	public String listProduct(HttpSession session,Model model){
 		
-		int sellerId = ((Seller)session.getAttribute("seller")).getSellerId();
+		int sellerId = ((Seller)session.getAttribute("seller")).getsellerId();
 		
 		Page page = sellerProductService.getProducts(sellerId);
-		System.out.println(page.getList());
 		
 		model.addAttribute("seller",session.getAttribute("seller"));
 		if(page.getList().size()>0)
@@ -73,6 +72,28 @@ public class SellerProductController {
 			model.addAttribute("page", null);
 		
 		return "Seller/sellershop";
+		
+	}
+	
+	@RequestMapping(value = "/sellerProduct")
+	public String product(HttpSession session,Model model){
+		
+		Seller seller = (Seller)session.getAttribute("seller");
+		
+		int status = seller.getShopStatus();
+		if(status == 1){
+			model.addAttribute("status", null);
+			return "forward:/sellerProductList";
+		}else if(status == 0){
+			model.addAttribute("status", 0);
+			return "Seller/sellerhome";
+		}else if(status == 2){
+			model.addAttribute("status", 2);
+			return "Seller/sellerhome";
+		}else{
+			model.addAttribute("status", 3);
+			return "Seller/sellerhome";
+		}
 		
 	}
 	

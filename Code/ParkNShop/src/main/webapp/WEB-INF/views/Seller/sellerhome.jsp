@@ -62,15 +62,19 @@ table.hovertable td {
 	border-color: #a9c6c9;
 	font-size:20px;
 } 
-li .aaa{
-   width:200px;
-   margin:0 auto;
+  .aaa{
+border-radius: 20px;
 
+}
+.mybtn{
+	border-radius: 20px;
+	width:100px;
+	height:30px;
+	background-color:rgb(81, 130, 187);
 }
 
 </style>
     </head>
-
     <body>
 
 
@@ -141,7 +145,7 @@ li .aaa{
         <div class="collapse navbar-collapse" id="nav-open-btn">
           <ul class="nav aaa" >
             <li><a href="/sellerHome">Home</a></li>
-            <li><a href="/sellerProductList">Product</a></li>
+            <li><a href="/sellerProduct">Product</a></li>
           </ul>
         </div>
         
@@ -178,7 +182,7 @@ li .aaa{
         		<tr onmouseover="this.style.backgroundColor='rgb(81, 130, 187)';" onmouseout="this.style.backgroundColor='#d4e3e5';">
         			<td width="200px" style="font-size: 20px;">shop status</td>
         			<c:if test="${s.shopStatus ==0}">
-        			 <td><font color="	#FFA500">Being processed</font></td>
+        			 <td><font color="#FFA500">Being processed</font></td>
         			</c:if>
         			<c:if test="${s.shopStatus ==1}">
         			 <td><font color="green">Application Passed</font></td>
@@ -191,7 +195,10 @@ li .aaa{
         			</c:if>
         		</tr>
         	</table>
-        
+            <div class="form-actions" style="text-align:center;margin-top:2%;">
+        		<button class="mybtn" type="submit" onclick="window.location.href='/sellerUpdate'">
+                Update</button>
+    		</div>
         </div>    
         </div>    
 <script src="assets/js2/vendors/jquery/jquery.min.js"></script>
@@ -206,5 +213,22 @@ li .aaa{
 <script type="text/javascript" src="assets/rs-plugin/js/jquery.tp.min.js"></script>
 <script src="assets/js2/main.js"></script>
     </body>
+<%
+	if(request.getAttribute("status")!=null){
+	 if((int)request.getAttribute("status") == 0){
+	 
+		 	out.println("<script type=\"text/javascript\">alert(\"Can't operate because your shop is being audited...\")</script>");
+	 }
+	 if((int)request.getAttribute("status") == 2){
+	 
+ 		    out.println("<script type=\"text/javascript\">alert(\"Can't operate because your application has been rejected...\")</script>");
+	 }
+	 if((int)request.getAttribute("status") == 3){
+		 
+		    out.println("<script type=\"text/javascript\">alert(\"Can't operate because you are on the Black List...\")</script>");
+	 } 
+	}
 
+	 
+%> 
 </html>

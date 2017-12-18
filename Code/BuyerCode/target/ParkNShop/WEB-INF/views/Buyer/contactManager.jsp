@@ -1,3 +1,5 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!doctype html>
 <html class="no-js" lang="en">
 <head>
@@ -8,21 +10,21 @@
     <title>Service Center</title>
 
     <!-- SLIDER REVOLUTION 4.x CSS SETTINGS -->
-    <link rel="stylesheet" type="text/css" href="../../../rs-plugin/css/settings.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="assets/rs-plugin/css/settings.css" media="screen" />
 
     <!-- StyleSheets -->
-    <link rel="stylesheet" href="../../../css/ionicons.min.css">
-    <link rel="stylesheet" href="../../../css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../../css/font-awesome.min.css">
-    <link rel="stylesheet" href="../../../css/main.css">
-    <link rel="stylesheet" href="../../../css/style.css">
-    <link rel="stylesheet" href="../../../css/responsive.css">
+    <link rel="stylesheet" href="assets/css/ionicons.min.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
 
     <!-- Fonts Online -->
     <link href="https://fonts.googleapis.com/css?family=Lato:100i,300,400,700,900" rel="stylesheet">
 
     <!-- JavaScripts -->
-    <script src="../../../js/vendors/modernizr.js"></script>
+    <script src="assets/js/vendors/modernizr.js"></script>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -34,7 +36,8 @@
 
            width:100%;
            height: 550px;
-           background: url("../../../images/service.png") center center no-repeat;
+
+           background: url(" ../../../assets/images/service.png") center center no-repeat;
        }
         .logo{
             margin-left: 10%;
@@ -90,73 +93,47 @@
 
 <!-- Header -->
 <div class="services">
-    <div class="logo"> <a href="../../../index.jsp"><img src="../../../images/logo.png" alt="" ></a> </div>
+    <div class="logo"> <a href="assets/index.jsp"><img src="assets/images/logo.png" alt="" ></a> </div>
     <div class="service"><h3>Service Center</h3></div>
-    <div class="cosumer"> <a href="../../../index.jsp"><img src="../../../images/cosumer.png" alt="" ></a> </div>
-    <div class="bussiness"> <a href="../../../index.jsp"><img src="../../../images/business.png" alt="" ></a> </div>
+    <div class="cosumer"> <a href="assets/index.jsp"><img src="assets/images/cosumer.png" alt="" ></a> </div>
+    <div class="bussiness"> <a href="assets/index.jsp"><img src="assets/images/business.png" alt="" ></a> </div>
 
 
 </div>
 <!-- Footer -->
-<footer>
-    <div class="container">
+    <footer>
+        <div class="container">
 
-        <!-- Footer Upside Links -->
+            <!-- Footer Upside Links -->
 
-        <div class="row">
+            <div class="row">
 
-            <!-- Contact -->
-            <div class="col-md-4">
-                <h4>Contact SmartTech!</h4>
-                <p>Address: 45 Grand Central Terminal New York, NY 1017
-                    United State USA</p>
-                <p>Phone: (+100) 123 456 7890</p>
-                <p>Email: Support@smarttech.com</p>
-                <!-- Social Links -->
-                <div class="social-links"> <a href="#."><i class="fa fa-facebook"></i></a> <a href="#."><i class="fa fa-twitter"></i></a> <a href="#."><i class="fa fa-linkedin"></i></a> <a href="#."><i class="fa fa-pinterest"></i></a> <a href="#."><i class="fa fa-instagram"></i></a> <a href="#."><i class="fa fa-google"></i></a> </div>
-            </div>
+                <!-- Contact -->
+                <div class="col-md-9">
+                    <h4>Contact Park N Shop!</h4>
+                    <br>
+                    <p>Address: Xidian University,Xi'an,China</p>
+                    <p>Phone: (+100) 666</p>
+                    <p>Email: 666@666.com</p>
+                </div>
 
-            <!-- Categories -->
-            <div class="col-md-3">
-                <h4>Categories</h4>
-                <ul class="links-footer">
-                    <li><a href="#.">Home Audio & Theater</a></li>
-                    <li><a href="#."> TV & Video</a></li>
-                    <li><a href="#."> Camera, Photo & Video</a></li>
-                    <li><a href="#."> Cell Phones & Accessories</a></li>
-                    <li><a href="#."> Headphones</a></li>
-                    <li><a href="#."> Video Games</a></li>
-                    <li><a href="#."> Bluetooth & Wireless</a></li>
-                </ul>
-            </div>
+                <div class="col-md-3">
+                    <h4>Information</h4>
+                    <ul class="links-footer">
+                        <li><a href="/About"> About Us</a></li>
+                        <li><a href="/BuyerFAQs"> FAQs</a></li>
+                        <li><a href="/SecureShopping"> Secure Shopping</a></li>
+                        <li><a href="/JoinUs"> Join Us</a></li>
+                    </ul>
+                </div>
 
-            <!-- Categories -->
-            <div class="col-md-3">
-                <h4>Customer Services</h4>
-                <ul class="links-footer">
-                    <li><a href="#.">Shipping & Returns</a></li>
-                    <li><a href="#."> Secure Shopping</a></li>
-                    <li><a href="#."> International Shipping</a></li>
-                    <li><a href="#."> Affiliates</a></li>
-                    <li><a href="#."> Contact </a></li>
-                </ul>
-            </div>
-
-            <!-- Categories -->
-            <div class="col-md-2">
-                <h4>Information</h4>
-                <ul class="links-footer">
-                    <li><a href="#.">Our Blog</a></li>
-                    <li><a href="#."> About Our Shop</a></li>
-                    <li><a href="#."> Secure Shopping</a></li>
-                    <li><a href="#."> Delivery infomation</a></li>
-                    <li><a href="#."> Store Locations</a></li>
-                    <li><a href="#."> FAQs</a></li>
-                </ul>
+                <div class="col-md-12" align="center">
+                    <br>
+                    Copyright © 2017-2018  www.ParkNShop.com  陕ICP备666666号-6
+                </div>
             </div>
         </div>
-    </div>
-</footer>
+    </footer>
 
 
 <!-- End Footer -->
@@ -168,19 +145,19 @@
 <!-- End Page Wrapper -->
 
 <!-- JavaScripts -->
-<script src="../../../js/vendors/jquery/jquery.min.js"></script>
-<script src="../../../js/vendors/wow.min.js"></script>
-<script src="../../../js/vendors/bootstrap.min.js"></script>
-<script src="../../../js/vendors/own-menu.js"></script>
-<script src="../../../js/vendors/jquery.sticky.js"></script>
-<script src="../../../js/vendors/owl.carousel.min.js"></script>
+<script src="assets/js/vendors/jquery/jquery.min.js"></script>
+<script src="assets/js/vendors/wow.min.js"></script>
+<script src="assets/js/vendors/bootstrap.min.js"></script>
+<script src="assets/js/vendors/own-menu.js"></script>
+<script src="assets/js/vendors/jquery.sticky.js"></script>
+<script src="assets/js/vendors/owl.carousel.min.js"></script>
 
 <!-- SLIDER REVOLUTION 4.x SCRIPTS  -->
-<script type="text/javascript" src="../../../rs-plugin/js/jquery.tp.t.min.js"></script>
-<script type="text/javascript" src="../../../rs-plugin/js/jquery.tp.min.js"></script>
-<script src="../../../js/main.js"></script>
+<script type="text/javascript" src="assets/rs-plugin/js/jquery.tp.t.min.js"></script>
+<script type="text/javascript" src="assets/rs-plugin/js/jquery.tp.min.js"></script>
+<script src="assets/js/main.js"></script>
 <!-- Begin Map Script-->
 <script src="http://ditu.google.cn/maps/api/js?v=3.exp"></script>
-<script src="../../../js/vendors/map.js"></script>
+<script src="assets/js/vendors/map.js"></script>
 </body>
 </html>

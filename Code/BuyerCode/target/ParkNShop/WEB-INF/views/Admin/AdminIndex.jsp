@@ -7,9 +7,7 @@
 		<link rel="stylesheet" href="assets/css/bootstrap.min.css"/>
 		<link rel="stylesheet" href="assets/css/bootstrap-maizi.css"/>
 	</head>
-	
-	
-	
+
 	<body>
 		<!--导航-->
 		<nav class="navbar navbar-default">
@@ -28,7 +26,7 @@
 				<div class="navbar-collapse collapse">
 					<ul class="nav navbar-nav">
 						<li><a href="/AdminShopManagement"><span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;Shop Management</a></li>
-						<li><a href="/AdminCustomerManagement"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;Customer Management</a></li>
+						<li><a href="/AdminBuyerManagement"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;Buyer Management</a></li>
 						<li><a href="/AdminOrderManagement"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;Order Management</a></li>
 						<li><a href="/AdminADManagement"><span class="glyphicon glyphicon-list-alt"></span>&nbsp;&nbsp;AD Management</a></li>
 						<li><a href="/AdminSalesManagement"><span class="glyphicon glyphicon-list-alt"></span>&nbsp;&nbsp;Sales</a></li>
@@ -39,7 +37,7 @@
 								<c:out value="${sessionScope.adminAccount}"></c:out>
 							</a>
 						</li>
-						<li><a href="/AdminLogout"><span class="glyphicon glyphicon-off"></span>&nbsp;退出</a></li>
+						<li><a href="/AdminLogout"><span class="glyphicon glyphicon-off"></span>&nbsp;LOG OUT</a></li>
 					</ul>
 				</div>
 				<!--导航-->
@@ -51,36 +49,36 @@
 			<div class="row">
 				<div class="col-md-6">
 					<div class="panel panel-default">
-						  <div class="panel-heading">网站统计数据</div>
+						  <div class="panel-heading">Website statistics</div>
 						  <div class="panel-body">
 						    <table class="table table-hover">
 							  <thead>
 							  	<tr>
-							  		<th>统计项目</th>
-							  		<th>今日</th>
-							  		<th>昨日</th>
+							  		<th>Statistics project</th>
+							  		<th>Today</th>
+							  		<th>Yesterday</th>
 							  	</tr>
 							  </thead>
 							  <tbody>
 							  	<tr>
-							  		<th scope="row">注册会员</th>
+							  		<th scope="row"> Registered Member</th>
 							  		<td>200</td>
 							  		<td>400</td>
 							  	</tr>
 							  	<tr>
-							  		<th scope="row">登录会员</th>
+							  		<th scope="row">Login Member</th>
 							  		<td>200</td>
 							  		<td>400</td>
 							  	</tr>
 							  	<tr>
-							  		<th scope="row">今日发帖</th>
-							  		<td>200</td>
-							  		<td>400</td>
+							  		<th scope="row">Today's earnings</th>
+							  		<td>2000</td>
+							  		<td>4000</td>
 							  	</tr>
 							  	<tr>
-							  		<th scope="row">昨日发帖</th>
-							  		<td>200</td>
-							  		<td>400</td>
+							  		<th scope="row">Yesterday's earnings</th>
+							  		<td>2000</td>
+							  		<td>4000</td>
 							  	</tr>
 							  	
 							  </tbody>
@@ -91,7 +89,7 @@
 
 				<div class="col-md-6">
 					<div class="panel panel-default">
-						  <div class="panel-heading">今日访客统计</div>
+						  <div class="panel-heading">Today's visitor statistics</div>
 						  <div class="panel-body">
 						  	<canvas id="canvas" class="col-md-12"></canvas>
 						  </div>
@@ -100,16 +98,16 @@
 				
 				<div class="col-md-12">
 					<div class="panel panel-default">
-						  <div class="panel-heading">备份</div>
+						  <div class="panel-heading">Backup</div>
 						  <div class="panel-body">
 						  	<div class="col-md-7">
 								<div class="panel panel-default">
 									<div class="panel-heading">
-										当前备份状态
+										The current backup status
 									</div>
 									<div class="panel-body">
 										<ul class="list-group">
-											<li class="list-group-item">正常</li>
+											<li class="list-group-item">Normal</li>
 										</ul>
 									</div>
 								</div>
@@ -117,11 +115,11 @@
 						  	<div class="col-md-5">
 						  		<div class="panel panel-default">
 						  			<div class="panel-heading">
-						  				团队联系手册
+										Contact team
 						  			</div>
 						  			<div class="panel-body">
 						  				<ul class="list-group">
-						  					<li class="list-group-item">站长：<span class="glyphicon glyphicon-phone"></span>&nbsp;&nbsp;1234567891</li>
+						  					<li class="list-group-item">Webmaster：<span class="glyphicon glyphicon-phone"></span>&nbsp;&nbsp;1234567891</li>
 						  				</ul>
 						  			</div>
 						  		</div>

@@ -112,14 +112,14 @@ public class AdminShopManagementController {
     @RequestMapping("/AdminShopModifyDO")
     public String adminShopModifyDO(HttpServletRequest httpServletRequest){
         Seller seller =new Seller();
-        seller.setSellerid(Integer.valueOf(httpServletRequest.getParameter("sellerid")));
-        seller = adminShopService.selectSellerById(seller.getSellerid());
-        seller.setSellername(httpServletRequest.getParameter("sellername"));
-        seller.setShopname(httpServletRequest.getParameter("shopname"));
-        seller.setShopintroduction(httpServletRequest.getParameter("shopintroduction"));
-        seller.setSellerphone(httpServletRequest.getParameter("sellerphone"));
-        seller.setSelleremail(httpServletRequest.getParameter("selleremail"));
-        seller.setShopstatus(Integer.valueOf(httpServletRequest.getParameter("sellerstatus")));
+        seller.setSellerId(Integer.valueOf(httpServletRequest.getParameter("sellerid")));
+        seller = adminShopService.selectSellerById(seller.getSellerId());
+        seller.setSellerName(httpServletRequest.getParameter("sellername"));
+        seller.setShopName(httpServletRequest.getParameter("shopname"));
+        seller.setShopIntroduction(httpServletRequest.getParameter("shopintroduction"));
+        seller.setSellerPhone(httpServletRequest.getParameter("sellerphone"));
+        seller.setSellerEmail(httpServletRequest.getParameter("selleremail"));
+        seller.setShopStatus(Integer.valueOf(httpServletRequest.getParameter("sellerstatus")));
         adminShopService.updateSeller(seller);
         System.out.println(seller);
         return "redirect:/AdminShopList";
@@ -131,13 +131,13 @@ public class AdminShopManagementController {
     * @Description: 删除店铺
     */
     @RequestMapping("/AdminDeleteShop")
-    public String adminRemoveFromBlacklist(HttpServletRequest httpServletRequest){
+    public String adminDeleteShop(HttpServletRequest httpServletRequest){
         int sellerId = Integer.parseInt(httpServletRequest.getParameter("sellerId"));
         int i = adminShopService.deleteSeller(sellerId);
-        return "redirect:/AdminBlackList";
+        return "redirect:/AdminShopList";
     }
 
-    @RequestMapping("/AdminDoSearchByID")
+    @RequestMapping("/AdminDoSearchByShopID")
     public String adminDoSearchByID(HttpServletRequest httpServletRequest,Model model){
         int sellerId = Integer.parseInt(httpServletRequest.getParameter("sellerId"));
         model.addAttribute("seller",adminShopService.selectSellerById(sellerId));

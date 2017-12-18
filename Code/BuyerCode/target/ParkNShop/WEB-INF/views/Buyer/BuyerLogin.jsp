@@ -14,7 +14,7 @@
     <title>PackNShop</title>
     <meta name="keywords" content="" />
     <meta name="description" content="" />
-    <link rel="stylesheet" href="../../../assets/css/log-reg-style.css" />
+    <link rel="stylesheet" href="assets/css/log-reg-style.css" />
 
 <body>
 
@@ -38,13 +38,13 @@
 
 </div>
 
-<script src="../../../assets/javascripts/jquery.min2.js"></script>
-<script src="../../../assets/javascripts/common.js"></script>
+<script src="assets/javascripts/jquery.min2.js"></script>
+<script src="assets/javascripts/common.js"></script>
 <!--背景图片自动更换-->
-<script src="../../../assets/javascripts/supersized.3.2.7.min.js"></script>
-<script src="../../../assets/javascripts/supersized-init.js"></script>
+<script src="assets/javascripts/supersized.3.2.7.min.js"></script>
+<script src="assets/javascripts/supersized-init.js"></script>
 <!--表单验证-->
-<script src="../../../assets/javascripts/jquery.validate.min.js?var1.14.0"></script>
+<script src="assets/javascripts/jquery.validate.min.js?var1.14.0"></script>
 
 </body>
 </html>

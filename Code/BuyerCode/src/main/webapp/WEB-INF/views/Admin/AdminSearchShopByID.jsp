@@ -28,7 +28,7 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><a href="/AdminShopManagement"><span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;Shop Management</a></li>
-                    <li><a href="/AdminCustomerManagement"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;Customer Management</a></li>
+                    <li><a href="/AdminBuyerManagement"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;Buyer Management</a></li>
                     <li><a href="/AdminOrderManagement"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;Order Management</a></li>
                     <li><a href="/AdminADManagement"><span class="glyphicon glyphicon-list-alt"></span>&nbsp;&nbsp;AD Management</a></li>
                     <li><a href="/AdminSalesManagement"><span class="glyphicon glyphicon-list-alt"></span>&nbsp;&nbsp;Sales</a></li>
@@ -39,7 +39,7 @@
                             <c:out value="${sessionScope.adminAccount}"></c:out>
                         </a>
                     </li>
-                    <li><a href="/AdminLogout"><span class="glyphicon glyphicon-off"></span>&nbsp;退出</a></li>
+                    <li><a href="/AdminLogout"><span class="glyphicon glyphicon-off"></span>&nbsp;LOG OUT</a></li>
                 </ul>
             </div>
             <!--导航-->
@@ -73,7 +73,7 @@
                     </li>
                 </ul>
 
-                <form action="/AdminDoSearchByID" class="user_search">
+                <form action="/AdminDoSearchByShopID" class="user_search">
                     <div class="form-group">
                         <label for="sellerId">Shop ID:</label>
                         <input type="text" id="sellerId" class="form-control" name="sellerId" placeholder="Please input shop ID:" />

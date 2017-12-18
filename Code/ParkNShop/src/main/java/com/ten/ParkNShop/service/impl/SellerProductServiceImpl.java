@@ -58,6 +58,21 @@ public class SellerProductServiceImpl implements SellerProductService {
 		
 		return productMapper.updateProduct2(product);
 	}
+
+	@Override
+	public Page getProductsByPage(int sellerId, int cur) {
+		
+		Page page = new Page(cur);
+		
+		int count = productMapper.count(sellerId);
+		
+		List<Product> products = productMapper.sellerFindByPage(sellerId,page.getOffset(),page.getSize());
+		
+		page.setCount(count);
+		page.setList(products);
+		
+		return page;
+	}
 	
 
 }

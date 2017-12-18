@@ -6,4 +6,6 @@ public interface SellerOrderService {
 
 	Page getCompletedOrders(int sellerId, int cur);
 
+	Page getUncompletedOrders(int sellerId, int cur);
+
 }

@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import com.ten.ParkNShop.util.FileUtil;
@@ -42,7 +43,7 @@ public class SellerProductController {
 			String filePath = FileUtil.uploadFile(file, path);
 			Product product = new Product();
 			int sellerId = ((Seller)session.getAttribute("seller")).getsellerId();
-			product.setsellerId(sellerId);
+			product.setSellerId(sellerId);
 			product.setProductName(productName);
 			product.setProductType(productType);
 			product.setProductPrice(productPrice);
@@ -73,6 +74,27 @@ public class SellerProductController {
 		
 		return "Seller/sellershop";
 		
+	}
+	
+	@RequestMapping(value = "/sellerShopHome", method = RequestMethod.GET)
+	public String shopHome(HttpSession session,Model model,@RequestParam("sellerId") int sellerId,@RequestParam(name="cur", defaultValue="1") int cur){
+		
+		Page page = sellerProductService.getProductsByPage(sellerId,cur);
+		
+		model.addAttribute("page", page);
+		model.addAttribute("sellerId", sellerId);
+		
+		return "Seller/shopHome";
+		
+	}
+	
+	@RequestMapping(value="/shopProductsList",method=RequestMethod.GET)
+	public @ResponseBody Page listProducts(@RequestParam(name="cur", defaultValue="1") int cur,@RequestParam("sellerId") int sellerId){
+		
+		
+		Page page = sellerProductService.getProductsByPage(sellerId,cur);
+	
+		return page;
 	}
 	
 	@RequestMapping(value = "/sellerProduct")

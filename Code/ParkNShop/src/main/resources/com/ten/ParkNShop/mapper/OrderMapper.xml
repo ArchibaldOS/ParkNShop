@@ -279,6 +279,15 @@
 		    sellerId = #{sellerId} AND orderStatus = 5
 	</select>
 	
+	<select id="countUncompleted" parameterType="int" resultType="int">
+		SELECT
+			count(1)
+		FROM
+			orders
+		WHERE
+		    sellerId = #{sellerId} AND orderStatus IN (3,4,6,7,8)
+	</select>
+	
 	<select id="findCompleted" resultMap="BaseResultMap" parameterType="int">
         SELECT
         *
@@ -287,4 +296,14 @@
         WHERE sellerId=#{sellerId} AND orderStatus = 5
         LIMIT #{start},#{pageSize}
     </select>
+    
+    <select id="findUncompleted" resultMap="BaseResultMap" parameterType="int">
+        SELECT
+        *
+        FROM
+        orders
+        WHERE sellerId=#{sellerId} AND orderStatus IN (3,4,6,7,8)
+        LIMIT #{start},#{pageSize}
+    </select>
+    
 </mapper>

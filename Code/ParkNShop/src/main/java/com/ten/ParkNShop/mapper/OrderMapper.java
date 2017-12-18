@@ -54,7 +54,7 @@ public interface OrderMapper {
     /**
      * @Author tad
      * @Date created in 4:53 PM 12/15/2017
-     * @Description 閫夋嫨鎵�鏈夌殑 Order 骞朵粠缁撴灉闆嗕腑鎴彇 start 寮�濮嬬殑 pageSize 涓粨鏋�
+     * @Description 闁瀚ㄩ幍锟介張澶屾畱 Order 楠炴湹绮犵紒鎾寸亯闂嗗棔鑵戦幋顏勫絿 start 瀵拷婵娈� pageSize 娑擃亞绮ㄩ弸锟�
      *
      * @params [start, pageSize]
      * @return java.util.List<com.ten.ParkNShop.entity.Order>
@@ -63,7 +63,7 @@ public interface OrderMapper {
     /**
      * @Author: tad
      * @Date: created in 11:04 AM 12/15/2017
-     * @Description: 閫氳繃 buyerId 鏌ユ壘璇ョ敤鎴风殑浠� start 寮�濮嬬殑 pageSize 涓� Order
+     * @Description: 闁俺绻� buyerId 閺屻儲澹樼拠銉ф暏閹撮娈戞禒锟� start 瀵拷婵娈� pageSize 娑擄拷 Order
      *
      * @params [id, start, pageSize]
      * @return java.util.List<com.ten.ParkNShop.entity.Order>
@@ -73,7 +73,7 @@ public interface OrderMapper {
     /**
      * @Author: tad
      * @Date: created in 11:04 AM 12/15/2017
-     * @Description: 閫氳繃 sellerId 鏌ユ壘璇ョ敤鎴风殑浠� start 寮�濮嬬殑 pageSize 涓� Order
+     * @Description: 闁俺绻� sellerId 閺屻儲澹樼拠銉ф暏閹撮娈戞禒锟� start 瀵拷婵娈� pageSize 娑擄拷 Order
      *
      * @params [id, start, pageSize]
      * @return java.util.List<com.ten.ParkNShop.entity.Order>
@@ -83,7 +83,7 @@ public interface OrderMapper {
     /**
      * @Author: tad
      * @Date: created in 11:05 AM 12/15/2017
-     * @Description: 閫氳繃 productId 鏌ユ壘璇ヤ骇鍝佺殑浠� start 寮�濮嬬殑 pageSize 涓� Order
+     * @Description: 闁俺绻� productId 閺屻儲澹樼拠銉ら獓閸濅胶娈戞禒锟� start 瀵拷婵娈� pageSize 娑擄拷 Order
      *
      * @params [id, start, pageSize]
      * @return java.util.List<com.ten.ParkNShop.entity.Order>
@@ -93,4 +93,8 @@ public interface OrderMapper {
 	int countCompleted(@Param("sellerId")int sellerId);
 
 	List<Order> findCompleted(@Param("sellerId")int sellerId,@Param("start") int start, @Param("pageSize")int pageSize);
+
+	int countUncompleted(@Param("sellerId")int sellerId);
+
+	List<Order> findUncompleted(@Param("sellerId")int sellerId, @Param("start") int start, @Param("pageSize")int pageSize);
 }

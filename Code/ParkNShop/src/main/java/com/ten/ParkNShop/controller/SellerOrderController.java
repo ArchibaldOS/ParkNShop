@@ -63,4 +63,25 @@ public class SellerOrderController {
 		return page;
 	}
 	
+	@RequestMapping(value = "/sellerUncompletedOrder", method = RequestMethod.GET)
+	public String listUncompletedOrder(@RequestParam(name="cur", defaultValue="1")int cur,HttpSession session,Model model){
+		
+		int sellerId = ((Seller)session.getAttribute("seller")).getsellerId();
+        
+		Page page = sellerOrderService.getUncompletedOrders(sellerId,cur);
+		System.out.println(page.getList());
+		model.addAttribute("page",page);
+		
+		return "Seller/listUncompletedOrders";
+	}
+	
+	@RequestMapping(value="/sellerListUncompletedOrder",method=RequestMethod.GET)
+	public @ResponseBody Page listUncompletedOrder(@RequestParam(name="cur", defaultValue="1") int cur,HttpSession session){
+		
+		int sellerId = ((Seller)session.getAttribute("seller")).getsellerId();
+		Page page = sellerOrderService.getUncompletedOrders(sellerId,cur);
+	
+		return page;
+	}
+	
 }

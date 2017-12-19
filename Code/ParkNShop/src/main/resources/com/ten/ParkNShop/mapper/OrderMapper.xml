@@ -245,7 +245,7 @@
         LIMIT #{start},#{pageSize}
     </select>
 
-    <select id="selectOrderBybuyerId" resultMap="BaseResultMap" parameterType="int">
+    <select id="selectOrderByBuyerId" resultMap="BaseResultMap" parameterType="int">
         SELECT
         *
         FROM
@@ -253,7 +253,7 @@
         WHERE buyerId=#{buyerId}
         LIMIT #{start},#{pageSize}
     </select>
-    <select id="selectOrderBysellerId" resultMap="BaseResultMap" parameterType="int">
+    <select id="selectOrderBySellerId" resultMap="BaseResultMap" parameterType="int">
         SELECT
         *
         FROM
@@ -261,7 +261,7 @@
         WHERE sellerId=#{sellerId}
         LIMIT #{start},#{pageSize}
     </select>
-    <select id="selectOrderByproductId" resultMap="BaseResultMap" parameterType="int">
+    <select id="selectOrderByProductId" resultMap="BaseResultMap" parameterType="int">
         SELECT
         *
         FROM

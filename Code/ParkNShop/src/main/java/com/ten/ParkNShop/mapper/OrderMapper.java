@@ -66,7 +66,7 @@ public interface OrderMapper {
      * @params [id, start, pageSize]
      * @return java.util.List<com.ten.ParkNShop.entity.Order>
      */
-    List<Order> selectOrderByBuyerID(@Param("buyerID")int buyerID, @Param("start") int start, @Param("pageSize")int pageSize);
+    List<Order> selectOrderByBuyerId(@Param("buyerId")int buyerID, @Param("start") int start, @Param("pageSize")int pageSize);
 
     /**
      * @Author: tad
@@ -75,7 +75,7 @@ public interface OrderMapper {
      * @params [id, start, pageSize]
      * @return java.util.List<com.ten.ParkNShop.entity.Order>
      */
-    List<Order> selectOrderBySellerID(@Param("sellerID")int buyerID, @Param("start") int start, @Param("pageSize")int pageSize);
+    List<Order> selectOrderBySellerId(@Param("sellerId")int buyerID, @Param("start") int start, @Param("pageSize")int pageSize);
 
     /**
      * @Author: tad
@@ -85,7 +85,7 @@ public interface OrderMapper {
      * @return java.util.List<com.ten.ParkNShop.entity.Order>
      */
 
-    List<Order> selectOrderByproductId(@Param("productId")int buyerId, @Param("start") int start, @Param("pageSize")int pageSize);
+    List<Order> selectOrderByProductId(@Param("productId")int buyerId, @Param("start") int start, @Param("pageSize")int pageSize);
 
     /**
      * @Author tad
@@ -106,7 +106,6 @@ public interface OrderMapper {
 
 	List<Order> findUncompleted(@Param("sellerId")int sellerId, @Param("start") int start, @Param("pageSize")int pageSize);
 
-    List<Order> selectOrderByProductID(@Param("productID")int buyerID, @Param("start") int start, @Param("pageSize")int pageSize);
 
     
 }

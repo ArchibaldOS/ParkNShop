@@ -86,9 +86,9 @@ public class AdminOrderServiceImp implements AdminOrderService{
      * @params [id, start, pageSize]
      * @return java.util.List<com.ten.ParkNShop.entity.Order>
      */
-    public List<Order> selectOrderByBuyerID(int buyerID, int start, int pageSize) {
+    public List<Order> selectOrderByBuyerId(int buyerID, int start, int pageSize) {
 
-        List<Order> orders = orderMapper.selectOrderByBuyerID(buyerID, start, pageSize);
+        List<Order> orders = orderMapper.selectOrderByBuyerId(buyerID, start, pageSize);
         return orders;
     }
 
@@ -100,8 +100,8 @@ public class AdminOrderServiceImp implements AdminOrderService{
      * @params [id, start, pageSize]  
      * @return java.util.List<com.ten.ParkNShop.entity.Order>
      */
-    public List<Order> selectOrderBySellerID(int sellerID, int start, int pageSize) {
-        List<Order> orders = orderMapper.selectOrderBySellerID(sellerID, start, pageSize);
+    public List<Order> selectOrderBySellerId(int sellerID, int start, int pageSize) {
+        List<Order> orders = orderMapper.selectOrderBySellerId(sellerID, start, pageSize);
         return orders;
     }
 
@@ -113,8 +113,8 @@ public class AdminOrderServiceImp implements AdminOrderService{
      * @params [id, start, pageSize]  
      * @return java.util.List<com.ten.ParkNShop.entity.Order>
      */
-    public List<Order> selectOrderByProductID(int productID, int start, int pageSize) {
-        List<Order> orders = orderMapper.selectOrderByProductID(productID, start, pageSize);
+    public List<Order> selectOrderByProductId(int productID, int start, int pageSize) {
+        List<Order> orders = orderMapper.selectOrderByProductId(productID, start, pageSize);
         return orders;
     }
 

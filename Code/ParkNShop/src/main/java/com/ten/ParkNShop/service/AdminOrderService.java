@@ -52,7 +52,7 @@ public interface AdminOrderService {
      * @param pageSize
      * @return
      */
-    List<Order> selectOrderByBuyerID(int buyerID, int start, int pageSize);
+    List<Order> selectOrderByBuyerId(int buyerID, int start, int pageSize);
 
 
     /**
@@ -62,7 +62,7 @@ public interface AdminOrderService {
      * @param pageSize
      * @return
      */
-    List<Order> selectOrderBySellerID(int sellerID, int start, int pageSize);
+    List<Order> selectOrderBySellerId(int sellerID, int start, int pageSize);
 
     /**
      * @Description 通过一个ProductID 查找这个产品的所有 Order，并从返回的结果集中截取一部分，从 start 开始， 大小为 pageSize
@@ -71,7 +71,7 @@ public interface AdminOrderService {
      * @param pageSize
      * @return
      */
-    List<Order> selectOrderByProductID(int productID, int start, int pageSize);
+    List<Order> selectOrderByProductId(int productID, int start, int pageSize);
 
     /**
      * 获取一段时间之内的所有的成功订单

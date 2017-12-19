@@ -52,7 +52,7 @@
         <div class="col-md-2">
             <div class="list-group">
                 <a href="/AdminOrderManagement" class="list-group-item">Order&nbsp;&nbsp;&nbsp;&nbsp; Management</a>
-                <a href="/AdminOrderSearchByID" class="list-group-item active">SearchOrder</a>
+                <a href="/AdminOrderSearchById" class="list-group-item active">SearchOrder</a>
             </div>
         </div>
         <div class="col-md-10">
@@ -61,20 +61,20 @@
             </div>
             <ul class="nav nav-tabs">
                 <li class="nav nav-tabs">
-                    <a href="/AdminOrderSearchByID">Search By Order ID</a>
+                    <a href="/AdminOrderSearchById">Search By Order ID</a>
                 </li>
                 <li class="active">
-                    <a href="/AdminOrderSearchBybuyerId">Search By Buyer ID</a>
+                    <a href="/AdminOrderSearchByBuyerId">Search By Buyer ID</a>
                 </li>
                 <li class="nav nav-tabs">
-                    <a href="/AdminOrderSearchBysellerId">Search By Seller ID</a>
+                    <a href="/AdminOrderSearchBySellerId">Search By Seller ID</a>
                 </li>
                 <li class="nav nav-tabs">
-                    <a href="/AdminOrderSearchByproductId">Search By Product ID</a>
+                    <a href="/AdminOrderSearchByProductId">Search By Product ID</a>
                 </li>
             </ul>
 
-            <form action="/AdminOrderSearchBybuyerIdDo" class="user_search">
+            <form action="/AdminOrderSearchByBuyerIdDo" class="user_search">
                 <div class="form-group">
                     <label for="buyerId">Buyer ID:</label>
                     <input type="text" id="buyerId" class="form-control" name="buyerId" placeholder="Please input buyer ID:" />

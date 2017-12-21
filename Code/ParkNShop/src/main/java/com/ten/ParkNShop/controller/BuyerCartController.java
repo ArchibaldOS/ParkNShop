@@ -60,16 +60,17 @@ public class BuyerCartController {
     }
 
     @RequestMapping("/DelFromCart")
-    public int delFromCart(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+    public String delFromCart(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         int productId = Integer.parseInt(request.getParameter("productId"));
         HttpSession session = request.getSession();
-        BuyerCart buyerCart = (BuyerCart) session.getAttribute("cart");
+        BuyerCart buyerCart = (BuyerCart) session.getAttribute("buyerCart");
         if (buyerCart==null){
-            return 0;
+            buyerCart = new BuyerCart();
         }
         Product product = sellerProductService.getProductById(productId);
         buyerCart.deleteProduct(product);
-        return productId;
+        session.setAttribute("buyerCart",buyerCart);
+        return "Buyer/BuyerCart";
     }
 
     @RequestMapping("/ViewCart")

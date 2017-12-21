@@ -128,7 +128,7 @@ public class AdminOrderServiceImp implements AdminOrderService{
     public List<Order> selectAllOrdersBetweenTime(String startTime, String endTime, int type) {
         List<Order> orders = null;
         if(type == 1){
-            orders = orderMapper.selectAllOrdersBetweenTime(startTime + " 0:00", endTime + " 24:00");
+            orders = orderMapper.selectAllOrdersBetweenTime(startTime + " 0:00", endTime + " 23:59");
         }else{
             orders = orderMapper.selectAllOrdersBetweenTime(startTime, endTime);
         }

@@ -124,7 +124,7 @@
                             <%--</div>--%>
                         <%--</div>--%>
                     </c:when>
-                    <c:when test="${order.orderStatus eq 2}">
+                    <c:when test="${order.orderStatus eq 3}">
                         <div class="form-group">
                             <label class="col-sm-2 control-label">Count</label>
                             <div class="col-sm-10">

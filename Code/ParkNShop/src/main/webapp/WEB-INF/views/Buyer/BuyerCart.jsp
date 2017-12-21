@@ -166,6 +166,32 @@
   <tr>
     <td colspan="8" class="line"></td>
   </tr>
+  
+ <c:choose>
+        <c:when test="${buyerCart.getItems eq null}">
+          <tr>
+				<td colspan="8">Shopping cart is empty！</td>
+		</tr>
+        </c:when>
+        <c:otherwise>
+        	<c:forEach var="buyerItem" items="${buyerCart.getItems}">
+        	<tr>
+   				 <td colspan="8" class="shopInfo">店铺：<a href="#">${buyerItem.getProduct.getproductsellerId}</a>    卖家：<a href="#">${buyerItem.getProduct.getproductsellerId}</a> </td>
+  			</tr>
+  			<tr id="product1">
+    			<td class="cart_td_2"><img src="${buyerItem.getProduct.getproductPicture}" alt="shopping"/></td>
+   				<td class="cart_td_3"><a href="#">${buyerItem.getProduct.getproductName}</a><br />
+        				${buyerItem.getProduct.getproductIntroduction}<br />
+       			 </td>
+    			<td class="cart_td_5">${buyerItem.getProduct.getProductPrice}</td>
+    			<td class="cart_td_6"><img src="assets/images/taobao_minus.jpg" alt="minus" onclick="changeNum('num_1','minus')" class="hand"/> <input id="num_1" type="text"  value="${buyerItem.getAmount}" class="num_input" readonly="readonly"/> <img src="assets/images/taobao_adding.jpg" alt="add" onclick="changeNum('num_1','add')"  class="hand"/></td>
+    			<td class="cart_td_7"></td>
+    			<td class="cart_td_8"><a href="javascript:deleteRow('product1');">删除</a></td>
+  			</tr>
+  			</c:forEach>
+        </c:otherwise>
+        </c:choose>
+ 
   <tr>
     <td colspan="8" class="shopInfo">店铺：<a href="#">纤巧百媚时尚鞋坊</a>    卖家：<a href="#">纤巧百媚</a> </td>
   </tr>
@@ -175,7 +201,7 @@
         颜色：棕色 尺码：37<br />
         </td>
     <td class="cart_td_5">138.00</td>
-    <td class="cart_td_6"><img src="assets/images/taobao_minus.jpg" alt="minus" onclick="changeNum('num_1','minus')" class="hand"/> <input id="num_1" type="text"  value="1" class="num_input" readonly="readonly"/> <img src="assets/images/taobao_adding.jpg" alt="add" onclick="changeNum('num_1','add')"  class="hand"/></td>
+    <td class="cart_td_6"><img src="assets/images/taobao_minus.jpg" alt="minus" onclick="changeNum('num_1','minus')" class="hand"/> <input id="num_1" type="text"  value="1" class="num_input" readonly/> <img src="assets/images/taobao_adding.jpg" alt="add" onclick="changeNum('num_1','add')"  class="hand"/></td>
     <td class="cart_td_7"></td>
     <td class="cart_td_8"><a href="javascript:deleteRow('product1');">删除</a></td>
   </tr>
@@ -188,7 +214,7 @@
     <td class="cart_td_3"><a href="#">chanel/香奈尔/香奈尔炫亮魅力唇膏3.5g</a><br />
         </td>
     <td class="cart_td_5">265.00</td>
-    <td class="cart_td_6"><img src="assets/images/taobao_minus.jpg" alt="minus" onclick="changeNum('num_2','minus')" class="hand"/> <input id="num_2" type="text"  value="1" class="num_input" readonly="readonly"/> <img src="assets/images/taobao_adding.jpg" alt="add" onclick="changeNum('num_2','add')"  class="hand"/></td>
+    <td class="cart_td_6"><img src="assets/images/taobao_minus.jpg" alt="minus" onclick="changeNum('num_2','minus')" class="hand"/> <input id="num_2" type="text"  value="1" class="num_input" readonly/> <img src="assets/images/taobao_adding.jpg" alt="add" onclick="changeNum('num_2','add')"  class="hand"/></td>
     <td class="cart_td_7"></td>
     <td class="cart_td_8"><a href="javascript:deleteRow('product2');">删除</a></td>
   </tr>
@@ -201,7 +227,7 @@
     <td class="cart_td_3"><a href="#">蝶妆海�蓝清滢粉底液10#（象牙白）</a><br />
         </td>
     <td class="cart_td_5">85.00</td>
-    <td class="cart_td_6"><img src="assets/images/taobao_minus.jpg" alt="minus" onclick="changeNum('num_3','minus')" class="hand"/> <input id="num_3" type="text"  value="1" class="num_input" readonly="readonly"/> <img src="assets/images/taobao_adding.jpg" alt="add" onclick="changeNum('num_3','add')"  class="hand"/></td>
+    <td class="cart_td_6"><img src="assets/images/taobao_minus.jpg" alt="minus" onclick="changeNum('num_3','minus')" class="hand"/> <input id="num_3" type="text"  value="1" class="num_input" readonly/> <img src="assets/images/taobao_adding.jpg" alt="add" onclick="changeNum('num_3','add')"  class="hand"/></td>
     <td class="cart_td_7"></td>
     <td class="cart_td_8"><a href="javascript:deleteRow('product3');">删除</a></td>
   </tr>
@@ -214,7 +240,7 @@
     <td class="cart_td_3"><a href="#">相宜促销专供 大S推荐 最好用的LilyBell化妆棉</a><br />
         </td>
     <td class="cart_td_5">12.00</td>
-    <td class="cart_td_6"><img src="assets/images/taobao_minus.jpg" alt="minus" onclick="changeNum('num_4','minus')" class="hand"/> <input id="num_4" type="text"  value="2" class="num_input" readonly="readonly"/> <img src="assets/images/taobao_adding.jpg" alt="add" onclick="changeNum('num_4','add')"  class="hand"/></td>
+    <td class="cart_td_6"><img src="assets/images/taobao_minus.jpg" alt="minus" onclick="changeNum('num_4','minus')" class="hand"/> <input id="num_4" type="text"  value="2" class="num_input" readonly/> <img src="assets/images/taobao_adding.jpg" alt="add" onclick="changeNum('num_4','add')"  class="hand"/></td>
     <td class="cart_td_7"></td>
     <td class="cart_td_8"><a href="javascript:deleteRow('product4');">删除</a></td>
   </tr>

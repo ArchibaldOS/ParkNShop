@@ -121,6 +121,9 @@
       #{address,jdbcType=VARCHAR}, #{orderStatus,jdbcType=INTEGER}, #{orderTime,jdbcType=TIMESTAMP}
       )
   </insert>
+  <select id="countOrdersByBuyerId" parameterType="java.lang.Integer" resultType="java.lang.Integer" resultMap="BaseResultMap">
+    SELECT COUNT (orderId) from orders where buyerId = #{buyerId}
+  </select>
   <insert id="insertSelective" parameterType="com.ten.ParkNShop.entity.Order" >
     <!--
       WARNING - @mbggenerated

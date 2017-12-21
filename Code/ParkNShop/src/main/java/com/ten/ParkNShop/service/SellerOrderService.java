@@ -1,5 +1,8 @@
 package com.ten.ParkNShop.service;
 
+import java.util.List;
+
+import com.ten.ParkNShop.entity.Order;
 import com.ten.ParkNShop.util.Page;
 
 public interface SellerOrderService {
@@ -13,5 +16,7 @@ public interface SellerOrderService {
 	int changeToRefundSucceed(int orderId);
 
 	int changeToRefundFailed(int orderId);
+
+	List<Order> selectAllOrdersBetweenTime(String startTime, String endTime, int sellerId, int type);
 
 }

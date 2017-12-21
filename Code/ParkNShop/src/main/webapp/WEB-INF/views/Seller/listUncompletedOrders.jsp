@@ -6,7 +6,7 @@
 
         <head>
             <meta charset="utf-8">
-            <title>Seller Home</title>
+            <title>Order Management</title>
             <meta name="description" content="">
             <meta name="author" content="">
             <meta name="keywords" content="">
@@ -163,7 +163,7 @@
             </div>
             <div class="col-md-10">
                 <div class="page-header">
-                    <h1>Order Management</h1>
+                    <h4>Order Management</h4>
                 </div>
                 <c:set var="orders" value="${requestScope.page }" />
                 <table class="table">

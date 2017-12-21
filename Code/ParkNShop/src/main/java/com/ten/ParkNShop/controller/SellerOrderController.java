@@ -84,4 +84,32 @@ public class SellerOrderController {
 		return page;
 	}
 	
+	@RequestMapping(value = "/sellerShip", method = RequestMethod.GET)
+	public String ship(int orderId){
+		
+		int result = sellerOrderService.changeToShip(orderId);
+		System.out.println(result);
+		
+		return "forward:/sellerUncompletedOrder";
+	}
+	
+	@RequestMapping(value = "/sellerRefundSucceed", method = RequestMethod.GET)
+	public String refundSucceed(int orderId){
+		
+		int result = sellerOrderService.changeToRefundSucceed(orderId);
+		System.out.println(result);
+		
+		return "forward:/sellerUncompletedOrder";
+	}
+	
+	@RequestMapping(value = "/sellerRefundFailed", method = RequestMethod.GET)
+	public String refundFailed(int orderId){
+		
+		int result = sellerOrderService.changeToRefundFailed(orderId);
+		System.out.println(result);
+		
+		return "forward:/sellerUncompletedOrder";
+	}
+	
+	
 }

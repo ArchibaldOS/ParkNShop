@@ -13,11 +13,11 @@ public interface ProductMapper {
 
 	int count(int sellerId);
 
-	List<Product> findAllBysellerId(int sellerId);
+	List<Product> findAllBySellerId(int sellerId);
 	
 	int delete(@Param("productId")int productId);
 
-	Product findByproductId(int productId);
+	Product findByProductId(int productId);
 
 	int updateProduct1(Product product);
 	
@@ -34,7 +34,5 @@ public interface ProductMapper {
 	List<Product> searchTopSalesProducts(int topNum);
 
 	int countByProductName(String productName);
-
-
 
 }

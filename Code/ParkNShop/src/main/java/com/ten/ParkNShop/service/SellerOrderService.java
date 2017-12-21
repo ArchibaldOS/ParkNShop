@@ -8,4 +8,10 @@ public interface SellerOrderService {
 
 	Page getUncompletedOrders(int sellerId, int cur);
 
+	int changeToShip(int orderId);
+
+	int changeToRefundSucceed(int orderId);
+
+	int changeToRefundFailed(int orderId);
+
 }

@@ -106,6 +106,12 @@ public interface OrderMapper {
 
 	List<Order> findUncompleted(@Param("sellerId")int sellerId, @Param("start") int start, @Param("pageSize")int pageSize);
 
+	int changeToShip(@Param("orderId")int orderId);
+
+	int changeToRefundSucceed(@Param("orderId") int orderId);
+
+	int changeToRefundFailed(@Param("orderId") int orderId);
+
 
     
 }

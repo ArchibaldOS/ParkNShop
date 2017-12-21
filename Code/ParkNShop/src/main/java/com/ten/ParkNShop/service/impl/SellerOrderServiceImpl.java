@@ -43,4 +43,22 @@ public class SellerOrderServiceImpl implements SellerOrderService {
 		return page;
 	}
 
+	@Override
+	public int changeToShip(int orderId) {
+		
+		return orderMapper.changeToShip(orderId);
+	}
+
+	@Override
+	public int changeToRefundSucceed(int orderId) {
+		
+		return orderMapper.changeToRefundSucceed(orderId);
+	}
+
+	@Override
+	public int changeToRefundFailed(int orderId) {
+		
+		return orderMapper.changeToRefundFailed(orderId);
+	}
+
 }

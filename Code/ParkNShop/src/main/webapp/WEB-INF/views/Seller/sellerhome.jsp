@@ -146,6 +146,7 @@ border-radius: 20px;
           <ul class="nav aaa" >
             <li><a href="/sellerHome">Home</a></li>
             <li><a href="/sellerProduct">Product</a></li>
+            <li><a href="/sellerOrderPage">Order</a></li>
           </ul>
         </div>
         

@@ -316,4 +316,19 @@
         LIMIT #{start},#{pageSize}
     </select>
     
+    <update id="changeToShip" parameterType="int">
+		update orders set orderStatus = 4
+		where orderId = #{orderId} 
+   </update>
+   
+    <update id="changeToRefundSucceed" parameterType="int">
+		update orders set orderStatus = 7
+		where orderId = #{orderId} 
+    </update>
+  
+  	<update id="changeToRefundFailed" parameterType="int">
+		update orders set orderStatus = 8
+		where orderId = #{orderId} 
+    </update>
+    
 </mapper>

@@ -61,4 +61,15 @@ public class SellerOrderServiceImpl implements SellerOrderService {
 		return orderMapper.changeToRefundFailed(orderId);
 	}
 
+	@Override
+	 public List<Order> selectAllOrdersBetweenTime(String startTime, String endTime, int sellerId, int type) {
+        List<Order> orders = null;
+        if(type == 1){
+            orders = orderMapper.sellerSelectOrdersBetweenTime(startTime + " 0:00", endTime + " 23:59", sellerId);
+        }else{
+            orders = orderMapper.sellerSelectOrdersBetweenTime(startTime, endTime, sellerId);
+        }
+        return orders;
+    }
+
 }

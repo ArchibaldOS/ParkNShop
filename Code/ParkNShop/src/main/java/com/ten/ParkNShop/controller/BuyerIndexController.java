@@ -19,6 +19,11 @@ public class BuyerIndexController {
      * @Date: 4:36 PM 12/6/2017
      * @Description: 登录
      */
+    @RequestMapping("/PersonalOrders")
+    public String personalOrders(){
+        return "Buyer/PersonalOrders";
+    }
+
     @RequestMapping("/BuyerCart")
     public String buyerCart(){
         return "Buyer/BuyerCart";

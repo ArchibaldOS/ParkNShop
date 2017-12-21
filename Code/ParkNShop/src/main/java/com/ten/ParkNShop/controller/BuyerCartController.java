@@ -9,6 +9,8 @@ import com.ten.ParkNShop.entity.BuyerCart;
 import com.ten.ParkNShop.entity.Product;
 import com.ten.ParkNShop.mapper.ProductMapper;
 import com.ten.ParkNShop.service.BuyerCartService;
+import com.ten.ParkNShop.service.BuyerProductService;
+import com.ten.ParkNShop.service.SellerProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.Constants;
 import org.springframework.http.HttpRequest;
@@ -16,6 +18,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -32,30 +35,39 @@ import java.io.IOException;
 public class BuyerCartController {
     @Autowired
     private BuyerCartService buyerCartService;
-    private ProductMapper productMapper;
+    @Autowired
+    private SellerProductService sellerProductService;
     @RequestMapping("/AddToCart")
-    public int addToCart(HttpServletRequest request, HttpServletResponse response) {
-        int productId = Integer.parseInt(request.getParameter("productId"));
-        int productNumber = Integer.parseInt(request.getParameter("producctNumber"));
+    public String addToCart(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+        int productId;
+        int productNumber;
+        String stringOfId = request.getParameter("productId");
+        productId = Integer.parseInt(stringOfId);
+        if (request.getParameter("productNum")==null){
+            productNumber = 1;
+        }else {
+            productNumber = Integer.parseInt(request.getParameter("productNum"));
+        }
         HttpSession session = request.getSession();
-        BuyerCart buyerCart = (BuyerCart) session.getAttribute("cart");
+        BuyerCart buyerCart = (BuyerCart) session.getAttribute("buyerCart");
         if (buyerCart == null){
             buyerCart = new BuyerCart();
         }
-        Product product = productMapper.findByProductId(productId);
+        Product product = sellerProductService.getProductById(productId);
         buyerCart.addProduct(product,productNumber);
-        return productId;
+        session.setAttribute("buyerCart",buyerCart);
+        return "Buyer/BuyerCart";
     }
 
     @RequestMapping("/DelFromCart")
-    public int delFromCart(HttpServletRequest request, HttpServletResponse response) {
+    public int delFromCart(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         int productId = Integer.parseInt(request.getParameter("productId"));
         HttpSession session = request.getSession();
         BuyerCart buyerCart = (BuyerCart) session.getAttribute("cart");
         if (buyerCart==null){
             return 0;
         }
-        Product product = productMapper.findByProductId(productId);
+        Product product = sellerProductService.getProductById(productId);
         buyerCart.deleteProduct(product);
         return productId;
     }

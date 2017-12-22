@@ -202,11 +202,13 @@
         submit.hidden = false;
     }
 </script>
+
 <script>
     var ctx = document.getElementById("countChart").getContext("2d");
     var lineChartData = {
         //X坐标数据
-        labels : ["${labels[0]}", "${labels[1]}","${labels[2]}","${labels[3]}","${labels[4]}","${labels[5]}","${labels[6]}"],
+        labels : ["${labels[0]}", "${labels[1]}","${labels[2]}","${labels[3]}",
+            "${labels[4]}","${labels[5]}","${labels[6]}","${labels[7]}","${labels[8]}","${labels[9]}","${labels[10]}","${labels[11]}"],
         datasets : [
             {
                 //统计表的背景颜色
@@ -222,7 +224,8 @@
                 //鼠标触发时点边框的颜色
                 pointHighlightStroke : "#000",
                 //Y坐标数据,以数组中的最大值来确定y轴的最大值
-                data : [${counts[0]}, ${counts[1]},${counts[2]},${counts[3]},${counts[4]},${counts[5]}, ${counts[6]}]
+                data : [${counts[0]}, ${counts[1]},${counts[2]},${counts[3]},${counts[4]},${counts[5]}, ${counts[6]},
+                    ${counts[7]},${counts[8]},${counts[9]},${counts[10]}, ${counts[11]}]
             }
         ]
     };
@@ -233,7 +236,8 @@
     var ctx = document.getElementById("moneyChart").getContext("2d");
     var lineChartData = {
         //X坐标数据
-        labels : ["${labels[0]}", "${labels[1]}","${labels[2]}","${labels[3]}","${labels[4]}","${labels[5]}","${labels[6]}"],
+        labels : ["${labels[0]}", "${labels[1]}","${labels[2]}","${labels[3]}",
+            "${labels[4]}","${labels[5]}","${labels[6]}","${labels[7]}","${labels[8]}","${labels[9]}","${labels[10]}","${labels[11]}"],
         datasets : [
             {
                 fillColor : "rgba(0,255,0,0.5)",
@@ -242,7 +246,8 @@
                 pointStrokeColor : "#fff",
                 pointHighlightFill : "#fff",
                 pointHighlightStroke : "rgba(151,187,205,1)",
-                data : [${moneys[0]}, ${moneys[1]}, ${moneys[2]},${moneys[3]},${moneys[4]},${moneys[5]}, ${moneys[6]}]
+                data : [${moneys[0]}, ${moneys[1]}, ${moneys[2]},${moneys[3]},${moneys[4]},${moneys[5]}, ${moneys[6]},
+                    ${moneys[7]}, ${moneys[8]},${moneys[9]},${moneys[10]},${moneys[11]}]
             }
         ]
     };
@@ -250,5 +255,7 @@
         responsive: true
     });
 </script>
+
+
 </body>
 </html>

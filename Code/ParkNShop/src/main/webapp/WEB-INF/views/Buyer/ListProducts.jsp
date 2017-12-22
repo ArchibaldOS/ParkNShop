@@ -191,23 +191,40 @@
             <!-- Items -->
             <div class="col-list"> 
               <!-- Product -->
-              <div class="product">
+              <div class="product" style="border: red solid 2px;width:100%;">
                 <article>
                   <c:forEach var="searchProduct" items="${searchProducts}">
+                  <div style="width:100%;height:300px;margin-bottom: 20px;">
                   <!-- Product img -->
-                  <div class="media-left">
-                    <div class="item-img"> <img class="img-responsive" src="${pageContext.request.contextPath}/upload/productPicture/${searchProduct.productPicture}" >  </div>
+                  <div class="media-left" style="width:20%;">
+                    <div class="item-img" style="width:100%;height:400px"> 
+                    	<img class="img-responsive" src="${pageContext.request.contextPath}/upload/productPicture/${searchProduct.productPicture}" />  
+                    </div>
                   </div>                  
                   <!-- Content -->
                   <div class="media-body">
                     <div class="row">                       
                       <!-- Content Left -->
-                      <div class="col-sm-7"> <span class="tag">${searchProduct.productType}</span> <a href="/BuyerProductDetail?productId=${searchProduct.productId}" class="tittle">${searchProduct.productName}</a>
+                      <div class="col-sm-7">
+                      	 <span class="tag">
+                      	 	<c:choose>
+								<c:when test="${searchProduct.productType eq 1}">TV& Home Theater</c:when>
+								<c:when test="${searchProduct.productType eq 2}">Computers & Tablets</c:when>
+								<c:when test="${searchProduct.productType eq 3}">Cell Phones</c:when>
+								<c:when test="${searchProduct.productType eq 4}">Cameras & Camcorders</c:when>
+								<c:when test="${searchProduct.productType eq 5}">Audio</c:when>
+								<c:when test="${searchProduct.productType eq 6}">Car Electronics & GPS</c:when>
+								<c:when test="${searchProduct.productType eq 7}">Video, Games, Movies & Music</c:when>
+								<c:when test="${searchProduct.productType eq 8}">Health, Fitness & Sports</c:when>
+								<c:when test="${searchProduct.productType eq 9}">Home & Office</c:when>
+							</c:choose> 
+						</span> <br/>
+                      <a href="/BuyerProductDetail?productId=${searchProduct.productId}" class="tittle"><h3>${searchProduct.productName}</h3></a>
                         <!-- Reviews -->
                         <p>${searchProduct.productIntroduction}</p>
                       </div>                      
                       <!-- Content Right -->
-                      <div class="col-sm-5 text-center"> <a href="/MoveToBuyerFavorite?productId=${searchProduct.productId}&buyerId=${sessionScope.Buyer.buyerId}" class="heart"><i class="fa fa-heart"></i></a> <a href="#." class="heart navi"><i class="fa fa-navicon"></i></a>
+                      <div class="col-sm-5 text-center" style=""> <a href="/MoveToBuyerFavorite?productId=${searchProduct.productId}&buyerId=${sessionScope.Buyer.buyerId}" class="heart"><i class="fa fa-heart"></i></a> <a href="#." class="heart navi"><i class="fa fa-navicon"></i></a>
                         <div class="position-center-center">
                           <div class="price">$${searchProduct.productPrice}</div>
                           <c:choose>
@@ -222,9 +239,11 @@
                       </div>
                     </div>
                   </div>
-                </article>
-              </div>
-              </c:forEach>
+                  </div>
+            </c:forEach>
+          </article>
+        </div>
+             
               <!-- pagination -->
               <ul class="pagination">
                 <li> <a href="#" aria-label="Previous"> <i class="fa fa-angle-left"></i> </a> </li>

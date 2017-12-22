@@ -3,22 +3,25 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html class="no-js" lang="en">
+
 <head>
     <meta charset="utf-8">
-    <title>Sales Management</title>
+    <title>Sales History</title>
     <meta name="description" content="">
     <meta name="author" content="">
     <meta name="keywords" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!-- Mobile Specific Meta  -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <!-- Google Fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,300,700,900,100' rel='stylesheet' type='text/css'>
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="assets/css2/bootstrap.min.css" />
-    <link rel="stylesheet" href="assets/css2/font-awesome.min.css" />
+    <link rel="stylesheet" href="assets/css1/bootstrap.min.css" />
+    <link rel="stylesheet" href="assets/css1/font-awesome.min.css" />
     <!-- Custom CSS -->
     <link href="style1.css" rel="stylesheet">
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <link rel="stylesheet" type="text/css" href="assets/rs-plugin/css/settings.css" media="screen" />
+
     <!-- StyleSheets -->
     <link rel="stylesheet" href="assets/css2/ionicons.min.css">
     <link rel="stylesheet" href="assets/css2/bootstrap.min.css">
@@ -27,7 +30,6 @@
     <link rel="stylesheet" href="assets/css2/style.css">
     <link rel="stylesheet" href="assets/css2/responsive.css">
 </head>
-
 <body>
 <!-- Page Wrapper -->
 <div id="wrap" class="layout-1">
@@ -44,8 +46,8 @@
                             if (user == null) {
                     %>
                     <ul>
-                        <li><a href="Userlogin.jsp">login</a></li>
-                        <li><a href="Userregister.jsp">register</a></li>
+                        <li><a href="/sellerLogin">login</a></li>
+                        <li><a href="/sellerRegister">register</a></li>
                     </ul>
                     <%
                         }
@@ -93,17 +95,19 @@
                         <li><a href="/sellerSalesIncome">Sales</a></li>
                     </ul>
                 </div>
+
+                <!-- NAV RIGHT -->
+                <div class="nav-right"> </div>
             </div>
         </nav>
-
     </header>
 
     <div class="container">
         <div class="row">
             <div class="col-md-2" style="margin-top:9%">
                 <div class="list-group" style="text-align: center;">
-                    <a href="/sellerSalesIncome" class="list-group-item active">Shop Income</a>
-                    <a href="/sellerSalesHistory" class="list-group-item">Sales History</a>
+                    <a href="/sellerSalesIncome" class="list-group-item">Shop Income</a>
+                    <a href="/sellerSalesHistory" class="list-group-item active">Sales History</a>
                 </div>
             </div>
             <div class="col-md-10">
@@ -111,11 +115,11 @@
                     <h5>Sales Management</h5>
                 </div>
                 <div class="row">
-                    <div class="col-md-8">
+                    <div class="col-md-10">
                         <form action="#">
                             <div class="panel-body" id="select_time_div">
                                 <span>Please Select the Time of Sales</span><br>
-                                <Span>Type</Span>
+                                <span>Type</span>
                                 <select id="select_time_type" onchange="selected_type()" name="select_type" style="height:25px">
                                     <option value=""></option>
                                     <option value="Daily">Daily</option>
@@ -124,29 +128,46 @@
                                     <option value="Yearly">Yearly</option>
                                 </select>
                                 <select id="time_select_year" name="time_year" hidden></select>
-                                <input type="date" name="time" id="time_select" style="height:25px"hidden>
+                                <input type="date" name="time" id="time_select" style="height:25px" hidden>
                                 <input type="submit" value="Search" id="search_submit" hidden>
-                            </div>
+   							</div>
                         </form>
-                        <c:if test="${counts != null}">
+                        
                             <div class="panel-heading"><c:out value="${time}"></c:out> Sales's Condition is Below：</div>
-                        </c:if>
-
-                        <div class="panel-heading">Sales's Count Condition</div>
-                        <div class="panel-body">
-                            <canvas id="countChart" class="col-md-12"></canvas>
-                        </div><div class="panel-heading">Sales's Money Condition</div>
-                        <div class="panel-body">
-                            <canvas id="moneyChart" class="col-md-12"></canvas>
-                        </div>
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th>orderId</th>
+                                        <th>Buyer</th>
+                                        <th>productId</th>
+                                        <th>Count</th>
+                                        <th>totalPrice</th>
+                                        <th>Address</th>
+                                        <th>Time</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <c:forEach var="order" items="${orders}">
+                                        <tr>
+                                            <td><c:out value="${order.orderId}"></c:out></td>
+                                            <td><c:out value="${order.buyerId}"></c:out></td>
+                                            <td><c:out value="${order.productId}"></c:out></td>
+                                            <td><c:out value="${order.count}"></c:out></td>
+                                            <td><c:out value="${order.totalPrice}"></c:out></td>
+                                            <td><c:out value="${order.address}"></c:out></td>
+                                            <td><c:out value="${order.orderTime}"></c:out></td>
+                                        </tr>
+                                    </c:forEach>
+                                    </tbody>
+                                </table>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
 <!-- JavaScripts -->
+<script src="assets/js/vendors/modernizr.js"></script>
 <script src="assets/js2/vendors/jquery/jquery.min.js"></script>
 <script src="assets/js2/vendors/wow.min.js"></script>
 <script src="assets/js2/vendors/bootstrap.min.js"></script>
@@ -160,6 +181,7 @@
 <script src="assets/js2/main.js"></script>
 <script src="assets/js/vendors/modernizr.js"></script>
 <script src="assets/javascripts/Chart.js"></script>
+
 <script>
     // 时间选择控制代码
     function selected_type() {
@@ -201,54 +223,6 @@
         }
         submit.hidden = false;
     }
-</script>
-<script>
-    var ctx = document.getElementById("countChart").getContext("2d");
-    var lineChartData = {
-        //X坐标数据
-        labels : ["${labels[0]}", "${labels[1]}","${labels[2]}","${labels[3]}","${labels[4]}","${labels[5]}","${labels[6]}"],
-        datasets : [
-            {
-                //统计表的背景颜色
-                fillColor : "rgba(0,0,255,0.5)",
-                //统计表画笔颜色
-                strokeColor : "#f60",
-                //点的颜色
-                pointColor : "#000;",
-                //点边框的颜色
-                pointStrokeColor : "red",
-                //鼠标触发时点的颜色
-                pointHighlightFill : "red",
-                //鼠标触发时点边框的颜色
-                pointHighlightStroke : "#000",
-                //Y坐标数据,以数组中的最大值来确定y轴的最大值
-                data : [${counts[0]}, ${counts[1]},${counts[2]},${counts[3]},${counts[4]},${counts[5]}, ${counts[6]}]
-            }
-        ]
-    };
-    var myNewChart = new Chart(ctx).Line(lineChartData, {
-        responsive: true
-    });
-
-    var ctx = document.getElementById("moneyChart").getContext("2d");
-    var lineChartData = {
-        //X坐标数据
-        labels : ["${labels[0]}", "${labels[1]}","${labels[2]}","${labels[3]}","${labels[4]}","${labels[5]}","${labels[6]}"],
-        datasets : [
-            {
-                fillColor : "rgba(0,255,0,0.5)",
-                strokeColor : "rgba(92, 184, 92, 1)",
-                pointColor : "rgba(23, 126, 23, 1)",
-                pointStrokeColor : "#fff",
-                pointHighlightFill : "#fff",
-                pointHighlightStroke : "rgba(151,187,205,1)",
-                data : [${moneys[0]}, ${moneys[1]}, ${moneys[2]},${moneys[3]},${moneys[4]},${moneys[5]}, ${moneys[6]}]
-            }
-        ]
-    };
-    var myNewChart2 = new Chart(ctx).Line(lineChartData, {
-        responsive: true
-    });
 </script>
 </body>
 </html>

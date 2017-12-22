@@ -35,21 +35,21 @@ public class AdminSalesManagementController {
         String timeType = httpServletRequest.getParameter("select_type");
         String time = httpServletRequest.getParameter("time");
 
-        // 如果直接访问页面那么处理为当前日期的日销售情况
+        // 濡傛灉鐩存帴璁块棶椤甸潰閭ｄ箞澶勭悊涓哄綋鍓嶆棩鏈熺殑鏃ラ攢鍞儏鍐�
         if(timeType == null){
             SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
             timeType = "Daily";
             time = df.format(new Date());
         }
 
-        // 所选时间类型传递回去
+        // 鎵�閫夋椂闂寸被鍨嬩紶閫掑洖鍘�
         model.addAttribute("timeType", timeType);
 
         if(timeType.equals("Daily")){
             model.addAttribute("time", time);
             String[] labels = {"0:00", "4:00", "8:00", "12:00", "16:00", "20:00", "24:00"};
             model.addAttribute("labels", labels);
-            // 获取信息
+            // 鑾峰彇淇℃伅
             List<Object> salesCondition= getDaysCountAndSales(time);
             List<Integer> counts = (List<Integer>) salesCondition.get(0);
             List<Float> moneys = (List<Float>) salesCondition.get(1);
@@ -62,7 +62,7 @@ public class AdminSalesManagementController {
             String[] labels = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
             model.addAttribute("labels", labels);
 
-            // 获取销售情况 传入参数为形状为 2017-W51
+            // 鑾峰彇閿�鍞儏鍐� 浼犲叆鍙傛暟涓哄舰鐘朵负 2017-W51
             List<Object> salesCondition = getWeeksCountAndSales(time);
 
             List<Integer> counts = (List<Integer>) salesCondition.get(0);
@@ -76,7 +76,7 @@ public class AdminSalesManagementController {
 
             model.addAttribute("time", time);
 
-            // 获取一个月的最后一天
+            // 鑾峰彇涓�涓湀鐨勬渶鍚庝竴澶�
             int year = Integer.valueOf(time.split("-")[0]);
             int month = Integer.valueOf(time.split("-")[1]);
 
@@ -85,7 +85,7 @@ public class AdminSalesManagementController {
             String[] labels = {"1", "4", "7", "10", "13", "16", "19","22","25",String.valueOf(dayOfMonth)};
             model.addAttribute("labels", labels);
 
-            // 获取销售情况 传入参数为形状为 year month
+            // 鑾峰彇閿�鍞儏鍐� 浼犲叆鍙傛暟涓哄舰鐘朵负 year month
             List<Object> salesCondition = getMonthCountAndSales(year, month);
 
             List<Integer> counts = (List<Integer>) salesCondition.get(0);
@@ -121,7 +121,7 @@ public class AdminSalesManagementController {
         return "Admin/AdminSalesManagement";
     }
 
-    // 获取一年的销售情况 12个标签
+    // 鑾峰彇涓�骞寸殑閿�鍞儏鍐� 12涓爣绛�
     private List<Object> getYearCountAndSales(int year) {
 
         List<Integer> counts = new ArrayList<Integer>();
@@ -129,7 +129,7 @@ public class AdminSalesManagementController {
 
         for(int i = 0; i < 12; i++){
             String startTime = "" + year + "-" + (i+1) + "-1";
-            String endTime =  "" + year + "-" + (i+1) + "-" + getDayOfMonth(year, i);
+            String endTime =  "" + year + "-" + (i+1) + "-" + getDayOfMonth(year, i+1);
 
             System.out.println(startTime + " " + endTime);
             List<Order> orders = adminOrderService.selectAllOrdersBetweenTime(startTime, endTime, 1);
@@ -148,28 +148,28 @@ public class AdminSalesManagementController {
         return salesCondition;
     }
 
-    // 获取一个月的具体销售情况 分为 10 个标签，前九个为3天，后面一个为这个月剩余的天数的总计
+    // 鑾峰彇涓�涓湀鐨勫叿浣撻攢鍞儏鍐� 鍒嗕负 10 涓爣绛撅紝鍓嶄節涓负3澶╋紝鍚庨潰涓�涓负杩欎釜鏈堝墿浣欑殑澶╂暟鐨勬�昏
     private List<Object> getMonthCountAndSales(int year, int month) {
 
-        // 存储统计的情况
+        // 瀛樺偍缁熻鐨勬儏鍐�
         List<Integer> counts = new ArrayList<Integer>();
         List<Float> moneys = new ArrayList<Float>();
 
-        // 设置一个开始时间
+        // 璁剧疆涓�涓紑濮嬫椂闂�
         Calendar calendar = Calendar.getInstance();
         calendar.set(year, month - 1, 1);
 
-        //前九个阶段肯定是满的
+        //鍓嶄節涓樁娈佃偗瀹氭槸婊＄殑
         for(int i = 0; i < 10; i++){
             String startTime ="" +  year + "-" + month + "-" + calendar.get(Calendar.DAY_OF_MONTH);
             String endTime = null;
-            // 日期向前移动两天
+            // 鏃ユ湡鍚戝墠绉诲姩涓ゅぉ
             if (i < 9){
-                // 日期向前移动两天
+                // 鏃ユ湡鍚戝墠绉诲姩涓ゅぉ
                 calendar.add(Calendar.DAY_OF_MONTH, 2);
                 endTime = "" +  year + "-" + month + "-" + calendar.get(Calendar.DAY_OF_MONTH);
             } else{
-                // 直接使用最后一天
+                // 鐩存帴浣跨敤鏈�鍚庝竴澶�
                 endTime = "" +  year + "-" + month + "-" + getDayOfMonth(year, month);
             }
             List<Order> orders = adminOrderService.selectAllOrdersBetweenTime(startTime, endTime, 1);
@@ -179,7 +179,7 @@ public class AdminSalesManagementController {
             }
             counts.add(orders.size());
             moneys.add(money);
-            //日期向前移动一天
+            //鏃ユ湡鍚戝墠绉诲姩涓�澶�
             calendar.add(Calendar.DAY_OF_WEEK, 1);
         }
 
@@ -194,28 +194,28 @@ public class AdminSalesManagementController {
     /**
      * @Author tad
      * @Date created in 3:23 PM 12/19/2017
-     * @Description 获取一周的订单情况
+     * @Description 鑾峰彇涓�鍛ㄧ殑璁㈠崟鎯呭喌
      *
-     * @params [time]  String 一年的某一周的表达，例如 2017-W51
+     * @params [time]  String 涓�骞寸殑鏌愪竴鍛ㄧ殑琛ㄨ揪锛屼緥濡� 2017-W51
      * @return java.util.List<java.lang.Object>
      */
     private List<Object> getWeeksCountAndSales(String time) {
-        // 获取 Integer 的年和周
+        // 鑾峰彇 Integer 鐨勫勾鍜屽懆
         int week = Integer.valueOf(time.split("W")[1]);
         int year = Integer.valueOf(time.split("-")[0]);
 
-        // 获取某一年的某一周的开始日期
+        // 鑾峰彇鏌愪竴骞寸殑鏌愪竴鍛ㄧ殑寮�濮嬫棩鏈�
         Calendar calendar = Calendar.getInstance();
-        // 设置一周的开始时间为 周一 默认周二
+        // 璁剧疆涓�鍛ㄧ殑寮�濮嬫椂闂翠负 鍛ㄤ竴 榛樿鍛ㄤ簩
         calendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
         calendar.set(Calendar.YEAR, year);
         calendar.set(Calendar.WEEK_OF_YEAR, week);
 
-        // 存储统计的情况
+        // 瀛樺偍缁熻鐨勬儏鍐�
         List<Integer> counts = new ArrayList<Integer>();
         List<Float> moneys = new ArrayList<Float>();
 
-        // 获取一周的具体销售情况，以天为单位
+        // 鑾峰彇涓�鍛ㄧ殑鍏蜂綋閿�鍞儏鍐碉紝浠ュぉ涓哄崟浣�
         for(int i = 0; i < 7; i++){
             String startTime = calendar.get(Calendar.YEAR) + "-" + (calendar.get(Calendar.MONTH) + 1) + "-" + calendar.get(Calendar.DAY_OF_MONTH);
             List<Order> orders = adminOrderService.selectAllOrdersBetweenTime(startTime, startTime, 1);
@@ -225,7 +225,7 @@ public class AdminSalesManagementController {
             }
             counts.add(orders.size());
             moneys.add(money);
-            //日期向前移动一天
+            //鏃ユ湡鍚戝墠绉诲姩涓�澶�
             calendar.add(Calendar.DAY_OF_WEEK, 1);
         }
         List<Object> salesCondition = new ArrayList<Object>();
@@ -237,10 +237,10 @@ public class AdminSalesManagementController {
     /**
      * @Author tad
      * @Date created in 9:32 PM 12/18/2017
-     * @Description 获取一段各个小时内的销售量和销售额
+     * @Description 鑾峰彇涓�娈靛悇涓皬鏃跺唴鐨勯攢鍞噺鍜岄攢鍞
      *
      * @params []
-     * @return List<Object> 包含两条数据，第一条数据是List<Integer> 表示销量情况 第二条是 List<Float> 表示 销售额的情况
+     * @return List<Object> 鍖呭惈涓ゆ潯鏁版嵁锛岀涓�鏉℃暟鎹槸List<Integer> 琛ㄧず閿�閲忔儏鍐� 绗簩鏉℃槸 List<Float> 琛ㄧず 閿�鍞鐨勬儏鍐�
      * @param time
      */
     private List<Object> getDaysCountAndSales(String time) {
@@ -269,7 +269,7 @@ public class AdminSalesManagementController {
     /**
      * @Author tad
      * @Date created in 2:57 PM 12/16/2017
-     * @Description 请求修改佣金比例的页面
+     * @Description 璇锋眰淇敼浣ｉ噾姣斾緥鐨勯〉闈�
      *
      * @params []
      * @return java.lang.String
@@ -285,8 +285,8 @@ public class AdminSalesManagementController {
         String submitAdminAccount = httpServletRequest.getParameter("adminAccount");
         String submitAdminPassWord = httpServletRequest.getParameter("adminPassWord");
         float newCommission = Float.valueOf(httpServletRequest.getParameter("newCommission"));
-        // 如果密码争正确，进行新的佣金比例的查询
-        // TODO 密码错误的处理
+        // 濡傛灉瀵嗙爜浜夋纭紝杩涜鏂扮殑浣ｉ噾姣斾緥鐨勬煡璇�
+        // TODO 瀵嗙爜閿欒鐨勫鐞�
         if(submitAdminPassWord.equals(adminService.selectAdminPassword(submitAdminAccount))){
             adminCommissionService.insertLast(newCommission, submitAdminAccount, new java.sql.Date(new Date().getTime()));
         }
@@ -296,7 +296,7 @@ public class AdminSalesManagementController {
     /**
      * @Author tad
      * @Date created in 2:45 PM 12/17/2017
-     * @Description 进行佣金比例的历史记录查询
+     * @Description 杩涜浣ｉ噾姣斾緥鐨勫巻鍙茶褰曟煡璇�
      *
      * @params [httpServletRequest, model]
      * @return java.lang.String
@@ -315,7 +315,7 @@ public class AdminSalesManagementController {
 
 
     /**
-     * 获取某年的某一个月的天数
+     * 鑾峰彇鏌愬勾鐨勬煇涓�涓湀鐨勫ぉ鏁�
      * @param year
      * @param month
      * @return

@@ -124,6 +124,7 @@ border-radius: 20px;
             <li><a href="/sellerHome">Home</a></li>
             <li><a href="/sellerProduct">Product</a></li>
             <li><a href="/sellerOrderPage">Order</a></li>
+            <li><a href="/sellerSalesIncome">Sales</a></li>
           </ul>
         </div>
         

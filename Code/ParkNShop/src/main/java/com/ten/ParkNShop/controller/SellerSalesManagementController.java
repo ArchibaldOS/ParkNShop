@@ -8,6 +8,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +21,7 @@ import com.ten.ParkNShop.service.SellerOrderService;
 @Controller
 public class SellerSalesManagementController {
 
+	@Autowired
 	private SellerOrderService sellerOrderService;
 	
 	@RequestMapping(value="/sellerSalesIncome",method = RequestMethod.GET)
@@ -80,7 +82,7 @@ public class SellerSalesManagementController {
             model.addAttribute("counts", counts);
             model.addAttribute("moneys", moneys);
 
-            return "Seller/sellerSalesManagementMonth";
+            return "Seller/shopIncomeByMonth";
 
         }else{
 
@@ -95,18 +97,110 @@ public class SellerSalesManagementController {
             List<Integer> counts = (List<Integer>) salesCondition.get(0);
             List<Float> moneys = (List<Float>) salesCondition.get(1);
 
-            System.out.println(counts);
-            System.out.println(moneys);
-
             model.addAttribute("counts", counts);
             model.addAttribute("moneys", moneys);
 
-            return "Seller/sellerSalesManagementYear";
+            return "Seller/shopIncomeByYear";
 
         }
         return "Seller/sellerSalesManagement";
     }
+	
+	@RequestMapping(value="/sellerSalesHistory",method = RequestMethod.GET)
+    public String sellerSalesHistory(HttpServletRequest httpServletRequest, Model model){
+        String timeType = httpServletRequest.getParameter("select_type");
+        String time = httpServletRequest.getParameter("time");
+        int sellerId = ((Seller)httpServletRequest.getSession().getAttribute("seller")).getsellerId();
+        if(timeType == null){
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+            timeType = "Daily";
+            time = df.format(new Date());
+        }
 
+        model.addAttribute("timeType", timeType);
+
+        if(timeType.equals("Daily")){
+            model.addAttribute("time", time);
+            List<Order> orders= getDaysOrders(time,sellerId);
+
+            model.addAttribute("orders", orders);
+
+        }else if(timeType.equals("Weekly")){
+            model.addAttribute("time", time);
+            String[] labels = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
+            model.addAttribute("labels", labels);
+
+            List<Order> orders = getWeeksOrders(time,sellerId);
+
+            model.addAttribute("orders", orders);
+            
+        }else if(timeType.equals("Monthly")){
+
+            model.addAttribute("time", time);
+
+            int year = Integer.valueOf(time.split("-")[0]);
+            int month = Integer.valueOf(time.split("-")[1]);
+
+            int dayOfMonth = getDayOfMonth(year,month);
+   
+            List<Order> orders = getMonthOrders(year, month, sellerId);
+
+            model.addAttribute("orders", orders);
+
+        }else{
+
+            int year = Integer.valueOf(httpServletRequest.getParameter("time_year"));
+            model.addAttribute("time", year);
+
+            List<Order> orders = getYearOrders(year, sellerId);
+
+            model.addAttribute("orders", orders);
+
+        }
+        return "Seller/sellerSalesHistory";
+    }
+
+	private List<Order> getYearOrders(int year, int sellerId){
+		
+		String startTime = "" + year + "-" + "1" + "-1";
+        String endTime =  "" + year + "-" + "12" + "-31";
+
+        System.out.println(startTime + " " + endTime);
+        List<Order> orders = sellerOrderService.selectAllOrdersBetweenTime(startTime, endTime, sellerId, 1);
+	
+        return orders;
+	}
+	
+	private List<Order> getMonthOrders(int year, int month, int sellerId){
+		String startTime = "" + year + "-" + month + "-1";
+        String endTime =  "" + year + "-" + month + "-" + getDayOfMonth(year, month);
+        List<Order> orders = sellerOrderService.selectAllOrdersBetweenTime(startTime, endTime, sellerId, 1);
+        return orders;
+	}
+	
+	private List<Order> getWeeksOrders(String time, int sellerId){
+		int week = Integer.valueOf(time.split("W")[1]);
+        int year = Integer.valueOf(time.split("-")[0]);
+
+        
+        Calendar calendar = Calendar.getInstance();
+        
+        calendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
+        calendar.set(Calendar.YEAR, year);
+        calendar.set(Calendar.WEEK_OF_YEAR, week);
+        
+        String startTime = calendar.get(Calendar.YEAR) + "-" + (calendar.get(Calendar.MONTH) + 1) + "-" + calendar.get(Calendar.DAY_OF_MONTH);
+        calendar.add(Calendar.DAY_OF_WEEK, 7);
+        String endTime = calendar.get(Calendar.YEAR) + "-" + (calendar.get(Calendar.MONTH) + 1) + "-" + calendar.get(Calendar.DAY_OF_MONTH);
+        List<Order> orders = sellerOrderService.selectAllOrdersBetweenTime(startTime, endTime, sellerId, 1);
+        return orders;
+	}
+	
+	private List<Order> getDaysOrders(String time, int sellerId){
+		List<Order> orders = sellerOrderService.selectAllOrdersBetweenTime(time, time, sellerId, 1);
+		return orders;
+	}
+	
     private List<Object> getYearCountAndSales(int year, int sellerId) {
 
         List<Integer> counts = new ArrayList<Integer>();
@@ -114,7 +208,7 @@ public class SellerSalesManagementController {
 
         for(int i = 0; i < 12; i++){
             String startTime = "" + year + "-" + (i+1) + "-1";
-            String endTime =  "" + year + "-" + (i+1) + "-" + getDayOfMonth(year, i);
+            String endTime =  "" + year + "-" + (i+1) + "-" + getDayOfMonth(year, i+1);
 
             System.out.println(startTime + " " + endTime);
             List<Order> orders = sellerOrderService.selectAllOrdersBetweenTime(startTime, endTime, sellerId, 1);

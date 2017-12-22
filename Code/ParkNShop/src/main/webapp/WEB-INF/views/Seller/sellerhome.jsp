@@ -147,6 +147,7 @@ border-radius: 20px;
             <li><a href="/sellerHome">Home</a></li>
             <li><a href="/sellerProduct">Product</a></li>
             <li><a href="/sellerOrderPage">Order</a></li>
+            <li><a href="/sellerSalesIncome">Sales</a></li>
           </ul>
         </div>
         
@@ -175,6 +176,10 @@ border-radius: 20px;
         		<tr onmouseover="this.style.backgroundColor='rgb(81, 130, 187)';" onmouseout="this.style.backgroundColor='#d4e3e5';">
         			<td width="200px" style="font-size: 20px;">shop E-mail</td>
         			<td>${s.sellerEmail }</td>
+        		</tr>
+        		<tr onmouseover="this.style.backgroundColor='rgb(81, 130, 187)';" onmouseout="this.style.backgroundColor='#d4e3e5';">
+        			<td width="200px" style="font-size: 20px;">balance</td>
+        			<td>$${s.sellerBalance }</td>
         		</tr>
         		<tr onmouseover="this.style.backgroundColor='rgb(81, 130, 187)';" onmouseout="this.style.backgroundColor='#d4e3e5';">
         			<td width="200px" style="font-size: 20px;">shop Introduction</td>

@@ -293,6 +293,7 @@
         	orderTime BETWEEN #{startTime} AND #{endTime}
          AND sellerId = #{sellerId}
          AND orderStatus = 5
+         ORDER BY orderTime DESC
     </select>
     
     <select id="countCompleted" parameterType="int" resultType="int">

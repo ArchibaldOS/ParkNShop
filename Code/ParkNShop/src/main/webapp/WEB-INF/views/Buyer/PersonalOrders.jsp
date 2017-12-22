@@ -230,15 +230,15 @@
     <td colspan="8" class="line"></td>
   </tr>
   <c:choose>
-        <c:when test="${buyerCart.getItems eq null}">
+        <c:when test="${orders eq null}">
           <tr>
 				<td colspan="8">NO order!</td>
 		</tr>
         </c:when>
         <c:otherwise>
-        	<c:forEach var="buyerItem" items="${buyerCart.getItems}">
+        	<c:forEach var="buyerItem" items="${orders}">
         	<tr>
-   				 <td colspan="8" class="shopInfo">时间：  订单号：店铺：<a href="#">${buyerItem.getProduct.getproductsellerId}</a></td>
+   				 <td colspan="8" class="shopInfo">时间：${order.getorderTime} 订单号：${order.getorderID}店铺：<a href="#">${order.getsellerId}</a></td>
   			</tr>
   			<tr id="product1">
     			<td class="cart_td_2"><img src="${buyerItem.getProduct.getproductPicture}" alt="shopping"/></td>
@@ -246,9 +246,9 @@
         				${buyerItem.getProduct.getproductIntroduction}<br />
        			 </td>
     			<td class="cart_td_5">${buyerItem.getProduct.getProductPrice}</td>
-    			<td class="cart_td_6">${buyerItem.getAmount}</td>
-    			<td class="cart_td_7"></td>
-    			<td class="cart_td_5">交易成功</td>
+    			<td class="cart_td_6">${order.getCount}</td>
+    			<td class="cart_td_7">${order.gettotalPrice}</td>
+    			<td class="cart_td_5">${order.getorderStatus}</td>
     			<td class="cart_td_8"><a>评价</a></br><a href="javascript:deleteRow('product1');">删除订单</a></td>
   			</tr>
   			</c:forEach>
@@ -300,15 +300,15 @@
     <td colspan="8" class="line"></td>
   </tr>
   <c:choose>
-        <c:when test="${buyerCart.getItems eq null}">
+        <c:when test="${orders eq null}">
           <tr>
 				<td colspan="8">NO order!</td>
 		</tr>
         </c:when>
         <c:otherwise>
-        	<c:forEach var="buyerItem" items="${buyerCart.getItems}">
+        	<c:forEach var="buyerItem" items="${orders}">
         	<tr>
-   				 <td colspan="8" class="shopInfo">时间：  订单号：店铺：<a href="#">${buyerItem.getProduct.getproductsellerId}</a></td>
+   				 <td colspan="8" class="shopInfo">时间：${order.getorderTime} 订单号：${order.getorderID}店铺：<a href="#">${order.getsellerId}</a></td>
   			</tr>
   			<tr id="product1">
     			<td class="cart_td_2"><img src="${buyerItem.getProduct.getproductPicture}" alt="shopping"/></td>
@@ -316,9 +316,9 @@
         				${buyerItem.getProduct.getproductIntroduction}<br />
        			 </td>
     			<td class="cart_td_5">${buyerItem.getProduct.getProductPrice}</td>
-    			<td class="cart_td_6">${buyerItem.getAmount}</td>
-    			<td class="cart_td_7"></td>
-    			<td class="cart_td_5">已付款</td>
+    			<td class="cart_td_6">${order.getCount}</td>
+    			<td class="cart_td_7">${order.gettotalPrice}</td>
+    			<td class="cart_td_5">${order.getorderStatus}</td>
     			<td class="cart_td_8"><a>评价</a></br><a href="javascript:deleteRow('product1');">删除订单</a></td>
   			</tr>
   			</c:forEach>
@@ -370,15 +370,15 @@
     <td colspan="8" class="line"></td>
   </tr>
   <c:choose>
-        <c:when test="${buyerCart.getItems eq null}">
+        <c:when test="${orders eq null}">
           <tr>
 				<td colspan="8">NO order!</td>
 		</tr>
         </c:when>
         <c:otherwise>
-        	<c:forEach var="buyerItem" items="${buyerCart.getItems}">
+        	<c:forEach var="buyerItem" items="${orders}">
         	<tr>
-   				 <td colspan="8" class="shopInfo">时间：  订单号：店铺：<a href="#">${buyerItem.getProduct.getproductsellerId}</a></td>
+   				 <td colspan="8" class="shopInfo">时间：${order.getorderTime} 订单号：${order.getorderID}店铺：<a href="#">${order.getsellerId}</a></td>
   			</tr>
   			<tr id="product1">
     			<td class="cart_td_2"><img src="${buyerItem.getProduct.getproductPicture}" alt="shopping"/></td>
@@ -386,9 +386,9 @@
         				${buyerItem.getProduct.getproductIntroduction}<br />
        			 </td>
     			<td class="cart_td_5">${buyerItem.getProduct.getProductPrice}</td>
-    			<td class="cart_td_6">${buyerItem.getAmount}</td>
-    			<td class="cart_td_7"></td>
-    			<td class="cart_td_5">待付款</td>
+    			<td class="cart_td_6">${order.getCount}</td>
+    			<td class="cart_td_7">${order.gettotalPrice}</td>
+    			<td class="cart_td_5">${order.getorderStatus}</td>
     			<td class="cart_td_8"><a>评价</a></br><a href="javascript:deleteRow('product1');">删除订单</a></td>
   			</tr>
   			</c:forEach>
@@ -440,15 +440,15 @@
     <td colspan="8" class="line"></td>
   </tr>
   <c:choose>
-        <c:when test="${buyerCart.getItems eq null}">
+        <c:when test="${orders eq null}">
           <tr>
 				<td colspan="8">NO order!</td>
 		</tr>
         </c:when>
         <c:otherwise>
-        	<c:forEach var="buyerItem" items="${buyerCart.getItems}">
+        	<c:forEach var="buyerItem" items="${orders}">
         	<tr>
-   				 <td colspan="8" class="shopInfo">时间：  订单号：店铺：<a href="#">${buyerItem.getProduct.getproductsellerId}</a></td>
+   				 <td colspan="8" class="shopInfo">时间：${order.getorderTime} 订单号：${order.getorderID}店铺：<a href="#">${order.getsellerId}</a></td>
   			</tr>
   			<tr id="product1">
     			<td class="cart_td_2"><img src="${buyerItem.getProduct.getproductPicture}" alt="shopping"/></td>
@@ -456,9 +456,9 @@
         				${buyerItem.getProduct.getproductIntroduction}<br />
        			 </td>
     			<td class="cart_td_5">${buyerItem.getProduct.getProductPrice}</td>
-    			<td class="cart_td_6">${buyerItem.getAmount}</td>
-    			<td class="cart_td_7"></td>
-    			<td class="cart_td_5">待收货</td>
+    			<td class="cart_td_6">${order.getCount}</td>
+    			<td class="cart_td_7">${order.gettotalPrice}</td>
+    			<td class="cart_td_5">${order.getorderStatus}</td>
     			<td class="cart_td_8"><a>评价</a></br><a href="javascript:deleteRow('product1');">删除订单</a></td>
   			</tr>
   			</c:forEach>
@@ -510,15 +510,15 @@
     <td colspan="8" class="line"></td>
   </tr>
   <c:choose>
-        <c:when test="${buyerCart.getItems eq null}">
+        <c:when test="${orders eq null}">
           <tr>
 				<td colspan="8">NO order!</td>
 		</tr>
         </c:when>
         <c:otherwise>
-        	<c:forEach var="buyerItem" items="${buyerCart.getItems}">
+        	<c:forEach var="buyerItem" items="${orders}">
         	<tr>
-   				 <td colspan="8" class="shopInfo">时间：  订单号：店铺：<a href="#">${buyerItem.getProduct.getproductsellerId}</a></td>
+   				 <td colspan="8" class="shopInfo">时间：${order.getorderTime} 订单号：${order.getorderID}店铺：<a href="#">${order.getsellerId}</a></td>
   			</tr>
   			<tr id="product1">
     			<td class="cart_td_2"><img src="${buyerItem.getProduct.getproductPicture}" alt="shopping"/></td>
@@ -526,9 +526,9 @@
         				${buyerItem.getProduct.getproductIntroduction}<br />
        			 </td>
     			<td class="cart_td_5">${buyerItem.getProduct.getProductPrice}</td>
-    			<td class="cart_td_6">${buyerItem.getAmount}</td>
-    			<td class="cart_td_7"></td>
-    			<td class="cart_td_5">待评价</td>
+    			<td class="cart_td_6">${order.getCount}</td>
+    			<td class="cart_td_7">${order.gettotalPrice}</td>
+    			<td class="cart_td_5">${order.getorderStatus}</td>
     			<td class="cart_td_8"><a>评价</a></br><a href="javascript:deleteRow('product1');">删除订单</a></td>
   			</tr>
   			</c:forEach>

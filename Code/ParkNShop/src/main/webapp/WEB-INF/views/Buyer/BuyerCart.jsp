@@ -155,7 +155,7 @@
   <!-- Content -->
  <div id="content">
  <table width="100%" border="0" cellspacing="0" cellpadding="0" id="shopping">
- <form action="" method="post" name="myform">
+ <form action="onConfirmClick" method="post" name="myform">
   <tr>
     <td class="title_2" colspan="2">店铺宝贝</td>
     <td class="title_4">单价（元）</td>
@@ -184,7 +184,7 @@
         				${buyerItem.getProduct.getproductIntroduction}<br />
        			 </td>
     			<td class="cart_td_5">${buyerItem.getProduct.getProductPrice}</td>
-    			<td class="cart_td_6"><img src="assets/images/taobao_minus.jpg" alt="minus" onclick="changeNum('num_1','minus')" class="hand"/> <input id="num_1" type="text"  value="${buyerItem.getAmount}" class="num_input" readonly="readonly"/> <img src="assets/images/taobao_adding.jpg" alt="add" onclick="changeNum('num_1','add')"  class="hand"/></td>
+    			<td class="cart_td_6"><img src="assets/images/taobao_minus.jpg" alt="minus" onclick="changeNum('num_1','minus')" class="hand"/> <input id="num_1" type="text"  value="${buyerItem.getAmount}" class="num_input" readonly/> <img src="assets/images/taobao_adding.jpg" alt="add" onclick="changeNum('num_1','add')"  class="hand"/></td>
     			<td class="cart_td_7"></td>
     			<td class="cart_td_8"><a href="javascript:deleteRow('product1');">删除</a></td>
   			</tr>

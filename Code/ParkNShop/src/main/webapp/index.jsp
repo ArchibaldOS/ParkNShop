@@ -60,7 +60,7 @@
           %>
           <li>${ sessionScope.Buyer.buyerAccount}</li>
           <%
-              out.println( "<a href = '/buyerLogout' >Logout</a>" );
+              out.println( "<li><a href = '/BuyerLogout' >Logout</a></li>" );
 
             }
           %>
@@ -99,18 +99,33 @@
       <%--若不是游客，则判断其购物车是否为空，若为空则显示购物车内暂无商品--%>
       <%--若购物车内有商品则显示购物车内商品--%>
       <ul class="nav navbar-right cart-pop">
-        <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-          <span class="itm-cont">3</span> <i class="flaticon-shopping-bag"></i>
-          <strong>My Cart</strong> <br>
-          <span>3 item(s) - $500.00</span></a>
-          <ul class="dropdown-menu">
-            <li>
-              <div class="media-left"> <a href="#." class="thumb"> <img src="assets/images/item-img-1-1.jpg" class="img-responsive" alt="" > </a> </div>
-              <div class="media-body"> <a href="#." class="tittle">Funda Para Ebook 7" 128GB full HD</a> <span>250 x 1</span> </div>
+        <c:choose>
+          <c:when test="${buyerCart.getItems() eq null}">
+            <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+              <span class="itm-cont">0</span> <i class="flaticon-shopping-bag"></i>
+              <strong>My Cart</strong> <br>
+              <span>0 item - $0</span></a>
+              <ul class="dropdown-menu">
+                No product yet
+              </ul>
             </li>
-            <li class="btn-cart"> <a href="/BuyerCart" class="btn-round">View Cart</a> </li>
-          </ul>
-        </li>
+          </c:when>
+          <c:otherwise>
+            <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+              <span class="itm-cont">${buyerCart.getProductAmount()}</span> <i class="flaticon-shopping-bag"></i>
+              <strong>My Cart</strong> <br>
+              <span>${buyerCart.getProductAmount()} item(s) - ${buyerCart.getTotalPrice()}</span></a>
+              <ul class="dropdown-menu">
+                <c:forEach var="buyerItem" items="${buyerCart.getItems()}">
+                  <li>
+                    <div class="media-left"> <a href="#." class="thumb"> <img src="${pageContext.request.contextPath}/upload/productPicture/${buyerItem.getProduct().getProductPicture()}" class="img-responsive" alt="" > </a> </div>
+                    <div class="media-body"> <a href="#." class="tittle"></a> <span> ${buyerItem.getProduct().getProductPrice()}* ${buyerItem.getAmount()}</span> </div>
+                  </li></c:forEach>
+                <li class="btn-cart"> <a href="/BuyerCart" class="btn-round">View Cart</a> </li>
+              </ul>
+            </li>
+          </c:otherwise>
+        </c:choose>
       </ul>
     </div>
     <br>

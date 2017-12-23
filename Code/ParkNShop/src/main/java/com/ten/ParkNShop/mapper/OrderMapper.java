@@ -114,6 +114,8 @@ public interface OrderMapper {
 
 	int changeToRefundFailed(@Param("orderId") int orderId);
 
+    int changeToPaid(@Param("orderId") int orderId);
+
 	List<Order> sellerSelectOrdersBetweenTime(@Param("startTime") String startTime, @Param("endTime") String endTime, @Param("sellerId") int sellerId);
 
 

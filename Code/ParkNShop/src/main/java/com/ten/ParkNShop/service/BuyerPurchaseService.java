@@ -19,6 +19,6 @@ public interface BuyerPurchaseService {
     //批量生成订单
     public boolean createOrders(List<Order> orders);
 
-
+    ;public void changeOrderToPaid(int orderId);
 
 }

@@ -70,4 +70,8 @@ public class BuyerPurchaseServiceImp implements BuyerPurchaseService {
         }
         return true;
     }
+
+    public void changeOrderToPaid(int orderId) {
+        orderMapper.changeToPaid(orderId);
+    }
 }

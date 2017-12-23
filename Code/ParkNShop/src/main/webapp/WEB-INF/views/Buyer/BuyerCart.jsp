@@ -65,7 +65,7 @@
           %>
           <li>${ sessionScope.Buyer.buyerAccount}</li>
           <%
-              out.println( "<a href = '/buyerLogout' >Logout</a>" );
+              out.println( "<li><a href = '/BuyerLogout' >Logout</a></li>" );
 
             }
           %>
@@ -80,7 +80,7 @@
   <header>
     <div class="container">
       <div class="logo"> <a href="/BuyerIndex"><img src="assets/images/logo.png"></a> </div>
-      <form class="search-cate" action="/buyerSearchProduct">
+      <form class="search-cate" action="/SearchProducts">
         <select class="selectpicker" name="searchType">
           <option value="0"> All Categories</option>
           <option value="1"> TV& Home Theater</option>
@@ -136,7 +136,7 @@
           <ul class="dropdown-menu">
             <c:forEach var="buyerItem" items="${buyerCart.getItems()}">
             <li>
-              <div class="media-left"> <a href="#." class="thumb"> <img src="assets/images/item-img-1-1.jpg" class="img-responsive" alt="" > </a> </div>
+              <div class="media-left"> <a href="#." class="thumb"> <img src="${pageContext.request.contextPath}/upload/productPicture/${buyerItem.getProduct().getProductPicture()}" class="img-responsive" alt="" > </a> </div>
               <div class="media-body"> <a href="#." class="tittle"></a> <span> ${buyerItem.getProduct().getProductPrice()}* ${buyerItem.getAmount()}</span> </div>
             </li></c:forEach>
             <li class="btn-cart"> <a href="/BuyerCart" class="btn-round">View Cart</a> </li>
@@ -157,20 +157,20 @@
  <table width="100%" border="0" cellspacing="0" cellpadding="0" id="shopping">
  <form action="/onConfirmClick" method="post" name="myform">
   <tr>
-    <td class="title_2" colspan="2">店铺宝贝</td>
-    <td class="title_4">单价（元）</td>
-    <td class="title_5">数量</td>
-    <td class="title_6">小计（元）</td>
-    <td class="title_7">操作</td>
+    <td class="title_2" colspan="2">Product</td>
+    <td class="title_4">Unit Price</td>
+    <td class="title_5">Amount</td>
+    <td class="title_6">Total Price</td>
+    <td class="title_7">Operation</td>
   </tr>
   <tr>
     <td colspan="8" class="line"></td>
   </tr>
   
  <c:choose>
-        <c:when test="${buyerCart.getItems() eq null}">
-          <tr>
-				<td colspan="8">Shopping cart is empty！</td>
+        <c:when test="${buyerCart.getItems().size() eq 0}">
+          <tr align="center" style="height: 200px;">
+            <td colspan="8"><h3>Shopping cart is empty！</h3></td>
 		</tr>
         </c:when>
         <c:otherwise>
@@ -180,31 +180,32 @@
                      卖家：<a href="#">${buyerItem.getProduct().getSellerId()}</a> </td>
   			</tr>
   			<tr id="product1">
-    			<td class="cart_td_2"><img src="${buyerItem.getProduct().getProductPicture()}" alt="shopping"/></td>
+    			<td class="cart_td_2"><img src="${pageContext.request.contextPath}/upload/productPicture/${buyerItem.getProduct().getProductPicture()}" alt="shopping"/></td>
    				<td class="cart_td_3"><a href="#">${buyerItem.getProduct().getProductName()}</a><br />
         				${buyerItem.getProduct().getProductIntroduction()}<br />
        			 </td>
     			<td class="cart_td_5">${buyerItem.getProduct().getProductPrice()}</td>
-    			<td class="cart_td_6"><a  href="/DelFromBuyerCart?buyerId=${session.getAttribute( "Buyer" ).buyerId}&productId=${buyerItem.getProduct().getProductId()}" class="hand"><img src="assets/images/taobao_minus.jpg"></a>
+    			<td class="cart_td_6"><a  href="/DelFromBuyerCart?buyerId=${Buyer.buyerId}&productId=${buyerItem.getProduct().getProductId()}" class="hand"><img src="assets/images/taobao_minus.jpg"></a>
     									<input  type="text"  value="${buyerItem.getAmount()}" class="num_input" readonly="readonly"/>
-    								  <a  href="/AddToCart?buyerId=${session.getAttribute( "Buyer" ).buyerId}&productId=${buyerItem.getProduct().getProductId()}" class="hand"><img src="assets/images/taobao_adding.jpg"></a>
+    								  <a  href="/AddToCart?buyerId=${Buyer.buyerId}&productId=${buyerItem.getProduct().getProductId()}" class="hand"><img src="assets/images/taobao_adding.jpg"></a>
     								   </td>
     			<td class="cart_td_7"></td>
-    			<td class="cart_td_8"><a href="javascript:deleteRow('product1');">删除</a></td>
+    			<td class="cart_td_8"><a href="/DelItem?productId=${buyerItem.getProduct().getProductId()}">删除</a></td>
   			</tr>
   			</c:forEach>
         </c:otherwise>
         </c:choose>
  
 
-  
+<c:if test="${buyerCart.getItems().size() gt 0}">
    <tr>
-    	<td colspan="5" class="shopend">商品总价（不含运费）：<label id="total" class="yellow"></label> 元<br />
+    	<td colspan="5" class="shopend">Total：<label id="total" class="yellow"></label> $<br />
 
    			 <a href="/onConfirmClick"><input  name="onConfirmClick " type="image"  src="assets/images/taobao_subtn.jpg" /></a>
     	</td>
-       
+
    </tr>
+</c:if>
   </form>
 </table>
 

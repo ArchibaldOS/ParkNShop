@@ -87,7 +87,7 @@
 		productId, sellerId, productName, productType, productPrice, storeCount, soldCount,
 		productIntroduction, productPicture
 		FROM product
-		WHERE productName = #{productName}
+		WHERE productName LIKE CONCAT(CONCAT('%',#{productName}),'%')
 	</select>
 
 	<select id="searchBySearchType" parameterType="int" resultMap="BaseResultMap">

@@ -24,6 +24,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 /**
  * @author: Archibald.
@@ -38,7 +39,8 @@ public class BuyerCartController {
     @Autowired
     private SellerProductService sellerProductService;
     @RequestMapping("/AddToCart")
-    public String addToCart(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+    public String addToCart(HttpServletRequest request) throws ServletException, IOException{
+
         int productId;
         int productNumber;
         String stringOfId = request.getParameter("productId");
@@ -56,11 +58,14 @@ public class BuyerCartController {
         Product product = sellerProductService.getProductById(productId);
         buyerCart.addProduct(product,productNumber);
         session.setAttribute("buyerCart",buyerCart);
+        if (request.getSession().getAttribute("Buyer")==null){
+            return "Buyer/BuyerLogin";
+        }
         return "Buyer/BuyerCart";
     }
 
-    @RequestMapping("/DelFromCart")
-    public String delFromCart(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+    @RequestMapping("/DelFromBuyerCart")
+    public String delFromCart(HttpServletRequest request) throws ServletException, IOException{
         int productId = Integer.parseInt(request.getParameter("productId"));
         HttpSession session = request.getSession();
         BuyerCart buyerCart = (BuyerCart) session.getAttribute("buyerCart");
@@ -69,6 +74,20 @@ public class BuyerCartController {
         }
         Product product = sellerProductService.getProductById(productId);
         buyerCart.deleteProduct(product);
+        session.setAttribute("buyerCart",buyerCart);
+        return "Buyer/BuyerCart";
+    }
+
+    @RequestMapping("/DelItem")
+    public String delItem(HttpServletRequest request) throws ServletException, IOException{
+        int productId = Integer.parseInt(request.getParameter("productId"));
+        HttpSession session = request.getSession();
+        BuyerCart buyerCart = (BuyerCart) session.getAttribute("buyerCart");
+        if (buyerCart==null){
+            buyerCart = new BuyerCart();
+        }
+        Product product = sellerProductService.getProductById(productId);
+        buyerCart.deleteItem(productId);
         session.setAttribute("buyerCart",buyerCart);
         return "Buyer/BuyerCart";
     }

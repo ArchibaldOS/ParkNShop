@@ -78,4 +78,12 @@ public class BuyerPurchaseController {
         return "Buyer/PersonalOrders";
 
     }
+
+    @RequestMapping("onPaidClick")
+    public String onPaidClick(int orderId)
+    {
+        buyerPurchaseService.changeOrderToPaid(orderId);
+
+        return "Buyer/purchasesSuccessful";
+    }
 }

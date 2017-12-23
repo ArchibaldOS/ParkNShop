@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -37,6 +38,14 @@ public class BuyerCart implements Serializable{
             items.add(item);
         }
 
+    }
+
+    public void deleteItem(int productId){
+        Iterator<BuyerItem> buyerItemIterator = items.iterator();
+        while (buyerItemIterator.hasNext()){
+            if(buyerItemIterator.next().getProduct().getProductId() == productId)
+                buyerItemIterator.remove();
+        }
     }
 
     public List<BuyerItem> getItems() {
@@ -75,13 +84,14 @@ public class BuyerCart implements Serializable{
     @JsonIgnore
     public Float getFee(){
         Float result = 0f;
-        //计算
-        //低于79不包邮
-        if (getProductPrice() < 79) {
-            result = 5f;
-        }
-
-        return result;
+//        //计算
+//        //低于79不包邮
+//        if (getProductPrice() < 79) {
+//            result = 5f;
+//        }
+//
+//        return result;
+        return 0f;
     }
 
     //总价

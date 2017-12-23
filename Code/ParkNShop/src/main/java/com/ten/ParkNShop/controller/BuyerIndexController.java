@@ -34,6 +34,12 @@ public class BuyerIndexController {
         return "Buyer/BuyerLogin";
     }
 
+    @RequestMapping("/BuyerLogout")
+    public String buyerLogout(HttpSession session){
+        session.setAttribute("Buyer",null);
+        return "redirect:index.jsp";
+    }
+
     @RequestMapping("/BuyerRegister")
     public String buyerRegister(){
         return "Buyer/BuyerRegister";

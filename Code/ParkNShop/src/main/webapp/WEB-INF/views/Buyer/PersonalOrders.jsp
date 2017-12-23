@@ -100,7 +100,7 @@
           %>
           <li>${ sessionScope.Buyer.buyerAccount}</li>
           <%
-              out.println( "<a href = '/buyerLogout' >Logout</a>" );
+                  out.println( "<li><a href = '/BuyerLogout' >Logout</a></li>" );
 
             }
           %>
@@ -150,36 +150,36 @@
 
         }
       %>
-      
-      <ul class="nav navbar-right cart-pop">
-        <c:choose>
-        <c:when test="${buyerCart.getItems eq null}">
-          <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-          <span class="itm-cont">0</span> <i class="flaticon-shopping-bag"></i>
-          <strong>My Cart</strong> <br>
-          <span>0 item - $0</span></a>
-          <ul class="dropdown-menu">
-              No product yet
-          </ul>
-        </li>
-        </c:when>
-        <c:otherwise>
-        <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-          <span class="itm-cont">${buyerCart.getProductAmount}</span> <i class="flaticon-shopping-bag"></i>
-          <strong>My Cart</strong> <br>
-          <span>${buyerCart.getProductAmount} item(s) - ${buyerCart.getTotalPrice}</span></a>
-          <ul class="dropdown-menu">
-            <c:forEach var="buyerItem" items="${buyerCart.getItems}">
-            <li>
-              <div class="media-left"> <a href="#." class="thumb"> <img src="assets/images/item-img-1-1.jpg" class="img-responsive" alt="" > </a> </div>
-              <div class="media-body"> <a href="#." class="tittle"></a> <span> ${buyerItem.getProduct.getProductPrice}* ${buyerItem.getAmount}</span> </div>
-            </li></c:forEach>
-            <li class="btn-cart"> <a href="/BuyerCart" class="btn-round">View Cart</a> </li>
-          </ul>
-        </li>
-        </c:otherwise>
-        </c:choose>
-      </ul>
+
+        <ul class="nav navbar-right cart-pop">
+            <c:choose>
+                <c:when test="${buyerCart.getItems() eq null}">
+                    <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        <span class="itm-cont">0</span> <i class="flaticon-shopping-bag"></i>
+                        <strong>My Cart</strong> <br>
+                        <span>0 item - $0</span></a>
+                        <ul class="dropdown-menu">
+                            No product yet
+                        </ul>
+                    </li>
+                </c:when>
+                <c:otherwise>
+                    <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        <span class="itm-cont">${buyerCart.getProductAmount()}</span> <i class="flaticon-shopping-bag"></i>
+                        <strong>My Cart</strong> <br>
+                        <span>${buyerCart.getProductAmount()} item(s) - ${buyerCart.getTotalPrice()}</span></a>
+                        <ul class="dropdown-menu">
+                            <c:forEach var="buyerItem" items="${buyerCart.getItems()}">
+                                <li>
+                                    <div class="media-left"> <a href="#." class="thumb"> <img src="${pageContext.request.contextPath}/upload/productPicture/${buyerItem.getProduct().getProductPicture()}" class="img-responsive" alt="" > </a> </div>
+                                    <div class="media-body"> <a href="#." class="tittle"></a> <span> ${buyerItem.getProduct().getProductPrice()}* ${buyerItem.getAmount()}</span> </div>
+                                </li></c:forEach>
+                            <li class="btn-cart"> <a href="/BuyerCart" class="btn-round">View Cart</a> </li>
+                        </ul>
+                    </li>
+                </c:otherwise>
+            </c:choose>
+        </ul>
     </div>
     <br>
 		<section class="top-md-menu">
@@ -238,18 +238,18 @@
         <c:otherwise>
         	<c:forEach var="buyerItem" items="${orders}">
         	<tr>
-   				 <td colspan="8" class="shopInfo">时间：${order.getorderTime} 订单号：${order.getorderID}店铺：<a href="#">${order.getsellerId}</a></td>
+   				 <td colspan="8" class="shopInfo">时间：${buyerItem.getOrder().getOrderTime()} 订单号：${buyerItem.getOrder().getOrderId()}店铺：<a href="#">${buyerItem.getOrder().getSellerId()}</a></td>
   			</tr>
   			<tr id="product1">
-    			<td class="cart_td_2"><img src="${buyerItem.getProduct.getproductPicture}" alt="shopping"/></td>
-   				<td class="cart_td_3"><a href="#">${buyerItem.getProduct.getproductName}</a><br />
-        				${buyerItem.getProduct.getproductIntroduction}<br />
+    			<td class="cart_td_2"><img src="${pageContext.request.contextPath}/upload/productPicture/${buyerItem.getProduct().getProductPicture()}" alt="shopping"/></td>
+   				<td class="cart_td_3"><a href="#">${buyerItem.getProduct().getProductName()}</a><br />
+        				${buyerItem.getProduct().getProductIntroduction()}<br />
        			 </td>
-    			<td class="cart_td_5">${buyerItem.getProduct.getProductPrice}</td>
-    			<td class="cart_td_6">${order.getCount}</td>
-    			<td class="cart_td_7">${order.gettotalPrice}</td>
-    			<td class="cart_td_5">${order.getorderStatus}</td>
-    			<td class="cart_td_8"><a>评价</a></br><a href="javascript:deleteRow('product1');">删除订单</a></td>
+    			<td class="cart_td_5">${buyerItem.getProduct().getProductPrice()}</td>
+    			<td class="cart_td_6">${buyerItem.getOrder().getCount()}</td>
+    			<td class="cart_td_7">${buyerItem.getOrder().getTotalPrice()}</td>
+    			<td class="cart_td_5">${buyerItem.getOrder().getOrderStatus()}</td>
+    			<td class="cart_td_8"><a href="#">评价</a></td>
   			</tr>
   			</c:forEach>
         </c:otherwise>
@@ -257,313 +257,6 @@
  
  
  
-  <tr>
-    <td colspan="8" class="shopInfo">时间： 订单号： 店铺：<a href="#">纤巧百媚时尚鞋坊</a></td>
-  </tr>
-   <tr id="product1">
-    <td class="cart_td_2"><img src="assets/images/taobao_cart_01.jpg" alt="shopping"/></td>
-    <td class="cart_td_3"><a href="#">日韩流行风时尚美眉最爱独特米字拼图金属坡跟公主靴子黑色</a><br />
-        颜色：棕色 尺码：37<br />
-        </td>
-    <td class="cart_td_5">138.00</td>
-    <td class="cart_td_6">1</td>
-    <td class="cart_td_7"></td>
-    <td class="cart_td_5">交易成功</td>
-    <td class="cart_td_8"><a>评价</a></br><a href="javascript:deleteRow('product1');">删除订单</a></td>
-  </tr>
-   <tr id="product2">
-    <td class="cart_td_2"><img src="assets/images/taobao_cart_02.jpg" alt="shopping"/></td>
-    <td class="cart_td_3"><a href="#">chanel/香奈尔/香奈尔炫亮魅力唇膏3.5g</a><br />
-        </td>
-    <td class="cart_td_5">265.00</td>
-    <td class="cart_td_6">1</td>
-    <td class="cart_td_7"></td>
-    <td class="cart_td_5">交易成功</td>
-    <td class="cart_td_8"><a>评价</a></br><a href="javascript:deleteRow('product1');">删除订单</a></td>
-  </tr>
-  </form>
-</table>
-</div>
-
-<div id="content2">
- <table width="100%" border="0" cellspacing="0" cellpadding="0" id="shopping">
- <form action="" method="post" name="myform">
-  <tr>
-    <td class="title_2" colspan="2">宝贝</td>
-    <td class="title_4">单价（元）</td>
-    <td class="title_5">数量</td>
-    <td class="title_6">实付款（元）</td>
-    <td class="title_6">交易状态</td>
-    <td class="title_7">操作</td>
-  </tr>
-  <tr>
-    <td colspan="8" class="line"></td>
-  </tr>
-  <c:choose>
-        <c:when test="${orders eq null}">
-          <tr>
-				<td colspan="8">NO order!</td>
-		</tr>
-        </c:when>
-        <c:otherwise>
-        	<c:forEach var="buyerItem" items="${orders}">
-        	<tr>
-   				 <td colspan="8" class="shopInfo">时间：${order.getorderTime} 订单号：${order.getorderID}店铺：<a href="#">${order.getsellerId}</a></td>
-  			</tr>
-  			<tr id="product1">
-    			<td class="cart_td_2"><img src="${buyerItem.getProduct.getproductPicture}" alt="shopping"/></td>
-   				<td class="cart_td_3"><a href="#">${buyerItem.getProduct.getproductName}</a><br />
-        				${buyerItem.getProduct.getproductIntroduction}<br />
-       			 </td>
-    			<td class="cart_td_5">${buyerItem.getProduct.getProductPrice}</td>
-    			<td class="cart_td_6">${order.getCount}</td>
-    			<td class="cart_td_7">${order.gettotalPrice}</td>
-    			<td class="cart_td_5">${order.getorderStatus}</td>
-    			<td class="cart_td_8"><a>评价</a></br><a href="javascript:deleteRow('product1');">删除订单</a></td>
-  			</tr>
-  			</c:forEach>
-        </c:otherwise>
-        </c:choose>
- 
- 
- 
-  <tr>
-    <td colspan="8" class="shopInfo">时间： 订单号： 店铺：<a href="#">纤巧百媚时尚鞋坊</a></td>
-  </tr>
-   <tr id="product1">
-    <td class="cart_td_2"><img src="assets/images/taobao_cart_01.jpg" alt="shopping"/></td>
-    <td class="cart_td_3"><a href="#">日韩流行风时尚美眉最爱独特米字拼图金属坡跟公主靴子黑色</a><br />
-        颜色：棕色 尺码：37<br />
-        </td>
-    <td class="cart_td_5">138.00</td>
-    <td class="cart_td_6">1</td>
-    <td class="cart_td_7"></td>
-    <td class="cart_td_5">已付款</td>
-    <td class="cart_td_8"><a>评价</a></br><a href="javascript:deleteRow('product1');">删除订单</a></td>
-  </tr>
-   <tr id="product2">
-    <td class="cart_td_2"><img src="assets/images/taobao_cart_02.jpg" alt="shopping"/></td>
-    <td class="cart_td_3"><a href="#">chanel/香奈尔/香奈尔炫亮魅力唇膏3.5g</a><br />
-        </td>
-    <td class="cart_td_5">265.00</td>
-    <td class="cart_td_6">1</td>
-    <td class="cart_td_7"></td>
-    <td class="cart_td_5">已付款</td>
-    <td class="cart_td_8"><a>评价</a></br><a href="javascript:deleteRow('product1');">删除订单</a></td>
-  </tr>
-  </form>
-</table>
-</div>
-
-<div id="content3">
- <table width="100%" border="0" cellspacing="0" cellpadding="0" id="shopping">
- <form action="" method="post" name="myform">
-  <tr>
-    <td class="title_2" colspan="2">宝贝</td>
-    <td class="title_4">单价（元）</td>
-    <td class="title_5">数量</td>
-    <td class="title_6">实付款（元）</td>
-    <td class="title_6">交易状态</td>
-    <td class="title_7">操作</td>
-  </tr>
-  <tr>
-    <td colspan="8" class="line"></td>
-  </tr>
-  <c:choose>
-        <c:when test="${orders eq null}">
-          <tr>
-				<td colspan="8">NO order!</td>
-		</tr>
-        </c:when>
-        <c:otherwise>
-        	<c:forEach var="buyerItem" items="${orders}">
-        	<tr>
-   				 <td colspan="8" class="shopInfo">时间：${order.getorderTime} 订单号：${order.getorderID}店铺：<a href="#">${order.getsellerId}</a></td>
-  			</tr>
-  			<tr id="product1">
-    			<td class="cart_td_2"><img src="${buyerItem.getProduct.getproductPicture}" alt="shopping"/></td>
-   				<td class="cart_td_3"><a href="#">${buyerItem.getProduct.getproductName}</a><br />
-        				${buyerItem.getProduct.getproductIntroduction}<br />
-       			 </td>
-    			<td class="cart_td_5">${buyerItem.getProduct.getProductPrice}</td>
-    			<td class="cart_td_6">${order.getCount}</td>
-    			<td class="cart_td_7">${order.gettotalPrice}</td>
-    			<td class="cart_td_5">${order.getorderStatus}</td>
-    			<td class="cart_td_8"><a>评价</a></br><a href="javascript:deleteRow('product1');">删除订单</a></td>
-  			</tr>
-  			</c:forEach>
-        </c:otherwise>
-        </c:choose>
- 
- 
- 
-  <tr>
-    <td colspan="8" class="shopInfo">时间： 订单号： 店铺：<a href="#">纤巧百媚时尚鞋坊</a></td>
-  </tr>
-   <tr id="product1">
-    <td class="cart_td_2"><img src="assets/images/taobao_cart_01.jpg" alt="shopping"/></td>
-    <td class="cart_td_3"><a href="#">日韩流行风时尚美眉最爱独特米字拼图金属坡跟公主靴子黑色</a><br />
-        颜色：棕色 尺码：37<br />
-        </td>
-    <td class="cart_td_5">138.00</td>
-    <td class="cart_td_6">1</td>
-    <td class="cart_td_7"></td>
-    <td class="cart_td_5">待付款</td>
-    <td class="cart_td_8"><a>评价</a></br><a href="javascript:deleteRow('product1');">删除订单</a></td>
-  </tr>
-   <tr id="product2">
-    <td class="cart_td_2"><img src="assets/images/taobao_cart_02.jpg" alt="shopping"/></td>
-    <td class="cart_td_3"><a href="#">chanel/香奈尔/香奈尔炫亮魅力唇膏3.5g</a><br />
-        </td>
-    <td class="cart_td_5">265.00</td>
-    <td class="cart_td_6">1</td>
-    <td class="cart_td_7"></td>
-    <td class="cart_td_5">待付款</td>
-    <td class="cart_td_8"><a>评价</a></br><a href="javascript:deleteRow('product1');">删除订单</a></td>
-  </tr>
-  </form>
-</table>
-</div>
-
-<div id="content4">
- <table width="100%" border="0" cellspacing="0" cellpadding="0" id="shopping">
- <form action="" method="post" name="myform">
-  <tr>
-    <td class="title_2" colspan="2">宝贝</td>
-    <td class="title_4">单价（元）</td>
-    <td class="title_5">数量</td>
-    <td class="title_6">实付款（元）</td>
-    <td class="title_6">交易状态</td>
-    <td class="title_7">操作</td>
-  </tr>
-  <tr>
-    <td colspan="8" class="line"></td>
-  </tr>
-  <c:choose>
-        <c:when test="${orders eq null}">
-          <tr>
-				<td colspan="8">NO order!</td>
-		</tr>
-        </c:when>
-        <c:otherwise>
-        	<c:forEach var="buyerItem" items="${orders}">
-        	<tr>
-   				 <td colspan="8" class="shopInfo">时间：${order.getorderTime} 订单号：${order.getorderID}店铺：<a href="#">${order.getsellerId}</a></td>
-  			</tr>
-  			<tr id="product1">
-    			<td class="cart_td_2"><img src="${buyerItem.getProduct.getproductPicture}" alt="shopping"/></td>
-   				<td class="cart_td_3"><a href="#">${buyerItem.getProduct.getproductName}</a><br />
-        				${buyerItem.getProduct.getproductIntroduction}<br />
-       			 </td>
-    			<td class="cart_td_5">${buyerItem.getProduct.getProductPrice}</td>
-    			<td class="cart_td_6">${order.getCount}</td>
-    			<td class="cart_td_7">${order.gettotalPrice}</td>
-    			<td class="cart_td_5">${order.getorderStatus}</td>
-    			<td class="cart_td_8"><a>评价</a></br><a href="javascript:deleteRow('product1');">删除订单</a></td>
-  			</tr>
-  			</c:forEach>
-        </c:otherwise>
-        </c:choose>
- 
- 
- 
-  <tr>
-    <td colspan="8" class="shopInfo">时间： 订单号： 店铺：<a href="#">纤巧百媚时尚鞋坊</a></td>
-  </tr>
-   <tr id="product1">
-    <td class="cart_td_2"><img src="assets/images/taobao_cart_01.jpg" alt="shopping"/></td>
-    <td class="cart_td_3"><a href="#">日韩流行风时尚美眉最爱独特米字拼图金属坡跟公主靴子黑色</a><br />
-        颜色：棕色 尺码：37<br />
-        </td>
-    <td class="cart_td_5">138.00</td>
-    <td class="cart_td_6">1</td>
-    <td class="cart_td_7"></td>
-    <td class="cart_td_5">待收货</td>
-    <td class="cart_td_8"><a>评价</a></br><a href="javascript:deleteRow('product1');">删除订单</a></td>
-  </tr>
-   <tr id="product2">
-    <td class="cart_td_2"><img src="assets/images/taobao_cart_02.jpg" alt="shopping"/></td>
-    <td class="cart_td_3"><a href="#">chanel/香奈尔/香奈尔炫亮魅力唇膏3.5g</a><br />
-        </td>
-    <td class="cart_td_5">265.00</td>
-    <td class="cart_td_6">1</td>
-    <td class="cart_td_7"></td>
-    <td class="cart_td_5">待收货</td>
-    <td class="cart_td_8"><a>评价</a></br><a href="javascript:deleteRow('product1');">删除订单</a></td>
-  </tr>
-  </form>
-</table>
-</div>
-
-<div id="content5">
- <table width="100%" border="0" cellspacing="0" cellpadding="0" id="shopping">
- <form action="" method="post" name="myform">
-  <tr>
-    <td class="title_2" colspan="2">宝贝</td>
-    <td class="title_4">单价（元）</td>
-    <td class="title_5">数量</td>
-    <td class="title_6">实付款（元）</td>
-    <td class="title_6">交易状态</td>
-    <td class="title_7">操作</td>
-  </tr>
-  <tr>
-    <td colspan="8" class="line"></td>
-  </tr>
-  <c:choose>
-        <c:when test="${orders eq null}">
-          <tr>
-				<td colspan="8">NO order!</td>
-		</tr>
-        </c:when>
-        <c:otherwise>
-        	<c:forEach var="buyerItem" items="${orders}">
-        	<tr>
-   				 <td colspan="8" class="shopInfo">时间：${order.getorderTime} 订单号：${order.getorderID}店铺：<a href="#">${order.getsellerId}</a></td>
-  			</tr>
-  			<tr id="product1">
-    			<td class="cart_td_2"><img src="${buyerItem.getProduct.getproductPicture}" alt="shopping"/></td>
-   				<td class="cart_td_3"><a href="#">${buyerItem.getProduct.getproductName}</a><br />
-        				${buyerItem.getProduct.getproductIntroduction}<br />
-       			 </td>
-    			<td class="cart_td_5">${buyerItem.getProduct.getProductPrice}</td>
-    			<td class="cart_td_6">${order.getCount}</td>
-    			<td class="cart_td_7">${order.gettotalPrice}</td>
-    			<td class="cart_td_5">${order.getorderStatus}</td>
-    			<td class="cart_td_8"><a>评价</a></br><a href="javascript:deleteRow('product1');">删除订单</a></td>
-  			</tr>
-  			</c:forEach>
-        </c:otherwise>
-        </c:choose>
- 
- 
- 
-  <tr>
-    <td colspan="8" class="shopInfo">时间： 订单号： 店铺：<a href="#">纤巧百媚时尚鞋坊</a></td>
-  </tr>
-   <tr id="product1">
-    <td class="cart_td_2"><img src="assets/images/taobao_cart_01.jpg" alt="shopping"/></td>
-    <td class="cart_td_3"><a href="#">日韩流行风时尚美眉最爱独特米字拼图金属坡跟公主靴子黑色</a><br />
-        颜色：棕色 尺码：37<br />
-        </td>
-    <td class="cart_td_5">138.00</td>
-    <td class="cart_td_6">1</td>
-    <td class="cart_td_7"></td>
-    <td class="cart_td_5">待评价</td>
-    <td class="cart_td_8"><a>评价</a></br><a href="javascript:deleteRow('product1');">删除订单</a></td>
-  </tr>
-   <tr id="product2">
-    <td class="cart_td_2"><img src="assets/images/taobao_cart_02.jpg" alt="shopping"/></td>
-    <td class="cart_td_3"><a href="#">chanel/香奈尔/香奈尔炫亮魅力唇膏3.5g</a><br />
-        </td>
-    <td class="cart_td_5">265.00</td>
-    <td class="cart_td_6">1</td>
-    <td class="cart_td_7"></td>
-    <td class="cart_td_5">待评价</td>
-    <td class="cart_td_8"><a>评价</a></br><a href="javascript:deleteRow('product1');">删除订单</a></td>
-  </tr>
-  </form>
-</table>
-</div>
 
 
 </div>
@@ -572,39 +265,7 @@
     <hr>
   </section>
   <!-- Footer -->
-  <footer>
-    <div class="container">
 
-      <!-- Footer Upside Links -->
-
-      <div class="row">
-
-        <!-- Contact -->
-        <div class="col-md-9">
-          <h4>Contact Park N Shop!</h4>
-          <br>
-          <p>Address: Xidian University,Xi'an,China</p>
-          <p>Phone: (+100) 666</p>
-          <p>Email: 666@666.com</p>
-        </div>
-
-        <div class="col-md-3">
-          <h4>Information</h4>
-          <ul class="links-footer">
-            <li><a href="/About"> About Us</a></li>
-            <li><a href="/BuyerFAQs"> FAQs</a></li>
-            <li><a href="/SecureShopping"> Secure Shopping</a></li>
-            <li><a href="/JoinUs"> Join Us</a></li>
-          </ul>
-        </div>
-
-        <div class="col-md-12" align="center">
-          <br>
-          Copyright © 2017-2018  www.ParkNShop.com  陕ICP备666666号-6
-        </div>
-      </div>
-    </div>
-  </footer>
   <!-- End Footer -->
 
   <!-- GO TO TOP  -->

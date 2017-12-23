@@ -63,7 +63,7 @@
           %>
           <li>${sessionScope.Buyer.buyerAccount}</li>
           <%
-              out.println( "<a href = '/buyerLogout' >Logout</a>" );
+              out.println( "<li><a href = '/BuyerLogout' >Logout</a></li>" );
 
             }
           %>
@@ -117,7 +117,7 @@
 
       <ul class="nav navbar-right cart-pop">
         <c:choose>
-          <c:when test="${buyerCart.getItems eq null}">
+          <c:when test="${buyerCart.getItems() eq null}">
             <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
               <span class="itm-cont">0</span> <i class="flaticon-shopping-bag"></i>
               <strong>My Cart</strong> <br>
@@ -129,14 +129,14 @@
           </c:when>
           <c:otherwise>
             <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-              <span class="itm-cont">${buyerCart.getProductAmount}</span> <i class="flaticon-shopping-bag"></i>
+              <span class="itm-cont">${buyerCart.getProductAmount()}</span> <i class="flaticon-shopping-bag"></i>
               <strong>My Cart</strong> <br>
-              <span>${buyerCart.getProductAmount} item(s) - ${buyerCart.getTotalPrice}</span></a>
+              <span>${buyerCart.getProductAmount()} item(s) - ${buyerCart.getTotalPrice()}</span></a>
               <ul class="dropdown-menu">
-                <c:forEach var="buyerItem" items="${buyerCart.getItems}">
+                <c:forEach var="buyerItem" items="${buyerCart.getItems()}">
                   <li>
-                    <div class="media-left"> <a href="/BuyerProductDetail?productId=${buyerItem.getProduct.productId}" class="thumb"> <img src="${pageContext.request.contextPath}/upload/productPicture/${buyerItem.getProduct.productPicture}" class="img-responsive" alt="" > </a> </div>
-                    <div class="media-body"> <a href="/BuyerProductDetail?productId=${buyerItem.getProduct.productId}" class="tittle"></a> <span> ${buyerItem.getProduct.getProductPrice}* ${buyerItem.getAmount}</span> </div>
+                    <div class="media-left"> <a href="/BuyerProductDetail?productId=${buyerItem.getProduct().productId}" class="thumb"> <img src="${pageContext.request.contextPath}/upload/productPicture/${buyerItem.getProduct().productPicture}" class="img-responsive" alt="" > </a> </div>
+                    <div class="media-body"> <a href="/BuyerProductDetail?productId=${buyerItem.getProduct().productId}" class="tittle"></a> <span> ${buyerItem.getProduct().getProductPrice()}* ${buyerItem.getAmount()}</span> </div>
                   </li></c:forEach>
                 <li class="btn-cart"> <a href="/BuyerCart?buyerId=${sessionScope.Buyer.buyerId}" class="btn-round">View Cart</a> </li>
               </ul>
@@ -191,7 +191,7 @@
             <!-- Items -->
             <div class="col-list"> 
               <!-- Product -->
-              <div class="product" style="border: red solid 2px;width:100%;">
+              <div class="product" style="width:100%;">
                 <article>
                   <c:forEach var="searchProduct" items="${searchProducts}">
                   <div style="width:100%;height:300px;margin-bottom: 20px;">

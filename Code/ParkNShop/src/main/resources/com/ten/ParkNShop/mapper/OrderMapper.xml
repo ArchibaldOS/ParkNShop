@@ -346,5 +346,9 @@
 		update orders set orderStatus = 8
 		where orderId = #{orderId} 
     </update>
+    <update id="changeToPaid" parameterType="int">
+         update orders set orderStatus = 3
+         where orderId = #{orderId}
+    </update>
     
 </mapper>

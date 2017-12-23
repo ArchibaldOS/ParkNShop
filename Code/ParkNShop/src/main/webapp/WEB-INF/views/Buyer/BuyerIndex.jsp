@@ -63,11 +63,11 @@
           %>
           <li>${ sessionScope.Buyer.buyerAccount}</li>
           <%
-              out.println( "<a href = '/buyerLogout' >Logout</a>" );
+              out.println( "<li><a href = '/BuyerLogout' >Logout</a></li>" );
 
             }
           %>
-          <li><a href="/BuyerAccount">My Account</a></li>
+          <li><a href="/viewMyOrdersClick">View orders</a></li>
           <li><a href="/sellerLogin">Seller Center</a></li>
           <li><a href="/ContactManager">Contact Manager</a></li>
         </ul>

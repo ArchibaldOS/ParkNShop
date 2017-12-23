@@ -1,6 +1,5 @@
 package com.ten.ParkNShop.controller;
 
-import com.ten.ParkNShop.entity.Commission;
 import com.ten.ParkNShop.entity.Order;
 import com.ten.ParkNShop.service.AdminCommissionService;
 import com.ten.ParkNShop.service.AdminOrderService;
@@ -10,9 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.net.ssl.HttpsURLConnection;
 import javax.servlet.http.HttpServletRequest;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -136,7 +133,7 @@ public class AdminSalesManagementController {
 
             float money = 0;
             for(Order order: orders){
-                money += order.gettotalPrice();
+                money += order.getTotalPrice();
             }
             counts.add(orders.size());
             moneys.add(money);
@@ -175,7 +172,7 @@ public class AdminSalesManagementController {
             List<Order> orders = adminOrderService.selectAllOrdersBetweenTime(startTime, endTime, 1);
             float money = 0;
             for(Order order: orders){
-                money += order.gettotalPrice();
+                money += order.getTotalPrice();
             }
             counts.add(orders.size());
             moneys.add(money);
@@ -221,7 +218,7 @@ public class AdminSalesManagementController {
             List<Order> orders = adminOrderService.selectAllOrdersBetweenTime(startTime, startTime, 1);
             float money = 0;
             for(Order order: orders){
-                money += order.gettotalPrice();
+                money += order.getTotalPrice();
             }
             counts.add(orders.size());
             moneys.add(money);
@@ -254,7 +251,7 @@ public class AdminSalesManagementController {
             List<Order> orders = adminOrderService.selectAllOrdersBetweenTime(startTime, endTime, 2);
             float money = 0;
             for(Order order: orders){
-                money += order.gettotalPrice();
+                money += order.getTotalPrice();
             }
             counts.add(orders.size());
             moneys.add(money);

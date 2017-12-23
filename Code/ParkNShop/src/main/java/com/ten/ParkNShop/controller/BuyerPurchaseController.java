@@ -1,9 +1,6 @@
 package com.ten.ParkNShop.controller;
 
-import com.ten.ParkNShop.entity.Buyer;
-import com.ten.ParkNShop.entity.BuyerCart;
-import com.ten.ParkNShop.entity.BuyerItem;
-import com.ten.ParkNShop.entity.Order;
+import com.ten.ParkNShop.entity.*;
 import com.ten.ParkNShop.service.BuyerPurchaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,14 +19,14 @@ public class BuyerPurchaseController {
     @Autowired
     private BuyerPurchaseService buyerPurchaseService;
 
-    @RequestMapping("onConfirmClick")
+    @RequestMapping("/onConfirmClick")
     public String confirmClick(HttpSession session) {
         Buyer buyer = (Buyer) session.getAttribute("Buyer");
         if(buyer == null) return "Buyer/BuyerLogin";
         //未登录，转至登录页面
 
 
-        BuyerCart cart = (BuyerCart) session.getAttribute("cart");
+        BuyerCart cart = (BuyerCart) session.getAttribute("buyerCart");
         List<BuyerItem> items = cart.getItems();
         List<Order> orders = new ArrayList<Order>();
 
@@ -40,17 +37,18 @@ public class BuyerPurchaseController {
                 Order order = new Order();
                 //设置订单的总额,地址，买家id，数量，订单状态，创建时间，产品id，卖家idorder.setTotalprice(item.getAmount()*item.getProduct().getProductPrice());
                 order.setAddress(buyer.getbuyerAddress());
-                order.setbuyerId(buyer.getbuyerId());
+                order.setBuyerId(buyer.getbuyerId());
                 order.setCount(item.getAmount());
-                order.setorderStatus(1);
-                order.setorderTime(new Date());
-                order.setproductId(item.getProduct().getProductId());
-                order.setsellerId(item.getProduct().getSellerId());
-
+                order.setOrderStatus(1);
+                order.setOrderTime(new Date());
+                order.setProductId(item.getProduct().getProductId());
+                order.setSellerId(item.getProduct().getSellerId());
+                order.setTotalPrice(item.getAmount()*item.getProduct().getProductPrice());
                 orders.add(order);
             }
             buyerPurchaseService.createOrders(orders);
-            session.removeAttribute("cart");
+            session.removeAttribute("buyerCart");
+            session.setAttribute("buyerCart",new BuyerCart());
             return "Buyer/purchasesSuccessful";
 
         }
@@ -74,9 +72,10 @@ public class BuyerPurchaseController {
     {
         Buyer buyer = (Buyer) session.getAttribute("Buyer");
         //从登录的信息当中获取买家ID
-        List<Order> recentOrders = buyerPurchaseService.findBuyerOrdersSer(buyer);
-        session.setAttribute("recentOrders",recentOrders);
-        return "Buyer/MyOrders";
+        if(buyer == null ) return "redirect:/BuyerLogin";
+        List<OrderItem> recentOrders = buyerPurchaseService.findBuyerOrdersSer(buyer);
+        session.setAttribute("orders",recentOrders);
+        return "Buyer/PersonalOrders";
 
     }
 }

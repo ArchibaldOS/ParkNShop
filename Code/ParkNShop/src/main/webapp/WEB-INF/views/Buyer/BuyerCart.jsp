@@ -118,7 +118,7 @@
       
       <ul class="nav navbar-right cart-pop">
         <c:choose>
-        <c:when test="${buyerCart.getItems eq null}">
+        <c:when test="${buyerCart.getItems() eq null}">
           <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
           <span class="itm-cont">0</span> <i class="flaticon-shopping-bag"></i>
           <strong>My Cart</strong> <br>
@@ -130,14 +130,14 @@
         </c:when>
         <c:otherwise>
         <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-          <span class="itm-cont">${buyerCart.getProductAmount}</span> <i class="flaticon-shopping-bag"></i>
+          <span class="itm-cont">${buyerCart.getProductAmount()}</span> <i class="flaticon-shopping-bag"></i>
           <strong>My Cart</strong> <br>
-          <span>${buyerCart.getProductAmount} item(s) - ${buyerCart.getTotalPrice}</span></a>
+          <span>${buyerCart.getProductAmount()} item(s) - ${buyerCart.getTotalPrice()}</span></a>
           <ul class="dropdown-menu">
-            <c:forEach var="buyerItem" items="${buyerCart.getItems}">
+            <c:forEach var="buyerItem" items="${buyerCart.getItems()}">
             <li>
               <div class="media-left"> <a href="#." class="thumb"> <img src="assets/images/item-img-1-1.jpg" class="img-responsive" alt="" > </a> </div>
-              <div class="media-body"> <a href="#." class="tittle"></a> <span> ${buyerItem.getProduct.getProductPrice}* ${buyerItem.getAmount}</span> </div>
+              <div class="media-body"> <a href="#." class="tittle"></a> <span> ${buyerItem.getProduct().getProductPrice()}* ${buyerItem.getAmount()}</span> </div>
             </li></c:forEach>
             <li class="btn-cart"> <a href="/BuyerCart" class="btn-round">View Cart</a> </li>
           </ul>
@@ -155,7 +155,7 @@
   <!-- Content -->
  <div id="content">
  <table width="100%" border="0" cellspacing="0" cellpadding="0" id="shopping">
- <form action="onConfirmClick" method="post" name="myform">
+ <form action="/onConfirmClick" method="post" name="myform">
   <tr>
     <td class="title_2" colspan="2">店铺宝贝</td>
     <td class="title_4">单价（元）</td>
@@ -168,23 +168,27 @@
   </tr>
   
  <c:choose>
-        <c:when test="${buyerCart.getItems eq null}">
+        <c:when test="${buyerCart.getItems() eq null}">
           <tr>
 				<td colspan="8">Shopping cart is empty！</td>
 		</tr>
         </c:when>
         <c:otherwise>
-        	<c:forEach var="buyerItem" items="${buyerCart.getItems}">
+        	<c:forEach var="buyerItem" items="${buyerCart.getItems()}">
         	<tr>
-   				 <td colspan="8" class="shopInfo">店铺：<a href="#">${buyerItem.getProduct.getproductsellerId}</a>    卖家：<a href="#">${buyerItem.getProduct.getproductsellerId}</a> </td>
+   				 <td colspan="8" class="shopInfo">店铺：<a href="#">${buyerItem.getProduct().getSellerId()}</a>
+                     卖家：<a href="#">${buyerItem.getProduct().getSellerId()}</a> </td>
   			</tr>
   			<tr id="product1">
-    			<td class="cart_td_2"><img src="${buyerItem.getProduct.getproductPicture}" alt="shopping"/></td>
-   				<td class="cart_td_3"><a href="#">${buyerItem.getProduct.getproductName}</a><br />
-        				${buyerItem.getProduct.getproductIntroduction}<br />
+    			<td class="cart_td_2"><img src="${buyerItem.getProduct().getProductPicture()}" alt="shopping"/></td>
+   				<td class="cart_td_3"><a href="#">${buyerItem.getProduct().getProductName()}</a><br />
+        				${buyerItem.getProduct().getProductIntroduction()}<br />
        			 </td>
-    			<td class="cart_td_5">${buyerItem.getProduct.getProductPrice}</td>
-    			<td class="cart_td_6"><img src="assets/images/taobao_minus.jpg" alt="minus" onclick="changeNum('num_1','minus')" class="hand"/> <input id="num_1" type="text"  value="${buyerItem.getAmount}" class="num_input" readonly/> <img src="assets/images/taobao_adding.jpg" alt="add" onclick="changeNum('num_1','add')"  class="hand"/></td>
+    			<td class="cart_td_5">${buyerItem.getProduct().getProductPrice()}</td>
+    			<td class="cart_td_6"><a  href="/DelFromBuyerCart?buyerId=${session.getAttribute( "Buyer" ).buyerId}&productId=${buyerItem.getProduct().getProductId()}" class="hand"><img src="assets/images/taobao_minus.jpg"></a>
+    									<input  type="text"  value="${buyerItem.getAmount()}" class="num_input" readonly="readonly"/>
+    								  <a  href="/AddToCart?buyerId=${session.getAttribute( "Buyer" ).buyerId}&productId=${buyerItem.getProduct().getProductId()}" class="hand"><img src="assets/images/taobao_adding.jpg"></a>
+    								   </td>
     			<td class="cart_td_7"></td>
     			<td class="cart_td_8"><a href="javascript:deleteRow('product1');">删除</a></td>
   			</tr>
@@ -192,64 +196,15 @@
         </c:otherwise>
         </c:choose>
  
-  <tr>
-    <td colspan="8" class="shopInfo">店铺：<a href="#">纤巧百媚时尚鞋坊</a>    卖家：<a href="#">纤巧百媚</a> </td>
-  </tr>
-   <tr id="product1">
-    <td class="cart_td_2"><img src="assets/images/taobao_cart_01.jpg" alt="shopping"/></td>
-    <td class="cart_td_3"><a href="#">日韩流行风时尚美眉最爱独特米字拼图金属坡跟公主靴子黑色</a><br />
-        颜色：棕色 尺码：37<br />
-        </td>
-    <td class="cart_td_5">138.00</td>
-    <td class="cart_td_6"><img src="assets/images/taobao_minus.jpg" alt="minus" onclick="changeNum('num_1','minus')" class="hand"/> <input id="num_1" type="text"  value="1" class="num_input" readonly/> <img src="assets/images/taobao_adding.jpg" alt="add" onclick="changeNum('num_1','add')"  class="hand"/></td>
-    <td class="cart_td_7"></td>
-    <td class="cart_td_8"><a href="javascript:deleteRow('product1');">删除</a></td>
-  </tr>
-  
-  <tr>
-    <td colspan="8" class="shopInfo">店铺：<a href="#">香港我的美丽日记</a>    卖家：<a href="#">lokemick2009</a></td>
-  </tr>
-   <tr id="product2">
-    <td class="cart_td_2"><img src="assets/images/taobao_cart_02.jpg" alt="shopping"/></td>
-    <td class="cart_td_3"><a href="#">chanel/香奈尔/香奈尔炫亮魅力唇膏3.5g</a><br />
-        </td>
-    <td class="cart_td_5">265.00</td>
-    <td class="cart_td_6"><img src="assets/images/taobao_minus.jpg" alt="minus" onclick="changeNum('num_2','minus')" class="hand"/> <input id="num_2" type="text"  value="1" class="num_input" readonly/> <img src="assets/images/taobao_adding.jpg" alt="add" onclick="changeNum('num_2','add')"  class="hand"/></td>
-    <td class="cart_td_7"></td>
-    <td class="cart_td_8"><a href="javascript:deleteRow('product2');">删除</a></td>
-  </tr>
-  
-   <tr>
-    <td colspan="8" class="shopInfo">店铺：<a href="#">实体经营</a>    卖家：<a href="#">林颜店铺</a></td>
-  </tr>
-   <tr id="product3">
-    <td class="cart_td_2"><img src="assets/images/taobao_cart_03.jpg" alt="shopping"/></td>
-    <td class="cart_td_3"><a href="#">蝶妆海�蓝清滢粉底液10#（象牙白）</a><br />
-        </td>
-    <td class="cart_td_5">85.00</td>
-    <td class="cart_td_6"><img src="assets/images/taobao_minus.jpg" alt="minus" onclick="changeNum('num_3','minus')" class="hand"/> <input id="num_3" type="text"  value="1" class="num_input" readonly/> <img src="assets/images/taobao_adding.jpg" alt="add" onclick="changeNum('num_3','add')"  class="hand"/></td>
-    <td class="cart_td_7"></td>
-    <td class="cart_td_8"><a href="javascript:deleteRow('product3');">删除</a></td>
-  </tr>
-  
-   <tr>
-    <td colspan="8" class="shopInfo">店铺：<a href="#">红豆豆的小屋</a>    卖家：<a href="#">taobao豆豆</a></td>
-  </tr>
-   <tr id="product4">
-   <td class="cart_td_2"><img src="assets/images/taobao_cart_04.jpg" alt="shopping"/></td>
-    <td class="cart_td_3"><a href="#">相宜促销专供 大S推荐 最好用的LilyBell化妆棉</a><br />
-        </td>
-    <td class="cart_td_5">12.00</td>
-    <td class="cart_td_6"><img src="assets/images/taobao_minus.jpg" alt="minus" onclick="changeNum('num_4','minus')" class="hand"/> <input id="num_4" type="text"  value="2" class="num_input" readonly/> <img src="assets/images/taobao_adding.jpg" alt="add" onclick="changeNum('num_4','add')"  class="hand"/></td>
-    <td class="cart_td_7"></td>
-    <td class="cart_td_8"><a href="javascript:deleteRow('product4');">删除</a></td>
-  </tr>
-  
-   <tr>
-    <td colspan="5" class="shopend">商品总价（不含运费）：<label id="total" class="yellow"></label> 元<br />
 
-    <input name=" " type="image" src="assets/images/taobao_subtn.jpg" /></td>
-  </tr>
+  
+   <tr>
+    	<td colspan="5" class="shopend">商品总价（不含运费）：<label id="total" class="yellow"></label> 元<br />
+
+   			 <a href="/onConfirmClick"><input  name="onConfirmClick " type="image"  src="assets/images/taobao_subtn.jpg" /></a>
+    	</td>
+       
+   </tr>
   </form>
 </table>
 

@@ -215,7 +215,7 @@ public class SellerSalesManagementController {
 
             float money = 0;
             for(Order order: orders){
-                money += order.gettotalPrice();
+                money += order.getTotalPrice();
             }
             counts.add(orders.size());
             moneys.add(money);
@@ -253,7 +253,7 @@ public class SellerSalesManagementController {
             List<Order> orders = sellerOrderService.selectAllOrdersBetweenTime(startTime, endTime, sellerId, 1);
             float money = 0;
             for(Order order: orders){
-                money += order.gettotalPrice();
+                money += order.getTotalPrice();
             }
             counts.add(orders.size());
             moneys.add(money);
@@ -288,7 +288,7 @@ public class SellerSalesManagementController {
             List<Order> orders = sellerOrderService.selectAllOrdersBetweenTime(startTime, startTime, sellerId, 1);
             float money = 0;
             for(Order order: orders){
-                money += order.gettotalPrice();
+                money += order.getTotalPrice();
             }
             counts.add(orders.size());
             moneys.add(money);
@@ -313,7 +313,7 @@ public class SellerSalesManagementController {
             List<Order> orders = sellerOrderService.selectAllOrdersBetweenTime(startTime, endTime, sellerId, 2);
             float money = 0;
             for(Order order: orders){
-                money += order.gettotalPrice();
+                money += order.getTotalPrice();
             }
             counts.add(orders.size());
             moneys.add(money);

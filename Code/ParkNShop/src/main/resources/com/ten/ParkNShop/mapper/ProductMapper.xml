@@ -80,7 +80,6 @@
         WHERE sellerId=#{sellerId}
         LIMIT #{start},#{pageSize}
     </select>
-	
 
 
 	<select id="searchByProductName" parameterType="java.lang.String" resultMap="BaseResultMap">

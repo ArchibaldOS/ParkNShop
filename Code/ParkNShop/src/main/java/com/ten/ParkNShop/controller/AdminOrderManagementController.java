@@ -115,16 +115,16 @@ public class AdminOrderManagementController  {
     @RequestMapping("/AdminOrderModifyDo")
     public String adminOrderModifyDo(HttpServletRequest httpServletRequest){
         Order order = new Order();
-        order.setorderId(Integer.valueOf(httpServletRequest.getParameter("orderId")));
-        order.setbuyerId(Integer.valueOf(httpServletRequest.getParameter("buyerId")));
-        order.setsellerId(Integer.valueOf(httpServletRequest.getParameter("sellerId")));
-        order.setproductId(Integer.valueOf(httpServletRequest.getParameter("productId")));
+        order.setOrderId(Integer.valueOf(httpServletRequest.getParameter("orderId")));
+        order.setBuyerId(Integer.valueOf(httpServletRequest.getParameter("buyerId")));
+        order.setSellerId(Integer.valueOf(httpServletRequest.getParameter("sellerId")));
+        order.setProductId(Integer.valueOf(httpServletRequest.getParameter("productId")));
         order.setCount(Integer.valueOf(httpServletRequest.getParameter("count")));
-        order.settotalPrice(Float.valueOf(httpServletRequest.getParameter("totalPrice")));
+        order.setTotalPrice(Float.valueOf(httpServletRequest.getParameter("totalPrice")));
         order.setAddress(httpServletRequest.getParameter("address"));
-        order.setorderStatus(Integer.valueOf(httpServletRequest.getParameter("orderStatus")));
+        order.setOrderStatus(Integer.valueOf(httpServletRequest.getParameter("orderStatus")));
         // 将订单的时间设置为当前时间
-        order.setorderTime(new java.sql.Date(new Date().getTime()));
+        order.setOrderTime(new java.sql.Date(new Date().getTime()));
 
         adminOrderService.updateOrder(order);
         System.out.println(order);

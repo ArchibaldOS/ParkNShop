@@ -83,7 +83,7 @@ public class Order {
      *
      * @mbggenerated
      */
-    public Integer getOrderId() {
+    public Integer getorderId() {
         return orderId;
     }
 
@@ -95,7 +95,7 @@ public class Order {
      *
      * @mbggenerated
      */
-    public void setOrderId(Integer orderId) {
+    public void setorderId(Integer orderId) {
         this.orderId = orderId;
     }
 
@@ -107,7 +107,7 @@ public class Order {
      *
      * @mbggenerated
      */
-    public Integer getSellerId() {
+    public Integer getsellerId() {
         return sellerId;
     }
 
@@ -119,7 +119,7 @@ public class Order {
      *
      * @mbggenerated
      */
-    public void setSellerId(Integer sellerId) {
+    public void setsellerId(Integer sellerId) {
         this.sellerId = sellerId;
     }
 
@@ -131,7 +131,7 @@ public class Order {
      *
      * @mbggenerated
      */
-    public Integer getBuyerId() {
+    public Integer getbuyerId() {
         return buyerId;
     }
 
@@ -143,7 +143,7 @@ public class Order {
      *
      * @mbggenerated
      */
-    public void setBuyerId(Integer buyerId) {
+    public void setbuyerId(Integer buyerId) {
         this.buyerId = buyerId;
     }
 
@@ -155,7 +155,7 @@ public class Order {
      *
      * @mbggenerated
      */
-    public Integer getProductId() {
+    public Integer getproductId() {
         return productId;
     }
 
@@ -167,7 +167,7 @@ public class Order {
      *
      * @mbggenerated
      */
-    public void setProductId(Integer productId) {
+    public void setproductId(Integer productId) {
         this.productId = productId;
     }
 
@@ -203,7 +203,7 @@ public class Order {
      *
      * @mbggenerated
      */
-    public Float getTotalPrice() {
+    public Float gettotalPrice() {
         return totalPrice;
     }
 
@@ -215,7 +215,7 @@ public class Order {
      *
      * @mbggenerated
      */
-    public void setTotalPrice(Float totalPrice) {
+    public void settotalPrice(Float totalPrice) {
         this.totalPrice = totalPrice;
     }
 
@@ -251,7 +251,7 @@ public class Order {
      *
      * @mbggenerated
      */
-    public Integer getOrderStatus() {
+    public Integer getorderStatus() {
         return orderStatus;
     }
 
@@ -263,7 +263,7 @@ public class Order {
      *
      * @mbggenerated
      */
-    public void setOrderStatus(Integer orderStatus) {
+    public void setorderStatus(Integer orderStatus) {
         this.orderStatus = orderStatus;
     }
 
@@ -275,7 +275,7 @@ public class Order {
      *
      * @mbggenerated
      */
-    public Date getOrderTime() {
+    public Date getorderTime() {
         return orderTime;
     }
 
@@ -287,7 +287,7 @@ public class Order {
      *
      * @mbggenerated
      */
-    public void setOrderTime(Date orderTime) {
+    public void setorderTime(Date orderTime) {
         this.orderTime = orderTime;
     }
 }

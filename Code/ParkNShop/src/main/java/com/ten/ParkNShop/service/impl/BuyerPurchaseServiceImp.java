@@ -2,11 +2,14 @@ package com.ten.ParkNShop.service.impl;
 
 import com.ten.ParkNShop.entity.Buyer;
 import com.ten.ParkNShop.entity.Order;
+import com.ten.ParkNShop.entity.OrderItem;
 import com.ten.ParkNShop.mapper.OrderMapper;
+import com.ten.ParkNShop.mapper.ProductMapper;
 import com.ten.ParkNShop.service.BuyerPurchaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -16,6 +19,8 @@ import java.util.List;
 public class BuyerPurchaseServiceImp implements BuyerPurchaseService {
     @Autowired
     private OrderMapper orderMapper;
+    @Autowired
+    ProductMapper productMapper;
     public Order createOrderSer(Order order) {
         if(order != null) {
             orderMapper.insert(order);
@@ -28,12 +33,22 @@ public class BuyerPurchaseServiceImp implements BuyerPurchaseService {
         //返回null说明插入不成功
     }
 
-    public List<Order> findBuyerOrdersSer(Buyer buyer) {
-        int startNum = orderMapper.countOrdersByBuyerId(buyer.getbuyerId()) - 5;
-        startNum = startNum < 0 ? 0:startNum;
+    public List<OrderItem> findBuyerOrdersSer(Buyer buyer) {
+        int buyerId = buyer.getbuyerId();
+       // int startNum = orderMapper.countOrdersByBuyerId(buyerId);
+        //startNum-= 5;
+        //startNum = startNum < 0 ? 0:startNum;
 
-        List<Order> orders  = orderMapper.selectOrderByBuyerId(buyer.getbuyerId(),startNum,5);
-        return orders;
+        List<Order> orders  = orderMapper.selectOrderByBuyerId(buyer.getbuyerId(),0,20);
+        List<OrderItem> results = new ArrayList<OrderItem>();
+        for(Order temp : orders)
+        {
+            OrderItem item = new OrderItem();
+            item.setOrder(temp);
+            item.setProduct(productMapper.findByProductId(temp.getProductId()));
+            results.add(item);
+        }
+        return results;
     }
 
     public Order findOrderSer(Integer orderId) {

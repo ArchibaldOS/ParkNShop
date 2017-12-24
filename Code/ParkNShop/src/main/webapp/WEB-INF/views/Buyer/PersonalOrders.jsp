@@ -22,6 +22,9 @@
   <link rel="stylesheet" href="assets/css2/responsive.css">
   <link rel="stylesheet" href="assets/css/myCart.css">
 
+ <link rel="stylesheet" href="assets/css/bootstrap0.min.css">
+ <link href="assets/css/components.css" rel="stylesheet">
+  <link href="assets/css/style-shop.css" rel="stylesheet" type="text/css">
   <!-- Fonts Online -->
   <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
 
@@ -209,69 +212,128 @@
 		</section>
 	
   </header>
- 
- 
+
+ <div class="container1">
+        <!-- BEGIN SIDEBAR & CONTENT -->
+        <div class="row margin-bottom-40">
+          <!-- BEGIN CONTENT -->
+          <div class="col-md-12 col-sm-12">
+            <h1>Shopping Orders</h1>
+            <div class="goods-page">
+              <div class="goods-data clearfix">
+                <div class="table-wrapper-responsive">
+                 
+                <table summary="Shopping cart">
+                <form action="" method="post" name="myform">
+                  <tr>
+                    <th class="goods-page-image">Image</th>
+                    <th class="goods-page-description">Description</th>
+                    <th class="goods-page-price">Unit price</th>
+                    <th class="goods-page-quantity">Quantity</th>
+                    <th class="goods-page-total">Payment</th>
+                    <th class="goods-page-ref-no">Status</th>
+                    <th class="goods-page-ref-no">Operate</th>
+                  </tr>
+                  <c:choose>
+       					 <c:when test="${orders eq null}">
+          					<tr>
+								<td colspan="8">NO order!</td>
+							</tr>
+        				</c:when>
+       			 <c:otherwise>
+        				<c:forEach var="buyerItem" items="${orders}">
+        				<tr>
+   							 <td colspan="8" class="shopInfo">时间：${buyerItem.getOrder().getOrderTime()} 订单号：${buyerItem.getOrder().getOrderId()}店铺：<a href="#">${buyerItem.getOrder().getSellerId()}</a></td>
+  						</tr>
+                 		<tr>
+                    		<td class="goods-page-image">
+                      			<a href="javascript:;"><img src="${pageContext.request.contextPath}/upload/productPicture/${buyerItem.getProduct().getProductPicture()}" alt="shopping"></a>
+                    		</td>
+                    		<td class="goods-page-description">
+                      			<h3><a href="#">${buyerItem.getProduct().getProductName()}</a></h3><br />
+                      				${buyerItem.getProduct().getProductIntroduction()}<br />
+                    		</td>
+                   			
+                    		<td class="goods-page-price">
+                      			<strong><span>$</span>${buyerItem.getProduct().getProductPrice()}</strong>
+                   			</td>
+                   			<td class="goods-page-quantity">
+                      			<div class="product-quantity" style="text-aline:center">
+                         		 ${buyerItem.getOrder().getCount()}
+                      			</div>
+                   			 </td>
+                    		<td class="goods-page-total">
+                      			<strong><span>$</span>${buyerItem.getOrder().getTotalPrice()}</strong>
+                    		</td>
+                    		<td class="goods-page-ref-no">
+                      			${buyerItem.getOrder().getOrderStatus()}
+                   			</td>
+                    		<td class="goods-page-ref-no">
+                     			 <a href="#">评价</a>
+                    		</td>
+                 		 </tr>
+                 		 </c:forEach>
+       			 </c:otherwise>
+       			 </c:choose>
+  				</form>
+                </table>
+                </div>
+              
+          </div>
+           </div>
+          </div>
+          <!-- END CONTENT -->
+        </div>
+        <!-- END SIDEBAR & CONTENT -->
 
 
-  <!-- Content -->
- <div id="content">
- <div id="content1">
- <table width="100%" border="0" cellspacing="0" cellpadding="0" id="shopping">
- <form action="" method="post" name="myform">
-  <tr>
-    <td class="title_2" colspan="2">宝贝</td>
-    <td class="title_4">单价（元）</td>
-    <td class="title_5">数量</td>
-    <td class="title_6">实付款（元）</td>
-    <td class="title_6">交易状态</td>
-    <td class="title_7">操作</td>
-  </tr>
-  <tr>
-    <td colspan="8" class="line"></td>
-  </tr>
-  <c:choose>
-        <c:when test="${orders eq null}">
-          <tr>
-				<td colspan="8">NO order!</td>
-		</tr>
-        </c:when>
-        <c:otherwise>
-        	<c:forEach var="buyerItem" items="${orders}">
-        	<tr>
-   				 <td colspan="8" class="shopInfo">时间：${buyerItem.getOrder().getOrderTime()} 订单号：${buyerItem.getOrder().getOrderId()}店铺：<a href="#">${buyerItem.getOrder().getSellerId()}</a></td>
-  			</tr>
-  			<tr id="product1">
-    			<td class="cart_td_2"><img src="${pageContext.request.contextPath}/upload/productPicture/${buyerItem.getProduct().getProductPicture()}" alt="shopping"/></td>
-   				<td class="cart_td_3"><a href="#">${buyerItem.getProduct().getProductName()}</a><br />
-        				${buyerItem.getProduct().getProductIntroduction()}<br />
-       			 </td>
-    			<td class="cart_td_5">${buyerItem.getProduct().getProductPrice()}</td>
-    			<td class="cart_td_6">${buyerItem.getOrder().getCount()}</td>
-    			<td class="cart_td_7">${buyerItem.getOrder().getTotalPrice()}</td>
-    			<td class="cart_td_5">${buyerItem.getOrder().getOrderStatus()}</td>
-    			<td class="cart_td_8"><a href="#">评价</a></td>
-  			</tr>
-  			</c:forEach>
-        </c:otherwise>
-        </c:choose>
- 
- 
- 
+      </div>
 
 
-</div>
-  <!-- End Content -->
-  <section>
-    <hr>
-  </section>
+
+
+
+  
+ 
   <!-- Footer -->
+<footer>
+    <div class="container">
 
+      <!-- Footer Upside Links -->
+
+      <div class="row">
+
+        <!-- Contact -->
+        <div class="col-md-9">
+          <h4>Contact Park N Shop!</h4>
+          <br>
+          <p>Address: Xidian University,Xi'an,China</p>
+          <p>Phone: (+100) 666</p>
+          <p>Email: 666@666.com</p>
+        </div>
+
+        <div class="col-md-3">
+          <h4>Information</h4>
+          <ul class="links-footer">
+            <li><a href="/About"> About Us</a></li>
+            <li><a href="/BuyerFAQs"> FAQs</a></li>
+            <li><a href="/SecureShopping"> Secure Shopping</a></li>
+            <li><a href="/JoinUs"> Join Us</a></li>
+          </ul>
+        </div>
+
+        <div class="col-md-12" align="center">
+          <br>
+          Copyright © 2017-2018  www.ParkNShop.com  陕ICP备666666号-6
+        </div>
+      </div>
+    </div>
+  </footer>
   <!-- End Footer -->
 
   <!-- GO TO TOP  -->
   <a href="#" class="cd-top"><i class="fa fa-angle-up"></i></a>
   <!-- GO TO TOP End -->
-</div>
 <!-- End Page Wrapper -->
 
 <!-- JavaScripts -->

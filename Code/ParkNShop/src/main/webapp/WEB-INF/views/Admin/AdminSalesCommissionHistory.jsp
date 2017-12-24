@@ -109,7 +109,7 @@
         <div class="row">
             <div class="col-md-12">
                 <p>
-                    Copyright&nbsp;©&nbsp;2017-2018&nbsp;&nbsp;www.ParkNShop.com&nbsp;&nbsp;陕ICP备666666号-6
+                    Copyright&nbsp;©&nbsp;2017-2018&nbsp;&nbsp;www.ParkNShop.com
                 </p>
             </div>
         </div>

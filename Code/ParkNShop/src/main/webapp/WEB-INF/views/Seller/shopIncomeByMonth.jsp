@@ -63,39 +63,19 @@
         </div>
     </div>
     <header>
-        <div class="container">
-            <div class="logo"> <a href="#"><img src="assets/images/logo.png" alt="" ></a> </div>
-            <div class="search-cate">
-                <select class="selectpicker">
-                    <option> All Categories</option>
-                    <option> TV& Home Theater</option>
-                    <option> Computers & Tablets</option>
-                    <option> Cell Phones</option>
-                    <option> Cameras & Camcorders</option>
-                    <option> Audio</option>
-                    <option> Car Electronics & GPS</option>
-                    <option> Video, Games, Movies & Music </option>
-                    <option> Health, Fitness & Sports</option>
-                    <option> Home & Office</option>
-                </select>
-                <input type="search" placeholder="Search entire store here...">
-                <button class="submit" type="submit"><i class="icon-magnifier"></i></button>
-            </div>
+        <nav  class="navbar nav-pills ownmenu" style="background-color:#009ACD;">
+      <div class="container" style="margin:10px;">
+		<div class="logo" style="float:left;margin-left:40px;"> <a href="#"><img src="assets/images/logo.png" alt="" ></a> </div>
+        <div style="float:right;">
+          <ul class="nav navbar-nav bbb" >
+            <li><a href="/sellerHome">Home</a></li>
+            <li><a href="/sellerProduct">Product</a></li>
+            <li><a href="/sellerOrderPage">Order</a></li>
+            <li><a href="/sellerSalesIncome">Sales</a></li>
+          </ul>
         </div>
-        <!-- Nav -->
-        <nav class="navbar ownmenu">
-            <div class="container">
-                <div class="collapse navbar-collapse" id="nav-open-btn">
-                    <ul class="nav aaa" >
-                        <li><a href="/sellerHome">Home</a></li>
-                        <li><a href="/sellerProduct">Product</a></li>
-                        <li><a href="/sellerOrderPage">Order</a></li>
-                        <li><a href="/sellerSalesIncome">Sales</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-
+      </div>
+    </nav>
     </header>
 
     <div class="container">
@@ -139,6 +119,21 @@
                         <div class="panel-body">
                             <canvas id="moneyChart" class="col-md-12"></canvas>
                         </div>
+                    </div>
+                    <div class="col-md-4">
+                        <span>Commission : 0.2</span>
+                        <table class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <th>Total income</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>$${requestScope.income }</td>
+                            </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>

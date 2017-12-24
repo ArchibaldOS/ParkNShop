@@ -366,7 +366,7 @@
 
         <div class="col-md-12" align="center">
           <br>
-          Copyright © 2017-2018  www.ParkNShop.com  陕ICP备666666号-6
+          Copyright © 2017-2018  www.ParkNShop.com
         </div>
       </div>
     </div>

@@ -507,7 +507,7 @@
 
         <!-- Contact -->
         <div class="col-md-9">
-          <h4>Contact Park N Shop!</h4>
+          <h4>Contact ParkNShop!</h4>
           <br>
           <p>Address: Xidian University,Xi'an,China</p>
           <p>Phone: (+100) 666</p>
@@ -526,7 +526,7 @@
 
         <div class="col-md-12" align="center">
           <br>
-          Copyright © 2017-2018  www.ParkNShop.com  陕ICP备666666号-6
+          Copyright © 2017-2018  www.ParkNShop.com  
         </div>
       </div>
     </div>

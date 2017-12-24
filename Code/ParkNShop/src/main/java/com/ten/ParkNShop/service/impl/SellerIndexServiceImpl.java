@@ -8,7 +8,7 @@ import com.ten.ParkNShop.mapper.SellerMapper;
 import com.ten.ParkNShop.service.SellerIndexService;
 
 @Service
-public class SellerIndexIndexServiceImpl implements SellerIndexService {
+public class SellerIndexServiceImpl implements SellerIndexService {
 	
 	@Autowired
 	private SellerMapper sellerMapper;
@@ -32,4 +32,5 @@ public class SellerIndexIndexServiceImpl implements SellerIndexService {
 		return sellerMapper.updateBySellerId(seller);
 	}
 
+	
 }

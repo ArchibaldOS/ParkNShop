@@ -29,6 +29,7 @@ public class SellerSalesManagementController {
         String timeType = httpServletRequest.getParameter("select_type");
         String time = httpServletRequest.getParameter("time");
         int sellerId = ((Seller)httpServletRequest.getSession().getAttribute("seller")).getsellerId();
+        model.addAttribute("income", sellerOrderService.countIncome(sellerId));
         if(timeType == null){
             SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
             timeType = "Daily";

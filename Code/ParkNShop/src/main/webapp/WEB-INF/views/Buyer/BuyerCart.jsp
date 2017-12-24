@@ -21,7 +21,10 @@
   <link rel="stylesheet" href="assets/css2/style.css">
   <link rel="stylesheet" href="assets/css2/responsive.css">
   <link rel="stylesheet" href="assets/css/myCart.css">
-
+  
+<link rel="stylesheet" href="assets/css/bootstrap0.min.css">
+ <link href="assets/css/components.css" rel="stylesheet">
+  <link href="assets/css/style-shop.css" rel="stylesheet" type="text/css">
   <!-- Fonts Online -->
   <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
 
@@ -149,67 +152,87 @@
     <br>
   </header>
  
- 
+<div class="container1">
+        <!-- BEGIN SIDEBAR & CONTENT -->
+    <div class="row margin-bottom-40">
+          <!-- BEGIN CONTENT -->
+          <div class="col-md-12 col-sm-12">
+            <h1>Shopping Cart</h1>
+            <div class="goods-page">
+              <div class="goods-data clearfix">
+                <div class="table-wrapper-responsive">
+                 
+                <table id="shopping" >
+                <form action="/onConfirmClick" method="post" name="myform">
+                  <tr>
+                    <th class="goods-page-image">Image</th>
+                    <th class="goods-page-description">Description</th>
+                    <th class="goods-page-price">Unit price</th>
+                    <th class="goods-page-quantity">Quantity</th>
+                    <th class="goods-page-total">Total Price</th>
+                    <th class="goods-page-ref-no">Operation</th>
+                  </tr>
+                  <c:choose>
+       					 <c:when test="${buyerCart.getItems().size() eq 0}">
+          					<tr align="center" style="height: 200px;">
+            					<td colspan="8"><h3>Shopping cart is empty！</h3></td>
+							</tr>
+        				</c:when>
+       			 <c:otherwise>
+        				<c:forEach var="buyerItem" items="${buyerCart.getItems()}">
+        				<tr>
+   							 <td colspan="8" class="shopInfo">Shop：<a href="#">${buyerItem.getProduct().getSellerId()}</a>
+                     				Seller：<a href="#">${buyerItem.getProduct().getSellerId()}</a> 
+                     		</td>
+  						</tr>
+                 		<tr>
+                    		<td class="goods-page-image">
+                      			<a href="javascript:;"><img src="${pageContext.request.contextPath}/upload/productPicture/${buyerItem.getProduct().getProductPicture()}" alt="shopping"></a>
+                    		</td>
+                    		<td class="goods-page-description">
+                      			<a href="#">${buyerItem.getProduct().getProductName()}</a><br />
+        							${buyerItem.getProduct().getProductIntroduction()}<br />
+                    		</td>
+                   			
+                    		<td class="goods-page-price">
+                      			${buyerItem.getProduct().getProductPrice()}
+                   			</td>
+                   			<td class="goods-page-quantity">
+                      			<a  href="/DelFromBuyerCart?buyerId=${Buyer.buyerId}&productId=${buyerItem.getProduct().getProductId()}" class="hand"><img src="assets/images/taobao_minus.jpg"></a>
+    							<input  type="text"  value="${buyerItem.getAmount()}" class="num_input" readonly="readonly"/>
+    							<a  href="/AddToCart?buyerId=${Buyer.buyerId}&productId=${buyerItem.getProduct().getProductId()}" class="hand"><img src="assets/images/taobao_adding.jpg"></a>
+    								   
+                   			 </td>
+                    		<td class="goods-page-total">
+                    		</td>
+                    		<td class="goods-page-ref-no">
+                     			 <a href="/DelItem?productId=${buyerItem.getProduct().getProductId()}">删除</a>
+                    		</td>
+                 		 </tr>
+                 		 </c:forEach>
+       			 </c:otherwise>
+       			 </c:choose>
+       			 <c:if test="${buyerCart.getItems().size() gt 0}">
+   					<tr>
+    					<td colspan="5" class="shopend">Total：$<label id="total" class="yellow"></label><br />
+							<a href="/onConfirmClick"><input  name="onConfirmClick " type="image"  src="assets/images/taobao_subtn.jpg" /></a>
+    					</td>
+					</tr>
+				</c:if>
+  			</form>
+          </table>
+        </div>
+              
+     </div>
+   </div>
+		  </div>
+          <!-- END CONTENT -->
+    </div>
+</div>
 
 
   <!-- Content -->
- <div id="content">
- <table width="100%" border="0" cellspacing="0" cellpadding="0" id="shopping">
- <form action="/onConfirmClick" method="post" name="myform">
-  <tr>
-    <td class="title_2" colspan="2">Product</td>
-    <td class="title_4">Unit Price</td>
-    <td class="title_5">Amount</td>
-    <td class="title_6">Total Price</td>
-    <td class="title_7">Operation</td>
-  </tr>
-  <tr>
-    <td colspan="8" class="line"></td>
-  </tr>
-  
- <c:choose>
-        <c:when test="${buyerCart.getItems().size() eq 0}">
-          <tr align="center" style="height: 200px;">
-            <td colspan="8"><h3>Shopping cart is empty！</h3></td>
-		</tr>
-        </c:when>
-        <c:otherwise>
-        	<c:forEach var="buyerItem" items="${buyerCart.getItems()}">
-        	<tr>
-   				 <td colspan="8" class="shopInfo">店铺：<a href="#">${buyerItem.getProduct().getSellerId()}</a>
-                     卖家：<a href="#">${buyerItem.getProduct().getSellerId()}</a> </td>
-  			</tr>
-  			<tr id="product1">
-    			<td class="cart_td_2"><img src="${pageContext.request.contextPath}/upload/productPicture/${buyerItem.getProduct().getProductPicture()}" alt="shopping"/></td>
-   				<td class="cart_td_3"><a href="#">${buyerItem.getProduct().getProductName()}</a><br />
-        				${buyerItem.getProduct().getProductIntroduction()}<br />
-       			 </td>
-    			<td class="cart_td_5">${buyerItem.getProduct().getProductPrice()}</td>
-    			<td class="cart_td_6"><a  href="/DelFromBuyerCart?buyerId=${Buyer.buyerId}&productId=${buyerItem.getProduct().getProductId()}" class="hand"><img src="assets/images/taobao_minus.jpg"></a>
-    									<input  type="text"  value="${buyerItem.getAmount()}" class="num_input" readonly="readonly"/>
-    								  <a  href="/AddToCart?buyerId=${Buyer.buyerId}&productId=${buyerItem.getProduct().getProductId()}" class="hand"><img src="assets/images/taobao_adding.jpg"></a>
-    								   </td>
-    			<td class="cart_td_7"></td>
-    			<td class="cart_td_8"><a href="/DelItem?productId=${buyerItem.getProduct().getProductId()}">删除</a></td>
-  			</tr>
-  			</c:forEach>
-        </c:otherwise>
-        </c:choose>
- 
 
-<c:if test="${buyerCart.getItems().size() gt 0}">
-   <tr>
-    	<td colspan="5" class="shopend">Total：<label id="total" class="yellow"></label> $<br />
-
-   			 <a href="/onConfirmClick"><input  name="onConfirmClick " type="image"  src="assets/images/taobao_subtn.jpg" /></a>
-    	</td>
-
-   </tr>
-</c:if>
-  </form>
-</table>
-
-</div>
   <!-- End Content -->
   <section>
     <hr>
@@ -224,7 +247,7 @@
 
         <!-- Contact -->
         <div class="col-md-9">
-          <h4>Contact ParkNShop!</h4>
+          <h4>Contact Park N Shop!</h4>
           <br>
           <p>Address: Xidian University,Xi'an,China</p>
           <p>Phone: (+100) 666</p>
@@ -243,7 +266,7 @@
 
         <div class="col-md-12" align="center">
           <br>
-          Copyright © 2017-2018  www.ParkNShop.com
+          Copyright © 2017-2018  www.ParkNShop.com  陕ICP备666666号-6
         </div>
       </div>
     </div>

@@ -323,14 +323,6 @@
         LIMIT #{start},#{pageSize}
     </select>
     
-    <select id="findCompletedNoPage" resultMap="BaseResultMap" parameterType="int">
-    	SELECT
-        *
-        FROM
-        orders
-        WHERE sellerId=#{sellerId} AND orderStatus = 5
-    </select>
-    
     <select id="findUncompleted" resultMap="BaseResultMap" parameterType="int">
         SELECT
         *

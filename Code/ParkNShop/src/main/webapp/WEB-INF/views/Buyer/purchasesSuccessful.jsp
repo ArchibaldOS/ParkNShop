@@ -74,8 +74,12 @@
       </div>
     </div>
   </div>
+<div><h2>Please scan the QR code </h2>
+<div><img src="assets/images/QR.png"><br/>
+	<button onclick="window.location.href='/onPaidClick?buyerId=${}'">Pay</button>
 
-<h2>这里是一个二维码</h2>
+</div>
+</div>
   <footer>
     <div class="container">
 
@@ -85,7 +89,7 @@
 
         <!-- Contact -->
         <div class="col-md-9">
-          <h4>Contact ParkNShop!</h4>
+          <h4>Contact Park N Shop!</h4>
           <br>
           <p>Address: Xidian University,Xi'an,China</p>
           <p>Phone: (+100) 666</p>

@@ -84,6 +84,6 @@ public class BuyerPurchaseController {
     {
         buyerPurchaseService.changeOrderToPaid(orderId);
 
-        return "Buyer/purchasesSuccessful";
+        return "forward:/viewMyOrdersClick";
     }
 }

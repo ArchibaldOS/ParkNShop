@@ -52,16 +52,13 @@
 	border-collapse: collapse;
 }
 
-table.hovertable tr {
-	background-color:#d4e3e5;
-}
 table.hovertable td {
 	border-width: 1px;
 	padding: 8px;
 	border-style: solid;
-	border-color: #a9c6c9;
+	border-color: rgba(169,163,174,0.51);
 	font-size:20px;
-} 
+}
   .aaa{
 border-radius: 20px;
 
@@ -80,8 +77,8 @@ border-radius: 20px;
 
 
 <!-- Page Wrapper -->
-<div id="wrap" class="layout-1"> 
-  
+<div id="wrap" class="layout-1">
+
   <!-- Top bar -->
   <div class="top-bar">
     <div class="container">
@@ -160,32 +157,32 @@ border-radius: 20px;
         
         <div style="text-align: center;">
          <c:set var="s" value="${sessionScope.seller }" />
-        	<table class="hovertable" style="width:80%;margin-left:10%;margin-right:10%;margin-top:1%;">
-        		<tr onmouseover="this.style.backgroundColor='rgb(81, 130, 187)';" onmouseout="this.style.backgroundColor='#d4e3e5';">
+        	<table class="table table-striped hovertable" style="width:80%;margin-left:10%;margin-right:10%;margin-top:5%;">
+        		<tr onmouseover="this.style.backgroundColor='#ADD8E6';" onmouseout="this.style.backgroundColor='#F7F7F7';">
         			<td width="200px" style="font-size: 20px;">shop name</td>
         			<td>${s.shopName }</td>
         		</tr>
-        		<tr onmouseover="this.style.backgroundColor='rgb(81, 130, 187)';" onmouseout="this.style.backgroundColor='#d4e3e5';">
+        		<tr  onmouseover="this.style.backgroundColor='#ADD8E6';" onmouseout="this.style.backgroundColor='#FFFFFF';">
         			<td width="200px" style="font-size: 20px;">owner name</td>
         			<td>${s.sellerName }</td>
         		</tr>
-        		<tr onmouseover="this.style.backgroundColor='rgb(81, 130, 187)';" onmouseout="this.style.backgroundColor='#d4e3e5';">
+        		<tr  onmouseover="this.style.backgroundColor='#ADD8E6';" onmouseout="this.style.backgroundColor='#F7F7F7';">
         			<td width="200px" style="font-size: 20px;">shop phone</td>
         			<td>${s.sellerPhone }</td>
         		</tr>
-        		<tr onmouseover="this.style.backgroundColor='rgb(81, 130, 187)';" onmouseout="this.style.backgroundColor='#d4e3e5';">
+        		<tr  onmouseover="this.style.backgroundColor='#ADD8E6';" onmouseout="this.style.backgroundColor='#FFFFFF';">
         			<td width="200px" style="font-size: 20px;">shop E-mail</td>
         			<td>${s.sellerEmail }</td>
         		</tr>
-        		<tr onmouseover="this.style.backgroundColor='rgb(81, 130, 187)';" onmouseout="this.style.backgroundColor='#d4e3e5';">
+				<tr onmouseover="this.style.backgroundColor='#ADD8E6';" onmouseout="this.style.backgroundColor='#F7F7F7';">
         			<td width="200px" style="font-size: 20px;">balance</td>
         			<td>$${s.sellerBalance }</td>
         		</tr>
-        		<tr onmouseover="this.style.backgroundColor='rgb(81, 130, 187)';" onmouseout="this.style.backgroundColor='#d4e3e5';">
+        		<tr  onmouseover="this.style.backgroundColor='#ADD8E6';" onmouseout="this.style.backgroundColor='#FFFFFF';">
         			<td width="200px" style="font-size: 20px;">shop Introduction</td>
         			<td>${s.shopIntroduction }</td>
         		</tr>
-        		<tr onmouseover="this.style.backgroundColor='rgb(81, 130, 187)';" onmouseout="this.style.backgroundColor='#d4e3e5';">
+        		<tr  onmouseover="this.style.backgroundColor='#ADD8E6';" onmouseout="this.style.backgroundColor='#F7F7F7';">
         			<td width="200px" style="font-size: 20px;">shop status</td>
         			<c:if test="${s.shopStatus ==0}">
         			 <td><font color="#FFA500">Being processed</font></td>

@@ -6,7 +6,7 @@ package com.ten.ParkNShop.entity;
 public class OrderItem {
     public Product product;
     public Order order;
-
+    public Seller seller;
     public Product getProduct() {
         return product;
     }
@@ -22,5 +22,13 @@ public class OrderItem {
 
     public void setOrder(Order order) {
         this.order = order;
+    }
+
+    public Seller getSeller() {
+        return seller;
+    }
+
+    public void setSeller(Seller seller) {
+        this.seller = seller;
     }
 }

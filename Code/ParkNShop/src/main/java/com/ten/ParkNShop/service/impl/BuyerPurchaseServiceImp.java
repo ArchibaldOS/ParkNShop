@@ -5,6 +5,7 @@ import com.ten.ParkNShop.entity.Order;
 import com.ten.ParkNShop.entity.OrderItem;
 import com.ten.ParkNShop.mapper.OrderMapper;
 import com.ten.ParkNShop.mapper.ProductMapper;
+import com.ten.ParkNShop.mapper.SellerMapper;
 import com.ten.ParkNShop.service.BuyerPurchaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,6 +22,8 @@ public class BuyerPurchaseServiceImp implements BuyerPurchaseService {
     private OrderMapper orderMapper;
     @Autowired
     ProductMapper productMapper;
+    @Autowired
+    SellerMapper sellerMapper;
     public Order createOrderSer(Order order) {
         if(order != null) {
             orderMapper.insert(order);
@@ -46,6 +49,7 @@ public class BuyerPurchaseServiceImp implements BuyerPurchaseService {
             OrderItem item = new OrderItem();
             item.setOrder(temp);
             item.setProduct(productMapper.findByProductId(temp.getProductId()));
+            item.setSeller(sellerMapper.selectByPrimaryKey(temp.getSellerId()));
             results.add(item);
         }
         return results;

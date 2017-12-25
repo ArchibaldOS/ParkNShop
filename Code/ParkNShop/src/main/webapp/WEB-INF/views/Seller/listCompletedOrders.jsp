@@ -198,7 +198,7 @@
                 <nav class="pull-right">
                     <ul class="pagination">
 						<c:if test="${orders.current gt 1 }">
-							<li class="disabled">
+							<li >
                             	<a href="/sellerOrderManagement?cur=${orders.current-1 }" aria-label="Previous">
                                 	<span aria-hidden="true">&laquo;</span>
                             	</a>

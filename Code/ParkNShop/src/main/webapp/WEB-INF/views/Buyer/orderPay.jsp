@@ -86,78 +86,11 @@ background: linear-gradient(top,#42a4e0,#2e88c0);
       </div>
     </div>
   </div>
-   <header>
-    <div class="container">
-      <div class="logo"> <a href="/BuyerIndex"><img src="assets/images/logo.png"></a> </div>
-      <form class="search-cate" action="/SearchProducts">
-        <select class="selectpicker" name="searchType">
-          <option value="0"> All Categories</option>
-          <option value="1"> TV& Home Theater</option>
-          <option value="2"> Computers & Tablets</option>
-          <option value="3"> Cell Phones</option>
-          <option value="4"> Cameras & Camcorders</option>
-          <option value="5"> Audio</option>
-          <option value="6"> Car Electronics & GPS</option>
-          <option value="7"> Video, Games, Movies & Music</option>
-          <option value="8"> Health, Fitness & Sports</option>
-          <option value="9"> Home & Office</option>
-        </select>
-        <input type="search" placeholder="Search entire store here..." name="searchInfo">
-        <button class="submit" type="submit"><i class="icon-magnifier"></i></button>
-      </form>
+<div style="margin:0;text-align:center"><h2>Please scan the QR code </h2>
+<div><img src="assets/images/QR.png"><br/>
+	<button class="but" onclick="window.location.href='/viewMyOrdersClick'">Pay</button>
 
-      <!-- Cart Part -->
-      <%--添加一个判断--%>
-      <%--判断是否为游客，若为游客则点击购物车跳转到用户登录界面--%>
-      <%--若不是游客，则判断其购物车是否为空，若为空则显示购物车内暂无商品--%>
-      <%--若购物车内有商品则显示购物车内商品--%>
-      <%
-        try{
-          String user = (String)session.getAttribute( "Buyer" );
-          if ( user == null )
-          {
-      %>
-      <ul class="nav navbar-right cart-pop" href="/BuyerLogin"></ul>
-      <%
-        }
-      }catch(Exception e) {
-
-        }
-      %>
-      
-      <ul class="nav navbar-right cart-pop">
-        <c:choose>
-        <c:when test="${buyerCart.getItems() eq null}">
-          <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-          <span class="itm-cont">0</span> <i class="flaticon-shopping-bag"></i>
-          <strong>My Cart</strong> <br>
-          <span>0 item - $0</span></a>
-          <ul class="dropdown-menu">
-              No product yet
-          </ul>
-        </li>
-        </c:when>
-        <c:otherwise>
-        <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-          <span class="itm-cont">${buyerCart.getProductAmount()}</span> <i class="flaticon-shopping-bag"></i>
-          <strong>My Cart</strong> <br>
-          <span>${buyerCart.getProductAmount()} item(s) - ${buyerCart.getTotalPrice()}</span></a>
-          <ul class="dropdown-menu">
-            <c:forEach var="buyerItem" items="${buyerCart.getItems()}">
-            <li>
-              <div class="media-left"> <a href="/BuyerProductDetail?productId=${buyerItem.getProduct().productId}" class="thumb"> <img src="${pageContext.request.contextPath}/upload/productPicture/${buyerItem.getProduct().productPicture}" class="img-responsive" alt="" > </a> </div>
-              <div class="media-body"> <a href="/BuyerProductDetail?productId=${buyerItem.getProduct().productId}" class="tittle"></a> <span> ${buyerItem.getProduct().getProductPrice()}* ${buyerItem.getAmount()}</span> </div>
-            </li></c:forEach>
-            <li class="btn-cart"> <a href="/BuyerCart?buyerId=${sessionScope.Buyer.buyerId}" class="btn-round">View Cart</a> </li>
-          </ul>
-        </li>
-        </c:otherwise>
-        </c:choose>
-      </ul>
-    </div>
-    <br>
-  </header>
-<div style="margin:0;text-align:center"><br/><br/><br/><h2>Cart is Empty! </h2><br/><br/><br/>
+</div>
 </div>
   <footer>
     <div class="container">

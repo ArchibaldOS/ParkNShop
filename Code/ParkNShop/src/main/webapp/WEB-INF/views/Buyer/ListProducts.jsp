@@ -7,7 +7,7 @@
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <meta name="author" content="M_Adnan" />
 <!-- Document Title -->
-<title></title>
+<title>Product List</title>
 
   <!-- SLIDER REVOLUTION 4.x CSS SETTINGS -->
   <link rel="stylesheet" type="text/css" href="assets/rs-plugin/css/settings.css" media="screen" />
@@ -67,8 +67,7 @@
 
             }
           %>
-          <li><a href="/BuyerAccount">My Account</a></li>
-          <li><a href="/sellerLogin">Seller Center</a></li>
+         <li><a href="/viewMyOrdersClick">View orders</a></li>
           <li><a href="/ContactManager">Contact Manager</a></li>
         </ul>
       </div>

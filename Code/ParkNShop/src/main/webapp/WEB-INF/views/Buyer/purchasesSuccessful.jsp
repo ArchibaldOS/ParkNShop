@@ -80,8 +80,7 @@ background: linear-gradient(top,#42a4e0,#2e88c0);
 
             }
           %>
-          <li><a href="/BuyerAccount">My Account</a></li>
-          <li><a href="/sellerLogin">Seller Center</a></li>
+          <li><a href="/viewMyOrdersClick">View orders</a></li>
           <li><a href="/ContactManager">Contact Manager</a></li>
         </ul>
       </div>
@@ -89,7 +88,7 @@ background: linear-gradient(top,#42a4e0,#2e88c0);
   </div>
 <div style="margin:0;text-align:center"><h2>Please scan the QR code </h2>
 <div><img src="assets/images/QR.png"><br/>
-	<button class="but" onclick="window.location.href='/onPaidClick?buyerId=${sessionScope.Buyer.buyerId}'">Pay</button>
+	<button class="but" onclick="window.location.href='/onPaidClick'">Pay</button>
 
 </div>
 </div>

@@ -116,7 +116,7 @@ background: linear-gradient(top,#42a4e0,#2e88c0);
 
             }
           %>
-          <li><a href="/BuyerAccount">My Account</a></li>
+          <li><a href="/viewMyOrdersClick">View orders</a></li>
           <li><a href="/ContactManager">Contact Manager</a></li>
         </ul>
       </div>
@@ -289,9 +289,9 @@ background: linear-gradient(top,#42a4e0,#2e88c0);
                    			</td>
                     		<td class="goods-page-ref-no">
                     		 	<c:choose>
-                               		<c:when test="${buyerItem.getOrder().getOrderStatus() eq 1}"><button class="but" onclick="window.location.href='/onPaidSingleClick?OrderId=?OrderId=${buyerItem.getOrder().getOrderId()}'">Pay</button><br/><br/></c:when>
+                               		<c:when test="${buyerItem.getOrder().getOrderStatus() eq 1}"><a href='/onPaidSingleClick?orderId=${buyerItem.getOrder().getOrderId()}' ><font size="5px">Pay</font></a><br/><br/></c:when>
                                 	<c:when test="${buyerItem.getOrder().getOrderStatus() eq 3}">To be Shipped</c:when>
-                                	<c:when test="${buyerItem.getOrder().getOrderStatus() eq 4}"><button class="but" onclick="window.location.href='/onConfirmReceivedClick?OrderId=${buyerItem.getOrder().getOrderId()}'">Confirm receipt</button></c:when>
+                                	<c:when test="${buyerItem.getOrder().getOrderStatus() eq 4}"><a href='/onConfirmReceivedClick?orderId=${buyerItem.getOrder().getOrderId()}' ><font size="5px">Confirm receipt</font></a><br/><br/></c:when>
                                 	<c:when test="${buyerItem.getOrder().getOrderStatus() eq 5}">Comment</c:when>
                                 </c:choose>
                     		</td>

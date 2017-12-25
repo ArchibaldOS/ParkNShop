@@ -257,7 +257,7 @@
         FROM
         orders
         WHERE buyerId=#{buyerId}
-        LIMIT #{start},#{pageSize}
+        ORDER BY orderTime DESC
     </select>
     <select id="selectOrderBySellerId" resultMap="BaseResultMap" parameterType="int">
         SELECT

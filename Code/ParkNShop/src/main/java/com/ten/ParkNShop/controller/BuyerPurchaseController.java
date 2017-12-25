@@ -31,7 +31,7 @@ public class BuyerPurchaseController {
     public String confirmClick(HttpSession session) {
         Buyer buyer = (Buyer) session.getAttribute("Buyer");
         if(buyer == null) return "Buyer/BuyerLogin";
-        //未登录，转至登录页面
+        //鏈櫥褰曪紝杞嚦鐧诲綍椤甸潰
 
 
         BuyerCart cart = (BuyerCart) session.getAttribute("buyerCart");
@@ -39,11 +39,11 @@ public class BuyerPurchaseController {
         List<Order> orders = new ArrayList<Order>();
 
 
-        //购物车非空
+        //璐墿杞﹂潪绌�
         if (cart != null && !cart.getItems().isEmpty()) {
             for (BuyerItem item : items) {
                 Order order = new Order();
-                //设置订单的总额,地址，买家id，数量，订单状态，创建时间，产品id，卖家idorder.setTotalprice(item.getAmount()*item.getProduct().getProductPrice());
+                //璁剧疆璁㈠崟鐨勬�婚,鍦板潃锛屼拱瀹秈d锛屾暟閲忥紝璁㈠崟鐘舵�侊紝鍒涘缓鏃堕棿锛屼骇鍝乮d锛屽崠瀹秈dorder.setTotalprice(item.getAmount()*item.getProduct().getProductPrice());
                 order.setAddress(buyer.getbuyerAddress());
                 order.setBuyerId(buyer.getbuyerId());
                 order.setCount(item.getAmount());
@@ -62,14 +62,14 @@ public class BuyerPurchaseController {
 
         }
 
-        //购物车没添加东西
+        //璐墿杞︽病娣诲姞涓滆タ
         else if(cart.getItems().isEmpty())
         {
             return "Buyer/cartIsEmpty";
         }
         else
         {
-            System.out.println("购买失败,未正确取得购物车属性");
+            System.out.println("璐拱澶辫触,鏈纭彇寰楄喘鐗╄溅灞炴��");
             return "Buyer/purchaseFailBusy";
         }
     }
@@ -79,11 +79,13 @@ public class BuyerPurchaseController {
     @RequestMapping("viewMyOrdersClick")
     public String viewMyOrders (HttpSession session)
     {
+    	session.setAttribute("orders", null);
         Buyer buyer = (Buyer) session.getAttribute("Buyer");
-        //从登录的信息当中获取买家ID
+        //浠庣櫥褰曠殑淇℃伅褰撲腑鑾峰彇涔板ID
         if(buyer == null ) return "redirect:/BuyerLogin";
         List<OrderItem> recentOrders = buyerPurchaseService.findBuyerOrdersSer(buyer);
         session.setAttribute("orders",recentOrders);
+        
         return "Buyer/PersonalOrders";
 
     }
@@ -103,25 +105,25 @@ public class BuyerPurchaseController {
         return "forward:/viewMyOrdersClick";
     }
     @RequestMapping("onPaidSingleClick")
-    public String onPaidClick(int OrderId)
+    public String onPaidClick(int orderId)
     {
 
-        System.out.println("  dsfdsf test");
-            buyerPurchaseService.changeOrderToPaid(OrderId);
-            System.out.println(OrderId+"   test");
-            Order order = orderMapper.selectByPrimaryKey(OrderId);
+       
+            buyerPurchaseService.changeOrderToPaid(orderId);
+           
+            Order order = orderMapper.selectByPrimaryKey(orderId);
             Admin admin = adminMapper.selectByPrimaryKey(1);
             float newBalance = admin.getAdminbalance() + order.getTotalPrice();
             adminMapper.updateBalance(newBalance);
         
 
-        return "forward:/viewMyOrdersClick";
+        return "Buyer/orderPay";
     }
     @RequestMapping("onConfirmReceivedClick")
-    public String onConfirmReceivedClick(int OrderId)
+    public String onConfirmReceivedClick(int orderId)
     {
-        buyerPurchaseService.changeOrderToReceived(OrderId);
-        Order order = orderMapper.selectByPrimaryKey(OrderId);
+        buyerPurchaseService.changeOrderToReceived(orderId);
+        Order order = orderMapper.selectByPrimaryKey(orderId);
         Seller seller = sellerMapper.selectByPrimaryKey(order.getSellerId());
         float amount = (float) (0.98 * order.getTotalPrice());
         float AdminCurrentBalance = adminMapper.selectByPrimaryKey(1).getAdminbalance();

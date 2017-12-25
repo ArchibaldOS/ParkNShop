@@ -43,7 +43,16 @@
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
       <![endif]-->
 <style type="text/css">
-
+.but{
+color:white;
+font-size:15px;
+width:120px;height:30px;
+border:1px solid #1e7db9;
+box-shadow: 0 1px 2px #8fcaee inset,0 -1px 0 #497897 inset,0 -2px 3px #8fcaee inset;
+background: -webkit-linear-gradient(top,#42a4e0,#2e88c0);
+background: -moz-linear-gradient(top,#42a4e0,#2e88c0);
+background: linear-gradient(top,#42a4e0,#2e88c0);
+}
 .hidecontent {display:none;}
 </style>
   <!-- JavaScripts -->
@@ -51,7 +60,7 @@
   <script src="assets/js/myCart.js"></script>
   <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-  <script language="javascript">
+  <!-- <script language="javascript">
     function switchTag(tag,content)
     {
         for(i=1; i<6; i++)
@@ -75,7 +84,7 @@
             document.getElementById("content").className=content;
         }
     }
-</script>
+</script> -->
 </head>
 
 <body>
@@ -185,14 +194,15 @@
         </ul>
     </div>
     <br>
-		<section class="top-md-menu">
+    
+		<!-- <!-- <section class="top-md-menu">
 			<div class="container">
 				<div class="main-menu">
-					<!--  nav  -->
+					 nav 
 					<nav class="navbar navbar-inverse navbar-default">
-						<!-- Brand and toggle get grouped for better mobile display -->
+						Brand and toggle get grouped for better mobile display
 
-						<!-- Collect the nav links, forms, and other content for toggling -->
+						Collect the nav links, forms, and other content for toggling
 						<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" data-hover="dropdown" data-animations=" fadeInLeft fadeInUp fadeInRight">
 							<ul class="nav navbar-nav">
 								
@@ -203,14 +213,14 @@
             <li id="tag5"><a href="#" onclick="switchTag('tag5','content5');this.blur();"><span>待评价</span></a></li>
         
 							</ul>
-							<!-- /.navbar-collapse -->
+							/.navbar-collapse
 						</div>
 					</nav>
-					<!-- /nav end -->
+					/nav end
 				</div>
 			</div>
-		</section>
-	
+		</section> --> 
+
   </header>
 
  <div class="container1">
@@ -243,13 +253,13 @@
        			 <c:otherwise>
         				<c:forEach var="buyerItem" items="${orders}">
         				<tr>
-   							 <td colspan="8" class="shopInfo">时间：${buyerItem.getOrder().getOrderTime()} 订单号：${buyerItem.getOrder().getOrderId()}店铺：<a href="#">${buyerItem.getOrder().getSellerId()}</a></td>
+   							 <td colspan="8" class="shopInfo">Date：${buyerItem.getOrder().getOrderTime()} &nbsp;&nbsp;&nbsp;OrderID：${buyerItem.getOrder().getOrderId()} &nbsp;&nbsp;&nbsp; Shop：${buyerItem.getSeller().getShopName()}</td>
   						</tr>
                  		<tr>
                     		<td class="goods-page-image">
                       			<a href="javascript:;"><img src="${pageContext.request.contextPath}/upload/productPicture/${buyerItem.getProduct().getProductPicture()}" alt="shopping"></a>
                     		</td>
-                    		<td class="goods-page-description">
+                    		<td class="goods-page-description" style="width:500px">
                       			<h3><a href="#">${buyerItem.getProduct().getProductName()}</a></h3><br />
                       				${buyerItem.getProduct().getProductIntroduction()}<br />
                     		</td>
@@ -259,17 +269,31 @@
                    			</td>
                    			<td class="goods-page-quantity">
                       			<div class="product-quantity" style="text-aline:center">
-                         		 ${buyerItem.getOrder().getCount()}
+                         		<strong> ${buyerItem.getOrder().getCount()}</strong>
                       			</div>
                    			 </td>
                     		<td class="goods-page-total">
                       			<strong><span>$</span>${buyerItem.getOrder().getTotalPrice()}</strong>
                     		</td>
                     		<td class="goods-page-ref-no">
-                      			${buyerItem.getOrder().getOrderStatus()}
+                      			<c:choose>
+                               		<c:when test="${buyerItem.getOrder().getOrderStatus() eq 1}">Non-Payment</c:when>
+                                	<c:when test="${buyerItem.getOrder().getOrderStatus() eq 2}"></c:when>
+                                	<c:when test="${buyerItem.getOrder().getOrderStatus() eq 3}">Paid</c:when>
+                                	<c:when test="${buyerItem.getOrder().getOrderStatus() eq 4}">Shipped</c:when>
+                                	<c:when test="${buyerItem.getOrder().getOrderStatus() eq 5}">Success</c:when>
+                                	<c:when test="${buyerItem.getOrder().getOrderStatus() eq 6}"></c:when>
+                                	<c:when test="${buyerItem.getOrder().getOrderStatus() eq 7}"></c:when>
+                                	<c:when test="${buyerItem.getOrder().getOrderStatus() eq 8}"></c:when>
+                                </c:choose>
                    			</td>
                     		<td class="goods-page-ref-no">
-                     			 <a href="#">评价</a>
+                    		 	<c:choose>
+                               		<c:when test="${buyerItem.getOrder().getOrderStatus() eq 1}"><button class="but" onclick="window.location.href='/onPaidSingleClick?OrderId=?OrderId=${buyerItem.getOrder().getOrderId()}'">Pay</button><br/><br/></c:when>
+                                	<c:when test="${buyerItem.getOrder().getOrderStatus() eq 3}">To be Shipped</c:when>
+                                	<c:when test="${buyerItem.getOrder().getOrderStatus() eq 4}"><button class="but" onclick="window.location.href='/onConfirmReceivedClick?OrderId=${buyerItem.getOrder().getOrderId()}'">Confirm receipt</button></c:when>
+                                	<c:when test="${buyerItem.getOrder().getOrderStatus() eq 5}">Comment</c:when>
+                                </c:choose>
                     		</td>
                  		 </tr>
                  		 </c:forEach>
@@ -324,7 +348,7 @@
 
         <div class="col-md-12" align="center">
           <br>
-          Copyright © 2017-2018  www.ParkNShop.com
+          Copyright © 2017-2018  www.ParkNShop.com  
         </div>
       </div>
     </div>

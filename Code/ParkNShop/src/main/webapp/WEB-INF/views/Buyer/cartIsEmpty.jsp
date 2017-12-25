@@ -8,7 +8,7 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <!-- Document Title -->
-  <title>My Cart</title>
+  <title>Home</title>
 
   <!-- SLIDER REVOLUTION 4.x CSS SETTINGS -->
   <link rel="stylesheet" type="text/css" href="assets/rs-plugin/css/settings.css" media="screen" />
@@ -20,11 +20,7 @@
   <link rel="stylesheet" href="assets/css2/main.css">
   <link rel="stylesheet" href="assets/css2/style.css">
   <link rel="stylesheet" href="assets/css2/responsive.css">
-  <link rel="stylesheet" href="assets/css/myCart.css">
-  
-<link rel="stylesheet" href="assets/css/bootstrap0.min.css">
- <link href="assets/css/components.css" rel="stylesheet">
-  <link href="assets/css/style-shop.css" rel="stylesheet" type="text/css">
+
   <!-- Fonts Online -->
   <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
 
@@ -34,14 +30,26 @@
   <link rel="stylesheet" href="assets/css/font-awesome.min2.css" />
   <!-- Custom CSS -->
   <link href="assets/css/style3.css" rel="stylesheet">
-
+<style type="text/css">
+.but{
+color:white;
+font-size:20px;
+width:120px;height:30px;
+border:1px solid #1e7db9;
+box-shadow: 0 1px 2px #8fcaee inset,0 -1px 0 #497897 inset,0 -2px 3px #8fcaee inset;
+background: -webkit-linear-gradient(top,#42a4e0,#2e88c0);
+background: -moz-linear-gradient(top,#42a4e0,#2e88c0);
+background: linear-gradient(top,#42a4e0,#2e88c0);
+}
+.hidecontent {display:none;}
+</style>
 
   <!-- JavaScripts -->
   <script src="assets/js/vendors/modernizr.js"></script>
-  <script src="assets/js/myCart.js"></script>
   <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 </head>
+
 
 <body>
 <!-- Page Wrapper -->
@@ -73,14 +81,13 @@
             }
           %>
           <li><a href="/BuyerAccount">My Account</a></li>
+          <li><a href="/sellerLogin">Seller Center</a></li>
           <li><a href="/ContactManager">Contact Manager</a></li>
         </ul>
       </div>
     </div>
   </div>
-
-  <!-- Header -->
-  <header>
+   <header>
     <div class="container">
       <div class="logo"> <a href="/BuyerIndex"><img src="assets/images/logo.png"></a> </div>
       <form class="search-cate" action="/SearchProducts">
@@ -92,7 +99,7 @@
           <option value="4"> Cameras & Camcorders</option>
           <option value="5"> Audio</option>
           <option value="6"> Car Electronics & GPS</option>
-          <option value="7"> Video, Games, Movies & Music </option>
+          <option value="7"> Video, Games, Movies & Music</option>
           <option value="8"> Health, Fitness & Sports</option>
           <option value="9"> Home & Office</option>
         </select>
@@ -139,10 +146,10 @@
           <ul class="dropdown-menu">
             <c:forEach var="buyerItem" items="${buyerCart.getItems()}">
             <li>
-              <div class="media-left"> <a href="#." class="thumb"> <img src="${pageContext.request.contextPath}/upload/productPicture/${buyerItem.getProduct().getProductPicture()}" class="img-responsive" alt="" > </a> </div>
-              <div class="media-body"> <a href="#." class="tittle"></a> <span> ${buyerItem.getProduct().getProductPrice()}* ${buyerItem.getAmount()}</span> </div>
+              <div class="media-left"> <a href="/BuyerProductDetail?productId=${buyerItem.getProduct().productId}" class="thumb"> <img src="${pageContext.request.contextPath}/upload/productPicture/${buyerItem.getProduct().productPicture}" class="img-responsive" alt="" > </a> </div>
+              <div class="media-body"> <a href="/BuyerProductDetail?productId=${buyerItem.getProduct().productId}" class="tittle"></a> <span> ${buyerItem.getProduct().getProductPrice()}* ${buyerItem.getAmount()}</span> </div>
             </li></c:forEach>
-            <li class="btn-cart"> <a href="/BuyerCart" class="btn-round">View Cart</a> </li>
+            <li class="btn-cart"> <a href="/BuyerCart?buyerId=${sessionScope.Buyer.buyerId}" class="btn-round">View Cart</a> </li>
           </ul>
         </li>
         </c:otherwise>
@@ -151,93 +158,8 @@
     </div>
     <br>
   </header>
- 
-<div class="container1">
-        <!-- BEGIN SIDEBAR & CONTENT -->
-    <div class="row margin-bottom-40">
-          <!-- BEGIN CONTENT -->
-          <div class="col-md-12 col-sm-12">
-            <h1>Shopping Cart</h1>
-            <div class="goods-page">
-              <div class="goods-data clearfix">
-                <div class="table-wrapper-responsive">
-                 
-                <table id="shopping" >
-                <form action="/onConfirmClick" method="post" name="myform">
-                  <tr>
-                    <th class="goods-page-image">Image</th>
-                    <th class="goods-page-description">Description</th>
-                    <th class="goods-page-price">Unit price</th>
-                    <th class="goods-page-quantity">Quantity</th>
-                    <th class="goods-page-total">Total Price</th>
-                    <th class="goods-page-ref-no">Operation</th>
-                  </tr>
-                  <c:choose>
-       					 <c:when test="${buyerCart.getItems().size() eq 0}">
-          					<tr align="center" style="height: 200px;">
-            					<td colspan="8"><h3>Shopping cart is empty！</h3></td>
-							</tr>
-        				</c:when>
-       			 <c:otherwise>
-        				<c:forEach var="buyerItem" items="${buyerCart.getItems()}">
-        				<tr>
-   							 <td colspan="8" class="shopInfo">Shop：<a href="#">${buyerItem.getProduct().getSellerId()}</a>
-                     		</td>
-  						</tr>
-                 		<tr>
-                    		<td class="goods-page-image">
-                      			<a href="javascript:;"><img src="${pageContext.request.contextPath}/upload/productPicture/${buyerItem.getProduct().getProductPicture()}" alt="shopping"></a>
-                    		</td>
-                    		<td class="goods-page-description" style="width: 500px">
-                      			<a href="/ProductDetail?productId=${buyerItem.getProduct().getProductId()}">${buyerItem.getProduct().getProductName()}</a><br />
-        							${buyerItem.getProduct().getProductIntroduction()}<br />
-                    		</td>
-                   			
-                    		<td class="goods-page-price" style="color: #e84d1c;font-size: 18px;font-weight: normal">
-                      			${buyerItem.getProduct().getProductPrice()}
-                   			</td>
-                   			<td class="goods-page-quantity">
-                      			<a  href="/DelFromBuyerCart?buyerId=${Buyer.buyerId}&productId=${buyerItem.getProduct().getProductId()}" class="hand"><img src="assets/images/taobao_minus.jpg"></a>
-    							<input  type="text"  value="${buyerItem.getAmount()}" class="num_input" readonly="readonly"/>
-    							<a  href="/AddToCart?buyerId=${Buyer.buyerId}&productId=${buyerItem.getProduct().getProductId()}" class="hand"><img src="assets/images/taobao_adding.jpg"></a>
-    								   
-                   			 </td>
-                    		<td class="goods-page-total" style="color: #e84d1c;font-size: 18px;font-weight: normal">
-                    		</td>
-                    		<td class="goods-page-ref-no">
-                     			 <a href="/DelItem?productId=${buyerItem.getProduct().getProductId()}">Delete</a>
-                    		</td>
-                 		 </tr>
-                 		 </c:forEach>
-       			 </c:otherwise>
-       			 </c:choose>
-       			 <c:if test="${buyerCart.getItems().size() gt 0}">
-   					<tr>
-    					<td colspan="5" class="shopend" style="color: #e84d1c;font-size: 18px;font-weight: normal">Total：$<label id="total" class="yellow"></label><br />
-                            <button class="btn btn-primary" onclick="window.location.href='/onConfirmClick'">Purchase<i class="fa fa-check"></i></button>
-
-                        </td>
-					</tr>
-				</c:if>
-  			</form>
-          </table>
-        </div>
-              
-     </div>
-   </div>
-		  </div>
-          <!-- END CONTENT -->
-    </div>
+<div style="margin:0;text-align:center"><br/><br/><br/><h2>Cart is Empty! </h2><br/><br/><br/>
 </div>
-
-
-  <!-- Content -->
-
-  <!-- End Content -->
-  <section>
-    <hr>
-  </section>
-  <!-- Footer -->
   <footer>
     <div class="container">
 
@@ -266,7 +188,7 @@
 
         <div class="col-md-12" align="center">
           <br>
-          Copyright © 2017-2018  www.ParkNShop.com  
+          Copyright © 2017-2018  www.ParkNShop.com
         </div>
       </div>
     </div>

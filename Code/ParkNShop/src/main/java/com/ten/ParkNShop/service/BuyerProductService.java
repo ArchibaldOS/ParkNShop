@@ -22,4 +22,5 @@ public interface BuyerProductService {
 
     int countByProductName(String productName);
 
+    Product searchByProductId(int productId);
 }

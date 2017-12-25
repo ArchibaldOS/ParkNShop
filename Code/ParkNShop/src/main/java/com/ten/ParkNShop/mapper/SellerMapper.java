@@ -82,6 +82,6 @@ public interface SellerMapper {
 
 	int updateBySellerId(Seller seller);
 
-
+    void updateBalance(int sellerId, float money);
 
 }

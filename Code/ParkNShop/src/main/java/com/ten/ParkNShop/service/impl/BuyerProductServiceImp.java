@@ -45,4 +45,8 @@ public class BuyerProductServiceImp implements BuyerProductService{
         return num;
     }
 
+    public Product searchByProductId(int productId) {
+        return productMapper.findByProductId(productId);
+    }
+
 }

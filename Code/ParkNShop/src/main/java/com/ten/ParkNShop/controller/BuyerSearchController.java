@@ -1,11 +1,13 @@
 package com.ten.ParkNShop.controller;
 
+import com.ten.ParkNShop.entity.Product;
 import com.ten.ParkNShop.entity.SearchInfo;
 import com.ten.ParkNShop.service.BuyerProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -19,6 +21,8 @@ import javax.servlet.http.HttpServletRequest;
 public class BuyerSearchController {
     @Autowired
     private BuyerProductService buyerProductService;
+
+
 
     @RequestMapping("/BuyerIndex")
     public String buyerIndex(Model model){
@@ -47,6 +51,7 @@ public class BuyerSearchController {
         if (searchType == 0){
             model.addAttribute("searchProducts",buyerProductService.searchByProductName(productName));
             model.addAttribute("searchNum",buyerProductService.countByProductName(productName));
+            System.out.println(buyerProductService.countByProductName(productName));
             return "Buyer/ListProducts";
         }
         SearchInfo searchInfo = new SearchInfo();
@@ -55,4 +60,15 @@ public class BuyerSearchController {
         model.addAttribute("searchProducts",buyerProductService.searchByProductNameAndSearchType(searchInfo));
         return "Buyer/ListProducts";
     }
+
+    @RequestMapping("/ProductDetail")
+    public String ProductDetail(Model model,@RequestParam("productId") int productId){
+        Product product = buyerProductService.searchByProductId(productId);
+
+
+        model.addAttribute("product",product);
+        return "Buyer/BuyerProductDetail";
+    }
+
+
 }

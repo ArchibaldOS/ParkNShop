@@ -149,18 +149,18 @@
   </header>
 
 
-  
+
   <!-- Content -->
-  <div id="content"> 
-    
+  <div id="content">
+
     <!-- Products -->
     <section class="padding-top-40 padding-bottom-60">
       <div class="container">
-        <div class="row"> 
-          
+        <div class="row">
+
           <!-- Shop Side Bar -->
 
-          
+
           <!-- Products -->
           <div class="col-md-12">
 
@@ -187,9 +187,9 @@
                 </li>
               </ul>
             </div>
-            
+
             <!-- Items -->
-            <div class="col-list"> 
+            <div class="col-list">
               <!-- Product -->
               <div class="product" style="width:100%;">
                 <article>
@@ -197,13 +197,13 @@
                   <div style="width:100%;height:300px;margin-bottom: 20px;">
                   <!-- Product img -->
                   <div class="media-left" style="width:20%;">
-                    <div class="item-img" style="width:100%;height:400px"> 
-                    	<img class="img-responsive" src="${pageContext.request.contextPath}/upload/productPicture/${searchProduct.productPicture}" />  
+                    <div class="item-img" style="width:100%;height:400px">
+                    	<img class="img-responsive" src="${pageContext.request.contextPath}/upload/productPicture/${searchProduct.productPicture}" />
                     </div>
-                  </div>                  
+                  </div>
                   <!-- Content -->
                   <div class="media-body">
-                    <div class="row">                       
+                    <div class="row">
                       <!-- Content Left -->
                       <div class="col-sm-7">
                       	 <span class="tag">
@@ -217,12 +217,12 @@
 								<c:when test="${searchProduct.productType eq 7}">Video, Games, Movies & Music</c:when>
 								<c:when test="${searchProduct.productType eq 8}">Health, Fitness & Sports</c:when>
 								<c:when test="${searchProduct.productType eq 9}">Home & Office</c:when>
-							</c:choose> 
+							</c:choose>
 						</span> <br/>
-                      <a href="/BuyerProductDetail?productId=${searchProduct.productId}" class="tittle"><h3>${searchProduct.productName}</h3></a>
+                      <a href="/ProductDetail?productId=${searchProduct.productId}" class="tittle"><h3>${searchProduct.productName}</h3></a>
                         <!-- Reviews -->
                         <p>${searchProduct.productIntroduction}</p>
-                      </div>                      
+                      </div>
                       <!-- Content Right -->
                       <div class="col-sm-5 text-center" style=""> <a href="/MoveToBuyerFavorite?productId=${searchProduct.productId}&buyerId=${sessionScope.Buyer.buyerId}" class="heart"><i class="fa fa-heart"></i></a> <a href="#." class="heart navi"><i class="fa fa-navicon"></i></a>
                         <div class="position-center-center">
@@ -243,7 +243,7 @@
             </c:forEach>
           </article>
         </div>
-             
+
               <!-- pagination -->
               <ul class="pagination">
                 <li> <a href="#" aria-label="Previous"> <i class="fa fa-angle-left"></i> </a> </li>
@@ -293,18 +293,18 @@
       </div>
     </div>
   </footer>
-  
 
-  
-  <!-- End Footer --> 
-  
-  <!-- GO TO TOP  --> 
-  <a href="#" class="cd-top"><i class="fa fa-angle-up"></i></a> 
-  <!-- GO TO TOP End --> 
+
+
+  <!-- End Footer -->
+
+  <!-- GO TO TOP  -->
+  <a href="#" class="cd-top"><i class="fa fa-angle-up"></i></a>
+  <!-- GO TO TOP End -->
 </div>
-<!-- End Page Wrapper --> 
+<!-- End Page Wrapper -->
 
-<!-- JavaScripts --> 
+<!-- JavaScripts -->
 <script src="assets/js/vendors/jquery/jquery.min.js"></script>
 <script src="assets/js/vendors/wow.min.js"></script>
 <script src="assets/js/vendors/bootstrap.min.js"></script>
@@ -312,15 +312,15 @@
 <script src="assets/js/vendors/jquery.sticky.js"></script>
 <script src="assets/js/vendors/owl.carousel.min.js"></script>
 
-<!-- SLIDER REVOLUTION 4.x SCRIPTS  --> 
+<!-- SLIDER REVOLUTION 4.x SCRIPTS  -->
 <script type="text/javascript" src="assets/rs-plugin/js/jquery.tp.t.min.js"></script>
 <script type="text/javascript" src="assets/rs-plugin/js/jquery.tp.min.js"></script>
 <script src="assets/js/main.js"></script>
 <script src="assets/js/vendors/jquery.nouislider.min.js"></script>
 <script>
 jQuery(document).ready(function($) {
-  
- 
+
+
     $("#price-range").noUiSlider({
     range: {
       'min': [ 0 ],
@@ -340,7 +340,7 @@ jQuery(document).ready(function($) {
         })
       ],
       format: {
-      
+
         decimals: 2,
         prefix: '$'
       }

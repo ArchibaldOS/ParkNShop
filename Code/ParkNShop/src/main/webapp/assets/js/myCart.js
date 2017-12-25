@@ -40,11 +40,13 @@ function productCount(){
 
                 temp = price*number;
                 total += temp;
+                
+                temp = temp.toFixed(2);
                 myTableTr[i].getElementsByTagName("td")[4].innerHTML=temp;
             }
         }
-        var totalStr = total + "";
-        document.getElementById("total").innerHTML = totalStr.substring(0,totalStr.indexOf('.')+2);
+        
+        document.getElementById("total").innerHTML = total.toFixed(2);
 
     }
 }

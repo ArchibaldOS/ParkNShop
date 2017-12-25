@@ -254,11 +254,28 @@
               <c:forEach var="featuredProduct" items="${featuredProducts}">
               <!-- Product -->
               <div class="product">
-                <article> <img class="img-responsive" src="${pageContext.request.contextPath}/upload/productPicture/${featuredProduct.productPicture}" alt="" >
+                <article> <a href="/ProductDetail?productId=${featuredProduct.productId}"><img  class="img-responsive" src="${pageContext.request.contextPath}/upload/productPicture/${featuredProduct.productPicture}" alt="${featuredProduct.productName}" ></a>
                   <!-- Content -->
-                  <span class="tag">${featuredProduct.productType}</span> <a href="/BuyerProductDetail?productId=${featuredProduct.productId}" class="tittle">${featuredProduct.productName}</a>
+                  <span class="tag">
+                    <c:choose>
+                      <c:when test="${featuredProduct.productType eq 1}">TV& Home Theater</c:when>
+                      <c:when test="${featuredProduct.productType eq 2}">Computers & Tablets</c:when>
+                      <c:when test="${featuredProduct.productType eq 3}">Cell Phones</c:when>
+                      <c:when test="${featuredProduct.productType eq 4}">Cameras & Camcorders</c:when>
+                      <c:when test="${featuredProduct.productType eq 5}">Audio</c:when>
+                      <c:when test="${featuredProduct.productType eq 6}">Car Electronics & GPS</c:when>
+                      <c:when test="${featuredProduct.productType eq 7}">Video, Games, Movies & Music</c:when>
+                      <c:when test="${featuredProduct.productType eq 8}">Health, Fitness & Sports</c:when>
+                      <c:when test="${featuredProduct.productType eq 9}">Home & Office</c:when>
+                    </c:choose>
+                    
+                    
+                  </span> 
+                  
+                  
+                  <div><a href="/ProductDetail?productId=${featuredProduct.productId}" class="tittle">${featuredProduct.productName}</a><>
                   <!-- Reviews -->
-                  <div class="price">${featuredProduct.productPrice} </div>
+                  <div class="price">$${featuredProduct.productPrice} </div>
                   <a href="/AddToCart?buyerId=${sessionScope.Buyer.buyerId}&productId=${featuredProduct.productId}" class="cart-btn"><i class="icon-basket-loaded"></i></a> </article>
               </div>
               </c:forEach>

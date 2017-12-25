@@ -30,13 +30,26 @@
   <link rel="stylesheet" href="assets/css/font-awesome.min2.css" />
   <!-- Custom CSS -->
   <link href="assets/css/style3.css" rel="stylesheet">
-
+<style type="text/css">
+.but{
+color:white;
+font-size:20px;
+width:120px;height:30px;
+border:1px solid #1e7db9;
+box-shadow: 0 1px 2px #8fcaee inset,0 -1px 0 #497897 inset,0 -2px 3px #8fcaee inset;
+background: -webkit-linear-gradient(top,#42a4e0,#2e88c0);
+background: -moz-linear-gradient(top,#42a4e0,#2e88c0);
+background: linear-gradient(top,#42a4e0,#2e88c0);
+}
+.hidecontent {display:none;}
+</style>
 
   <!-- JavaScripts -->
   <script src="assets/js/vendors/modernizr.js"></script>
   <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 </head>
+
 
 <body>
 <!-- Page Wrapper -->
@@ -74,9 +87,9 @@
       </div>
     </div>
   </div>
-<div><h2>Please scan the QR code </h2>
+<div style="margin:0;text-align:center"><h2>Please scan the QR code </h2>
 <div><img src="assets/images/QR.png"><br/>
-	<button onclick="window.location.href='/onPaidClick?buyerId=${sessionScope.Buyer.buyerId}'">Pay</button>
+	<button class="but" onclick="window.location.href='/onPaidClick?buyerId=${sessionScope.Buyer.buyerId}'">Pay</button>
 
 </div>
 </div>
@@ -89,7 +102,7 @@
 
         <!-- Contact -->
         <div class="col-md-9">
-          <h4>Contact Park N Shop!</h4>
+          <h4>Contact ParkNShop!</h4>
           <br>
           <p>Address: Xidian University,Xi'an,China</p>
           <p>Phone: (+100) 666</p>

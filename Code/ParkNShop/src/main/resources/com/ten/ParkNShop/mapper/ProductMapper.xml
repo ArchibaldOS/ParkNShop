@@ -121,7 +121,7 @@
 	<select id="countByProductName" parameterType="java.lang.String" resultType="int">
 		SELECT COUNT(1)
 		FROM product
-		WHERE productName = #{productName}
+		WHERE productName LIKE CONCAT(CONCAT('%',#{productName}),'%')
 	</select>
 
 

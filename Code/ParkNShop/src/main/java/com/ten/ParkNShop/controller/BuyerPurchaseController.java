@@ -2,6 +2,8 @@ package com.ten.ParkNShop.controller;
 
 import com.ten.ParkNShop.entity.*;
 import com.ten.ParkNShop.mapper.AdminMapper;
+import com.ten.ParkNShop.mapper.OrderMapper;
+import com.ten.ParkNShop.mapper.SellerMapper;
 import com.ten.ParkNShop.service.BuyerPurchaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,6 +23,10 @@ public class BuyerPurchaseController {
     private BuyerPurchaseService buyerPurchaseService;
     @Autowired
     private AdminMapper adminMapper;
+    @Autowired
+    private OrderMapper orderMapper;
+    @Autowired
+    private SellerMapper sellerMapper;
     @RequestMapping("/onConfirmClick")
     public String confirmClick(HttpSession session) {
         Buyer buyer = (Buyer) session.getAttribute("Buyer");
@@ -96,11 +102,32 @@ public class BuyerPurchaseController {
 
         return "forward:/viewMyOrdersClick";
     }
+    @RequestMapping("onPaidSingleClick")
+    public String onPaidClick(int OrderId)
+    {
+
+        System.out.println("  dsfdsf test");
+            buyerPurchaseService.changeOrderToPaid(OrderId);
+            System.out.println(OrderId+"   test");
+            Order order = orderMapper.selectByPrimaryKey(OrderId);
+            Admin admin = adminMapper.selectByPrimaryKey(1);
+            float newBalance = admin.getAdminbalance() + order.getTotalPrice();
+            adminMapper.updateBalance(newBalance);
+        
+
+        return "forward:/viewMyOrdersClick";
+    }
     @RequestMapping("onConfirmReceivedClick")
     public String onConfirmReceivedClick(int OrderId)
     {
         buyerPurchaseService.changeOrderToReceived(OrderId);
-
+        Order order = orderMapper.selectByPrimaryKey(OrderId);
+        Seller seller = sellerMapper.selectByPrimaryKey(order.getSellerId());
+        float amount = (float) (0.98 * order.getTotalPrice());
+        float AdminCurrentBalance = adminMapper.selectByPrimaryKey(1).getAdminbalance();
+        float sellerCurrentBalance = seller.getSellerBalance();
+        adminMapper.updateBalance( AdminCurrentBalance-amount );
+        sellerMapper.updateBalance(seller.getsellerId(),sellerCurrentBalance + amount);
         return "forward:/viewMyOrdersClick";
     }
 }

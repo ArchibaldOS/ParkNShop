@@ -1,30 +1,19 @@
 package com.ten.ParkNShop.controller;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.ten.ParkNShop.entity.Buyer;
 import com.ten.ParkNShop.entity.BuyerCart;
+import com.ten.ParkNShop.entity.Buyer;
 import com.ten.ParkNShop.entity.Product;
-import com.ten.ParkNShop.mapper.ProductMapper;
 import com.ten.ParkNShop.service.BuyerCartService;
-import com.ten.ParkNShop.service.BuyerProductService;
 import com.ten.ParkNShop.service.SellerProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.Constants;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.io.PrintWriter;
 
 /**
  * @author: Archibald.
@@ -43,8 +32,7 @@ public class BuyerCartController {
 
         int productId;
         int productNumber;
-        String stringOfId = request.getParameter("productId");
-        productId = Integer.parseInt(stringOfId);
+        productId = Integer.parseInt(request.getParameter("productId"));
         if (request.getParameter("productNum")==null){
             productNumber = 1;
         }else {

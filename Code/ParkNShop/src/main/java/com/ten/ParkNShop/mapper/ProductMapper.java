@@ -17,7 +17,7 @@ public interface ProductMapper {
 	
 	int delete(@Param("productId")int productId);
 
-	Product findByProductId(int productId);
+	Product findByProductId(@Param("productId") int productId);
 
 	int updateProduct1(Product product);
 	

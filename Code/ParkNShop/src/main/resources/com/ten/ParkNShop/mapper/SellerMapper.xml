@@ -331,6 +331,11 @@
 		update seller set sellerName = #{sellerName}, shopName = #{shopName}, sellerPhone = #{sellerPhone}, sellerEmail = #{sellerEmail}, shopIntroduction = #{shopIntroduction}
 		where sellerId = #{sellerId} 
   </update>
-	
+
+  <update id="updateBalance" >
+    update seller set sellerBalance = #{sellerBalance}
+    where sellerId = #{sellerId}
+  </update>
+
 
 </mapper>

@@ -1,6 +1,7 @@
 package com.ten.ParkNShop.controller;
 
 import com.ten.ParkNShop.entity.*;
+import com.ten.ParkNShop.mapper.AdminMapper;
 import com.ten.ParkNShop.service.BuyerPurchaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,7 +19,8 @@ import java.util.List;
 public class BuyerPurchaseController {
     @Autowired
     private BuyerPurchaseService buyerPurchaseService;
-
+    @Autowired
+    private AdminMapper adminMapper;
     @RequestMapping("/onConfirmClick")
     public String confirmClick(HttpSession session) {
         Buyer buyer = (Buyer) session.getAttribute("Buyer");
@@ -49,6 +51,7 @@ public class BuyerPurchaseController {
             buyerPurchaseService.createOrders(orders);
             session.removeAttribute("buyerCart");
             session.setAttribute("buyerCart",new BuyerCart());
+            session.setAttribute("toPayOrders",orders);
             return "Buyer/purchasesSuccessful";
 
         }
@@ -80,9 +83,23 @@ public class BuyerPurchaseController {
     }
 
     @RequestMapping("onPaidClick")
-    public String onPaidClick(int orderId)
+    public String onPaidClick(HttpSession session)
     {
-        buyerPurchaseService.changeOrderToPaid(orderId);
+        List<Order> orders = (List<Order>) session.getAttribute("toPayOrders");
+        for(Order temp :orders )
+        {
+            buyerPurchaseService.changeOrderToPaid(temp.getOrderId());
+            Admin admin = adminMapper.selectByPrimaryKey(1);
+            float newBalance = admin.getAdminbalance() + temp.getTotalPrice();
+            adminMapper.updateBalance(newBalance);
+        }
+
+        return "forward:/viewMyOrdersClick";
+    }
+    @RequestMapping("onConfirmReceivedClick")
+    public String onConfirmReceivedClick(int OrderId)
+    {
+        buyerPurchaseService.changeOrderToReceived(OrderId);
 
         return "forward:/viewMyOrdersClick";
     }

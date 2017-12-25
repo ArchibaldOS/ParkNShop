@@ -15,7 +15,11 @@
     <result column="adminStatus" property="adminstatus" jdbcType="INTEGER" />
   </resultMap>
 
-
+  <update id="updateBalance"  parameterType="float" >
+    UPDATE admins
+    SET adminBalance = #{newBalance}
+    where adminId = 1
+  </update>
   <sql id="Base_Column_List" >
     <!--
       WARNING - @mbggenerated

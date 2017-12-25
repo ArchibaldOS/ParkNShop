@@ -76,7 +76,7 @@
   </div>
 <div><h2>Please scan the QR code </h2>
 <div><img src="assets/images/QR.png"><br/>
-	<button onclick="window.location.href='/onPaidClick?buyerId=${}'">Pay</button>
+	<button onclick="window.location.href='/onPaidClick?buyerId=${sessionScope.Buyer.buyerId}'">Pay</button>
 
 </div>
 </div>

@@ -78,4 +78,8 @@ public class BuyerPurchaseServiceImp implements BuyerPurchaseService {
     public void changeOrderToPaid(int orderId) {
         orderMapper.changeToPaid(orderId);
     }
+
+    public void changeOrderToReceived(int orderId) {
+        orderMapper.changeToReceived(orderId);
+    }
 }

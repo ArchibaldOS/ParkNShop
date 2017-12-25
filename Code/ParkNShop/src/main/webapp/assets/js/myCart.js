@@ -28,6 +28,7 @@ function productCount(){
     var price;     //每一行商品的单价
     var number;    //每一行商品的数量
     var subtotal;  //每一行商品的小计
+    var temp;
 
     /*访问ID为shopping表格中所有的行数*/
     var myTableTr=document.getElementById("shopping").getElementsByTagName("tr");
@@ -37,11 +38,13 @@ function productCount(){
                 price=myTableTr[i].getElementsByTagName("td")[2].innerHTML;
                 number=myTableTr[i].getElementsByTagName("td")[3].getElementsByTagName("input")[0].value;
 
-                total+=price*number;
-                myTableTr[i].getElementsByTagName("td")[4].innerHTML=price*number;
+                temp = price*number;
+                total += temp;
+                myTableTr[i].getElementsByTagName("td")[4].innerHTML=temp;
             }
         }
-        document.getElementById("total").innerHTML=total;
+        var totalStr = total + "";
+        document.getElementById("total").innerHTML = totalStr.substring(0,totalStr.indexOf('.')+2);
 
     }
 }

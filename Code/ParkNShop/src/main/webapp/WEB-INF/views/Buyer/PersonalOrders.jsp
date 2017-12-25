@@ -118,7 +118,7 @@
   <header>
     <div class="container">
       <div class="logo"> <a href="/BuyerIndex"><img src="assets/images/logo.png"></a> </div>
-      <form class="search-cate" action="/buyerSearchProduct">
+      <form class="search-cate" action="/SearchProducts">
         <select class="selectpicker" name="searchType">
           <option value="0"> All Categories</option>
           <option value="1"> TV& Home Theater</option>

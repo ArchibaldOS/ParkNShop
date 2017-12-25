@@ -60,7 +60,7 @@ public interface OrderMapper {
      * @params [start, pageSize]
      * @return java.util.List<com.ten.ParkNShop.entity.Order>
      */
-    List<Order> selectAllOrder(@Param("start") int start, @Param("pageSize")int pageSize);
+    List<Order> selectAllOrder(@Param("start") int start, @Param("pageSize") int pageSize);
     /**
      * @Author: tad
      * @Date: created in 11:04 AM 12/15/2017
@@ -68,7 +68,7 @@ public interface OrderMapper {
      * @params [id, start, pageSize]
      * @return java.util.List<com.ten.ParkNShop.entity.Order>
      */
-    List<Order> selectOrderByBuyerId(@Param("buyerId")int buyerID, @Param("start") int start, @Param("pageSize")int pageSize);
+    List<Order> selectOrderByBuyerId(@Param("buyerId") int buyerID, @Param("start") int start, @Param("pageSize") int pageSize);
 
     /**
      * @Author: tad
@@ -77,7 +77,7 @@ public interface OrderMapper {
      * @params [id, start, pageSize]
      * @return java.util.List<com.ten.ParkNShop.entity.Order>
      */
-    List<Order> selectOrderBySellerId(@Param("sellerId")int buyerID, @Param("start") int start, @Param("pageSize")int pageSize);
+    List<Order> selectOrderBySellerId(@Param("sellerId") int buyerID, @Param("start") int start, @Param("pageSize") int pageSize);
 
     /**
      * @Author: tad
@@ -87,7 +87,7 @@ public interface OrderMapper {
      * @return java.util.List<com.ten.ParkNShop.entity.Order>
      */
 
-    List<Order> selectOrderByProductId(@Param("productId")int buyerId, @Param("start") int start, @Param("pageSize")int pageSize);
+    List<Order> selectOrderByProductId(@Param("productId") int buyerId, @Param("start") int start, @Param("pageSize") int pageSize);
 
     /**
      * @Author tad
@@ -100,21 +100,23 @@ public interface OrderMapper {
     List<Order> selectAllOrdersBetweenTime(@Param("startTime") String startTime, @Param("endTime") String endTime);
     
 
-	int countCompleted(@Param("sellerId")int sellerId);
+	int countCompleted(@Param("sellerId") int sellerId);
 
-	List<Order> findCompleted(@Param("sellerId")int sellerId,@Param("start") int start, @Param("pageSize")int pageSize);
+	List<Order> findCompleted(@Param("sellerId") int sellerId, @Param("start") int start, @Param("pageSize") int pageSize);
 
-	int countUncompleted(@Param("sellerId")int sellerId);
+	int countUncompleted(@Param("sellerId") int sellerId);
 
-	List<Order> findUncompleted(@Param("sellerId")int sellerId, @Param("start") int start, @Param("pageSize")int pageSize);
+	List<Order> findUncompleted(@Param("sellerId") int sellerId, @Param("start") int start, @Param("pageSize") int pageSize);
 
-	int changeToShip(@Param("orderId")int orderId);
+	int changeToShip(@Param("orderId") int orderId);
 
 	int changeToRefundSucceed(@Param("orderId") int orderId);
 
 	int changeToRefundFailed(@Param("orderId") int orderId);
 
     int changeToPaid(@Param("orderId") int orderId);
+
+    int changeToReceived(@Param("orderId") int orderId);
 
 	List<Order> sellerSelectOrdersBetweenTime(@Param("startTime") String startTime, @Param("endTime") String endTime, @Param("sellerId") int sellerId);
 

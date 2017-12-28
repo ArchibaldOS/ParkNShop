@@ -19,4 +19,5 @@ public interface SellerOrderService {
 
 	List<Order> selectAllOrdersBetweenTime(String startTime, String endTime, int sellerId, int type);
 
+	float countIncome(int sellerId);
 }

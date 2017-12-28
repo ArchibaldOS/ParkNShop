@@ -204,12 +204,12 @@
                         <li><a href="#."><i class="fa fa-heart"></i> Add to Wishlist</a></li>
                       </ul>
                       <!-- Quinty -->
-                      <form action="/AddToCart" method="get">
+                      <form action="/AddToCart" method="get" onsubmit="return checkNum();">
                       <div class="quinty">
-                        <input type="number" name="productNum" value="1"/>
+                        <input type="number" name="productNum" id="productNum" value="1" onchange="checkNum();"/>
                         <input type="hidden" name="productId" value="${p.productId}">
                       </div>
-                        <button type="submit" class="btn-default"><i class="icon-basket-loaded margin-right-5"></i> Add to Cart</button>
+                        <button type="submit" class="btn-default" ><i class="icon-basket-loaded margin-right-5"></i> Add to Cart</button>
                       </form>
                   </div>
 
@@ -253,7 +253,23 @@
     <!-- GO TO TOP End -->
 </div>
 <!-- End Page Wrapper -->
+<script>
+	function checkNum(){
+		
+		var num = document.getElementById("productNum").value;
+		var store = ${p.storeCount};
+		if(num>store){
+			alert("The quantity of goods exceeds the stock!");
+			return false;
+		}else if(num<1){
+			alert("The quantity of goods must be greater than zero!");
+			return false;
+		}else
+			return true;
+	}
 
+
+</script>
 <script src="assets/js2/vendors/jquery/jquery.min.js"></script>
 <script src="assets/js2/vendors/wow.min.js"></script>
 <script src="assets/js2/vendors/bootstrap.min.js"></script>

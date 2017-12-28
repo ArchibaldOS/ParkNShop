@@ -84,48 +84,23 @@ background-color: blue;
   </div>
   
   <header>
-    <div class="container">
-      <div class="logo"> <a href="#"><img src="assets/images/logo.png" alt="" ></a> </div>
-      <div class="search-cate">
-        <select class="selectpicker">
-          <option> All Categories</option>
-          <option> TV& Home Theater</option>
-          <option> Computers & Tablets</option>
-          <option> Cell Phones</option>
-          <option> Cameras & Camcorders</option>
-          <option> Audio</option>
-          <option> Car Electronics & GPS</option>
-          <option> Video, Games, Movies & Music </option>
-          <option> Health, Fitness & Sports</option>
-          <option> Home & Office</option>
-        </select>
-        <input type="search" placeholder="Search entire store here...">
-        <button class="submit" type="submit"><i class="icon-magnifier"></i></button>
-      </div>
-    </div>
-    
-    <!-- Nav -->
-    <nav class="navbar ownmenu">
-      <div class="container"> 
-        
-        
-        
-        <!-- NAV -->
-        <div class="collapse navbar-collapse" id="nav-open-btn">
-          <ul class="nav" >
+        <nav  class="navbar nav-pills ownmenu" style="background-color:#009ACD;">
+        <div class="container" style="margin:10px;">
+		<div class="logo" style="float:left;margin-left:40px;"> <a href="#"><img src="assets/images/logo.png" alt="" ></a> </div>
+        <div style="float:right;">
+          <ul class="nav navbar-nav bbb" >
             <li><a href="/sellerHome">Home</a></li>
             <li><a href="/sellerProduct">Product</a></li>
             <li><a href="/sellerOrderPage">Order</a></li>
             <li><a href="/sellerSalesIncome">Sales</a></li>
           </ul>
         </div>
-        
-        <!-- NAV RIGHT -->
-        <div class="nav-right"> </div>
-      </div>
+		</div>
     </nav>
-   
-  </header>
+
+        
+
+    </header>
    <form class="form-horizontal" role="form" action="/productAdd" method="post" enctype="multipart/form-data" name="formen">
    <div class="form-group" style="margin-top:20px">
       <label class="col-sm-5 control-label">product name</label>

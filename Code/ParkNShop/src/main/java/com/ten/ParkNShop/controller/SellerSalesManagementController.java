@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.ten.ParkNShop.entity.Order;
 import com.ten.ParkNShop.entity.Seller;
+import com.ten.ParkNShop.service.AdminShopService;
 import com.ten.ParkNShop.service.SellerOrderService;
 
 @Controller
@@ -24,12 +25,15 @@ public class SellerSalesManagementController {
 	@Autowired
 	private SellerOrderService sellerOrderService;
 	
+	@Autowired
+	private AdminShopService adminShopService;
+	
 	@RequestMapping(value="/sellerSalesIncome",method = RequestMethod.GET)
     public String sellerSalesIncome(HttpServletRequest httpServletRequest, Model model){
         String timeType = httpServletRequest.getParameter("select_type");
         String time = httpServletRequest.getParameter("time");
         int sellerId = ((Seller)httpServletRequest.getSession().getAttribute("seller")).getsellerId();
-        model.addAttribute("income", sellerOrderService.countIncome(sellerId));
+        model.addAttribute("income", ((Seller)adminShopService.selectSellerById(sellerId)).getSellerBalance());
         if(timeType == null){
             SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
             timeType = "Daily";

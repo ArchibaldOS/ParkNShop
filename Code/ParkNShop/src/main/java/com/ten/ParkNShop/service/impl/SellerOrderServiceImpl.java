@@ -67,4 +67,14 @@ public class SellerOrderServiceImpl implements SellerOrderService {
         return orders;
     }
 
+	@Override
+	public float countIncome(int sellerId) {
+		List<Order> orders = orderMapper.findCompletedNoPage(sellerId);
+		float totalIncome = 0;
+		for(Order o : orders){
+			totalIncome += (o.getTotalPrice())*0.98;
+		}
+		return totalIncome;
+	}
+
 }

@@ -260,7 +260,7 @@ background: linear-gradient(top,#42a4e0,#2e88c0);
                       			<a href="javascript:;"><img src="${pageContext.request.contextPath}/upload/productPicture/${buyerItem.getProduct().getProductPicture()}" alt="shopping"></a>
                     		</td>
                     		<td class="goods-page-description" style="width:500px">
-                      			<h3><a href="#">${buyerItem.getProduct().getProductName()}</a></h3><br />
+                      			<h3><a href="/ProductDetail?productId=${buyerItem.getProduct().getProductId()}">${buyerItem.getProduct().getProductName()}</a></h3><br />
                       				${buyerItem.getProduct().getProductIntroduction()}<br />
                     		</td>
                    			

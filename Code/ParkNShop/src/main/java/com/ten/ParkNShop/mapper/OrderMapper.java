@@ -120,6 +120,7 @@ public interface OrderMapper {
 
 	List<Order> sellerSelectOrdersBetweenTime(@Param("startTime") String startTime, @Param("endTime") String endTime, @Param("sellerId") int sellerId);
 
+	List<Order> findCompletedNoPage(@Param("sellerId")int sellerId);
 
     
 }

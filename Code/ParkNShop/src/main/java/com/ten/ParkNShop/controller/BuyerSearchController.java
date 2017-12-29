@@ -51,7 +51,7 @@ public class BuyerSearchController {
         if (searchType == 0){
             model.addAttribute("searchProducts",buyerProductService.searchByProductName(productName));
             model.addAttribute("searchNum",buyerProductService.countByProductName(productName));
-            System.out.println(buyerProductService.countByProductName(productName));
+            
             return "Buyer/ListProducts";
         }
         SearchInfo searchInfo = new SearchInfo();

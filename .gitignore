@@ -13,3 +13,5 @@ Code/ParkNShop/pom.xml
 # mybatis 配置文件
 Code/ParkNShop/src/main/resources/mybatis-generator/generatorConfig.xml
 Code/ParkNShop/src/main/resources/jdbc.properties
+Code/ParkNShop/src/main/resources/jdbc.properties
+*.properties

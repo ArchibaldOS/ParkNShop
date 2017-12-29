@@ -72,7 +72,7 @@
                     <th>AD Price</th>
                     <th>AD Start Time</th>
                     <th>AD Time</th>
-                    <th>AD Operation</th>
+                    <th>Operation</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -88,9 +88,9 @@
                             <button class="dropdown-toggle btn btn-default" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Onclick <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu">
-                                <li><a href="/AdminADDetail?adId=${ad.ADId}">View</a></li>
-                                <li><a href="/AdminADApprove?adId=${ad.ADId}">Approve</a></li>
-                                <li><a href="/AdminADDisApprove?adId=${ad.ADId}">DisApprove</a></li>
+                                <li><a href="/AdminADDetail?adId=${ad.ADId}&type=All">View</a></li>
+                                <li><a href="/AdminADModify?adId=${ad.ADId}">Modify</a></li>
+                                <li><a href="/AdminADDelete?adId=${ad.ADId}">Delete</a></li>
                             </ul>
                         </div></td>
                     </tr>

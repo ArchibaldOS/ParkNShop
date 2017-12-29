@@ -120,16 +120,32 @@
                     <td>${ad.ADTime}</td>
                 </tr>
 
-                <tr>
-                    <td>
-                        <div style="margin:0 auto;width:200px;">
-                            <button type="button" class="btn btn-success" onclick="location='/AdminADApprove?adId=${ad.ADId}'">Approve</button>
-                        </div>
-                    </td>
-                    <td>
-                        <button type="button" class="btn btn-danger" onclick="location='/AdminADDisApprove?adId=${ad.ADId}'">DisApprove</button>
-                    </td>
-                </tr>
+                <c:choose>
+                    <c:when test="${type eq 'Applying'}">
+                        <tr>
+                            <td>
+                                <div style="margin:0 auto;width:200px;">
+                                    <button type="button" class="btn btn-success" onclick="location='/AdminADApprove?adId=${ad.ADId}'">Approve</button>
+                                </div>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-danger" onclick="location='/AdminADDisApprove?adId=${ad.ADId}'">DisApprove</button>
+                            </td>
+                        </tr>
+                    </c:when>
+                    <c:when test="${type eq 'All'}">
+                        <tr>
+                            <td>
+                                <div style="margin:0 auto;width:200px;">
+                                    <button type="button" class="btn btn-success" onclick="location='/AdminADModify?adId=${ad.ADId}'">Modify</button>
+                                </div>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-danger" onclick="location='/AdminADDelete?adId=${ad.ADId}'">Delete</button>
+                            </td>
+                        </tr>
+                    </c:when>
+                </c:choose>
                 </tbody>
             </table>
 

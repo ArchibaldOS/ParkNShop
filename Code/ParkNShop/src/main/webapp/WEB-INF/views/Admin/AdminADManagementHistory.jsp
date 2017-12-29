@@ -55,7 +55,7 @@
                 <a href="/AdminADList" class="list-group-item">AD List</a>
                 <a href="/AdminADManagement" class="list-group-item">Top10 Products Management</a>
                 <a href="/AdminADTop5StoriesManagement" class="list-group-item">Top5 Stories Management</a>
-                <a href="/AdminADManagementHistory" class="list-group-item active">AD Management History</a>
+                <%--<a href="/AdminADManagementHistory" class="list-group-item active">AD Management History</a>--%>
             </div>
         </div>
         <div class="col-md-10">
@@ -65,7 +65,7 @@
             <table class="table">
                 <thead>
                 <tr>
-                    <th hidden>ADID</th>
+                    <th hidden>AD ID</th>
                     <th>AD Type</th>
                     <th>SellerID</th>
                     <th>AD Price</th>
@@ -87,9 +87,9 @@
                             <button class="dropdown-toggle btn btn-default" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Onclick <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu">
-                                <li><a href="/AdminADDetail?adId=${ad.ADId}">View</a></li>
-                                <li><a href="/AdminADApprove?adId=${ad.ADId}">Approve</a></li>
-                                <li><a href="/AdminADDisApprove?adId=${ad.ADId}">DisApprove</a></li>
+                                <li><a href="/AdminADDetail?adId=${ad.ADId}&type=All">View</a></li>
+                                <li><a href="/AdminADModify?adId=${ad.ADId}">Modify</a></li>
+                                <li><a href="/AdminADDelete?adId=${ad.ADId}">Delete</a></li>
                             </ul>
                         </div></td>
                     </tr>

@@ -31,6 +31,7 @@ public class AdminADManagementController {
 
         return "Admin/AdminADTop5StoriesManagement";
     }
+
     @RequestMapping("/AdminADManagementHistory")
     public String adminADManagementHistory(HttpServletRequest httpServletRequest, Model model){
         httpServletRequest.getParameter("start");
@@ -61,6 +62,7 @@ public class AdminADManagementController {
     public String adminADDetail(HttpServletRequest httpServletRequest, Model model){
         int adId = Integer.valueOf(httpServletRequest.getParameter("adId"));
         model.addAttribute("ad", adminADService.selectADByID(adId));
+        model.addAttribute("type", httpServletRequest.getParameter("type"));
         return "Admin/AdminADDetail";
     }
 
@@ -81,5 +83,37 @@ public class AdminADManagementController {
         adminADService.updateADByAD(ad);
         return "Admin/AdminADList";
     }
+
+    // 更改广告
+    @RequestMapping("/AdminADModify")
+    public String adminADModify(HttpServletRequest httpServletRequest, Model model){
+        model.addAttribute("ad", adminADService.selectADByID(Integer.valueOf(httpServletRequest.getParameter("adId"))));
+        return "Admin/AdminADModify";
+    }
+
+    @RequestMapping("/AdminADModifyDo")
+    public String adminADModifyDo(HttpServletRequest httpServletRequest, Model model){
+        int adId = Integer.valueOf(httpServletRequest.getParameter("adId"));
+        AD ad = adminADService.selectADByID(adId);
+        // 重新设置改变的属性
+        ad.setADStatus(httpServletRequest.getParameter("adStatus"));
+        ad.setADType(httpServletRequest.getParameter("adType"));
+        ad.setADPhotoUrl(httpServletRequest.getParameter("adPhotoUrl"));
+        ad.setADClickUrl(httpServletRequest.getParameter("adClickUrl"));
+        ad.setADDescription(httpServletRequest.getParameter("adDescription"));
+        ad.setADPrice(Float.valueOf(httpServletRequest.getParameter("adPrice")));
+        ad.setADTime(Integer.valueOf(httpServletRequest.getParameter("adTime")));
+        adminADService.updateADByAD(ad);
+        return "redirect:/AdminADList";
+    }
+
+    // 删除广告
+    @RequestMapping("/AdminADDelete")
+    public String adminADDelete(HttpServletRequest httpServletRequest){
+        int adId = Integer.valueOf(httpServletRequest.getParameter("adId"));
+        adminADService.deleteADByADId(adId);
+        return "redirect:/AdminADList";
+    }
+
 
 }

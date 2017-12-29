@@ -88,7 +88,7 @@
                             <button class="dropdown-toggle btn btn-default" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Onclick <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu">
-                                <li><a href="/AdminADDetail?adId=${ad.ADId}">View</a></li>
+                                <li><a href="/AdminADDetail?adId=${ad.ADId}&type=Applying">View</a></li>
                                 <li><a href="/AdminADApprove?adId=${ad.ADId}">Approve</a></li>
                                 <li><a href="/AdminADDisApprove?adId=${ad.ADId}">DisApprove</a></li>
                             </ul>

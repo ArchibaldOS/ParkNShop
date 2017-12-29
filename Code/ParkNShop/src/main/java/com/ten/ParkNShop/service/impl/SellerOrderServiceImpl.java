@@ -29,7 +29,6 @@ public class SellerOrderServiceImpl implements SellerOrderService {
 		return page;
 	}
 
-	@Override
 	public Page getUncompletedOrders(int sellerId, int cur) {
 		Page page = new Page(cur);
 		
@@ -43,25 +42,21 @@ public class SellerOrderServiceImpl implements SellerOrderService {
 		return page;
 	}
 
-	@Override
 	public int changeToShip(int orderId) {
 		
 		return orderMapper.changeToShip(orderId);
 	}
 
-	@Override
 	public int changeToRefundSucceed(int orderId) {
 		
 		return orderMapper.changeToRefundSucceed(orderId);
 	}
 
-	@Override
 	public int changeToRefundFailed(int orderId) {
 		
 		return orderMapper.changeToRefundFailed(orderId);
 	}
 
-	@Override
 	 public List<Order> selectAllOrdersBetweenTime(String startTime, String endTime, int sellerId, int type) {
         List<Order> orders = null;
         if(type == 1){

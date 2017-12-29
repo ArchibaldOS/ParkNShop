@@ -1,10 +1,10 @@
-
+<%@ page import="com.ten.ParkNShop.entity.Seller" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
-    <title>AdminADManagement</title>
+    <title>AdminADDetail</title>
     <link rel="stylesheet" href="assets/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="assets/css/bootstrap-maizi.css"/>
 </head>
@@ -55,71 +55,87 @@
                 <a href="/AdminADApplyingList" class="list-group-item">Applying AD</a>
                 <a href="/AdminADList" class="list-group-item">AD List</a>
                 <a href="/AdminADManagement" class="list-group-item">Top10 Products Management</a>
-                <a href="/AdminADTop5StoriesManagement" class="list-group-item active">Top5 Stories Management</a>
+                <a href="/AdminADTop5StoriesManagement" class="list-group-item">Top5 Stories Management</a>
                 <a href="/AdminADManagementHistory" class="list-group-item">AD Management History</a>
             </div>
         </div>
         <div class="col-md-10">
             <div class="page-header">
-                <h1>Top5 Stores Management</h1>
+                <h1>AD Detail</h1>
             </div>
-            <table class="table">
+            <table class="table table-hover">
                 <thead>
                 <tr>
-                    <th hidden>ADID</th>
-                    <th>AD Type</th>
-                    <th>SellerID</th>
-                    <th>AD Price</th>
-                    <th>AD Start Time</th>
-                    <th>AD Time</th>
-                    <th>AD Operation</th>
+                    <th>Attributes</th>
+                    <th>Information</th>
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach var="ad" items="${ads}">
-                    <tr>
-                        <td hidden><c:out value="${ad.ADId}"></c:out></td>
-                        <td><c:out value="${ad.ADType}"></c:out></td>
-                        <td><c:out value="${ad.sellerId}"></c:out></td>
-                        <td><c:out value="${ad.ADPrice}"></c:out></td>
-                        <td><c:out value="${ad.ADStartDate}"></c:out></td>
-                        <td><c:out value="${ad.ADTime}"></c:out></td>
-                        <td><div role="presentation" class="dropdown">
-                            <button class="dropdown-toggle btn btn-default" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Onclick <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a href="/AdminADDetail?adId=${ad.ADId}">View</a></li>
-                                <li><a href="/AdminADApprove?adId=${ad.ADId}">Approve</a></li>
-                                <li><a href="/AdminADDisApprove?adId=${ad.ADId}">DisApprove</a></li>
-                            </ul>
-                        </div></td>
-                    </tr>
-                </c:forEach>
+                <tr>
+                    <td>AD ID</td>
+                    <td >${ad.ADId}</td>
+                </tr>
+                <tr>
+                    <td>AD Type</td>
+                    <td>${ad.ADType}</td>
+                </tr>
+                <tr>
+                    <td>AD Status</td>
+                    <td>${ad.ADStatus}</td>
+                </tr>
+                <tr>
+                    <td>AD SellerID</td>
+                    <td>${ad.sellerId}</td>
+                </tr>
+                <tr>
+                    <td>AD AdminID</td>
+                    <td>${ad.adminId}</td>
+                </tr>
+                <tr>
+                    <td>AD Name</td>
+                    <td>${ad.ADName}</td>
+                </tr>
+                <tr>
+                    <td>AD PhotoUrl</td>
+                    <td><a href="${ad.ADPhotoUrl}">Click to See</a></td>
+                </tr>
+                <tr>
+                    <td>AD ClickUrl</td>
+                    <td><a href="${ad.ADClickUrl}">${ad.ADClickUrl}</a></td>
+                </tr>
+                <tr>
+                    <td>AD Description</td>
+                    <td>${ad.ADDescription}</td>
+                </tr>
+                <tr>
+                    <td>AD Price</td>
+                    <td>${ad.ADPrice}</td>
+                </tr>
+                <tr>
+                    <td>AD Start Time</td>
+                    <td>${ad.ADStartDate}</td>
+                </tr>
+                <tr>
+                    <td>AD Time(Day)</td>
+                    <td>${ad.ADTime}</td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <div style="margin:0 auto;width:200px;">
+                            <button type="button" class="btn btn-success" onclick="location='/AdminADApprove?adId=${ad.ADId}'">Approve</button>
+                        </div>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-danger" onclick="location='/AdminADDisApprove?adId=${ad.ADId}'">DisApprove</button>
+                    </td>
+                </tr>
                 </tbody>
             </table>
-            <nav class="pull-right">
-                <ul class="pagination">
-                    <li class="disabled">
-                        <a href="#" aria-label="Previous">
-                            <span aria-hidden="true">&laquo;</span>
-                        </a>
-                    </li>
-                    <li class="active"><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li>
-                        <a href="#" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
+
         </div>
     </div>
 </div>
-
 
 <!--footer-->
 <footer>
@@ -142,3 +158,4 @@
 <script src="assets/javascripts/script.js"></script>
 </body>
 </html>
+

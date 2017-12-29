@@ -51,10 +51,11 @@
     <div class="row">
         <div class="col-md-2">
             <div class="list-group">
+                <a href="/AdminADApplyingList" class="list-group-item">Applying AD</a>
+                <a href="/AdminADList" class="list-group-item">AD List</a>
                 <a href="/AdminADManagement" class="list-group-item">Top10 Products Management</a>
                 <a href="/AdminADTop5StoriesManagement" class="list-group-item">Top5 Stories Management</a>
                 <a href="/AdminADManagementHistory" class="list-group-item active">AD Management History</a>
-
             </div>
         </div>
         <div class="col-md-10">
@@ -64,29 +65,35 @@
             <table class="table">
                 <thead>
                 <tr>
-                    <th>Name</th>
-                    <th>Start Time</th>
-                    <th>End Time</th>
-                    <th>Length</th>
-                    <th>Place</th>
-                    <th>Price</th>
-                    <th>Time</th>
-                    <th>Operator</th>
-                    <th>Operation</th>
+                    <th hidden>ADID</th>
+                    <th>AD Type</th>
+                    <th>SellerID</th>
+                    <th>AD Price</th>
+                    <th>AD Start Time</th>
+                    <th>AD Time</th>
+                    <th>AD Operation</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>Sony</td>
-                    <td>2017/12/3 20:00</td>
-                    <td>2017/12/3 22:00</td>
-                    <td>2h</td>
-                    <td>somewhere</td>
-                    <td>1000</td>
-                    <td>2017/12/3 20:00</td>
-                    <td>admin</td>
-                    <td>add</td>
-                </tr>
+                <c:forEach var="ad" items="${ads}">
+                    <tr>
+                        <td hidden><c:out value="${ad.ADId}"></c:out></td>
+                        <td><c:out value="${ad.ADType}"></c:out></td>
+                        <td><c:out value="${ad.sellerId}"></c:out></td>
+                        <td><c:out value="${ad.ADPrice}"></c:out></td>
+                        <td><c:out value="${ad.ADStartDate}"></c:out></td>
+                        <td><c:out value="${ad.ADTime}"></c:out></td>
+                        <td><div role="presentation" class="dropdown">
+                            <button class="dropdown-toggle btn btn-default" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Onclick <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a href="/AdminADDetail?adId=${ad.ADId}">View</a></li>
+                                <li><a href="/AdminADApprove?adId=${ad.ADId}">Approve</a></li>
+                                <li><a href="/AdminADDisApprove?adId=${ad.ADId}">DisApprove</a></li>
+                            </ul>
+                        </div></td>
+                    </tr>
+                </c:forEach>
                 </tbody>
             </table>
             <nav class="pull-right">

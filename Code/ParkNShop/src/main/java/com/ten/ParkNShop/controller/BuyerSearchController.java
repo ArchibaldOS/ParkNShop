@@ -3,6 +3,9 @@ package com.ten.ParkNShop.controller;
 import com.ten.ParkNShop.entity.Product;
 import com.ten.ParkNShop.entity.SearchInfo;
 import com.ten.ParkNShop.service.BuyerProductService;
+import com.ten.ParkNShop.service.SellerCommentService;
+import com.ten.ParkNShop.util.Page;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,7 +25,8 @@ public class BuyerSearchController {
     @Autowired
     private BuyerProductService buyerProductService;
 
-
+    @Autowired
+    private SellerCommentService sellerCommentService;
 
     @RequestMapping("/BuyerIndex")
     public String buyerIndex(Model model){
@@ -65,8 +69,11 @@ public class BuyerSearchController {
     public String ProductDetail(Model model,@RequestParam("productId") int productId){
         Product product = buyerProductService.searchByProductId(productId);
 
+        Page page = sellerCommentService.findCommentByProductId(productId);
 
         model.addAttribute("product",product);
+        
+        model.addAttribute("comments", page);
         return "Buyer/BuyerProductDetail";
     }
 

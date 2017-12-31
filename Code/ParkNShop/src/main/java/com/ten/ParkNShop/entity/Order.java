@@ -1,14 +1,10 @@
 package com.ten.ParkNShop.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.ten.ParkNShop.mapper.SellerMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 
-import java.io.Serializable;
-import java.util.ArrayList;
+
+
 import java.util.Date;
-import java.util.Iterator;
-import java.util.List;
+
 
 public class Order {
     /**

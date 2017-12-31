@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ten.ParkNShop.entity.Seller;
+import com.ten.ParkNShop.mapper.CommissionMapper;
 import com.ten.ParkNShop.service.SellerOrderService;
 import com.ten.ParkNShop.util.Page;
 
@@ -48,9 +49,7 @@ public class SellerOrderController {
 		int sellerId = ((Seller)session.getAttribute("seller")).getsellerId();
         
 		Page page = sellerOrderService.getCompletedOrders(sellerId,cur);
-		System.out.println(page.getList());
 		model.addAttribute("page",page);
-		
 		return "Seller/listCompletedOrders";
 	}
 	
@@ -71,7 +70,6 @@ public class SellerOrderController {
 		Page page = sellerOrderService.getUncompletedOrders(sellerId,cur);
 		System.out.println(page.getList());
 		model.addAttribute("page",page);
-		
 		return "Seller/listUncompletedOrders";
 	}
 	
@@ -87,9 +85,7 @@ public class SellerOrderController {
 	@RequestMapping(value = "/sellerShip", method = RequestMethod.GET)
 	public String ship(int orderId){
 		
-		int result = sellerOrderService.changeToShip(orderId);
-		System.out.println(result);
-		
+		sellerOrderService.changeToShip(orderId);
 		return "forward:/sellerUncompletedOrder";
 	}
 	

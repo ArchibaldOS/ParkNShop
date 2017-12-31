@@ -132,6 +132,13 @@ background-color: blue;
          <input type="text" class="form-control" name="sellerPhone" value="${s.sellerPhone}" />
       </div>
    </div>
+   
+   <div class="form-group">
+      <label for="firstname" class="col-sm-5 control-label">shop address</label>
+      <div class="col-sm-3">
+         <input type="text" class="form-control" name="sellerAddress" value="${s.sellerAddress}" />
+      </div>
+   </div>
   
    <div class="form-group">
       <label for="lastname" class="col-sm-5 control-label" >shop introduction</label>

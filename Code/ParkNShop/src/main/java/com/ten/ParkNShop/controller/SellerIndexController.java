@@ -41,7 +41,7 @@ public class SellerIndexController {
 	}
 
 	@RequestMapping(value="/registSeller",method=RequestMethod.POST)
-	public String regSeller(String sellerName, String shopName, String sellerPassword, String sellerPhone,String sellerEmail,String shopIntroduction,Model model){
+	public String regSeller(String sellerName, String shopName, String sellerPassword, String sellerPhone,String sellerEmail, String sellerAddress, String shopIntroduction,Model model){
 		
 		Seller seller = new Seller();
 		
@@ -50,6 +50,7 @@ public class SellerIndexController {
 		seller.setSellerPassword(sellerPassword);
 		seller.setSellerEmail(sellerEmail);
 		seller.setSellerPhone(sellerPhone);
+		seller.setSellerAddress(sellerAddress);
 		seller.setShopIntroduction(shopIntroduction);
 		int resultEmail = sellerService.validation(sellerEmail);
 		if(resultEmail!=0){
@@ -66,12 +67,13 @@ public class SellerIndexController {
 	}
 	
 	@RequestMapping(value="/updateSeller",method=RequestMethod.POST)
-	public String updateSeller(String sellerName, String shopName, String sellerPhone,String sellerEmail,String shopIntroduction,Model model,HttpSession session){
+	public String updateSeller(String sellerName, String shopName, String sellerPhone,String sellerEmail,String sellerAddress,String shopIntroduction,Model model,HttpSession session){
 		
 		Seller seller = (Seller)session.getAttribute("seller");
 		seller.setSellerName(sellerName);
 		seller.setShopName(shopName);
 		seller.setSellerPhone(sellerPhone);
+		seller.setSellerAddress(sellerAddress);
 		seller.setShopIntroduction(shopIntroduction);
 		int resultEmail = sellerService.validation(sellerEmail);
 		if(resultEmail!=0 && !seller.getSellerEmail().equals(sellerEmail)){

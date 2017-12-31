@@ -149,15 +149,19 @@ border-radius: 20px;
         			<td width="200px" style="font-size: 20px;">shop E-mail</td>
         			<td>${s.sellerEmail }</td>
         		</tr>
-				<tr onmouseover="this.style.backgroundColor='#ADD8E6';" onmouseout="this.style.backgroundColor='#F7F7F7';">
-        			<td width="200px" style="font-size: 20px;">balance</td>
-        			<td>$${s.sellerBalance }</td>
+        		<tr  onmouseover="this.style.backgroundColor='#ADD8E6';" onmouseout="this.style.backgroundColor='#F7F7F7';">
+        			<td width="200px" style="font-size: 20px;">shop Address</td>
+        			<td>${s.sellerAddress }</td>
         		</tr>
-        		<tr  onmouseover="this.style.backgroundColor='#ADD8E6';" onmouseout="this.style.backgroundColor='#FFFFFF';">
+				<tr onmouseover="this.style.backgroundColor='#ADD8E6';" onmouseout="this.style.backgroundColor='#FFFFFF';">
+        			<td width="200px" style="font-size: 20px;">balance</td>
+        			<td>HK$${s.sellerBalance }</td>
+        		</tr>
+        		<tr  onmouseover="this.style.backgroundColor='#ADD8E6';" onmouseout="this.style.backgroundColor='#F7F7F7';">
         			<td width="200px" style="font-size: 20px;">shop Introduction</td>
         			<td>${s.shopIntroduction }</td>
         		</tr>
-        		<tr  onmouseover="this.style.backgroundColor='#ADD8E6';" onmouseout="this.style.backgroundColor='#F7F7F7';">
+        		<tr  onmouseover="this.style.backgroundColor='#ADD8E6';" onmouseout="this.style.backgroundColor='#FFFFFF';">
         			<td width="200px" style="font-size: 20px;">shop status</td>
         			<c:if test="${s.shopStatus ==0}">
         			 <td><font color="#FFA500">Being processed</font></td>

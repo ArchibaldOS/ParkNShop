@@ -2,7 +2,9 @@ package com.ten.ParkNShop.controller;
 
 import com.ten.ParkNShop.entity.*;
 import com.ten.ParkNShop.mapper.AdminMapper;
+import com.ten.ParkNShop.mapper.CommissionMapper;
 import com.ten.ParkNShop.mapper.OrderMapper;
+import com.ten.ParkNShop.mapper.ProductMapper;
 import com.ten.ParkNShop.mapper.SellerMapper;
 import com.ten.ParkNShop.service.BuyerPurchaseService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +29,11 @@ public class BuyerPurchaseController {
     private OrderMapper orderMapper;
     @Autowired
     private SellerMapper sellerMapper;
+    @Autowired
+	private CommissionMapper commissionMapper;
+    @Autowired
+	private ProductMapper productMapper;
+    
     @RequestMapping("/onConfirmClick")
     public String confirmClick(HttpSession session) {
         Buyer buyer = (Buyer) session.getAttribute("Buyer");
@@ -53,6 +60,8 @@ public class BuyerPurchaseController {
                 order.setSellerId(item.getProduct().getSellerId());
                 order.setTotalPrice(item.getAmount()*item.getProduct().getProductPrice());
                 orders.add(order);
+                int productId = item.getProduct().getProductId();
+                productMapper.updateStock(productId, item.getAmount());
             }
             buyerPurchaseService.createOrders(orders);
             session.removeAttribute("buyerCart");
@@ -122,10 +131,11 @@ public class BuyerPurchaseController {
     @RequestMapping("onConfirmReceivedClick")
     public String onConfirmReceivedClick(int orderId)
     {
+    	float commission = commissionMapper.selectLastCommission().getCommission();
         buyerPurchaseService.changeOrderToReceived(orderId);
         Order order = orderMapper.selectByPrimaryKey(orderId);
         Seller seller = sellerMapper.selectByPrimaryKey(order.getSellerId());
-        float amount = (float) (0.98 * order.getTotalPrice());
+        float amount = (float) (commission * order.getTotalPrice());
         float AdminCurrentBalance = adminMapper.selectByPrimaryKey(1).getAdminbalance();
         float sellerCurrentBalance = seller.getSellerBalance();
         adminMapper.updateBalance( AdminCurrentBalance-amount );

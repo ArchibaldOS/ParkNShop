@@ -6,7 +6,7 @@
     	values( #{buyerId}, #{productId}, #{content}, #{commentTime})
     </insert>
 
-	<update id="replyComment" parameterType="com.ten.ParkNShop.entity.Comment">
+	<update id="replyComment" parameterType="com.ten.ParkNShop.entity.Comments">
 		update comments set reply = #{reply}
 		where commentId = #{commentId} 
 	</update>

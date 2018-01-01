@@ -74,6 +74,7 @@
             <li><a href="/sellerProduct">Product</a></li>
             <li><a href="/sellerOrderPage">Order</a></li>
             <li><a href="/sellerSalesIncome">Sales</a></li>
+            <li><a href="/listCommentBySellerId">Comment</a></li>
           </ul>
         </div>
 		</div>

@@ -101,6 +101,7 @@ border-radius: 20px;
             <li><a href="/sellerProduct">Product</a></li>
             <li><a href="/sellerOrderPage">Order</a></li>
             <li><a href="/sellerSalesIncome">Sales</a></li>
+            <li><a href="/listCommentBySellerId">Comment</a></li>
           </ul>
         </div>
 		</div>
@@ -134,7 +135,7 @@ border-radius: 20px;
                             </h5>
                         </div>                                                                
                         <div class="price-box">
-                            <span class="price">$${p.productPrice }</span>
+                            <span class="price">HK$${p.productPrice }</span>
                         </div>
                         <div style="width:100%;height:50px">
                             <div style="width:100px;height:50px;float:left">

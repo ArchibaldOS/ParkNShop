@@ -10,13 +10,21 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ten.ParkNShop.entity.Seller;
+import com.ten.ParkNShop.service.AdminShopService;
 import com.ten.ParkNShop.service.SellerIndexService;
+import com.ten.ParkNShop.service.SellerProductService;
 
 @Controller
 public class SellerIndexController {
 	
 	@Autowired
 	private SellerIndexService sellerService;
+	
+	@Autowired
+	private AdminShopService adminShopService;
+	
+	@Autowired
+	private SellerProductService sellerProductService;
 	
 	@RequestMapping(value="/sellerLogin",method=RequestMethod.GET)
 	public String seller(){
@@ -111,6 +119,14 @@ public class SellerIndexController {
 		session.setAttribute("seller", session.getAttribute("seller"));
 		return "Seller/sellerhome";
 	}
+	
+	@RequestMapping(value="/sellerFontHome",method=RequestMethod.GET)
+	public String sellFontHome(int sellerId,Model model){
+		model.addAttribute("shop", adminShopService.selectSellerById(sellerId));
+		model.addAttribute("products",sellerProductService.getProducts(sellerId));
+		return "Seller/sellerFontHome";
+	}
+	
 	
 	
 }

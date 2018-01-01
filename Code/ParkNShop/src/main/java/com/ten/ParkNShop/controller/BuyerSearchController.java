@@ -73,7 +73,7 @@ public class BuyerSearchController {
 
         model.addAttribute("product",product);
         
-        model.addAttribute("comments", page);
+        model.addAttribute("commentsItem", page);
         return "Buyer/BuyerProductDetail";
     }
 

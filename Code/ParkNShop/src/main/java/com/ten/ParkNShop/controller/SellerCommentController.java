@@ -45,14 +45,14 @@ public class SellerCommentController {
 		
 		Page comments = sellerCommentService.findCommentBySellerId(sellerId);
 		
-		model.addAttribute("comments", comments);
+		model.addAttribute("commentsItems", comments);
 		
 		return "Seller/sellerCommentList";
 		
 	}
 	
-	@RequestMapping(value="/replyCommentById", method=RequestMethod.GET)
-	public String replyComment(int commentId,String reply,Model model){
+	@RequestMapping(value="/replyCommentById", method=RequestMethod.POST)
+	public String replyComment(int commentId,String reply){
 		
 		Comments comments = sellerCommentService.findByPrimaryKey(commentId);
 		

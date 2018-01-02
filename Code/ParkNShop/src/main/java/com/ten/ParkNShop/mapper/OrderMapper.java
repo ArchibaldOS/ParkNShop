@@ -124,5 +124,8 @@ public interface OrderMapper {
 
     List<Order> findCompletedNoPage(@Param("sellerId")int sellerId);
 
+    int countAllOrder();
+
+    int countAllcompletedOrder();
     
 }

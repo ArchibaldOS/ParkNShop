@@ -73,4 +73,5 @@ public interface BuyerMapper {
     int buyerRegister(Buyer buyer);
     Buyer findBuyer(@Param("buyerAccount") String buyerAccount,@Param("buyerPassword") String buyerPassword);
 
+    int countAllBuyer();
 }

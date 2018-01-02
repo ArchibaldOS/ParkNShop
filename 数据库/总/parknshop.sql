@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : MySQLRoot
-Source Server Version : 50718
+Source Server         : localhost_3306
+Source Server Version : 50713
 Source Host           : localhost:3306
 Source Database       : parknshop
 
 Target Server Type    : MYSQL
-Target Server Version : 50718
+Target Server Version : 50713
 File Encoding         : 65001
 
-Date: 2018-01-02 13:59:55
+Date: 2018-01-02 16:03:16
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -27,7 +27,6 @@ CREATE TABLE `ad` (
   `adminId` int(11) DEFAULT NULL,
   `ADName` varchar(256) NOT NULL,
   `ADPhotoUrl` varchar(256) NOT NULL,
-  `ADClickUrl` varchar(256) NOT NULL,
   `ADDescription` varchar(255) NOT NULL,
   `ADPrice` float NOT NULL,
   `ADStartDate` datetime NOT NULL,
@@ -40,10 +39,10 @@ CREATE TABLE `ad` (
 -- ----------------------------
 -- Records of ad
 -- ----------------------------
-INSERT INTO `ad` VALUES ('2', '2', '3', '1', '1', 'testAD', 'https://www.baidu.com', 'https://www.baidu.com', 'ADDescription', '1000', '2018-01-02 12:15:07', '10');
-INSERT INTO `ad` VALUES ('3', '2', '2', '1', '1', 'testAD', 'https://www.baidu.com', 'https://www.baidu.com', 'ADDescription', '1000', '2018-01-02 12:15:07', '10');
-INSERT INTO `ad` VALUES ('4', '1', '2', '1', '1', 'testAD', 'https://www.baidu.com', 'https://www.baidu.com', 'ADDescription', '1000', '2018-01-02 12:15:07', '10');
-INSERT INTO `ad` VALUES ('5', '1', '2', '1', '1', 'testAD', 'https://www.baidu.com', 'https://www.baidu.com', 'ADDescription', '1000', '2018-01-02 12:15:07', '10');
+INSERT INTO `ad` VALUES ('2', '2', '3', '1', '1', 'testAD', 'https://www.baidu.com', 'ADDescription', '1000', '2018-01-02 12:15:07', '10');
+INSERT INTO `ad` VALUES ('3', '2', '2', '1', '1', 'testAD', 'https://www.baidu.com', 'ADDescription', '1000', '2018-01-02 12:15:07', '10');
+INSERT INTO `ad` VALUES ('4', '1', '2', '1', '1', 'testAD', 'https://www.baidu.com', 'ADDescription', '1000', '2018-01-02 12:15:07', '10');
+INSERT INTO `ad` VALUES ('5', '1', '2', '1', '1', 'testAD', 'https://www.baidu.com', 'ADDescription', '1000', '2018-01-02 12:15:07', '10');
 
 -- ----------------------------
 -- Table structure for admins
@@ -64,8 +63,31 @@ CREATE TABLE `admins` (
 -- ----------------------------
 -- Records of admins
 -- ----------------------------
-INSERT INTO `admins` VALUES ('1', 'admin', 'admin', 'admin', '0', '12345678910', '1');
-INSERT INTO `admins` VALUES ('2', 'admin2', 'admin2', 'admin2', '0', '110', '0');
+INSERT INTO `admins` VALUES ('1', 'admin', 'admin', 'admin', '1', '12345678910', '1');
+INSERT INTO `admins` VALUES ('2', 'admin2', 'admin2', 'admin2', '0', '110', '1');
+
+-- ----------------------------
+-- Table structure for backuphistory
+-- ----------------------------
+DROP TABLE IF EXISTS `backuphistory`;
+CREATE TABLE `backuphistory` (
+  `backupId` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `backupAccount` varchar(255) NOT NULL,
+  `backupDate` datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `backupFilePath` varchar(255) NOT NULL,
+  PRIMARY KEY (`backupId`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of backuphistory
+-- ----------------------------
+INSERT INTO `backuphistory` VALUES ('1', '', '2017-12-31 16:46:41', 'C:/Users/Kevin_coco/Desktop/GitProject/ParkNShop/Backup/_2017-12-31_16:46:41.sql');
+INSERT INTO `backuphistory` VALUES ('2', '', '2017-12-31 16:48:27', 'C:/Users/Kevin_coco/Desktop/GitProject/ParkNShop/Backup/_2017-12-31_16:48:27.sql');
+INSERT INTO `backuphistory` VALUES ('3', '', '2017-12-31 16:49:33', 'C:/Users/Kevin_coco/Desktop/GitProject/ParkNShop/Backup/_2017-12-31_16:49:32.sql');
+INSERT INTO `backuphistory` VALUES ('4', '', '2017-12-31 16:52:03', 'C:/Users/Kevin_coco/Desktop/GitProject/ParkNShop/Backup/_2017-12-31_16:52:02.sql');
+INSERT INTO `backuphistory` VALUES ('5', 'admin2', '2017-12-31 16:53:31', 'C:/Users/Kevin_coco/Desktop/GitProject/ParkNShop/Backup/admin2_2017_12_31_16_53_30.sql');
+INSERT INTO `backuphistory` VALUES ('8', 'admin', '2018-01-02 11:40:27', 'C:\\Users\\Kevin_coco/Desktop/GitProject/ParkNShop/Backup/admin_2018_01_02_11_40_27.sql');
+INSERT INTO `backuphistory` VALUES ('9', 'admin2', '2018-01-02 11:47:12', 'C:\\Users\\Kevin_coco/Desktop/GitProject/ParkNShop/Backup/admin2_2018_01_02_11_47_12.sql');
 
 -- ----------------------------
 -- Table structure for buyer
@@ -123,7 +145,7 @@ CREATE TABLE `commission` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `commission` float NOT NULL,
   `operatoraccount` varchar(255) NOT NULL,
-  `time` timestamp NOT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `operatoraccount` (`operatoraccount`),
   KEY `commission` (`commission`),
@@ -134,9 +156,6 @@ CREATE TABLE `commission` (
 -- Records of commission
 -- ----------------------------
 INSERT INTO `commission` VALUES ('1', '0.2', 'admin', '2017-12-16 16:34:56');
-INSERT INTO `commission` VALUES ('2', '0.3', 'admin', '2017-12-16 17:05:32');
-INSERT INTO `commission` VALUES ('3', '0.35', 'admin', '2017-12-16 17:08:36');
-INSERT INTO `commission` VALUES ('4', '0', 'admin', '2017-12-17 20:15:24');
 
 -- ----------------------------
 -- Table structure for favouriteproduct
@@ -202,13 +221,13 @@ CREATE TABLE `orders` (
 -- ----------------------------
 -- Records of orders
 -- ----------------------------
-INSERT INTO `orders` VALUES ('1', '2', '4', '2', '2', '5', '1234654456', '3', '2017-12-19 11:42:43');
-INSERT INTO `orders` VALUES ('3', '2', '2', '1', '2', '3', '13212145', '2', '2017-12-19 11:44:05');
+INSERT INTO `orders` VALUES ('1', '2', '4', '2', '2', '5', '12346544', '2', '2017-12-16 14:50:09');
+INSERT INTO `orders` VALUES ('2', '2', '4', '3', '1', '12', '123', '5', '2017-12-15 19:31:46');
+INSERT INTO `orders` VALUES ('3', '2', '2', '1', '2', '3', '13212', '1', '2017-12-16 14:01:57');
 INSERT INTO `orders` VALUES ('4', '5', '6', '3', '1', '2', '336', '3', '2017-12-15 16:39:56');
-INSERT INTO `orders` VALUES ('5', '6', '3', '1', '1', '56', '123456', '4', '2017-11-01 19:34:02');
 INSERT INTO `orders` VALUES ('6', '6', '3', '1', '1', '56', '123456', '4', '2017-12-17 19:33:14');
 INSERT INTO `orders` VALUES ('7', '6', '3', '1', '1', '56', '123456', '4', '2017-12-17 19:33:14');
-INSERT INTO `orders` VALUES ('8', '2', '3', '2', '2', '36', '464545', '5', '2017-09-01 14:20:00');
+INSERT INTO `orders` VALUES ('8', '1', '2', '1', '1', '1', 'buy2address', '3', '2017-12-29 11:17:35');
 
 -- ----------------------------
 -- Table structure for product

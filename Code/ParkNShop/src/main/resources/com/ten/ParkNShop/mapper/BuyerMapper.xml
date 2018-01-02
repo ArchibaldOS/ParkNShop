@@ -263,4 +263,8 @@
     FROM buyer
     WHERE buyerAccount = #{buyerAccount} and buyerPassword = #{buyerPassword}
   </select>
+  <select id="countAllBuyer" resultType="int">
+    SELECT COUNT(1)
+    FROM buyer
+  </select>
 </mapper>

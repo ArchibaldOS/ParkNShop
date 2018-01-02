@@ -1,3 +1,4 @@
+<%@ page import="java.text.SimpleDateFormat" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
@@ -54,33 +55,35 @@
 						    <table class="table table-hover">
 							  <thead>
 							  	<tr>
-							  		<th>Statistics project</th>
-							  		<th>Today</th>
-							  		<th>Yesterday</th>
+							  		<th>Statistics Project</th>
+							  		<th>Statistics Data</th>
 							  	</tr>
 							  </thead>
 							  <tbody>
 							  	<tr>
-							  		<th scope="row"> Registered Member</th>
-							  		<td>200</td>
-							  		<td>400</td>
+							  		<th scope="row">Registered Buyers</th>
+							  		<td>${registeredBuyers}</td>
 							  	</tr>
 							  	<tr>
-							  		<th scope="row">Login Member</th>
-							  		<td>200</td>
-							  		<td>400</td>
-							  	</tr>
+							  		<th scope="row">Registered Sellers</th>
+									<td>${registeredSellers}</td>
+								</tr>
+								<tr>
+									<th scope="row">Official Sellers</th>
+									<td>${officialSellers}</td>
+								</tr>
+								<tr>
+									<th scope="row">BlackList Sellers</th>
+									<td>${blackListSellers}</td>
+								</tr>
 							  	<tr>
-							  		<th scope="row">Today's earnings</th>
-							  		<td>2000</td>
-							  		<td>4000</td>
-							  	</tr>
+							  		<th scope="row">Incomplete Orders</th>
+									<td>${incompleteOrders}</td>
+								</tr>
 							  	<tr>
-							  		<th scope="row">Yesterday's earnings</th>
-							  		<td>2000</td>
-							  		<td>4000</td>
-							  	</tr>
-							  	
+							  		<th scope="row">Completed Orders</th>
+									<td>${completedOrders}</td>
+								</tr>
 							  </tbody>
 							</table>
 						  </div>
@@ -103,12 +106,36 @@
 						  	<div class="col-md-7">
 								<div class="panel panel-default">
 									<div class="panel-heading">
-										The current backup status
+										Click here to backup --->
+										<button style="float: right" onclick="location='/AdminBackup?adminAccount=${sessionScope.adminAccount}'">click</button>
+									</div>
+									<br>
+									<div class="panel-heading">
+										Backup history
 									</div>
 									<div class="panel-body">
-										<ul class="list-group">
-											<li class="list-group-item">Normal</li>
-										</ul>
+										<table class="table">
+											<thead>
+											<tr>
+												<th hidden>Backup ID</th>
+												<th>Account</th>
+												<th>Backup Date</th>
+												<th>Recover</th>
+											</tr>
+											</thead>
+											<tbody>
+											<c:forEach var="backupHistory" items="${backupHistorys}">
+												<tr>
+													<td hidden>${backupHistory.backupid}</td>
+													<td>${backupHistory.backupaccount}</td>
+													<td>${backupHistory.backupdate}</td>
+													<td>
+														<button class="btn btn-success" onclick="location='/AdminRecover?backupId=${backupHistory.backupid}'">recover</button>
+													</td>
+												</tr>
+											</c:forEach>
+											</tbody>
+										</table>
 									</div>
 								</div>
 						  	</div>
@@ -119,8 +146,13 @@
 						  			</div>
 						  			<div class="panel-body">
 						  				<ul class="list-group">
-						  					<li class="list-group-item">Webmaster：<span class="glyphicon glyphicon-phone"></span>&nbsp;&nbsp;1234567891</li>
-						  				</ul>
+											<li class="list-group-item">Bin Liu：<span class="glyphicon glyphicon-phone"></span>&nbsp;&nbsp;13772463395</li>
+											<li class="list-group-item">TianFei Wei：<span class="glyphicon glyphicon-phone"></span>&nbsp;&nbsp;15002970314</li>
+											<li class="list-group-item">YingJing Wu：<span class="glyphicon glyphicon-phone"></span>&nbsp;&nbsp;13772191265</li>
+											<li class="list-group-item">XuDong Wang：<span class="glyphicon glyphicon-phone"></span>&nbsp;&nbsp;15002972015</li>
+											<li class="list-group-item">HongYang Cai：<span class="glyphicon glyphicon-phone"></span>&nbsp;&nbsp;15829295904</li>
+											<li class="list-group-item">XiuHuang Chen：<span class="glyphicon glyphicon-phone"></span>&nbsp;&nbsp;13022875541</li>
+										</ul>
 						  			</div>
 						  		</div>
 						  	</div>

@@ -2,6 +2,7 @@ package com.ten.ParkNShop.controller;
 
 import com.ten.ParkNShop.service.BuyerReturnsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 

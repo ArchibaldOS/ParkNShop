@@ -30,8 +30,8 @@ public class AdminADServiceImpl implements AdminADService {
     }
 
 
-    public List<AD> selectADBySellerId(int sellerId) {
-        return adMapper.selectADBySellerId(sellerId);
+    public List<AD> selectADByOtherId(int otherId) {
+        return adMapper.selectADByOtherId(otherId);
     }
 
     public List<AD> selectADByADType(String adType) {

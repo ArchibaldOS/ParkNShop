@@ -62,6 +62,7 @@ public class AdminOrderManagementController  {
 
     @RequestMapping("/AdminOrderSearchBySellerId")
     public String adminOrderSearchBySellerId(){
+        System.out.println("hello");
         return "Admin/AdminOrderSearchBySellerId";
     }
 
@@ -75,6 +76,7 @@ public class AdminOrderManagementController  {
 
     @RequestMapping("/AdminOrderSearchByProductId")
     public String adminOrderSearchByproductId(){
+        System.out.println("hello1");
         return "Admin/AdminOrderSearchByProductId";
     }
 

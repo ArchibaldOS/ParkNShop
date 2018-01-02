@@ -207,7 +207,7 @@
     where ADId = #{adId,jdbcType=INTEGER}
   </update>
 
-  <select id="selectADBySellerId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="selectADByOtherId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from ad

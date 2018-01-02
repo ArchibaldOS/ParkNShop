@@ -21,7 +21,7 @@ public interface AdminADService {
     AD selectADByID(int adId);
 
     // select ads by sellerId
-    List<AD> selectADBySellerId(int sellerId);
+    List<AD> selectADByOtherId(int sellerId);
 
     // select ads by adType
     List<AD> selectADByADType(String adType);

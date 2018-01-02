@@ -58,7 +58,7 @@ public interface ADMapper {
     int updateByPrimaryKey(AD record);
 
     // 通过卖家 ID 选择广告
-    List<AD> selectADBySellerId(@Param("sellerId") int sellerId);
+    List<AD> selectADByOtherId(@Param("sellerId") int sellerId);
 
     // 通过广告类型选择广告
     List<AD> selectADByADType(@Param("adType") String adType);

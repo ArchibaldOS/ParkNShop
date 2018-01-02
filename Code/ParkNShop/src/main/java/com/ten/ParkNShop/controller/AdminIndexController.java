@@ -67,7 +67,7 @@ public class AdminIndexController {
 
         String filePath = request.getServletContext().getRealPath("/");
         filePath = filePath+"/config/backup.properties";
-//        System.out.println(filePath);
+        System.out.println(filePath);
 
         String file = adminAccount+"_"+dateString+".sql";
         try {
@@ -78,10 +78,10 @@ public class AdminIndexController {
             backupHistory.setBackupdate(date);
 //            System.out.println(System.getProperty("user.home")+"/Desktop/GitProject/ParkNShop/Backup/"+adminAccount+"_"+dateString+".sql");
             //System.getProperty("user.home")为获取用户的主目录
-            String basePath = System.getProperty("user.home");
-            basePath.replaceAll("\\\\","/");
+            String basePath = request.getServletContext().getRealPath("/");
+            basePath=basePath.substring(0,basePath.length()-31);
             System.out.println(basePath);
-            backupHistory.setBackupfilepath(basePath+"/Desktop/GitProject/ParkNShop/Backup/"+adminAccount+"_"+dateString+".sql");
+            backupHistory.setBackupfilepath(basePath+"Backup/"+adminAccount+"_"+dateString+".sql");
             backupHistoryMapper.insert(backupHistory);
 
         } catch (InterruptedException e) {

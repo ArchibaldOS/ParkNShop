@@ -3,11 +3,12 @@ package com.ten.ParkNShop.controller;
 import com.ten.ParkNShop.entity.Comments;
 import com.ten.ParkNShop.service.BuyerCommentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.Date;
-
+@Controller
 public class BuyerCommentController {
     @Autowired
     private BuyerCommentService buyerCommentService;

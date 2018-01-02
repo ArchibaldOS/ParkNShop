@@ -337,5 +337,10 @@
     where sellerId = #{sellerId}
   </update>
 
+  <select id="countSellerByStatus" parameterType="int" resultType="int">
+    SELECT COUNT(1)
+    FROM seller
+    WHERE shopStatus = #{shopStatus}
+  </select>
 
 </mapper>

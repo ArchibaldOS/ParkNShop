@@ -15,11 +15,12 @@ import java.util.Date;
 @Controller
 public class BuyerCommentController {
     @Autowired
+    private OrderMapper orderMapper;
+    @Autowired
     private ProductMapper productMapper;
     @Autowired
     private BuyerCommentService buyerCommentService;
-    @Autowired
-    private OrderMapper orderMapper;
+
     @RequestMapping("/buyerComment")
     public String buyerComment(int orderId,Model model){
         Order order = orderMapper.selectByPrimaryKey(orderId);

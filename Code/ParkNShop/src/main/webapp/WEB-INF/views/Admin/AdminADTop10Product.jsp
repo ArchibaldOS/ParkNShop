@@ -51,6 +51,8 @@
         <div class="row">
             <div class="col-md-2">
                 <div class="list-group">
+                    <a href="/AdminADApplyingList" class="list-group-item">Applying AD</a>
+                    <a href="/AdminADList" class="list-group-item">AD List</a>
                     <a href="/AdminADManagement" class="list-group-item active">Top10 Products Management</a>
                     <a href="/AdminADTop5StoriesManagement" class="list-group-item">Top5 Stories Management</a>
                     <a href="/AdminADManagementHistory" class="list-group-item">AD Management History</a>
@@ -60,36 +62,54 @@
                 <div class="page-header">
                     <h1>Top10 Products Management</h1>
                 </div>
-                <div>
-                    <button type="button"style="margin-right: 30px;">Add</button>
-                    <button type="button">Del</button>
-                </div>
                 <table class="table">
                     <thead>
                     <tr>
-                        <th>Check</th>
-                        <th>Serial</th>
-                        <th>Name</th>
-                        <th>Start Time</th>
-                        <th>End Time</th>
-                        <th>Length</th>
-                        <th>Place</th>
-                        <th>Price</th>
-                        <th>Content</th>
+                        <th hidden>ADID</th>
+                        <th>AD Type</th>
+                        <th>Other ID</th>
+                        <th>AD Price</th>
+                        <th>AD Start Time</th>
+                        <th>AD Time</th>
+                        <th>Operation</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td><input type="checkbox"></td>
-                        <td>1</td>
-                        <td>ShopA</td>
-                        <td>2017/12/3 20:00</td>
-                        <td>2017/12/3 22:00</td>
-                        <td>2h</td>
-                        <td>someWhere</td>
-                        <td>1000</td>
-                        <td><button type="button">View</button> </td>
-                    </tr>
+                    <c:forEach var="ad" items="${ads}">
+                        <tr>
+                            <td hidden><c:out value="${ad.ADId}"></c:out></td>
+                            <c:choose>
+                                <c:when test="${ad.ADType eq 1}">
+                                    <td><c:out value="Top10Product"></c:out></td>
+                                </c:when>
+                                <c:when test="${ad.ADType eq 2}">
+                                    <td><c:out value="Top5Store"></c:out></td>
+                                </c:when>
+                                <c:when test="${ad.ADType eq 1}">
+                                    <td><c:out value="Featured"></c:out></td>
+                                </c:when>
+                                <c:when test="${ad.ADType eq 1}">
+                                    <td><c:out value="Special"></c:out></td>
+                                </c:when>
+                                <c:when test="${ad.ADType eq 1}">
+                                    <td><c:out value="OnSale"></c:out></td>
+                                </c:when>
+                            </c:choose>
+                            <td><c:out value="${ad.otherId}"></c:out></td>
+                            <td><c:out value="${ad.ADPrice}"></c:out></td>
+                            <td><c:out value="${ad.ADStartDate}"></c:out></td>
+                            <td><c:out value="${ad.ADTime}"></c:out></td>
+                            <td><div role="presentation" class="dropdown">
+                                <button class="dropdown-toggle btn btn-default" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Onclick <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a href="/AdminADDetail?adId=${ad.ADId}&type=All">View</a></li>
+                                    <li><a href="/AdminADModify?adId=${ad.ADId}">Modify</a></li>
+                                    <li><a href="/AdminADDelete?adId=${ad.ADId}">Delete</a></li>
+                                </ul>
+                            </div></td>
+                        </tr>
+                    </c:forEach>
                     </tbody>
                 </table>
                 <nav class="pull-right">

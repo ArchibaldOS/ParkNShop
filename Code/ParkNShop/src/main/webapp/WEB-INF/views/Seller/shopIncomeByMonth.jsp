@@ -72,6 +72,7 @@
             <li><a href="/sellerProduct">Product</a></li>
             <li><a href="/sellerOrderPage">Order</a></li>
             <li><a href="/sellerSalesIncome">Sales</a></li>
+            <li><a href="/listCommentBySellerId">Comment</a></li>
           </ul>
         </div>
 		</div>
@@ -125,7 +126,7 @@
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <span>Commission : 0.2</span>
+                        <span>Commission : ${commission} </span>
                         <table class="table table-bordered">
                             <thead>
                             <tr>
@@ -134,7 +135,7 @@
                             </thead>
                             <tbody>
                             <tr>
-                                <td>$${requestScope.income }</td>
+                                <td>HK$${requestScope.income }</td>
                             </tr>
                             </tbody>
                         </table>

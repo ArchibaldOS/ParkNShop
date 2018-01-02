@@ -10,13 +10,21 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ten.ParkNShop.entity.Seller;
+import com.ten.ParkNShop.service.AdminShopService;
 import com.ten.ParkNShop.service.SellerIndexService;
+import com.ten.ParkNShop.service.SellerProductService;
 
 @Controller
 public class SellerIndexController {
 	
 	@Autowired
 	private SellerIndexService sellerService;
+	
+	@Autowired
+	private AdminShopService adminShopService;
+	
+	@Autowired
+	private SellerProductService sellerProductService;
 	
 	@RequestMapping(value="/sellerLogin",method=RequestMethod.GET)
 	public String seller(){
@@ -41,7 +49,7 @@ public class SellerIndexController {
 	}
 
 	@RequestMapping(value="/registSeller",method=RequestMethod.POST)
-	public String regSeller(String sellerName, String shopName, String sellerPassword, String sellerPhone,String sellerEmail,String shopIntroduction,Model model){
+	public String regSeller(String sellerName, String shopName, String sellerPassword, String sellerPhone,String sellerEmail, String sellerAddress, String shopIntroduction,Model model){
 		
 		Seller seller = new Seller();
 		
@@ -50,6 +58,7 @@ public class SellerIndexController {
 		seller.setSellerPassword(sellerPassword);
 		seller.setSellerEmail(sellerEmail);
 		seller.setSellerPhone(sellerPhone);
+		seller.setSellerAddress(sellerAddress);
 		seller.setShopIntroduction(shopIntroduction);
 		int resultEmail = sellerService.validation(sellerEmail);
 		if(resultEmail!=0){
@@ -66,12 +75,13 @@ public class SellerIndexController {
 	}
 	
 	@RequestMapping(value="/updateSeller",method=RequestMethod.POST)
-	public String updateSeller(String sellerName, String shopName, String sellerPhone,String sellerEmail,String shopIntroduction,Model model,HttpSession session){
+	public String updateSeller(String sellerName, String shopName, String sellerPhone,String sellerEmail,String sellerAddress,String shopIntroduction,Model model,HttpSession session){
 		
 		Seller seller = (Seller)session.getAttribute("seller");
 		seller.setSellerName(sellerName);
 		seller.setShopName(shopName);
 		seller.setSellerPhone(sellerPhone);
+		seller.setSellerAddress(sellerAddress);
 		seller.setShopIntroduction(shopIntroduction);
 		int resultEmail = sellerService.validation(sellerEmail);
 		if(resultEmail!=0 && !seller.getSellerEmail().equals(sellerEmail)){
@@ -109,6 +119,14 @@ public class SellerIndexController {
 		session.setAttribute("seller", session.getAttribute("seller"));
 		return "Seller/sellerhome";
 	}
+	
+	@RequestMapping(value="/sellerFontHome",method=RequestMethod.GET)
+	public String sellFontHome(int sellerId,Model model){
+		model.addAttribute("shop", adminShopService.selectSellerById(sellerId));
+		model.addAttribute("products",sellerProductService.getProducts(sellerId));
+		return "Seller/sellerFontHome";
+	}
+	
 	
 	
 }

@@ -10,10 +10,40 @@ Target Server Type    : MYSQL
 Target Server Version : 50718
 File Encoding         : 65001
 
-Date: 2017-12-18 17:42:22
+Date: 2018-01-02 13:59:55
 */
 
 SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for ad
+-- ----------------------------
+DROP TABLE IF EXISTS `ad`;
+CREATE TABLE `ad` (
+  `ADId` int(11) NOT NULL AUTO_INCREMENT,
+  `ADType` int(11) NOT NULL,
+  `ADStatus` int(11) NOT NULL,
+  `otherId` int(11) DEFAULT NULL,
+  `adminId` int(11) DEFAULT NULL,
+  `ADName` varchar(256) NOT NULL,
+  `ADPhotoUrl` varchar(256) NOT NULL,
+  `ADClickUrl` varchar(256) NOT NULL,
+  `ADDescription` varchar(255) NOT NULL,
+  `ADPrice` float NOT NULL,
+  `ADStartDate` datetime NOT NULL,
+  `ADTime` int(11) NOT NULL,
+  PRIMARY KEY (`ADId`),
+  KEY `FK_Reference_16` (`adminId`),
+  CONSTRAINT `FK_Reference_16` FOREIGN KEY (`adminId`) REFERENCES `admins` (`adminId`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of ad
+-- ----------------------------
+INSERT INTO `ad` VALUES ('2', '2', '3', '1', '1', 'testAD', 'https://www.baidu.com', 'https://www.baidu.com', 'ADDescription', '1000', '2018-01-02 12:15:07', '10');
+INSERT INTO `ad` VALUES ('3', '2', '2', '1', '1', 'testAD', 'https://www.baidu.com', 'https://www.baidu.com', 'ADDescription', '1000', '2018-01-02 12:15:07', '10');
+INSERT INTO `ad` VALUES ('4', '1', '2', '1', '1', 'testAD', 'https://www.baidu.com', 'https://www.baidu.com', 'ADDescription', '1000', '2018-01-02 12:15:07', '10');
+INSERT INTO `ad` VALUES ('5', '1', '2', '1', '1', 'testAD', 'https://www.baidu.com', 'https://www.baidu.com', 'ADDescription', '1000', '2018-01-02 12:15:07', '10');
 
 -- ----------------------------
 -- Table structure for admins
@@ -34,7 +64,7 @@ CREATE TABLE `admins` (
 -- ----------------------------
 -- Records of admins
 -- ----------------------------
-INSERT INTO `admins` VALUES ('1', 'admin', 'admin', 'admin', '0', '12345678910', '0');
+INSERT INTO `admins` VALUES ('1', 'admin', 'admin', 'admin', '0', '12345678910', '1');
 INSERT INTO `admins` VALUES ('2', 'admin2', 'admin2', 'admin2', '0', '110', '0');
 
 -- ----------------------------
@@ -167,18 +197,18 @@ CREATE TABLE `orders` (
   CONSTRAINT `FK_Reference_14` FOREIGN KEY (`buyerId`) REFERENCES `buyer` (`buyerId`),
   CONSTRAINT `FK_Reference_2` FOREIGN KEY (`sellerId`) REFERENCES `seller` (`sellerId`),
   CONSTRAINT `FK_Reference_24` FOREIGN KEY (`productId`) REFERENCES `product` (`productId`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of orders
 -- ----------------------------
-INSERT INTO `orders` VALUES ('1', '2', '4', '2', '2', '5', '12346544', '2', '2017-12-16 14:50:09');
-INSERT INTO `orders` VALUES ('2', '2', '4', '3', '1', '12', '123', '5', '2017-12-15 19:31:46');
-INSERT INTO `orders` VALUES ('3', '2', '2', '1', '2', '3', '13212', '1', '2017-12-16 14:01:57');
+INSERT INTO `orders` VALUES ('1', '2', '4', '2', '2', '5', '1234654456', '3', '2017-12-19 11:42:43');
+INSERT INTO `orders` VALUES ('3', '2', '2', '1', '2', '3', '13212145', '2', '2017-12-19 11:44:05');
 INSERT INTO `orders` VALUES ('4', '5', '6', '3', '1', '2', '336', '3', '2017-12-15 16:39:56');
 INSERT INTO `orders` VALUES ('5', '6', '3', '1', '1', '56', '123456', '4', '2017-11-01 19:34:02');
 INSERT INTO `orders` VALUES ('6', '6', '3', '1', '1', '56', '123456', '4', '2017-12-17 19:33:14');
 INSERT INTO `orders` VALUES ('7', '6', '3', '1', '1', '56', '123456', '4', '2017-12-17 19:33:14');
+INSERT INTO `orders` VALUES ('8', '2', '3', '2', '2', '36', '464545', '5', '2017-09-01 14:20:00');
 
 -- ----------------------------
 -- Table structure for product
@@ -205,31 +235,6 @@ CREATE TABLE `product` (
 INSERT INTO `product` VALUES ('1', '1', '1', '1', '1', '1', '0', '1', 'b4ac0721c2994519a487d2f926540c3a.jpg');
 INSERT INTO `product` VALUES ('2', '1', '123', '1', '11', '1', '0', '1', '17d530ab3c234e96b779b599be9e0057.jpg');
 INSERT INTO `product` VALUES ('3', '1', '123', '1', '123', '1', '0', '123', 'b3d7e407b07441eba384d3fbbcbfc478.jpg');
-
--- ----------------------------
--- Table structure for productad
--- ----------------------------
-DROP TABLE IF EXISTS `productad`;
-CREATE TABLE `productad` (
-  `productADId` int(11) NOT NULL AUTO_INCREMENT,
-  `sellerId` int(11) DEFAULT NULL,
-  `adminId` int(11) DEFAULT NULL,
-  `productADName` varchar(256) NOT NULL,
-  `productADPhotoUrl` varchar(256) NOT NULL,
-  `productADClickUrl` varchar(256) NOT NULL,
-  `productADPrice` float NOT NULL,
-  `productADStartDate` datetime NOT NULL,
-  `productADEndDate` datetime NOT NULL,
-  PRIMARY KEY (`productADId`),
-  KEY `FK_Reference_12` (`sellerId`),
-  KEY `FK_Reference_16` (`adminId`),
-  CONSTRAINT `FK_Reference_12` FOREIGN KEY (`sellerId`) REFERENCES `seller` (`sellerId`),
-  CONSTRAINT `FK_Reference_16` FOREIGN KEY (`adminId`) REFERENCES `admins` (`adminId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of productad
--- ----------------------------
 
 -- ----------------------------
 -- Table structure for seller
@@ -276,30 +281,5 @@ CREATE TABLE `sellerblacklist` (
 
 -- ----------------------------
 -- Records of sellerblacklist
--- ----------------------------
-
--- ----------------------------
--- Table structure for shopad
--- ----------------------------
-DROP TABLE IF EXISTS `shopad`;
-CREATE TABLE `shopad` (
-  `shopADId` int(11) NOT NULL AUTO_INCREMENT,
-  `sellerId` int(11) DEFAULT NULL,
-  `adminId` int(11) DEFAULT NULL,
-  `shopADName` varchar(512) NOT NULL,
-  `shopADPhotoUrl` varchar(512) NOT NULL,
-  `shopADClickUrl` varchar(512) NOT NULL,
-  `shopADPrice` float NOT NULL,
-  `shopADStartDate` datetime NOT NULL,
-  `shopADEndDate` datetime NOT NULL,
-  PRIMARY KEY (`shopADId`),
-  KEY `FK_Reference_19` (`sellerId`),
-  KEY `FK_Reference_20` (`adminId`),
-  CONSTRAINT `FK_Reference_19` FOREIGN KEY (`sellerId`) REFERENCES `seller` (`sellerId`),
-  CONSTRAINT `FK_Reference_20` FOREIGN KEY (`adminId`) REFERENCES `admins` (`adminId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of shopad
 -- ----------------------------
 SET FOREIGN_KEY_CHECKS=1;

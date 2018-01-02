@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.ten.ParkNShop.entity.Order;
 import com.ten.ParkNShop.entity.Seller;
+import com.ten.ParkNShop.mapper.CommissionMapper;
 import com.ten.ParkNShop.service.AdminShopService;
 import com.ten.ParkNShop.service.SellerOrderService;
 
@@ -27,6 +28,9 @@ public class SellerSalesManagementController {
 	
 	@Autowired
 	private AdminShopService adminShopService;
+	
+	@Autowired
+	private CommissionMapper commissionMapper;
 	
 	@RequestMapping(value="/sellerSalesIncome",method = RequestMethod.GET)
     public String sellerSalesIncome(HttpServletRequest httpServletRequest, Model model){
@@ -41,7 +45,7 @@ public class SellerSalesManagementController {
         }
 
         model.addAttribute("timeType", timeType);
-
+        model.addAttribute("commission", commissionMapper.selectLastCommission().getCommission());
         if(timeType.equals("Daily")){
             model.addAttribute("time", time);
             String[] labels = {"0:00", "4:00", "8:00", "12:00", "16:00", "20:00", "24:00"};

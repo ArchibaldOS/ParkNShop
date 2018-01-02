@@ -1,3 +1,4 @@
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
@@ -35,7 +36,7 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
-                    <a id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a Id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <c:out value="${sessionScope.adminAccount}"></c:out>
                     </a>
                 </li>
@@ -51,21 +52,21 @@
     <div class="row">
         <div class="col-md-2">
             <div class="list-group">
-                <a href="/AdminADApplyingList" class="list-group-item">Applying AD</a>
+                <a href="/AdminADApplyingList" class="list-group-item active">Applying AD</a>
                 <a href="/AdminADList" class="list-group-item">AD List</a>
                 <a href="/AdminADManagement" class="list-group-item">Top10 Products Management</a>
                 <a href="/AdminADTop5StoriesManagement" class="list-group-item">Top5 Stories Management</a>
-                <a href="/AdminADManagementHistory" class="list-group-item active">AD Management History</a>
+                <a href="/AdminADManagementHistory" class="list-group-item">AD Management History</a>
             </div>
         </div>
         <div class="col-md-10">
             <div class="page-header">
-                <h1>AD Management History</h1>
+                <h1>AD Applying List</h1>
             </div>
             <table class="table">
                 <thead>
                 <tr>
-                    <th hidden>AD ID</th>
+                    <th hidden>ADID</th>
                     <th>AD Type</th>
                     <th>Other ID</th>
                     <th>AD Price</th>
@@ -103,9 +104,9 @@
                             <button class="dropdown-toggle btn btn-default" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Onclick <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu">
-                                <li><a href="/AdminADDetail?adId=${ad.ADId}&type=All">View</a></li>
-                                <li><a href="/AdminADModify?adId=${ad.ADId}">Modify</a></li>
-                                <li><a href="/AdminADDelete?adId=${ad.ADId}">Delete</a></li>
+                                <li><a href="/AdminADDetail?adId=${ad.ADId}&type=Applying">View</a></li>
+                                <li><a href="/AdminADApprove?adId=${ad.ADId}">Approve</a></li>
+                                <li><a href="/AdminADDisApprove?adId=${ad.ADId}">DisApprove</a></li>
                             </ul>
                         </div></td>
                     </tr>
@@ -116,7 +117,7 @@
                 <ul class="pagination">
                     <li class="disabled">
                         <a href="#" aria-label="Previous">
-                            <span aria-hidden="true">&laquo;</span>
+                            <span aria-hIdden="true">&laquo;</span>
                         </a>
                     </li>
                     <li class="active"><a href="#">1</a></li>
@@ -126,7 +127,7 @@
                     <li><a href="#">5</a></li>
                     <li>
                         <a href="#" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
+                            <span aria-hIdden="true">&raquo;</span>
                         </a>
                     </li>
                 </ul>

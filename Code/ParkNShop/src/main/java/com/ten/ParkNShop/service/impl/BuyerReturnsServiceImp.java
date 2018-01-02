@@ -4,7 +4,9 @@ import com.ten.ParkNShop.entity.Order;
 import com.ten.ParkNShop.mapper.OrderMapper;
 import com.ten.ParkNShop.service.BuyerReturnsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class BuyerReturnsServiceImp implements BuyerReturnsService {
     @Autowired
     private OrderMapper orderMapper;

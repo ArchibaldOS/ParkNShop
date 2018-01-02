@@ -1,10 +1,14 @@
 package com.ten.ParkNShop.service.impl;
 
 import com.ten.ParkNShop.entity.Admin;
+import com.ten.ParkNShop.entity.BackupHistory;
 import com.ten.ParkNShop.mapper.AdminMapper;
+import com.ten.ParkNShop.mapper.BackupHistoryMapper;
 import com.ten.ParkNShop.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @author: Archibald.
@@ -16,6 +20,9 @@ import org.springframework.stereotype.Service;
 public class AdminServiceImp implements AdminService{
     @Autowired
     private AdminMapper adminMapper;
+
+    @Autowired
+    private BackupHistoryMapper backupHistoryMapper;
 
     public int insertAdmin(Admin admin) {
         /**
@@ -99,6 +106,11 @@ public class AdminServiceImp implements AdminService{
 
     public int updateAdminStatusToInactive(String adminAccount){
         return adminMapper.updateAdminStatusToInactive(adminAccount);
+    }
+
+    public List<BackupHistory> selectAllBackupHistory(int offset, int size){
+        List<BackupHistory> backupHistorys = backupHistoryMapper.selectAllBackupHistory(offset, size);
+        return backupHistorys;
     }
 
 }

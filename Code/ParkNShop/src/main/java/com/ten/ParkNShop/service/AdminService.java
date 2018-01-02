@@ -1,6 +1,9 @@
 package com.ten.ParkNShop.service;
 
 import com.ten.ParkNShop.entity.Admin;
+import com.ten.ParkNShop.entity.BackupHistory;
+
+import java.util.List;
 
 /**
  * @author: Archibald.
@@ -57,6 +60,7 @@ public interface AdminService {
 
     int updateAdminStatusToInactive(String adminAccount);
 
+    List<BackupHistory> selectAllBackupHistory(int offset, int size);
 
 
 }

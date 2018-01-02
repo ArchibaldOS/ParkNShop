@@ -67,7 +67,7 @@
                     <tr>
                         <th hidden>ADID</th>
                         <th>AD Type</th>
-                        <th>SellerID</th>
+                        <th>Other ID</th>
                         <th>AD Price</th>
                         <th>AD Start Time</th>
                         <th>AD Time</th>
@@ -78,8 +78,24 @@
                     <c:forEach var="ad" items="${ads}">
                         <tr>
                             <td hidden><c:out value="${ad.ADId}"></c:out></td>
-                            <td><c:out value="${ad.ADType}"></c:out></td>
-                            <td><c:out value="${ad.sellerId}"></c:out></td>
+                            <c:choose>
+                                <c:when test="${ad.ADType eq 1}">
+                                    <td><c:out value="Top10Product"></c:out></td>
+                                </c:when>
+                                <c:when test="${ad.ADType eq 2}">
+                                    <td><c:out value="Top5Store"></c:out></td>
+                                </c:when>
+                                <c:when test="${ad.ADType eq 1}">
+                                    <td><c:out value="Featured"></c:out></td>
+                                </c:when>
+                                <c:when test="${ad.ADType eq 1}">
+                                    <td><c:out value="Special"></c:out></td>
+                                </c:when>
+                                <c:when test="${ad.ADType eq 1}">
+                                    <td><c:out value="OnSale"></c:out></td>
+                                </c:when>
+                            </c:choose>
+                            <td><c:out value="${ad.otherId}"></c:out></td>
                             <td><c:out value="${ad.ADPrice}"></c:out></td>
                             <td><c:out value="${ad.ADStartDate}"></c:out></td>
                             <td><c:out value="${ad.ADTime}"></c:out></td>

@@ -47,12 +47,12 @@ public class AdminADManagementController {
 
     @RequestMapping("/AdminADApplyingList")
     public String adminADApplyingList(Model model){
-        model.addAttribute("ads", adminADService.selectADByADStatus("Applying"));
+        model.addAttribute("ads", adminADService.selectADByADStatus("1"));
         return "Admin/AdminADApplyingList";
     }
     @RequestMapping("/AdminADList")
     public String adminADList(Model model){
-        model.addAttribute("ads", adminADService.selectADByADStatus("Approved"));
+        model.addAttribute("ads", adminADService.selectADByADStatus("2"));
         return "Admin/AdminADList";
     }
 
@@ -70,18 +70,18 @@ public class AdminADManagementController {
     public String adminADApprove(HttpServletRequest httpServletRequest){
         int adId = Integer.valueOf(httpServletRequest.getParameter("adId"));
         AD ad = adminADService.selectADByID(adId);
-        ad.setADStatus("Approved");
+        ad.setADStatus(2);
         adminADService.updateADByAD(ad);
-        return "Admin/AdminADList";
+        return "redirect:/AdminADList";
     }
 
     @RequestMapping("/AdminADDisApprove")
     public String adminADDisApprove(HttpServletRequest httpServletRequest){
         int adId = Integer.valueOf(httpServletRequest.getParameter("adId"));
         AD ad = adminADService.selectADByID(adId);
-        ad.setADStatus("Refused");
+        ad.setADStatus(3);
         adminADService.updateADByAD(ad);
-        return "Admin/AdminADList";
+        return "redirect:/AdminADList";
     }
 
     // 更改广告
@@ -96,8 +96,8 @@ public class AdminADManagementController {
         int adId = Integer.valueOf(httpServletRequest.getParameter("adId"));
         AD ad = adminADService.selectADByID(adId);
         // 重新设置改变的属性
-        ad.setADStatus(httpServletRequest.getParameter("adStatus"));
-        ad.setADType(httpServletRequest.getParameter("adType"));
+        ad.setADStatus(Integer.valueOf(httpServletRequest.getParameter("adStatus")));
+        ad.setADType(Integer.valueOf(httpServletRequest.getParameter("adType")));
         ad.setADPhotoUrl(httpServletRequest.getParameter("adPhotoUrl"));
         ad.setADClickUrl(httpServletRequest.getParameter("adClickUrl"));
         ad.setADDescription(httpServletRequest.getParameter("adDescription"));

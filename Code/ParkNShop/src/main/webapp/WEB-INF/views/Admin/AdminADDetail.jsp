@@ -77,15 +77,44 @@
                 </tr>
                 <tr>
                     <td>AD Type</td>
-                    <td>${ad.ADType}</td>
+                    <c:choose>
+                        <c:when test="${ad.ADType eq 1}">
+                            <td><c:out value="Top10Product"></c:out></td>
+                        </c:when>
+                        <c:when test="${ad.ADType eq 2}">
+                            <td><c:out value="Top5Store"></c:out></td>
+                        </c:when>
+                        <c:when test="${ad.ADType eq 1}">
+                            <td><c:out value="Featured"></c:out></td>
+                        </c:when>
+                        <c:when test="${ad.ADType eq 1}">
+                            <td><c:out value="Special"></c:out></td>
+                        </c:when>
+                        <c:when test="${ad.ADType eq 1}">
+                            <td><c:out value="OnSale"></c:out></td>
+                        </c:when>
+                    </c:choose>
                 </tr>
                 <tr>
                     <td>AD Status</td>
-                    <td>${ad.ADStatus}</td>
+                    <c:choose>
+                        <c:when test="${ad.ADStatus eq 1}">
+                            <td><c:out value="Applying"></c:out></td>
+                        </c:when>
+                        <c:when test="${ad.ADStatus eq 2}">
+                            <td><c:out value="Approved"></c:out></td>
+                        </c:when>
+                        <c:when test="${ad.ADStatus eq 1}">
+                            <td><c:out value="Refused"></c:out></td>
+                        </c:when>
+                        <c:when test="${ad.ADStatus eq 1}">
+                            <td><c:out value="End"></c:out></td>
+                        </c:when>
+                    </c:choose>
                 </tr>
                 <tr>
-                    <td>AD SellerID</td>
-                    <td>${ad.sellerId}</td>
+                    <td>AD OtherID</td>
+                    <td>${ad.otherId}</td>
                 </tr>
                 <tr>
                     <td>AD AdminID</td>

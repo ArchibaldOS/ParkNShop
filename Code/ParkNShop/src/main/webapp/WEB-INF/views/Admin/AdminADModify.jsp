@@ -71,19 +71,19 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label">AD Seller ID</label>
+                    <label class="col-sm-2 control-label">AD Other ID</label>
                     <div class="col-sm-10">
-                        <input class="form-control" id="focusedInput10" type="text" name="adId" value="${ad.sellerId}" READONLY>
+                        <input class="form-control" id="focusedInput10" type="text" name="adId" value="${ad.otherId}" READONLY>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label">AD Status</label>
                     <div class="col-sm-10">
                         <select class="form-control" name="adStatus" id="adStatus">
-                            <option value="Applying">Applying</option>
-                            <option value="Approved">Approved</option>
-                            <option value="Refused">Refused</option>
-                            <option value="End">End</option>
+                            <option value=1>Applying</option>
+                            <option value=2>Approved</option>
+                            <option value=3>Refused</option>
+                            <option value=4>End</option>
                         </select>
                     </div>
                 </div>
@@ -91,11 +91,11 @@
                     <label class="col-sm-2 control-label">AD Type</label>
                     <div class="col-sm-10">
                         <select class="form-control" name="adType" id="adType">
-                            <option value="Top10Product">Top10Product</option>
-                            <option value="Top5Store">Top5Store</option>
-                            <option value="Featured">Featured</option>
-                            <option value="Special">Special</option>
-                            <option value="OnSale">OnSale</option>
+                            <option value=1>Top10Product</option>
+                            <option value=2>Top5Store</option>
+                            <option value=3>Featured</option>
+                            <option value=4>Special</option>
+                            <option value=5>OnSale</option>
                         </select>
                     </div>
                 </div>
@@ -165,39 +165,8 @@
 <script src="assets/javascripts/script.js"></script>
 <script  type = "text/javascript" >
     function change(){
-        var m = 0;
-        var n = 0;
-        if(${ad.ADStatus.equals("Applying")}){
-            m = 0;
-        }
-        if(${ad.ADStatus.equals("Approved")}) {
-            m = 1;
-        }
-        if(${ad.ADStatus.equals("Refused")}){
-            m = 2;
-        }
-        if(${ad.ADStatus.equals("End")}){
-            m = 3;
-        }
-
-        if(${ad.ADType.equals("Top10Product")}){
-            n = 0;
-        }
-        if(${ad.ADType.equals("Top5Store")}){
-            n = 1;
-        }
-        if(${ad.ADType.equals("Featured")}){
-            n = 2;
-        }
-        if(${ad.ADType.equals("Special")}){
-            n = 3;
-        }
-        if(${ad.ADType.equals("OnSale")}){
-            n = 4;
-        }
-
-        document.getElementById("adStatus")[m].selected=true;
-        document.getElementById("adType")[n].selected=true;
+        document.getElementById("adStatus")[${ad.ADStatus - 1}].selected=true;
+        document.getElementById("adType")[${ad.ADType - 1}].selected=true;
     }
     window.onload = change;
 </script>

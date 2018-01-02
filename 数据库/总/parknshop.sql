@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50718
 File Encoding         : 65001
 
-Date: 2017-12-29 21:38:03
+Date: 2018-01-02 13:59:55
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -21,9 +21,9 @@ SET FOREIGN_KEY_CHECKS=0;
 DROP TABLE IF EXISTS `ad`;
 CREATE TABLE `ad` (
   `ADId` int(11) NOT NULL AUTO_INCREMENT,
-  `ADType` varchar(256) NOT NULL,
-  `ADStatus` varchar(256) NOT NULL DEFAULT '',
-  `sellerId` int(11) DEFAULT NULL,
+  `ADType` int(11) NOT NULL,
+  `ADStatus` int(11) NOT NULL,
+  `otherId` int(11) DEFAULT NULL,
   `adminId` int(11) DEFAULT NULL,
   `ADName` varchar(256) NOT NULL,
   `ADPhotoUrl` varchar(256) NOT NULL,
@@ -33,18 +33,17 @@ CREATE TABLE `ad` (
   `ADStartDate` datetime NOT NULL,
   `ADTime` int(11) NOT NULL,
   PRIMARY KEY (`ADId`),
-  KEY `FK_Reference_12` (`sellerId`),
   KEY `FK_Reference_16` (`adminId`),
-  CONSTRAINT `FK_Reference_12` FOREIGN KEY (`sellerId`) REFERENCES `seller` (`sellerId`),
   CONSTRAINT `FK_Reference_16` FOREIGN KEY (`adminId`) REFERENCES `admins` (`adminId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of ad
 -- ----------------------------
-INSERT INTO `ad` VALUES ('1', 'Top10Product', 'Approved', '1', '2', 'First', 'https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1514534231&di=88f6d12623757688436a33a5f275c302&src=http://www.zhlzw.com/UploadFiles/Article_UploadFiles/201204/20120412123926750.jpg', 'http://www.baidu.com', 'testAD', '1000', '2017-12-29 12:34:35', '10');
-INSERT INTO `ad` VALUES ('4', 'Top10Product', 'Applying', '1', '2', 'First', 'https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1514534231&di=88f6d12623757688436a33a5f275c302&src=http://www.zhlzw.com/UploadFiles/Article_UploadFiles/201204/20120412123926750.jpg', 'http://www.baidu.com', 'testAD', '999', '2017-12-29 12:34:35', '10');
-INSERT INTO `ad` VALUES ('5', 'Top5Store', 'Approved', '1', '2', 'First', 'https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1514534231&di=88f6d12623757688436a33a5f275c302&src=http://www.zhlzw.com/UploadFiles/Article_UploadFiles/201204/20120412123926750.jpg', 'http://www.baidu.com', 'testAD', '1000', '2017-12-29 12:34:35', '10');
+INSERT INTO `ad` VALUES ('2', '2', '3', '1', '1', 'testAD', 'https://www.baidu.com', 'https://www.baidu.com', 'ADDescription', '1000', '2018-01-02 12:15:07', '10');
+INSERT INTO `ad` VALUES ('3', '2', '2', '1', '1', 'testAD', 'https://www.baidu.com', 'https://www.baidu.com', 'ADDescription', '1000', '2018-01-02 12:15:07', '10');
+INSERT INTO `ad` VALUES ('4', '1', '2', '1', '1', 'testAD', 'https://www.baidu.com', 'https://www.baidu.com', 'ADDescription', '1000', '2018-01-02 12:15:07', '10');
+INSERT INTO `ad` VALUES ('5', '1', '2', '1', '1', 'testAD', 'https://www.baidu.com', 'https://www.baidu.com', 'ADDescription', '1000', '2018-01-02 12:15:07', '10');
 
 -- ----------------------------
 -- Table structure for admins

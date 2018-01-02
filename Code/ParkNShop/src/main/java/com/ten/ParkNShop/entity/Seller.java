@@ -8,6 +8,7 @@ public class Seller {
     private String sellerPassword;
     private String sellerPhone;
     private String sellerEmail;
+    private String sellerAddress;
     private float sellerBalance;
     private String shopIntroduction;
     private int shopStatus;
@@ -66,7 +67,15 @@ public class Seller {
         this.shopStatus = shopStatus;
     }
 
-    @Override
+    
+    
+    public String getSellerAddress() {
+		return sellerAddress;
+	}
+	public void setSellerAddress(String sellerAddress) {
+		this.sellerAddress = sellerAddress;
+	}
+	@Override
     public String toString() {
         return "Seller{" +
                 "sellerId=" + sellerId +

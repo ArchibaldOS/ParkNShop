@@ -38,6 +38,9 @@
 				<input  id="txtEmail"  name="sellerEmail"  placeholder="Enter E-mail"  />
 			</div>
 			<div>
+				<input type="text" name="sellerAddress" class="sellerAddress" placeholder="Shop Address" autocomplete="off"/>
+			</div>
+			<div>
 			    <textarea name="shopIntroduction" class="shopIntroduction" rows="5" style="overflow-x: hidden;">Enter Introduction</textarea>
 			</div>
 	        

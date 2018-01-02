@@ -48,6 +48,11 @@
 		where productId = #{productId} 
 	</update>
 	
+	<update id="updateStock" parameterType="int">
+		update product set  storeCount = storeCount - #{storeCount}
+		where productId = #{productId} 
+	</update>
+	
 	<select id="count" resultType="int">
 		SELECT
 			count(1)

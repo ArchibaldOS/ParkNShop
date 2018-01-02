@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ten.ParkNShop.mapper.CommentMapper" >
+ 	<insert id="insertComment" parameterType="com.ten.ParkNShop.entity.Comments" keyProperty="commentId">
+    	insert into comments(buyerId,productId,content,commentTime)
+    	values( #{buyerId}, #{productId}, #{content}, #{commentTime})
+    </insert>
+
+	<update id="replyComment" parameterType="com.ten.ParkNShop.entity.Comments">
+		update comments set reply = #{reply}
+		where commentId = #{commentId} 
+	</update>
+
+	<select id="findByPrimaryKey" parameterType="int" resultType="Comments">
+		SELECT 
+			*
+		FROM comments
+		WHERE commentId = #{commentId}
+	</select> 
+
+	<select id="findByProductId" parameterType="int" resultType="Comments">
+		SELECT 
+			*
+		FROM comments
+		WHERE productId = #{productId}
+		ORDER BY commentTime DESC
+	</select> 
+
+    <select id="findBySellerId" parameterType="int" resultType="Comments">
+		SELECT 
+			*
+		FROM comments
+		WHERE productId IN
+			(select
+			   productId
+			 from
+			   product
+			 where
+			   sellerId = #{sellerId})
+		ORDER BY commentTime DESC
+	</select> 
+
+
+
+
+
+
+
+</mapper>

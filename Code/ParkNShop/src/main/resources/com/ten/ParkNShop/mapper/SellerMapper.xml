@@ -305,9 +305,10 @@
       shopStatus = #{shopStatus,jdbcType=INTEGER}
     where sellerId = #{sellerId,jdbcType=INTEGER}
   </update>
+  
   <insert id="sellerRegister" parameterType="com.ten.ParkNShop.entity.Seller" keyProperty="sellerId">
-    insert into seller(sellerName,shopName,sellerPassword,sellerEmail,sellerPhone,sellerBalance,shopIntroduction,shopStatus)
-    values( #{sellerName}, #{shopName}, #{sellerPassword}, #{sellerEmail}, #{sellerPhone}, 0, #{shopIntroduction}, 0 )
+    insert into seller(sellerName,shopName,sellerPassword,sellerEmail,sellerPhone,sellerAddress,sellerBalance,shopIntroduction,shopStatus)
+    values( #{sellerName}, #{shopName}, #{sellerPassword}, #{sellerEmail}, #{sellerPhone}, #{sellerAddress}, 0, #{shopIntroduction}, 0 )
   </insert>
 
   <select id="findBySellerEmail" parameterType="java.lang.String" resultType="com.ten.ParkNShop.entity.Seller">
@@ -328,7 +329,7 @@
 
 	
   <update id="updateBySellerId" parameterType="Seller">
-		update seller set sellerName = #{sellerName}, shopName = #{shopName}, sellerPhone = #{sellerPhone}, sellerEmail = #{sellerEmail}, shopIntroduction = #{shopIntroduction}
+		update seller set sellerName = #{sellerName}, shopName = #{shopName}, sellerPhone = #{sellerPhone}, sellerEmail = #{sellerEmail},sellerAddress = #{sellerAddress}, shopIntroduction = #{shopIntroduction}
 		where sellerId = #{sellerId} 
   </update>
 

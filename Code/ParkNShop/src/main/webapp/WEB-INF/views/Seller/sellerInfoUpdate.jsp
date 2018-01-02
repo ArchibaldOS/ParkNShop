@@ -94,6 +94,7 @@ background-color: blue;
             <li><a href="/sellerProduct">Product</a></li>
             <li><a href="/sellerOrderPage">Order</a></li>
             <li><a href="/sellerSalesIncome">Sales</a></li>
+            <li><a href="/listCommentBySellerId">Comment</a></li>
           </ul>
         </div>
 		</div>
@@ -130,6 +131,13 @@ background-color: blue;
       <label for="firstname" class="col-sm-5 control-label">shop phone</label>
       <div class="col-sm-3">
          <input type="text" class="form-control" name="sellerPhone" value="${s.sellerPhone}" />
+      </div>
+   </div>
+   
+   <div class="form-group">
+      <label for="firstname" class="col-sm-5 control-label">shop address</label>
+      <div class="col-sm-3">
+         <input type="text" class="form-control" name="sellerAddress" value="${s.sellerAddress}" />
       </div>
    </div>
   

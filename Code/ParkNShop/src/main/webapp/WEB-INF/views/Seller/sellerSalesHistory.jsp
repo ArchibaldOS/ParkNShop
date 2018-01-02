@@ -74,6 +74,7 @@
             <li><a href="/sellerProduct">Product</a></li>
             <li><a href="/sellerOrderPage">Order</a></li>
             <li><a href="/sellerSalesIncome">Sales</a></li>
+            <li><a href="/listCommentBySellerId">Comment</a></li>
           </ul>
         </div>
 		</div>
@@ -134,7 +135,7 @@
                                             <td><c:out value="${order.buyerId}"></c:out></td>
                                             <td><c:out value="${order.productId}"></c:out></td>
                                             <td><c:out value="${order.count}"></c:out></td>
-                                            <td><c:out value="${order.totalPrice}"></c:out></td>
+                                            <td><c:out value="HK$${order.totalPrice}"></c:out></td>
                                             <td><c:out value="${order.address}"></c:out></td>
                                             <td><c:out value="${order.orderTime}"></c:out></td>
                                         </tr>

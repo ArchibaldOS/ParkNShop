@@ -190,7 +190,7 @@
                       <h5>${p.productName}</h5>
                      
                       <div class="row">
-                        <div class="col-sm-6"><span class="price">$${p.productPrice} </span></div>
+                        <div class="col-sm-6"><span class="price">HK$${p.productPrice} </span></div>
                         <div class="col-sm-6">
                           <p>Availability: <span class="in-stock">In stock(${p.storeCount})</span></p>
                         </div>

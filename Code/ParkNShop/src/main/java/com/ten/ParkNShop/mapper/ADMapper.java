@@ -73,4 +73,8 @@ public interface ADMapper {
     List<AD> selectADTop5Store();
 
     List<AD> selectAllAD(@Param("start") int start, @Param("pageSize") int pageSize);
+    
+    List<AD> selectShopAD(@Param("sellerId")int sellerId);
+    
+    List<AD> selectProductAD(@Param("sellerId")int sellerId);
 }

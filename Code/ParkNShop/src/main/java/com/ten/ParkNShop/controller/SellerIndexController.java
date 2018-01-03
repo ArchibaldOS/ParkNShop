@@ -7,10 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ten.ParkNShop.entity.Seller;
-import com.ten.ParkNShop.service.AdminShopService;
 import com.ten.ParkNShop.service.SellerIndexService;
 import com.ten.ParkNShop.service.SellerProductService;
 
@@ -18,10 +16,7 @@ import com.ten.ParkNShop.service.SellerProductService;
 public class SellerIndexController {
 	
 	@Autowired
-	private SellerIndexService sellerService;
-	
-	@Autowired
-	private AdminShopService adminShopService;
+	private SellerIndexService sellerIndexService;
 	
 	@Autowired
 	private SellerProductService sellerProductService;
@@ -60,12 +55,12 @@ public class SellerIndexController {
 		seller.setSellerPhone(sellerPhone);
 		seller.setSellerAddress(sellerAddress);
 		seller.setShopIntroduction(shopIntroduction);
-		int resultEmail = sellerService.validation(sellerEmail);
+		int resultEmail = sellerIndexService.validation(sellerEmail);
 		if(resultEmail!=0){
 			model.addAttribute("emailUsed", 1);
 			return "Seller/sellerRegister";
 		}
-		int result = sellerService.sellerRegister(seller);
+		int result = sellerIndexService.sellerRegister(seller);
 		if(result == 1){
 			model.addAttribute("emailUsed", null);
 			return "Seller/sellerLogin";
@@ -83,14 +78,14 @@ public class SellerIndexController {
 		seller.setSellerPhone(sellerPhone);
 		seller.setSellerAddress(sellerAddress);
 		seller.setShopIntroduction(shopIntroduction);
-		int resultEmail = sellerService.validation(sellerEmail);
+		int resultEmail = sellerIndexService.validation(sellerEmail);
 		if(resultEmail!=0 && !seller.getSellerEmail().equals(sellerEmail)){
 			model.addAttribute("emailUsed", 1);
 			model.addAttribute("seller",session.getAttribute("seller"));
 			return "Seller/sellerInfoUpdate";
 		}
 		seller.setSellerEmail(sellerEmail);
-		int result = sellerService.sellerUpdate(seller);
+		int result = sellerIndexService.sellerUpdate(seller);
 		if(result == 1){
 			model.addAttribute("emailUsed", null);
 			session.setAttribute("seller", seller);
@@ -103,7 +98,7 @@ public class SellerIndexController {
 	@RequestMapping(value="/loginSeller",method=RequestMethod.POST)
 	public String loginSeller(String sellerEmail,String sellerPassword,HttpSession session,Model model){
 		
-		Seller seller = sellerService.login(sellerEmail, sellerPassword);
+		Seller seller = sellerIndexService.login(sellerEmail, sellerPassword);
 		if(seller == null){
 			model.addAttribute("logfail", 1);
 			return "Seller/sellerLogin";
@@ -122,7 +117,7 @@ public class SellerIndexController {
 	
 	@RequestMapping(value="/sellerFontHome",method=RequestMethod.GET)
 	public String sellFontHome(int sellerId,Model model){
-		model.addAttribute("shop", adminShopService.selectSellerById(sellerId));
+		model.addAttribute("shop", sellerIndexService.getSellerById(sellerId));
 		model.addAttribute("products",sellerProductService.getProducts(sellerId));
 		return "Seller/sellerFontHome";
 	}

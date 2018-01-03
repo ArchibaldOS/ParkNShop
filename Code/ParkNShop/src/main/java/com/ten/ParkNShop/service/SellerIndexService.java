@@ -11,5 +11,7 @@ public interface SellerIndexService {
 	int validation(String sellerEmail);
 
 	int sellerUpdate(Seller seller);
+	
+	Seller getSellerById(int sellerId);
 
 }

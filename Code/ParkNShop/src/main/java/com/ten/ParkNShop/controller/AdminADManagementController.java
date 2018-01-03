@@ -99,7 +99,6 @@ public class AdminADManagementController {
         ad.setADStatus(Integer.valueOf(httpServletRequest.getParameter("adStatus")));
         ad.setADType(Integer.valueOf(httpServletRequest.getParameter("adType")));
         ad.setADPhotoUrl(httpServletRequest.getParameter("adPhotoUrl"));
-        ad.setADClickUrl(httpServletRequest.getParameter("adClickUrl"));
         ad.setADDescription(httpServletRequest.getParameter("adDescription"));
         ad.setADPrice(Float.valueOf(httpServletRequest.getParameter("adPrice")));
         ad.setADTime(Integer.valueOf(httpServletRequest.getParameter("adTime")));

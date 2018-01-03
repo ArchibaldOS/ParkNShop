@@ -253,6 +253,25 @@
     LIMIT #{start}, #{pageSize}
   </select>
 
+  <select id="selectShopAD" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    *
+    from ad
+    where otherId = #{sellerId} and ADType = 2
+  </select>
 
+  <select id="selectProductAD" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    *
+    from ad
+    where ADType IN (1,3,4) and otherId IN
+    	(select
+			 productId
+	     from
+			 product
+	     where
+			 sellerId = #{sellerId})
+  </select>
+  
 
 </mapper>

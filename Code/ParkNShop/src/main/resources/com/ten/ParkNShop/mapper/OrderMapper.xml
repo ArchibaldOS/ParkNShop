@@ -121,7 +121,7 @@
       )
     values (#{orderId,jdbcType=INTEGER}, #{sellerId,jdbcType=INTEGER}, #{buyerId,jdbcType=INTEGER},
       #{productId,jdbcType=INTEGER}, #{count,jdbcType=INTEGER}, #{totalPrice,jdbcType=REAL},
-      #{address,jdbcType=VARCHAR}, #{orderStatus,jdbcType=INTEGER}, #{orderTime,jdbcType=TIMESTAMP}
+      #{address,jdbcType=VARCHAR}, #{orderStatus,jdbcType=INTEGER}, #{orderTime,jdbcType=TIMESTAMP},#{orderCommissionId,jdbcType=INTEGER}
       )
   </insert>
   <select id="countOrdersByBuyerId" parameterType="java.lang.Integer" resultType="java.lang.Integer" resultMap="BaseResultMap">

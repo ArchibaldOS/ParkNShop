@@ -80,4 +80,6 @@ public interface ADMapper {
     List<AD> selectShopAD(@Param("sellerId")int sellerId);
     
     List<AD> selectProductAD(@Param("sellerId")int sellerId);
+    
+    int insertAd(AD ad);
 }

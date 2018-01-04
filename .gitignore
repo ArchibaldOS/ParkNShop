@@ -20,3 +20,4 @@ Code/ParkNShop/src/main/resources/jdbc.properties
 Code/ParkNShop/src/main/resources/jdbc.properties
 Code/ParkNShop/src/main/java/com/ten/ParkNShop/util/BackupUtil.java
 *.java
+Code/ParkNShop/src/main/resources/jdbc.properties

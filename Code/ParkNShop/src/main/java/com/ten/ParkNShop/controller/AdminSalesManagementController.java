@@ -54,9 +54,14 @@ public class AdminSalesManagementController {
             List<Object> salesCondition= getDaysCountAndSales(time);
             List<Integer> counts = (List<Integer>) salesCondition.get(0);
             List<Float> moneys = (List<Float>) salesCondition.get(1);
+            List<Float> income = (List<Float>) salesCondition.get(2);
 
             model.addAttribute("counts", counts);
             model.addAttribute("moneys", moneys);
+            model.addAttribute("income", income);
+            // 直接传递总价过去，否则出现精度问题
+            model.addAttribute("totalIncome", income.get(0)+income.get(1));
+
 
         }else if(timeType.equals("Weekly")){
             model.addAttribute("time", time);
@@ -68,9 +73,14 @@ public class AdminSalesManagementController {
 
             List<Integer> counts = (List<Integer>) salesCondition.get(0);
             List<Float> moneys = (List<Float>) salesCondition.get(1);
+            List<Float> income = (List<Float>) salesCondition.get(2);
 
             model.addAttribute("counts", counts);
             model.addAttribute("moneys", moneys);
+
+            model.addAttribute("income", income);
+            // 直接传递总价过去，否则出现精度问题
+            model.addAttribute("totalIncome", income.get(0)+income.get(1));
 
 
         }else if(timeType.equals("Monthly")){
@@ -91,9 +101,14 @@ public class AdminSalesManagementController {
 
             List<Integer> counts = (List<Integer>) salesCondition.get(0);
             List<Float> moneys = (List<Float>) salesCondition.get(1);
+            List<Float> income = (List<Float>) salesCondition.get(2);
 
             model.addAttribute("counts", counts);
             model.addAttribute("moneys", moneys);
+
+            model.addAttribute("income", income);
+            // 直接传递总价过去，否则出现精度问题
+            model.addAttribute("totalIncome", income.get(0)+income.get(1));
 
             return "Admin/AdminSalesManagementMonth";
 
@@ -109,12 +124,13 @@ public class AdminSalesManagementController {
 
             List<Integer> counts = (List<Integer>) salesCondition.get(0);
             List<Float> moneys = (List<Float>) salesCondition.get(1);
-
-            System.out.println(counts);
-            System.out.println(moneys);
+            List<Float> income = (List<Float>) salesCondition.get(2);
 
             model.addAttribute("counts", counts);
             model.addAttribute("moneys", moneys);
+            model.addAttribute("income", income);
+            // 直接传递总价过去，否则出现精度问题
+            model.addAttribute("totalIncome", income.get(0)+income.get(1));
 
             return "Admin/AdminSalesManagementYear";
 
@@ -127,38 +143,55 @@ public class AdminSalesManagementController {
 
         List<Integer> counts = new ArrayList<Integer>();
         List<Float> moneys = new ArrayList<Float>();
+        List<Float> income = new ArrayList<Float>();
+        float incomeCommission = 0;
 
         for(int i = 0; i < 12; i++){
             String startTime = "" + year + "-" + (i+1) + "-1";
             String endTime =  "" + year + "-" + (i+1) + "-" + getDayOfMonth(year, i+1);
 
-            System.out.println(startTime + " " + endTime);
             List<Order> orders = adminOrderService.selectAllOrdersBetweenTime(startTime, endTime, 1);
 
             float money = 0;
             for(Order order: orders){
                 money += order.getTotalPrice();
+                // 获取此订单的佣金收入
+                incomeCommission += order.getTotalPrice() * adminCommissionService.getCommissionById(order.getOrderCommissionId());
             }
             counts.add(orders.size());
             moneys.add(money);
         }
 
+        incomeCommission = (float)Math.round(incomeCommission * 100) / 100;
+        income.add(incomeCommission);
+
+        // 获取广告收入
+
+        float incomeAD = adminADService.getADTotalIncomeWithTime("" + year + "-01-01 0:00", ""+ year +  "-12-31 23:59");
+        income.add(incomeAD);
+
         List<Object> salesCondition = new ArrayList<Object>();
         salesCondition.add(counts);
         salesCondition.add(moneys);
+        salesCondition.add(income);
         return salesCondition;
     }
 
     // 获取一个月的具体销售情况 分为 10 个标签，前九个为3天，后面一个为这个月剩余的天数的总计
     private List<Object> getMonthCountAndSales(int year, int month) {
 
-        // 存储统计的情况
-        List<Integer> counts = new ArrayList<Integer>();
-        List<Float> moneys = new ArrayList<Float>();
-
         // 设置一个开始时间
         Calendar calendar = Calendar.getInstance();
         calendar.set(year, month - 1, 1);
+
+        // 存储统计的情况
+        List<Integer> counts = new ArrayList<Integer>();
+        List<Float> moneys = new ArrayList<Float>();
+        List<Float> income = new ArrayList<Float>();
+
+        float incomeCommission = 0;
+
+
 
         // 前九个阶段肯定是满的
         for(int i = 0; i < 10; i++){
@@ -176,16 +209,28 @@ public class AdminSalesManagementController {
             float money = 0;
             for(Order order: orders){
                 money += order.getTotalPrice();
+                // 获取此订单的佣金收入
+                incomeCommission += order.getTotalPrice() * adminCommissionService.getCommissionById(order.getOrderCommissionId());
             }
+
             counts.add(orders.size());
             moneys.add(money);
             // Move forward one day
             calendar.add(Calendar.DAY_OF_WEEK, 1);
         }
+        incomeCommission = (float)Math.round(incomeCommission * 100) / 100;
+        income.add(incomeCommission);
+
+        // 获取广告收入
+
+        float incomeAD = adminADService.getADTotalIncomeWithTime("" + year + "-" + month + "-" + "01 0:00",
+                "" +  year + "-" + month + "-" + getDayOfMonth(year, month) + " 23:59");
+        income.add(incomeAD);
 
         List<Object> salesCondition = new ArrayList<Object>();
         salesCondition.add(counts);
         salesCondition.add(moneys);
+        salesCondition.add(income);
         return salesCondition;
     }
 
@@ -211,9 +256,14 @@ public class AdminSalesManagementController {
         calendar.set(Calendar.YEAR, year);
         calendar.set(Calendar.WEEK_OF_YEAR, week);
 
+
         // 存储统计的情况
         List<Integer> counts = new ArrayList<Integer>();
         List<Float> moneys = new ArrayList<Float>();
+        List<Float> income = new ArrayList<Float>();
+        float incomeCommission = 0;
+        // 广告开始统计时间
+        String adStartTime = calendar.get(Calendar.YEAR) + "-" + (calendar.get(Calendar.MONTH) + 1) + "-" + calendar.get(Calendar.DAY_OF_MONTH);
 
         // 获取一周的具体销售情况，以天为单位
         for(int i = 0; i < 7; i++){
@@ -222,15 +272,29 @@ public class AdminSalesManagementController {
             float money = 0;
             for(Order order: orders){
                 money += order.getTotalPrice();
+                // 获取此订单的佣金收入
+                incomeCommission += order.getTotalPrice() * adminCommissionService.getCommissionById(order.getOrderCommissionId());
             }
             counts.add(orders.size());
             moneys.add(money);
             //日期向前移动一天
             calendar.add(Calendar.DAY_OF_WEEK, 1);
         }
+        incomeCommission = (float)Math.round(incomeCommission * 100) / 100;
+        income.add(incomeCommission);
+
+        // 获得这段时间的广告收
+
+        // 多加的一天减去
+        calendar.add(Calendar.DATE, -1);
+        String adEndTime = calendar.get(Calendar.YEAR) + "-" + (calendar.get(Calendar.MONTH) + 1) + "-" + calendar.get(Calendar.DAY_OF_MONTH);
+
+        float incomeAD = adminADService.getADTotalIncomeWithTime(adStartTime + " 0:00", adEndTime + " 23:59");
+        income.add(incomeAD);
         List<Object> salesCondition = new ArrayList<Object>();
         salesCondition.add(counts);
         salesCondition.add(moneys);
+        salesCondition.add(income);
         return salesCondition;
     }
 
@@ -264,17 +328,17 @@ public class AdminSalesManagementController {
             counts.add(orders.size());
             moneys.add(money);
         }
+        // 结果保留两位小数
+        incomeCommission = (float)Math.round(incomeCommission * 100) / 100;
         income.add(incomeCommission);
         // 获得这段时间的广告收入
-        float incomeAD = 0;
-        //TODO
-
-
+        float incomeAD = adminADService.getADTotalIncomeWithTime(time + " 0:00", time + " 23:59");
+        income.add(incomeAD);
         List<Object> salesCondition = new ArrayList<Object>();
         salesCondition.add(counts);
         salesCondition.add(moneys);
+        salesCondition.add(income);
         return salesCondition;
-
     }
 
     /**

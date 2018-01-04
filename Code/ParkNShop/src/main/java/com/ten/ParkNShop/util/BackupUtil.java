@@ -161,11 +161,6 @@ public class BackupUtil {
                 writer.close();
             } catch (IOException e) {
                 return false;
-            Process process = Runtime.getRuntime().exec("mysql -h" + hostIP + " -u" + userName + " -p" + password +" " + databaseName+ " < " + filePath);
-            System.out.println(filePath);
-            if(process.waitFor() == 0){//0 表示线程正常终止。
-                return true;
-            }
         }
         return true;
 ////            System.out.println(process.waitFor());
@@ -191,6 +186,6 @@ public class BackupUtil {
 //        } catch (InterruptedException e) {
 //            e.printStackTrace();
 //        }
-//    }
+    }
     }
 }  

@@ -262,8 +262,10 @@
 			 sellerId = #{sellerId})
   </select>
 
-  <select id="getADTotalIncomeWithTime" parameterType="java.lang.String" resultMap="BaseResultMap">
-
+  <select id="getADTotalIncomeWithTime" parameterType="java.lang.String" resultType="float">
+      SELECT SUM(ADPrice)
+      FROM ad
+      WHERE ADStartDate BETWEEN #{startTime} AND #{endTime}
   </select>
   
 

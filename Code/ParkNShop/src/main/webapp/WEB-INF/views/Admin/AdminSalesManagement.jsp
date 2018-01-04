@@ -89,7 +89,7 @@
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <span>Income:</span>
+                        <span>Income: <c:out value="${totalIncome}"></c:out>$</span>
                         <table class="table table-bordered">
                             <thead>
                             <tr>
@@ -100,15 +100,14 @@
                             <tbody>
                             <tr>
                                 <th scope="row">Sales</th>
-                                <td>50000</td>
+                                <td><c:out value="${income[0]}"></c:out></td>
                             </tr>
                             <tr>
                                 <th scope="row">ADs</th>
-                                <td>10000</td>
+                                <td><c:out value="${income[1]}"></c:out></td>
                             </tr>
                             </tbody>
                         </table>
-                        <span>Income:60000</span>
                     </div>
                 </div>
             </div>

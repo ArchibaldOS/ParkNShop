@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Date;
 
 @Controller
 public class AdminADManagementController {
@@ -71,6 +72,8 @@ public class AdminADManagementController {
         int adId = Integer.valueOf(httpServletRequest.getParameter("adId"));
         AD ad = adminADService.selectADByID(adId);
         ad.setADStatus(2);
+        // 更新广告的时间
+        ad.setADStartDate(new Date());
         adminADService.updateADByAD(ad);
         return "redirect:/AdminADList";
     }
@@ -80,6 +83,8 @@ public class AdminADManagementController {
         int adId = Integer.valueOf(httpServletRequest.getParameter("adId"));
         AD ad = adminADService.selectADByID(adId);
         ad.setADStatus(3);
+        // 更新广告的时间
+        ad.setADStartDate(new Date());
         adminADService.updateADByAD(ad);
         return "redirect:/AdminADList";
     }

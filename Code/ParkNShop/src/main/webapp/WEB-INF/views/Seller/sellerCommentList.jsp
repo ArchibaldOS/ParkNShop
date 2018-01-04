@@ -86,17 +86,16 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-md-10">
+            <div class="col-md-20">
                 <div class="row">
-                    <div class="col-md-10">
+                    <div class="col-md-20">
          				<c:set var="commentsItems" value="${requestScope.commentsItems }" />
          				<c:choose>
 							<c:when test="${commentsItems ne null and commentsItems.list.size() gt 0 }">
-                                <table class="table table-striped">
+                                <table class="table table-striped" style="table-layout: fixed;word-break:break-all;margin-top: 20px; ">
                                     <thead>
                                     <tr>
                                         <th>CommentId</th>
-                                        <th>product</th>
                                         <th>productName</th>
                                         <th>buyer</th>
                                         <th>Content</th>
@@ -109,7 +108,6 @@
 											<c:forEach items="${commentsItems.list }" var="c">
 												<tr>
 													<td>${c.comments.commentId }</td>
-													<td><img src="${pageContext.request.contextPath}/upload/productPicture/${c.product.productPicture}" alt="shopping"/></td>
 													<td>${c.product.productName }</td>
 													<td>${c.buyer.buyerName }</td>
 													<td>${c.comments.content }</td>

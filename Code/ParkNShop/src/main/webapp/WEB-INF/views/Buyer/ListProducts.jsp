@@ -225,16 +225,17 @@
                       <!-- Content Right -->
                       <div class="col-sm-5 text-center" style=""> <a href="/MoveToBuyerFavorite?productId=${searchProduct.productId}&buyerId=${sessionScope.Buyer.buyerId}" class="heart"><i class="fa fa-heart"></i></a> <a href="#." class="heart navi"><i class="fa fa-navicon"></i></a>
                         <div class="position-center-center">
-                          <div class="price">$${searchProduct.productPrice}</div>
+                          <div class="price">HK$${searchProduct.productPrice}</div>
                           <c:choose>
                             <c:when test="${searchProduct.storeCount gt 0}">
                               <p>Availability: <span class="in-stock">In stock</span></p>
+                              <a href="/AddToCart?buyerId=${sessionScope.Buyer.buyerId}&productId=${searchProduct.productId}" class="btn-round"><i class="icon-basket-loaded"></i> Add to Cart</a> </div>
                             </c:when>
                             <c:otherwise>
                               <p>Availability: <span class="sold-out">Sold out</span></p></c:otherwise>
                           </c:choose>
 
-                          <a href="/AddToCart?buyerId=${sessionScope.Buyer.buyerId}&productId=${searchProduct.productId}" class="btn-round"><i class="icon-basket-loaded"></i> Add to Cart</a> </div>
+                          
                       </div>
                     </div>
                   </div>

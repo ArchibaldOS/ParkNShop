@@ -118,6 +118,8 @@ public interface OrderMapper {
 
     int changeToReceived(@Param("orderId") int orderId);
 
+    int changeToCommented(@Param("orderId") int orderId);
+
 	List<Order> sellerSelectOrdersBetweenTime(@Param("startTime") String startTime, @Param("endTime") String endTime, @Param("sellerId") int sellerId);
 
     List<Order> buyerSelectOrdersBetweenTime(@Param("startTime") String startTime, @Param("endTime") String endTime, @Param("buyerId") int buyerId);

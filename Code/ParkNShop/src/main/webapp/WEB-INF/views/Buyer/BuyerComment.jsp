@@ -1,4 +1,4 @@
-﻿<%@ page import="java.util.List" %>
+<%@ page import="java.util.List" %>
 <%@ page import="com.ten.ParkNShop.entity.Product" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -8,7 +8,7 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <!-- Document Title -->
-  <title>Product Detail</title>
+  <title>Product Evaluate</title>
 
   <!-- SLIDER REVOLUTION 4.x CSS SETTINGS -->
   <link rel="stylesheet" type="text/css" href="assets/rs-plugin/css/settings.css" media="screen" />
@@ -30,7 +30,95 @@
   <link rel="stylesheet" href="assets/css/font-awesome.min2.css" />
   <!-- Custom CSS -->
   <link href="assets/css/style3.css" rel="stylesheet">
-
+  <style type="text/css">
+  
+  	.evaluate {
+		margin-left:auto;
+		margin-right:auto;
+		width: 1100px;
+		height:300px;
+		background: #F7F7F7;
+		padding: 25px 15px 25px 10px;
+		font: 12px Georgia, "Times New Roman", Times, serif;
+		color: #888;
+		text-shadow: 1px 1px 1px #FFF;
+		border:1px solid #E4E4E4;
+	}
+	.left-evaluate{
+		width:600px;
+	/* 	float:left;
+		display:inline; */
+	}
+	/* .right-evaluate{
+		width:400px;
+		height:100px;
+		float:left;
+		margin-left:10px;
+		display:inline;
+	} */
+	.bottom-evaluate{
+		width:400px;
+		float:left;
+		display:block;
+	}
+	.evaluate .top-evaluate h1 {
+		font-size: 25px;
+		padding: 0px 0px 10px 40px;
+		display: block;
+		border-bottom:1px solid #E4E4E4;
+		margin: -10px -15px 30px -10px;
+		color: #888;
+	}
+	.evaluate .top-evaluate h1>span {
+		display: block;
+		font-size: 15px;
+	}
+	.evaluate .left-evaluate label {
+		display: block;
+		margin: 0px;
+	}
+	.evaluate .left-evaluate label>span {
+		float: left;
+		text-align: right;
+		padding-right: 10px;
+		margin-left:30px;
+		color: #888;
+		}
+	 .evaluate .left-evaluate textarea {
+	 
+		border: 1px solid #DADADA;
+		color: #888;
+		height:100px;
+		margin-bottom: 16px;
+		margin-right: 6px;
+		outline: 0 none;
+		padding: 3px 3px 3px 5px;
+		width: 400px;
+		font-size: 12px;
+		line-height:15px;
+		box-shadow: inset 0px 1px 4px #ECECEC;
+		-moz-box-shadow: inset 0px 1px 4px #ECECEC;
+		-webkit-box-shadow: inset 0px 1px 4px #ECECEC;
+		resize:none;
+	}
+	
+	.evaluate .bottom-evaluate .button {
+		background: #E27575;
+		border: none;
+		padding: 10px 25px 10px 25px;
+		color: #FFF;
+		box-shadow: 1px 1px 5px #B6B6B6;
+		border-radius: 3px;
+		text-shadow: 1px 1px 1px #9E3F3F;
+		cursor: pointer;
+		margin-top:10px;
+		margin-left:440px;
+	}
+	.evaluate .bottom-evaluate .button:hover {
+		background: #CF7A7A
+	}
+  </style>
+  
 
   <!-- JavaScripts -->
   <script src="assets/js/vendors/modernizr.js"></script>
@@ -150,7 +238,8 @@
 
     <!-- Content -->
     <div id="content">
-      <c:set var="p" value="${requestScope.product }" />
+      <c:set var="p" value="${commentProduct }" />
+      <c:set var="o" value="${commentOrder }" />
       <!-- Products -->
       <section class="padding-top-40 padding-bottom-60">
         <div class="container">
@@ -190,55 +279,45 @@
                       <h5>${p.productName}</h5>
                      
                       <div class="row">
-                        <div class="col-sm-6"><span class="price">HK$${p.productPrice} </span></div>
-                        <div class="col-sm-6">
-                          <p>Availability: <span class="in-stock">In stock(${p.storeCount})</span></p>
-                        </div>
+                        <div class="col-sm-6"><span class="price">$${p.productPrice} </span></div>
+                       	 <ul class="bullet-round-list">
+                       		 ${p.productIntroduction}
+                      	</ul>
                       </div>
-                      <!-- List Details -->
-                      <ul class="bullet-round-list">
-                        ${p.productIntroduction}
-                      </ul>
-                      <!-- Compare Wishlist -->
-                      <ul class="cmp-list">
-                        <li><a href="#."><i class="fa fa-heart"></i> Add to Wishlist</a></li>
-                      </ul>
-                      <!-- Quinty -->
-                      <form action="/AddToCart" method="get" onsubmit="return checkNum();">
-                      <div class="quinty">
-                        <input type="number" name="productNum" id="productNum" value="1" onchange="checkNum();"/>
-                        <input type="hidden" name="productId" value="${p.productId}">
-                      </div>
-                        <button type="submit" class="btn-default" ><i class="icon-basket-loaded margin-right-5"></i> Add to Cart</button>
-                      </form>
                   </div>
-
+                </div>
               </div>
-
-
-              </div>
-
-
-
-
             </div>
-
           </div>
-          <!-- Details Tab Section-->
-          <div class="item-tabs-sec">
-
-            <!-- Nav tabs -->
-            <ul class="nav" role="tablist">
-
-              <li role="presentation" class="active"><a href="#cus-rev"  role="tab" data-toggle="tab">Customer Reviews</a></li>
-
-            </ul>
-
-            <!-- Tab panes -->
-            <div class="tab-content">
-
-
-            </div>
+          <!-- 评价部分 -->
+          <div class="">
+          	<form action="/buyerCommentSubmit" method="post" class="STYLE-NAME" name="commentForm" onsubmit="return check(this)">
+          		<div class="evaluate">
+          			<div class="top-evaluate">
+                      <input type="hidden" name="orderId" value="${o.orderId}">
+                      <input type="hidden" name="buyerId" value="${o.buyerId}">
+                      <input type="hidden" name="productId" value="${p.productId}">
+						<h1>Evaluate
+							<span>Other buyers need your advice!</span>
+						</h1>
+					</div>
+					<div class="left-evaluate">
+						<label>
+							<span>Product Evaluate:</span>
+							<textarea  name="content" ></textarea>
+						</label>
+					</div >
+					<!-- <div class="right-evaluate">
+						<span>Commodity grade：</span>
+					</div> -->
+					
+					<div class="bottom-evaluate">
+					<label>
+						<input type="submit" class="button" value="Comment" />
+					</label>
+					</div>
+				</div>
+			</form>
           </div>
         </div>
       </section>
@@ -246,29 +325,59 @@
 
     </div>
     <!-- End Content -->
+ 	 <!-- Footer -->
+  	<footer>
+    <div class="container">
 
+      <!-- Footer Upside Links -->
+
+      <div class="row">
+
+        <!-- Contact -->
+        <div class="col-md-9">
+          <h4>Contact ParkNShop!</h4>
+          <br>
+          <p>Address: Xidian University,Xi'an,China</p>
+          <p>Phone: (+100) 666</p>
+          <p>Email: 666@666.com</p>
+        </div>
+
+        <div class="col-md-3">
+          <h4>Information</h4>
+          <ul class="links-footer">
+            <li><a href="/About"> About Us</a></li>
+            <li><a href="/BuyerFAQs"> FAQs</a></li>
+            <li><a href="/SecureShopping"> Secure Shopping</a></li>
+            <li><a href="/JoinUs"> Join Us</a></li>
+          </ul>
+        </div>
+
+        <div class="col-md-12" align="center">
+          <br>
+          Copyright © 2017-2018  www.ParkNShop.com  
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- End Footer -->
 
     <!-- GO TO TOP  -->
     <a href="#" class="cd-top"><i class="fa fa-angle-up"></i></a>
     <!-- GO TO TOP End -->
 </div>
 <!-- End Page Wrapper -->
-<script>
-	function checkNum(){
-		
-		var num = document.getElementById("productNum").value;
-		var store = ${p.storeCount};
-		if(num>store){
-			alert("The quantity of goods exceeds the stock!");
-			return false;
-		}else if(num<1){
-			alert("The quantity of goods must be greater than zero!");
-			return false;
-		}else
-			return true;
-	}
+
+<script type="text/javascript">
 
 
+    function check(commentForm) {
+        if (commentForm.content.value == '') {
+            alert("Comment can not be empty！");
+            return false;
+        } else
+            return true;
+
+    }
 </script>
 <script src="assets/js2/vendors/jquery/jquery.min.js"></script>
 <script src="assets/js2/vendors/wow.min.js"></script>

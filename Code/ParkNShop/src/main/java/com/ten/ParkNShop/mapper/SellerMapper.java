@@ -75,6 +75,8 @@ public interface SellerMapper {
 
     int findByEmail(String sellerEmail);
 
+    Seller getBySellerId(@Param("sellerId") int sellerId);
+    
     List<Seller> selectAllRegisterShop(@Param("start")int start,@Param("pageSize")int pageSize);
     List<Seller> selectAllApprovedShop(@Param("start")int start,@Param("pageSize")int pageSize);
     List<Seller> selectAllUnapprovedShop(@Param("start")int start,@Param("pageSize")int pageSize);

@@ -31,5 +31,11 @@ public class SellerIndexServiceImpl implements SellerIndexService {
 		return sellerMapper.updateBySellerId(seller);
 	}
 
+	@Override
+	public Seller getSellerById(int sellerId) {
+		
+		return sellerMapper.getBySellerId(sellerId);
+	}
+
 	
 }

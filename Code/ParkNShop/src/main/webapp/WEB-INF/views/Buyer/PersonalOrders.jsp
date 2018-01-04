@@ -234,7 +234,6 @@ background: linear-gradient(top,#42a4e0,#2e88c0);
                 <div class="table-wrapper-responsive">
                  
                 <table summary="Shopping cart">
-                <form action="" method="post" name="myform">
                   <tr>
                     <th class="goods-page-image">Image</th>
                     <th class="goods-page-description">Description</th>
@@ -285,6 +284,7 @@ background: linear-gradient(top,#42a4e0,#2e88c0);
                                 	<c:when test="${buyerItem.getOrder().getOrderStatus() eq 6}"></c:when>
                                 	<c:when test="${buyerItem.getOrder().getOrderStatus() eq 7}"></c:when>
                                 	<c:when test="${buyerItem.getOrder().getOrderStatus() eq 8}"></c:when>
+                                    <c:when test="${buyerItem.getOrder().getOrderStatus() eq 9}">Commmented</c:when>
                                 </c:choose>
                    			</td>
                     		<td class="goods-page-ref-no">
@@ -292,14 +292,14 @@ background: linear-gradient(top,#42a4e0,#2e88c0);
                                		<c:when test="${buyerItem.getOrder().getOrderStatus() eq 1}"><a href='/onPaidSingleClick?orderId=${buyerItem.getOrder().getOrderId()}' ><font size="5px">Pay</font></a><br/><br/></c:when>
                                 	<c:when test="${buyerItem.getOrder().getOrderStatus() eq 3}">To be Shipped</c:when>
                                 	<c:when test="${buyerItem.getOrder().getOrderStatus() eq 4}"><a href='/onConfirmReceivedClick?orderId=${buyerItem.getOrder().getOrderId()}' ><font size="5px">Confirm receipt</font></a><br/><br/></c:when>
-                                	<c:when test="${buyerItem.getOrder().getOrderStatus() eq 5}">Comment</c:when>
+                                	<c:when test="${buyerItem.getOrder().getOrderStatus() eq 5}"><a href='/buyerComment?orderId=${buyerItem.getOrder().getOrderId()}' ><font size="5px">Comment</font></a><br/><br/> </c:when>
                                 </c:choose>
                     		</td>
                  		 </tr>
+
                  		 </c:forEach>
        			 </c:otherwise>
        			 </c:choose>
-  				</form>
                 </table>
                 </div>
               

@@ -24,7 +24,7 @@ public class BackupUtil {
      * avePath 数据库导出文件保存路径
      * databaseName 要导出的数据库名
      */
-    public static boolean backup(String fileName, String filePath) throws InterruptedException {
+    public static boolean backup(String fileName,String filePath) throws InterruptedException {
         Properties properties = new Properties();
         try {
 //            properties.load(new FileInputStream(new File("src/main/java/com/ten/ParkNShop/util/backup.properties")));//静态调试
@@ -50,7 +50,7 @@ public class BackupUtil {
         String password = properties.getProperty("password");
         String savePath = properties.getProperty("savePath");
         String databaseName = properties.getProperty("databaseName");
-
+//        System.out.println(hostIP+userName);
         File saveFile = new File(savePath);
         if (!saveFile.exists()) {// 如果目录不存在  
             saveFile.mkdirs();// 创建文件夹  
@@ -161,6 +161,10 @@ public class BackupUtil {
                 writer.close();
             } catch (IOException e) {
                 return false;
+            Process process = Runtime.getRuntime().exec("mysql -h" + hostIP + " -u" + userName + " -p" + password +" " + databaseName+ " < " + filePath);
+            System.out.println(filePath);
+            if(process.waitFor() == 0){//0 表示线程正常终止。
+                return true;
             }
         }
         return true;

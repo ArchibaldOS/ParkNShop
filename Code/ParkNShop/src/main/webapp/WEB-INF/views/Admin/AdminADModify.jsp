@@ -106,12 +106,6 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label">AD Click Url</label>
-                    <div class="col-sm-10">
-                        <input class="form-control" id="focusedInput5" type="text" name="adClickUrl" value="${ad.ADClickUrl}">
-                    </div>
-                </div>
-                <div class="form-group">
                     <label class="col-sm-2 control-label">AD Description</label>
                     <div class="col-sm-10">
                         <input class="form-control" id="focusedInput9" type="text" name="adDescription" value="${ad.ADDescription}">

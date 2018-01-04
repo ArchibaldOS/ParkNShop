@@ -33,11 +33,10 @@
     <link rel="stylesheet" href="assets/css2/main.css">
     <link rel="stylesheet" href="assets/css2/style.css">
     <link rel="stylesheet" href="assets/css2/responsive.css">
-    <link rel="stylesheet" href="assets/css2/button.css">
     <!-- Fonts Online -->
     <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
 
-
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,300,700,900,100' rel='stylesheet' type='text/css'>
     <!-- JavaScripts -->
     <script src="assets/js3/vendors/modernizr.js"></script>
 
@@ -45,141 +44,178 @@
         #productName{
             word-break: break-all;white-space: normal;
         }
-        .button{
-            background-color:#FA8072;
 
-        }
-        .aaa{
-            border-radius: 20px;
-
+        h3{
+            font-family:Microsoft YaHei;
+            color:white;
+            font-style:italic;
         }
     </style>
 </head>
 <body>
 
 <div id="wrap" class="layout-1">
+  <!-- Top bar -->
+  <div class="top-bar">
+    <div class="container">
+      <p>Welcome to ParkNShop!</p>
+      <div class="right-sec">
+        <ul>
+          <%
+            try{
+              String user = (String)session.getAttribute( "Buyer" );
+              if ( user == null )
+              {
+          %>
+          <ul>
+            <li><a href="/BuyerLogin">Login</a></li>
+            <li><a href="/BuyerRegister">Register</a></li>
+          </ul>
+          <%
+            }
+          }catch(Exception e){
+          %>
+          <li>${ sessionScope.Buyer.buyerAccount}</li>
+          <%
+              out.println( "<li><a href = '/BuyerLogout' >Logout</a></li>" );
 
-    <!-- Top bar -->
-    <div class="top-bar">
-        <div class="container">
-            <p>Welcome to ParkNShop!</p>
-            <div class="right-sec">
-                <ul>
-                    <%
-                        try {
-                            String user = (String) session.getAttribute("seller");
+            }
+          %>
+          <li><a href="/viewMyOrdersClick">View orders</a></li>
+          <li><a href="/ContactManager">Contact Manager</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
 
-                            if (user == null) {
-                    %>
-                    <ul>
-                        <li><a href="/sellerLogin">login</a></li>
-                        <li><a href="/sellerRegister">register</a></li>
-                    </ul>
-                    <%
-                        }
-                    } catch (Exception e) {
-                    %>
-                    <li>${ sessionScope.seller.sellerEmail}</li>
-                    <%
-                            out.println("<li><a href = '/sellerLogout' >log out</a></li>");
-                        }
-                    %>
-                    <li><a href="contactManager.html">Contact Manager</a></li>
-                    <li><a href="#.">FAQ </a></li>
-                </ul>
-            </div>
+   <header>
+    <div class="container">
+      <div class="logo"> <a href="/BuyerIndex"><img src="assets/images/logo.png"></a> </div>
+      <form class="search-cate" action="/SearchProducts">
+        <select class="selectpicker" name="searchType">
+          <option value="0"> All Categories</option>
+          <option value="1"> TV& Home Theater</option>
+          <option value="2"> Computers & Tablets</option>
+          <option value="3"> Cell Phones</option>
+          <option value="4"> Cameras & Camcorders</option>
+          <option value="5"> Audio</option>
+          <option value="6"> Car Electronics & GPS</option>
+          <option value="7"> Video, Games, Movies & Music</option>
+          <option value="8"> Health, Fitness & Sports</option>
+          <option value="9"> Home & Office</option>
+        </select>
+        <input type="search" placeholder="Search entire store here..." name="searchInfo">
+        <button class="submit" type="submit"><i class="icon-magnifier"></i></button>
+      </form>
+
+      <!-- Cart Part -->
+      <%--添加一个判断--%>
+      <%--判断是否为游客，若为游客则点击购物车跳转到用户登录界面--%>
+      <%--若不是游客，则判断其购物车是否为空，若为空则显示购物车内暂无商品--%>
+      <%--若购物车内有商品则显示购物车内商品--%>
+      <%
+        try{
+          String user = (String)session.getAttribute( "Buyer" );
+          if ( user == null )
+          {
+      %>
+      <ul class="nav navbar-right cart-pop" href="/BuyerLogin"></ul>
+      <%
+          }
+        }catch(Exception e) {
+
+        }
+      %>
+
+      <ul class="nav navbar-right cart-pop">
+        <c:choose>
+          <c:when test="${buyerCart.getItems() eq null}">
+            <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+              <span class="itm-cont">0</span> <i class="flaticon-shopping-bag"></i>
+              <strong>My Cart</strong> <br>
+              <span>0 item - $0</span></a>
+              <ul class="dropdown-menu">
+                No product yet
+              </ul>
+            </li>
+          </c:when>
+          <c:otherwise>
+            <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+              <span class="itm-cont">${buyerCart.getProductAmount()}</span> <i class="flaticon-shopping-bag"></i>
+              <strong>My Cart</strong> <br>
+              <span>${buyerCart.getProductAmount()} item(s) - ${buyerCart.getTotalPrice()}</span></a>
+              <ul class="dropdown-menu">
+                <c:forEach var="buyerItem" items="${buyerCart.getItems()}">
+                  <li>
+                    <div class="media-left"> <a href="/BuyerProductDetail?productId=${buyerItem.getProduct().productId}" class="thumb"> <img src="${pageContext.request.contextPath}/upload/productPicture/${buyerItem.getProduct().productPicture}" class="img-responsive" alt="" > </a> </div>
+                    <div class="media-body"> <a href="/BuyerProductDetail?productId=${buyerItem.getProduct().productId}" class="tittle"></a> <span> ${buyerItem.getProduct().getProductPrice()}* ${buyerItem.getAmount()}</span> </div>
+                  </li></c:forEach>
+                <li class="btn-cart"> <a href="/BuyerCart?buyerId=${sessionScope.Buyer.buyerId}" class="btn-round">View Cart</a> </li>
+              </ul>
+            </li>
+          </c:otherwise>
+        </c:choose>
+      </ul>
+    </div>
+    <br>
+  </header>
+
+    <div style="font-family:Microsoft YaHei;color:white;max-width:80%;background-color: #1c94c4;border-radius:10px;margin:20px auto;padding:10px;height:10%;">
+        <c:set var="s" value="${requestScope.shop }" />
+        <h3 style="vertical-align:middle;margin-left:30px;display:inline-block">${s.shopName }</h3>
+
+        <div style="vertical-align:middle;display:inline-block;width:20%;float:right">
+            <label>Shop Phone:${s.sellerPhone }</label></br>
+            <label>Shop Address:${s.sellerAddress }</label></br>
+        </div>
+
+        <div style="vertical-align:middle;display:inline-block;width:30%;float:right">
+            <label>Seller Name:${s.sellerName }</label></br>
+            <label>Shop Email:${s.sellerEmail }</label></br>
+            <label>Introduction:${s.shopIntroduction }</label>
         </div>
     </div>
 
-    <header>
-        <div class="container">
-            <div class="logo"> <a href="#"><img src="assets/images/logo.png" alt="parknshop" ></a> </div>
-            <div class="search-cate">
-                <select class="selectpicker">
-                    <option> All Categories</option>
-                    <option> TV& Home Theater</option>
-                    <option> Computers & Tablets</option>
-                    <option> Cell Phones</option>
-                    <option> Cameras & Camcorders</option>
-                    <option> Audio</option>
-                    <option> Car Electronics & GPS</option>
-                    <option> Video, Games, Movies & Music </option>
-                    <option> Health, Fitness & Sports</option>
-                    <option> Home & Office</option>
-                </select>
-                <input type="search" placeholder="Search entire store here...">
-                <button class="submit" type="submit"><i class="icon-magnifier"></i></button>
-            </div>
-        </div>
-
-    </header>
-
-    <div style="text-align: center;">
-        <c:set var="s" value="${shop }" />
-        <table class="table table-striped hovertable" style="width:80%;margin-left:10%;margin-right:10%;margin-top:5%;">
-            <tr onmouseover="this.style.backgroundColor='#ADD8E6';" onmouseout="this.style.backgroundColor='#F7F7F7';">
-                <td width="200px" style="font-size: 20px;">shop name</td>
-                <td>${s.shopName }</td>
-            </tr>
-            <tr  onmouseover="this.style.backgroundColor='#ADD8E6';" onmouseout="this.style.backgroundColor='#FFFFFF';">
-                <td width="200px" style="font-size: 20px;">owner name</td>
-                <td>${s.sellerName }</td>
-            </tr>
-            <tr  onmouseover="this.style.backgroundColor='#ADD8E6';" onmouseout="this.style.backgroundColor='#F7F7F7';">
-                <td width="200px" style="font-size: 20px;">shop phone</td>
-                <td>${s.sellerPhone }</td>
-            </tr>
-            <tr  onmouseover="this.style.backgroundColor='#ADD8E6';" onmouseout="this.style.backgroundColor='#FFFFFF';">
-                <td width="200px" style="font-size: 20px;">shop E-mail</td>
-                <td>${s.sellerEmail }</td>
-            </tr>
-            <tr  onmouseover="this.style.backgroundColor='#ADD8E6';" onmouseout="this.style.backgroundColor='#F7F7F7';">
-                <td width="200px" style="font-size: 20px;">shop Introduction</td>
-                <td>${s.shopIntroduction }</td>
-            </tr>
-        </table>
-
-    <div style="text-align:center;color:white;background-color: #0a95da;padding-bottom:5px;padding-top:5px;width:80%;margin:0 auto;border-radius: 20px">Product</div>
-
-    <c:set var="page" value="${requestScope.products }" />
-    <c:choose>
-    <c:when test="${page ne null and page.list ne null }">
-    <div style="margin-left:10%;margin-right:10%;">
-        <c:forEach items="${page.list }" var="p">
-            <!-- single-product-start -->
-            <div class="single-product" style="float:left;width:19%;margin-left:2%;margin-right:2%;margin-top:3%" >
-                <div class="single-product-img" style="width:100%;height:270px">
-                    <img src="${pageContext.request.contextPath}/upload/productPicture/${p.productPicture}" alt="parknshop" width="100%" height="100%"/>
-                </div>
-                <div class="single-product-content" style="width:100%" id="productName">
-                    <div class="product-title">
-                        <h5>
-                            <a href="#">${p.productName }</a>
-                        </h5>
-                    </div>
-                    <div class="price-box">
-                        <span class="price">￥${p.productPrice }</span>
-                    </div>
-                    <div style="width:100%;height:50px">
-                        <div style="width:100px;height:50px;float:left">
-                            <a class="button button-pill button-small" href="/productUpdate?productId=${p.productId}">
-                                update</a>
+    <div style="text-align:center;color:white;background-color: #0a95da;padding-bottom:5px;padding-top:5px;max-width:80%;margin:0 auto;border-radius: 20px">Product</div>
+    <section class="featur-tabs padding-top-60 padding-bottom-60">
+    <div class="container">
+        <c:set var="page" value="${requestScope.products }" />
+        <c:choose>
+            <c:when test="${page ne null and page.list ne null }">
+                <div class="item-col-5">
+                    <c:forEach items="${page.list }" var="p">
+                        <!-- Product -->
+                        <div class="product">
+                            <article> <img class="img-responsive" src="${pageContext.request.contextPath}/upload/productPicture/${p.productPicture}" alt="" >
+                                <!-- Content -->
+                            <span class="tag">
+                            <c:choose>
+                                <c:when test="${p.productType eq 1}">TV& Home Theater</c:when>
+                                <c:when test="${p.productType eq 2}">Computers & Tablets</c:when>
+                                <c:when test="${p.productType eq 3}">Cell Phones</c:when>
+                                <c:when test="${p.productType eq 4}">Cameras & Camcorders</c:when>
+                                <c:when test="${p.productType eq 5}">Audio</c:when>
+                                <c:when test="${p.productType eq 6}">Car Electronics & GPS</c:when>
+                                <c:when test="${p.productType eq 7}">Video, Games, Movies & Music</c:when>
+                                <c:when test="${p.productType eq 8}">Health, Fitness & Sports</c:when>
+                                <c:when test="${p.productType eq 9}">Home & Office</c:when>
+                            </c:choose>
+                            </span>
+                              <a href="/ProductDetail?productId=${p.productId}" class="tittle">${p.productName}</a>
+                            <!-- Reviews -->
+                            <div class="price">HK$${p.productPrice} </div>
+                                <a href="/AddToCart?buyerId=${sessionScope.Buyer.buyerId}&productId=${p.productId}" class="cart-btn"><div style="margin-top:15px;"><i class="icon-basket-loaded"></i></div></a> </article>
                         </div>
-                        <div style="width:100px;height:50px;float:right">
-                            <a class="button button-pill button-small" href="/deleteProduct?productId=${p.productId}">
-                                delete</a>
-                        </div>
-                    </div>
+                    </c:forEach>
                 </div>
-            </div>
-            <!-- single-product-end -->
-        </c:forEach>
+            </c:when>
+            <c:otherwise>
+                <div style="text-align: center;"><font size="10px"><strong>no found data!</strong></font></div>
+            </c:otherwise>
+        </c:choose>
     </div>
-    </c:when>
-    <c:otherwise>
-    <div style="text-align: center;"><font size="10px"><strong>no found data!</strong></font></div>
-    </c:otherwise>
-    </c:choose>
+    </section>
+</div>
     <!-- mobile-menu-area-start -->
     <!-- modal-end -->
     <!-- all js here -->

@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : MySQLRoot
-Source Server Version : 50718
+Source Server         : ParkNShop
+Source Server Version : 50720
 Source Host           : localhost:3306
 Source Database       : parknshop
 
 Target Server Type    : MYSQL
-Target Server Version : 50718
+Target Server Version : 50720
 File Encoding         : 65001
 
-Date: 2018-01-04 17:51:29
+Date: 2018-01-04 22:38:45
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -68,7 +68,7 @@ CREATE TABLE `admins` (
 -- ----------------------------
 -- Records of admins
 -- ----------------------------
-INSERT INTO `admins` VALUES ('1', 'admin', 'admin', 'admin', '1', '12345678910', '1');
+INSERT INTO `admins` VALUES ('1', 'admin', 'admin', 'admin', '1.98', '12345678910', '1');
 INSERT INTO `admins` VALUES ('2', 'admin2', 'admin2', 'admin2', '0', '110', '1');
 
 -- ----------------------------
@@ -119,7 +119,7 @@ CREATE TABLE `buyer` (
   `buyerStatus` int(11) NOT NULL,
   `buyerBalance` float NOT NULL DEFAULT '0',
   PRIMARY KEY (`buyerId`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of buyer
@@ -130,6 +130,7 @@ INSERT INTO `buyer` VALUES ('4', 'buyer4', 'buyer4', 'buy4address', '12345678891
 INSERT INTO `buyer` VALUES ('5', 'buyer5', 'buyer5', 'buy5address', '123456788910', 'buyer5', '3', '0');
 INSERT INTO `buyer` VALUES ('6', 'buyer6', 'buyer6', 'bue6address', '1234', 'buyer6', '1', '0');
 INSERT INTO `buyer` VALUES ('7', '1112@qq.com', 'buybuybuy', '12311123', '13522212111', '111', '1', '0');
+INSERT INTO `buyer` VALUES ('8', 'cxh@qq.com', 'buybuybuybuy', '1223344555', '12234455555', '1234', '1', '0');
 
 -- ----------------------------
 -- Table structure for comments
@@ -140,7 +141,7 @@ CREATE TABLE `comments` (
   `buyerId` int(11) DEFAULT NULL,
   `productId` int(11) DEFAULT NULL,
   `content` varchar(512) NOT NULL,
-  `reply` varchar(512) NOT NULL,
+  `reply` varchar(512) DEFAULT NULL,
   `commentTime` datetime NOT NULL,
   PRIMARY KEY (`commentId`),
   KEY `FK_Reference_18` (`buyerId`),
@@ -235,7 +236,7 @@ CREATE TABLE `orders` (
   CONSTRAINT `FK_Reference_2` FOREIGN KEY (`sellerId`) REFERENCES `seller` (`sellerId`),
   CONSTRAINT `FK_Reference_24` FOREIGN KEY (`productId`) REFERENCES `product` (`productId`),
   CONSTRAINT `FK_Reference_55` FOREIGN KEY (`orderCommissionId`) REFERENCES `commission` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of orders
@@ -245,7 +246,7 @@ INSERT INTO `orders` VALUES ('2', '2', '4', '3', '1', '12', '123', '5', '2017-12
 INSERT INTO `orders` VALUES ('4', '5', '6', '3', '1', '2', '336', '3', '2017-12-15 16:39:56', '1');
 INSERT INTO `orders` VALUES ('6', '6', '3', '1', '1', '999', '123456', '4', '2017-12-17 19:33:14', '1');
 INSERT INTO `orders` VALUES ('7', '6', '3', '1', '1', '56', '123456', '4', '2017-12-17 19:33:14', '1');
-INSERT INTO `orders` VALUES ('8', '1', '2', '1', '1', '1', 'buy2address', '3', '2017-12-29 11:17:35', '1');
+INSERT INTO `orders` VALUES ('8', '1', '2', '1', '1', '1', 'buy2address', '4', '2017-12-29 11:17:35', '1');
 INSERT INTO `orders` VALUES ('9', '2', '3', '3', '1', '95', '12313', '5', '2018-01-04 16:31:11', '1');
 INSERT INTO `orders` VALUES ('10', '2', '3', '3', '1', '195', '12313', '5', '2018-01-04 16:31:11', '1');
 INSERT INTO `orders` VALUES ('11', '2', '3', '3', '1', '138', '12313', '5', '2018-01-04 16:31:11', '1');
@@ -253,6 +254,7 @@ INSERT INTO `orders` VALUES ('12', '2', '3', '3', '1', '125', '12313', '5', '201
 INSERT INTO `orders` VALUES ('13', '2', '3', '3', '1', '138', '12313', '5', '2018-01-04 16:31:11', '1');
 INSERT INTO `orders` VALUES ('14', '2', '3', '3', '1', '46', '12313', '5', '2018-01-04 16:31:11', '1');
 INSERT INTO `orders` VALUES ('15', '2', '3', '3', '1', '98', '12313', '5', '2018-01-04 16:31:11', '1');
+INSERT INTO `orders` VALUES ('20', '1', '8', '1', '1', '1', '1223344555', '5', '2018-01-04 22:21:53', '1');
 
 -- ----------------------------
 -- Table structure for product
@@ -276,7 +278,7 @@ CREATE TABLE `product` (
 -- ----------------------------
 -- Records of product
 -- ----------------------------
-INSERT INTO `product` VALUES ('1', '1', '1', '1', '1', '1', '0', '1', 'b4ac0721c2994519a487d2f926540c3a.jpg');
+INSERT INTO `product` VALUES ('1', '1', '1', '1', '1', '-6', '0', '1', 'b4ac0721c2994519a487d2f926540c3a.jpg');
 INSERT INTO `product` VALUES ('2', '1', '123', '1', '11', '1', '0', '1', '17d530ab3c234e96b779b599be9e0057.jpg');
 INSERT INTO `product` VALUES ('3', '1', '123', '1', '123', '1', '0', '123', 'b3d7e407b07441eba384d3fbbcbfc478.jpg');
 
@@ -300,7 +302,7 @@ CREATE TABLE `seller` (
 -- ----------------------------
 -- Records of seller
 -- ----------------------------
-INSERT INTO `seller` VALUES ('1', 'Aj', 'Aj\'s Shop', '111', '123@123.com', '12345678910', '0', 'a shop', '1');
+INSERT INTO `seller` VALUES ('1', 'Aj', 'Aj\'s Shop', '111', '123@123.com', '12345678910', '0.02', 'a shop', '1');
 INSERT INTO `seller` VALUES ('2', 'Aj2', 'Aj2\'s Shop', '111', '1234@123.com', '12345678911', '0', 'a shop', '0');
 INSERT INTO `seller` VALUES ('3', 'Aj3', 'Aj3\'s Shop', '111', '12345@123.com', '12345678912', '0', 'a shop', '3');
 INSERT INTO `seller` VALUES ('4', 'aa', 'aa\'s Shop', '111', '123456@123.com', '12345678913', '0', 'a shop', '1');

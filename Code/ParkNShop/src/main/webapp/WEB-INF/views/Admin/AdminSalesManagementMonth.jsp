@@ -96,7 +96,7 @@
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <span>Commission:0.2</span>
+                    <span>Income:</span>
                     <table class="table table-bordered">
                         <thead>
                         <tr>

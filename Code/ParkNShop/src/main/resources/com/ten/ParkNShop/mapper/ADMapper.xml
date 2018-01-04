@@ -261,6 +261,10 @@
 	     where
 			 sellerId = #{sellerId})
   </select>
+
+  <select id="getADTotalIncomeWithTime" parameterType="java.lang.String" resultMap="BaseResultMap">
+
+  </select>
   
 
 </mapper>

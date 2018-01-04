@@ -72,6 +72,9 @@ public interface ADMapper {
     // 获取 Top5 店铺广告
     List<AD> selectADTop5Store();
 
+    //获取一段时间之内的广告收入
+    float getADTotalIncomeWithTime(@Param("startTime") String startTime, @Param("endTime") String endTime);
+
     List<AD> selectAllAD(@Param("start") int start, @Param("pageSize") int pageSize);
     
     List<AD> selectShopAD(@Param("sellerId")int sellerId);

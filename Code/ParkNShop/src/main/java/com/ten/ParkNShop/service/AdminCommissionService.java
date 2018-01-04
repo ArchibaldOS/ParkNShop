@@ -18,6 +18,8 @@ public interface AdminCommissionService {
 
     float selectLastCommission();
 
-    List<Commission> selectSomneCommission(int start, int pageSize);
+    List<Commission> selectSomeCommission(int start, int pageSize);
+
+    float getCommissionById(int commissionId);
 
 }

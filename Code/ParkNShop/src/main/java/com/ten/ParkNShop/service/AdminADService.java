@@ -1,8 +1,6 @@
 package com.ten.ParkNShop.service;
 
 import com.ten.ParkNShop.entity.AD;
-import org.apache.ibatis.annotations.Param;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -43,5 +41,8 @@ public interface AdminADService {
 
     // 获取所有的 AD
     List<AD> selectAllAD(int start, int pageSize);
+
+    // 获取一段时间之内的广告收入
+    float getADTotalIncomeWithTime(String startTime, String endTime);
 
 }

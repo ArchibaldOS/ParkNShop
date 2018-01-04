@@ -66,7 +66,7 @@ public class AdminIndexController {
         String dateString = formatter.format(date);
 
         String filePath = request.getServletContext().getRealPath("/");
-        filePath = filePath+"config/backup.properties";
+        filePath = filePath+"/config/backup.properties";
 //        System.out.println(filePath);
 
         String file = adminAccount+"_"+dateString+".sql";
@@ -79,7 +79,7 @@ public class AdminIndexController {
 //            System.out.println(System.getProperty("user.home")+"/Desktop/GitProject/ParkNShop/Backup/"+adminAccount+"_"+dateString+".sql");
             //System.getProperty("user.home")为获取用户的主目录
             String basePath =request.getServletContext().getRealPath("/");
-            basePath=basePath.substring(0,basePath.length()-32);
+            basePath=basePath.substring(0,basePath.length()-31);
             System.out.println(basePath);
             backupHistory.setBackupfilepath(basePath+"Backup/"+adminAccount+"_"+dateString+".sql");
             backupHistoryMapper.insert(backupHistory);
@@ -94,7 +94,9 @@ public class AdminIndexController {
     public String adminRecover(HttpServletRequest request){
         int backupId = Integer.parseInt(request.getParameter("backupId"));
         BackupHistory backupHistory =backupHistoryMapper.selectByPrimaryKey(backupId);
-        BackupUtil.recover(backupHistory.getBackupfilepath());
+        String propertiesPath = request.getServletContext().getRealPath("/");
+        propertiesPath = propertiesPath+"/config/backup.properties";
+        BackupUtil.recover(propertiesPath,backupHistory.getBackupfilepath());
         return "redirect:/AdminIndex";
     }
     /**

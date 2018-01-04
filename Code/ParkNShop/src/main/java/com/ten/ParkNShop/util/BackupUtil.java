@@ -100,11 +100,11 @@ public class BackupUtil {
         return false;
     }
 
-    public static boolean recover(String filePath) {
+    public static boolean recover(String proertiesPath, String filePath) {
         Properties properties = new Properties();
         try {
 
-            properties.load(new FileInputStream(new File(filePath)));
+            properties.load(new FileInputStream(new File(proertiesPath)));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -113,6 +113,7 @@ public class BackupUtil {
         String password = properties.getProperty("password");
         String databaseName = properties.getProperty("databaseName");
 
+//        System.out.println(hostIP+userName+password+databaseName);
         OutputStream out = null;
         BufferedReader br = null;
         OutputStreamWriter writer = null;
@@ -123,7 +124,7 @@ public class BackupUtil {
 
         try {
 
-            Process process = Runtime.getRuntime().exec("mysql -h" + hostIP + " -u" + userName + " -p" + password + " --default-character-set=utf " + databaseName);
+            Process process = Runtime.getRuntime().exec("mysql -h" + hostIP + " -u" + userName + " -p" + password +" "+ databaseName);
 
             out = process.getOutputStream();//控制台的输入信息作为输出流
             String inStr;
@@ -134,16 +135,6 @@ public class BackupUtil {
             while ((inStr = br.readLine()) != null) {
                 sb.append(inStr + "\r\n");
             }
-
-//            InputStreamReader inputStreamReader = new InputStreamReader(process.getInputStream(), "utf8");
-//            printWriter = new PrintWriter(new OutputStreamWriter(new FileOutputStream(filePath), "utf8"));
-//            String line;
-//            bufferedReader = new BufferedReader(inputStreamReader);
-//
-//            while ((line = bufferedReader.readLine()) != null) {
-//                printWriter.println(line);
-//            }
-//            printWriter.flush();
 
             outStr = sb.toString();
 //            System.out.println(outStr);

@@ -12,19 +12,19 @@ import java.util.Properties;
 public class BackupUtil {
 
     /**
-     * Java代码实现MySQL数据库导出 
+     * Java代码实现MySQL数据库导出
      *
+     * @return 返回true表示导出成功，否则返回false。
+     * <p>
+     * * @param fileName 数据库导出文件文件名
      * @author Archibald
      * hostIP MySQL数据库所在服务器地址IP
      * userName 进入数据库所需要的用户名
      * password 进入数据库所需要的密码
      * avePath 数据库导出文件保存路径
      * databaseName 要导出的数据库名
-     * @return 返回true表示导出成功，否则返回false。
-     *
-     * * @param fileName 数据库导出文件文件名
      */
-    public static boolean backup(String fileName,String filePath) throws InterruptedException {
+    public static boolean backup(String fileName, String filePath) throws InterruptedException {
         Properties properties = new Properties();
         try {
 //            properties.load(new FileInputStream(new File("src/main/java/com/ten/ParkNShop/util/backup.properties")));//静态调试
@@ -55,7 +55,7 @@ public class BackupUtil {
         if (!saveFile.exists()) {// 如果目录不存在  
             saveFile.mkdirs();// 创建文件夹  
         }
-        if(!savePath.endsWith(File.separator)){
+        if (!savePath.endsWith(File.separator)) {
             savePath = savePath + File.separator;
         }
         PrintWriter printWriter = null;
@@ -72,16 +72,16 @@ public class BackupUtil {
             bufferedReader = new BufferedReader(inputStreamReader);
             String line;
 
-            while((line = bufferedReader.readLine())!= null){
+            while ((line = bufferedReader.readLine()) != null) {
                 printWriter.println(line);
             }
             printWriter.flush();
 
 //            System.out.println(process.waitFor());
-            if(process.waitFor() == 0){//0 表示线程正常终止。
+            if (process.waitFor() == 0) {//0 表示线程正常终止。
                 return true;
             }
-        }catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         } finally {
             try {
@@ -98,7 +98,7 @@ public class BackupUtil {
         return false;
     }
 
-    public static boolean recover(String filePath){
+    public static boolean recover(String filePath) {
         Properties properties = new Properties();
         try {
 
@@ -111,21 +111,70 @@ public class BackupUtil {
         String password = properties.getProperty("password");
         String databaseName = properties.getProperty("databaseName");
 
+        OutputStream out = null;
+        BufferedReader br = null;
+        OutputStreamWriter writer = null;
+
+        PrintWriter printWriter = null;
+        BufferedReader bufferedReader = null;
+
+
+
 
         try {
 
-            Process process = Runtime.getRuntime().exec("mysql -h" + hostIP + " -u" + userName + " -p" + password +" " + databaseName+ " < " + filePath);
-//            System.out.println(process.waitFor());
-            if(process.waitFor() == 0){//0 表示线程正常终止。
-                return true;
+            Process process = Runtime.getRuntime().exec("mysql -h" + hostIP + " -u" + userName + " -p" + password + " --default-character-set=utf " + databaseName);
+
+            out = process.getOutputStream();//控制台的输入信息作为输出流
+            String inStr;
+            StringBuffer sb = new StringBuffer("");
+            String outStr;
+            br = new BufferedReader(new InputStreamReader(
+                    new FileInputStream(filePath), "utf8"));
+            while ((inStr = br.readLine()) != null) {
+                sb.append(inStr + "\r\n");
             }
-        }catch (IOException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+
+//            InputStreamReader inputStreamReader = new InputStreamReader(process.getInputStream(), "utf8");
+//            printWriter = new PrintWriter(new OutputStreamWriter(new FileOutputStream(filePath), "utf8"));
+//            String line;
+//            bufferedReader = new BufferedReader(inputStreamReader);
+//
+//            while ((line = bufferedReader.readLine()) != null) {
+//                printWriter.println(line);
+//            }
+//            printWriter.flush();
+
+            outStr = sb.toString();
+//            System.out.println(outStr);
+            writer = new OutputStreamWriter(out, "utf8");
+            writer.write(outStr);
+            // 注：这里如果用缓冲方式写入文件的话，会导致中文乱码，用flush()方法则可以避免
+            writer.flush();
+        } catch (Exception e) {
+            return false;
+        } finally {
+            // 别忘记关闭输入输出流
+            try {
+                out.close();
+                br.close();
+                writer.close();
+            } catch (IOException e) {
+                return false;
+            }
         }
-        return false;
-    }
+        return true;
+////            System.out.println(process.waitFor());
+//            if(process.waitFor() == 0){//0 表示线程正常终止。
+//                return true;
+//            }
+//        }catch (IOException e) {
+//            e.printStackTrace();
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+//        return false;
+//    }
 
 
 //    public static void main(String[] args){
@@ -139,4 +188,5 @@ public class BackupUtil {
 //            e.printStackTrace();
 //        }
 //    }
+    }
 }  

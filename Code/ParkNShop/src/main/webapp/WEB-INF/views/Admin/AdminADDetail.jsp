@@ -129,10 +129,6 @@
                     <td><a href="${ad.ADPhotoUrl}">Click to See</a></td>
                 </tr>
                 <tr>
-                    <td>AD ClickUrl</td>
-                    <td><a href="${ad.ADClickUrl}">${ad.ADClickUrl}</a></td>
-                </tr>
-                <tr>
                     <td>AD Description</td>
                     <td>${ad.ADDescription}</td>
                 </tr>

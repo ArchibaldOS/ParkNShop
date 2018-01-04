@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.7.13, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.18, for Win64 (x86_64)
 --
 -- Host: localhost    Database: parknshop
 -- ------------------------------------------------------
--- Server version	5.7.13-log
+-- Server version	5.7.18
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -14,6 +14,41 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `ad`
+--
+
+DROP TABLE IF EXISTS `ad`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ad` (
+  `ADId` int(11) NOT NULL AUTO_INCREMENT,
+  `ADType` int(11) NOT NULL,
+  `ADStatus` int(11) NOT NULL,
+  `otherId` int(11) DEFAULT NULL,
+  `adminId` int(11) DEFAULT NULL,
+  `ADName` varchar(256) NOT NULL,
+  `ADPhotoUrl` varchar(256) NOT NULL,
+  `ADDescription` varchar(255) NOT NULL,
+  `ADPrice` float NOT NULL,
+  `ADStartDate` datetime NOT NULL,
+  `ADTime` int(11) NOT NULL,
+  PRIMARY KEY (`ADId`),
+  KEY `FK_Reference_16` (`adminId`),
+  CONSTRAINT `FK_Reference_16` FOREIGN KEY (`adminId`) REFERENCES `admins` (`adminId`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ad`
+--
+
+LOCK TABLES `ad` WRITE;
+/*!40000 ALTER TABLE `ad` DISABLE KEYS */;
+INSERT INTO `ad` VALUES (2,2,3,1,1,'testAD','https://www.baidu.com','ADDescription',1000,'2018-01-02 12:15:07',10),(3,2,2,1,1,'testAD','https://www.baidu.com','ADDescription',1000,'2018-01-02 12:15:07',10),(4,1,2,1,1,'testAD','https://www.baidu.com','ADDescription',1000,'2018-01-02 12:15:07',10),(5,1,2,1,1,'testAD','https://www.baidu.com','ADDescription',1000,'2018-01-02 12:15:07',10);
+/*!40000 ALTER TABLE `ad` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `admins`
@@ -58,7 +93,7 @@ CREATE TABLE `backuphistory` (
   `backupDate` datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP,
   `backupFilePath` varchar(255) NOT NULL,
   PRIMARY KEY (`backupId`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -67,7 +102,7 @@ CREATE TABLE `backuphistory` (
 
 LOCK TABLES `backuphistory` WRITE;
 /*!40000 ALTER TABLE `backuphistory` DISABLE KEYS */;
-INSERT INTO `backuphistory` VALUES (1,'','2017-12-31 16:46:41','C:/Users/Kevin_coco/Desktop/GitProject/ParkNShop/Backup/_2017-12-31_16:46:41.sql'),(2,'','2017-12-31 16:48:27','C:/Users/Kevin_coco/Desktop/GitProject/ParkNShop/Backup/_2017-12-31_16:48:27.sql'),(3,'','2017-12-31 16:49:33','C:/Users/Kevin_coco/Desktop/GitProject/ParkNShop/Backup/_2017-12-31_16:49:32.sql'),(4,'','2017-12-31 16:52:03','C:/Users/Kevin_coco/Desktop/GitProject/ParkNShop/Backup/_2017-12-31_16:52:02.sql'),(5,'admin2','2017-12-31 16:53:31','C:/Users/Kevin_coco/Desktop/GitProject/ParkNShop/Backup/admin2_2017_12_31_16_53_30.sql'),(8,'admin','2018-01-02 11:40:27','C:\\Users\\Kevin_coco/Desktop/GitProject/ParkNShop/Backup/admin_2018_01_02_11_40_27.sql'),(9,'admin2','2018-01-02 11:47:12','C:\\Users\\Kevin_coco/Desktop/GitProject/ParkNShop/Backup/admin2_2018_01_02_11_47_12.sql');
+INSERT INTO `backuphistory` VALUES (1,'','2017-12-31 16:46:41','C:/Users/Kevin_coco/Desktop/GitProject/ParkNShop/Backup/_2017-12-31_16:46:41.sql'),(2,'','2017-12-31 16:48:27','C:/Users/Kevin_coco/Desktop/GitProject/ParkNShop/Backup/_2017-12-31_16:48:27.sql'),(3,'','2017-12-31 16:49:33','C:/Users/Kevin_coco/Desktop/GitProject/ParkNShop/Backup/_2017-12-31_16:49:32.sql'),(4,'','2017-12-31 16:52:03','C:/Users/Kevin_coco/Desktop/GitProject/ParkNShop/Backup/_2017-12-31_16:52:02.sql'),(5,'admin2','2017-12-31 16:53:31','C:/Users/Kevin_coco/Desktop/GitProject/ParkNShop/Backup/admin2_2017_12_31_16_53_30.sql'),(8,'admin','2018-01-02 11:40:27','C:\\Users\\Kevin_coco/Desktop/GitProject/ParkNShop/Backup/admin_2018_01_02_11_40_27.sql'),(9,'admin2','2018-01-02 11:47:12','C:\\Users\\Kevin_coco/Desktop/GitProject/ParkNShop/Backup/admin2_2018_01_02_11_47_12.sql'),(10,'','2018-01-02 16:17:37','C:\\Users\\TAD/Desktop/GitProject/ParkNShop/Backup/_2018_01_02_16_17_37.sql'),(11,'','2018-01-02 16:20:50','C:\\Users\\TAD/Desktop/GitProject/ParkNShop/Backup/_2018_01_02_16_20_49.sql'),(12,'','2018-01-02 16:24:12','D:\\CodeTools\\Tomcat\\bin/Desktop/GitProject/ParkNShop/Backup/_2018_01_02_16_24_12.sql'),(13,'','2018-01-02 16:40:28','D:\\Code\\Java\\ParkNShop\\Code\\ParkNShop\\target\\ParkNShop\\Backup/_2018_01_02_16_40_27.sql'),(14,'','2018-01-02 16:43:55','D:\\Code\\Java\\ParkNShop\\Code\\ParkNShop\\target\\ParkNShop\\Backup/_2018_01_02_16_43_54.sql'),(15,'','2018-01-02 16:45:30','D:\\Code\\Java\\ParkNShop\\CBackup/_2018_01_02_16_45_30.sql');
 /*!40000 ALTER TABLE `backuphistory` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -288,40 +323,6 @@ INSERT INTO `product` VALUES (1,1,'1',1,1,1,0,'1','b4ac0721c2994519a487d2f926540
 UNLOCK TABLES;
 
 --
--- Table structure for table `productad`
---
-
-DROP TABLE IF EXISTS `productad`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `productad` (
-  `productADId` int(11) NOT NULL AUTO_INCREMENT,
-  `sellerId` int(11) DEFAULT NULL,
-  `adminId` int(11) DEFAULT NULL,
-  `productADName` varchar(256) NOT NULL,
-  `productADPhotoUrl` varchar(256) NOT NULL,
-  `productADClickUrl` varchar(256) NOT NULL,
-  `productADPrice` float NOT NULL,
-  `productADStartDate` datetime NOT NULL,
-  `productADEndDate` datetime NOT NULL,
-  PRIMARY KEY (`productADId`),
-  KEY `FK_Reference_12` (`sellerId`),
-  KEY `FK_Reference_16` (`adminId`),
-  CONSTRAINT `FK_Reference_12` FOREIGN KEY (`sellerId`) REFERENCES `seller` (`sellerId`),
-  CONSTRAINT `FK_Reference_16` FOREIGN KEY (`adminId`) REFERENCES `admins` (`adminId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `productad`
---
-
-LOCK TABLES `productad` WRITE;
-/*!40000 ALTER TABLE `productad` DISABLE KEYS */;
-/*!40000 ALTER TABLE `productad` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `seller`
 --
 
@@ -379,40 +380,6 @@ LOCK TABLES `sellerblacklist` WRITE;
 /*!40000 ALTER TABLE `sellerblacklist` DISABLE KEYS */;
 /*!40000 ALTER TABLE `sellerblacklist` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `shopad`
---
-
-DROP TABLE IF EXISTS `shopad`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `shopad` (
-  `shopADId` int(11) NOT NULL AUTO_INCREMENT,
-  `sellerId` int(11) DEFAULT NULL,
-  `adminId` int(11) DEFAULT NULL,
-  `shopADName` varchar(512) NOT NULL,
-  `shopADPhotoUrl` varchar(512) NOT NULL,
-  `shopADClickUrl` varchar(512) NOT NULL,
-  `shopADPrice` float NOT NULL,
-  `shopADStartDate` datetime NOT NULL,
-  `shopADEndDate` datetime NOT NULL,
-  PRIMARY KEY (`shopADId`),
-  KEY `FK_Reference_19` (`sellerId`),
-  KEY `FK_Reference_20` (`adminId`),
-  CONSTRAINT `FK_Reference_19` FOREIGN KEY (`sellerId`) REFERENCES `seller` (`sellerId`),
-  CONSTRAINT `FK_Reference_20` FOREIGN KEY (`adminId`) REFERENCES `admins` (`adminId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `shopad`
---
-
-LOCK TABLES `shopad` WRITE;
-/*!40000 ALTER TABLE `shopad` DISABLE KEYS */;
-/*!40000 ALTER TABLE `shopad` ENABLE KEYS */;
-UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -423,4 +390,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-01-02 11:49:14
+-- Dump completed on 2018-01-02 16:46:24

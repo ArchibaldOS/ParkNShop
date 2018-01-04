@@ -118,7 +118,7 @@
     </selectKey>
     insert into orders (orderId, sellerId, buyerId,
       productId, count, totalPrice,
-      address, orderStatus, orderTime, orderCommission
+      address, orderStatus, orderTime, orderCommissionId
       )
     values (#{orderId,jdbcType=INTEGER}, #{sellerId,jdbcType=INTEGER}, #{buyerId,jdbcType=INTEGER},
       #{productId,jdbcType=INTEGER}, #{count,jdbcType=INTEGER}, #{totalPrice,jdbcType=REAL},
@@ -248,7 +248,7 @@
       address = #{address,jdbcType=VARCHAR},
       orderStatus = #{orderStatus,jdbcType=INTEGER},
       orderTime = #{orderTime,jdbcType=TIMESTAMP},
-      orderCommission = #{orderCommission, jdbcType=INTEGER}
+      orderCommissionId = #{orderCommissionId, jdbcType=INTEGER}
     where orderId = #{orderId,jdbcType=INTEGER}
   </update>
 

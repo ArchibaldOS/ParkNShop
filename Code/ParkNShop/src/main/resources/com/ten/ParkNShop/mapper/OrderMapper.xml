@@ -366,9 +366,17 @@
     update orders set orderStatus = 5
     where orderId = #{orderId}
   </update>
-
     <update id="changeToCommented" parameterType="int">
         update orders set orderStatus = 9
         where orderId = #{orderId}
     </update>
+    <select id="countAllOrder" resultType="int">
+        SELECT COUNT(1)
+        FROM orders
+    </select>
+    <select id="countAllcompletedOrder" resultType="int">
+        SELECT COUNT(1)
+        FROM orders
+        WHERE orderStatus = 2 OR orderStatus = 5 OR orderStatus = 7
+    </select>
 </mapper>

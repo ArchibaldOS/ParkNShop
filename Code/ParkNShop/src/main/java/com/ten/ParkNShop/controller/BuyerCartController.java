@@ -4,6 +4,7 @@ import com.ten.ParkNShop.entity.BuyerCart;
 import com.ten.ParkNShop.entity.Buyer;
 import com.ten.ParkNShop.entity.Commission;
 import com.ten.ParkNShop.entity.Product;
+import com.ten.ParkNShop.mapper.CommissionMapper;
 import com.ten.ParkNShop.service.AdminCommissionService;
 import com.ten.ParkNShop.service.BuyerCartService;
 import com.ten.ParkNShop.service.SellerProductService;
@@ -31,6 +32,8 @@ public class BuyerCartController {
     private SellerProductService sellerProductService;
     @Autowired
     private AdminCommissionService adminCommissionService;
+    @Autowired
+    private CommissionMapper commissionMapper;
     @RequestMapping("/AddToCart")
     public String addToCart(HttpServletRequest request) throws ServletException, IOException{
 
@@ -50,7 +53,7 @@ public class BuyerCartController {
         Product product = sellerProductService.getProductById(productId);
         buyerCart.addProduct(product,productNumber);
         session.setAttribute("buyerCart",buyerCart);
-        int commissionId = 1;
+        int commissionId = commissionMapper.selectLastCommission().getId();
         session.setAttribute("commissionId",commissionId);
         if (request.getSession().getAttribute("Buyer")==null){
             return "Buyer/BuyerLogin";

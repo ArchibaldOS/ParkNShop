@@ -107,7 +107,33 @@
 								<div class="panel panel-default">
 									<div class="panel-heading">
 										Click here to backup --->
-										<button style="float: right" onclick="location='/AdminBackup?adminAccount=${sessionScope.adminAccount}'">click</button>
+										<%--<button style="float: right" onclick="location='/AdminBackup?adminAccount=${sessionScope.adminAccount}'">click</button>--%>
+										<button style="float: right" onclick="backup()">click</button>
+                                        <script type="text/javascript">
+                                            function backup(){
+                                                bootbox.confirm({
+                                                    title: "Backup?",
+                                                    message: "Do you want to backup database?",
+                                                    buttons: {
+                                                        cancel: {
+                                                            label: '<i class="fa fa-times"></i> No'
+                                                        },
+                                                        confirm: {
+                                                            label: '<i class="fa fa-check"></i> Yes'
+                                                        }
+                                                    },
+                                                    callback: function (result) {
+                                                        console.log('This was logged in the callback: ' + result);
+                                                        if (result == false){
+                                                            return;
+                                                        }
+                                                        else{
+                                                            window.location="/AdminBackup?adminAccount=${sessionScope.adminAccount}";
+                                                        }
+                                                    }
+                                                });
+                                            }
+                                        </script>
 									</div>
 									<br>
 									<div class="panel-heading">
@@ -124,13 +150,40 @@
 											</tr>
 											</thead>
 											<tbody>
+
 											<c:forEach var="backupHistory" items="${backupHistorys}">
 												<tr>
 													<td hidden>${backupHistory.backupid}</td>
 													<td>${backupHistory.backupaccount}</td>
 													<td>${backupHistory.backupdate}</td>
 													<td>
-														<button class="btn btn-success" onclick="location='/AdminRecover?backupId=${backupHistory.backupid}'">recover</button>
+														<%--<button class="btn btn-success" onclick="location='/AdminRecover?backupId=${backupHistory.backupid}'">recover</button>--%>
+														<button class="btn btn-success" onclick="recover()">recover</button>
+                                                            <script>
+                                                                function recover() {
+                                                                    bootbox.confirm({
+                                                                        title: "Recover?",
+                                                                        message: "Are you sure to recover this version?",
+                                                                        buttons: {
+                                                                            cancel: {
+                                                                                label: '<i class="fa fa-times"></i> No'
+                                                                            },
+                                                                            confirm: {
+                                                                                label: '<i class="fa fa-check"></i> Yes'
+                                                                            }
+                                                                        },
+                                                                        callback: function (result) {
+                                                                            console.log('This was logged in the callback: ' + result);
+                                                                            if (result == false){
+                                                                                return;
+                                                                            }
+                                                                            else{
+                                                                                window.location="/AdminRecover?backupId=${backupHistory.backupid}";
+                                                                            }
+                                                                        }
+                                                                    });
+                                                                }
+                                                            </script>
 													</td>
 												</tr>
 											</c:forEach>
@@ -183,7 +236,10 @@
 		
 		<script src="assets/javascripts/jquery.min.js"></script>
 		<script src="assets/javascripts/bootstrap.min.js"></script>
-		<script src="assets/javascripts/Chart.js"></script>
+        <script src="assets/javascripts/bootbox.min.js"></script>
+        <script src="assets/javascripts/Chart.js"></script>
 		<script src="assets/javascripts/script.js"></script>
+
+
 	</body>
 </html>

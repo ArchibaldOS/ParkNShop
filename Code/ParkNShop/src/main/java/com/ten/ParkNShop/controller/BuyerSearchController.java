@@ -2,6 +2,7 @@ package com.ten.ParkNShop.controller;
 
 import com.ten.ParkNShop.entity.Product;
 import com.ten.ParkNShop.entity.SearchInfo;
+import com.ten.ParkNShop.service.AdminADService;
 import com.ten.ParkNShop.service.BuyerProductService;
 import com.ten.ParkNShop.service.SellerCommentService;
 import com.ten.ParkNShop.util.Page;
@@ -28,6 +29,9 @@ public class BuyerSearchController {
     @Autowired
     private SellerCommentService sellerCommentService;
 
+    @Autowired
+    private AdminADService adminADService;
+
     @RequestMapping("/BuyerIndex")
     public String buyerIndex(Model model){
         model.addAttribute("featuredProducts",buyerProductService.searchBySearchType(1,0,5));
@@ -43,6 +47,9 @@ public class BuyerSearchController {
         model.addAttribute("type4products",buyerProductService.searchBySearchType(4,0,5));
         model.addAttribute("type5products",buyerProductService.searchBySearchType(5,0,5));
         model.addAttribute("type7products",buyerProductService.searchBySearchType(7,0,5));
+
+        model.addAttribute("bigADs",adminADService.selectADTop5Store());
+
         return "Buyer/BuyerIndex";
     }
 

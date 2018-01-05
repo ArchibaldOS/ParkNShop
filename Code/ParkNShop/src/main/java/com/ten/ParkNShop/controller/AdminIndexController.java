@@ -55,7 +55,6 @@ public class AdminIndexController {
         model.addAttribute("blackListSellers",sellerMapper.countSellerByStatus(3));
         model.addAttribute("incompleteOrders",orderMapper.countAllOrder()-orderMapper.countAllcompletedOrder());
         model.addAttribute("completedOrders",orderMapper.countAllcompletedOrder());
-
         return "Admin/AdminIndex";
     }
 

@@ -35,7 +35,7 @@
             margin-left:auto;
             margin-right:auto;
             width: 1100px;
-            height:600px;
+
             background: #F7F7F7;
             font: 12px Georgia, "Times New Roman", Times, serif;
             color: #888;

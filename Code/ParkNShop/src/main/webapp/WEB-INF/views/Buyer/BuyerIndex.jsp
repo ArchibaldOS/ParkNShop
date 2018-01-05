@@ -152,46 +152,32 @@
     <div class="slider">
       <!-- Slider Image -->
       <div id="mainslider" class="nivoSlider slider-image">
+      <c:forEach var="bigAD" items="${bigADs}">
         <%--此处需要修改图片--%>
-        <img src="assets/img/slider/42.jpg" alt="main slider" title="#htmlcaption1" />
-        <img src="assets/img/slider/41.jpg" alt="main slider" title="#htmlcaption2" />
+        <img src="${pageContext.request.contextPath}/upload/productPicture/${bigAD.ADPhotoUrl}" alt="main slider" title="#htmlcaption${bigAD.ADId}" />
+      </c:forEach>
       </div>
+
       <!-- Slider Caption 1 -->
-      <div id="htmlcaption1" class="nivo-html-caption slider-caption-1">
-        <div class="slider-progress"></div>
-        <div class="slide1-text slide-1 hidden-xs">
-          <div class="middle-text">
-            <div class="cap-dec wow bounceInLeft" data-wow-duration="0.9s" data-wow-delay="0s">
-              <h1>The Best Fashion</h1>
-            </div>
-            <div class="cap-title wow bounceInRight" data-wow-duration="1.2s" data-wow-delay="0.2s">
-              <h3>Save Your Time and Money</h3>
-            </div>
-            <div class="cap-readmore wow bounceInUp" data-wow-duration="1.3s" data-wow-delay=".5s">
-              <a href="#">Shop Now</a>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- Slider Caption 2 -->
-      <div id="htmlcaption2" class="nivo-html-caption slider-caption-2">
-        <div class="slider-progress"></div>
-        <div class="slide1-text slide-2 hidden-xs">
-          <div class="middle-text">
-            <div class="cap-dec wow bounceInLeft" data-wow-duration="0.9s" data-wow-delay="0s">
-              <h1>The Best Fashion</h1>
-            </div>
-            <div class="cap-title wow bounceInRight" data-wow-duration="1.2s" data-wow-delay="0.2s">
-              <h3>Save Your Time and Money</h3>
-            </div>
-            <div class="cap-readmore wow bounceInUp" data-wow-duration="1.3s" data-wow-delay=".5s">
-              <a href="#">Shop Now</a>
+      <c:forEach var="bigAD" items="${bigADs}">
+        <div id="htmlcaption${bigAD.ADId}" class="nivo-html-caption slider-caption-1">
+          <div class="slider-progress"></div>
+          <div class="slide1-text slide-1 hidden-xs">
+            <div class="middle-text">
+              <div class="cap-dec wow bounceInLeft" data-wow-duration="0.9s" data-wow-delay="0s">
+                <h1>${bigAD.ADName}</h1>
+              </div>
+              <div class="cap-title wow bounceInRight" data-wow-duration="1.2s" data-wow-delay="0.2s">
+                <h3>${bigAD.ADDescription}</h3>
+              </div>
+              <div class="cap-readmore wow bounceInUp" data-wow-duration="1.3s" data-wow-delay=".5s">
+                <a href="/sellerFontHome?sellerId=${bigAD.otherId}">Shop Now</a>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </div>
-  </div>
+      </c:forEach>
+
 
 
   <!-- Content -->

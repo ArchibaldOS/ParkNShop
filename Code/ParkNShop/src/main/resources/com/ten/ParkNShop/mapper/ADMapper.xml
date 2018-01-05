@@ -56,8 +56,8 @@
       )
     values (#{adId,jdbcType=INTEGER}, #{adType,jdbcType=INTEGER}, #{adStatus,jdbcType=INTEGER}, 
       #{otherId,jdbcType=INTEGER}, #{adminId,jdbcType=INTEGER}, #{adName,jdbcType=VARCHAR}, 
-      #{adPhotoUrl,jdbcType=VARCHAR}, #{addescription,jdbcType=VARCHAR},
-      #{adprice,jdbcType=REAL}, #{adstartdate,jdbcType=TIMESTAMP}, #{adtime,jdbcType=INTEGER}
+      #{adPhotoUrl,jdbcType=VARCHAR}, #{adDescription,jdbcType=VARCHAR},
+      #{adPrice,jdbcType=REAL}, #{adStartDate,jdbcType=TIMESTAMP}, #{adTime,jdbcType=INTEGER}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.ten.ParkNShop.entity.AD">
@@ -261,6 +261,17 @@
 	     where
 			 sellerId = #{sellerId})
   </select>
+
+  <select id="getADTotalIncomeWithTime" parameterType="java.lang.String" resultType="Object">
+      SELECT SUM(ADPrice)
+      FROM ad
+      WHERE ADStartDate BETWEEN #{startTime} AND #{endTime}
+  </select>
+  
+  <insert id="insertAd" parameterType="com.ten.ParkNShop.entity.AD" keyProperty="ADId">
+		insert into ad(ADType,otherId,ADStatus,adminId,ADName,ADPhotoUrl,ADDescription,ADStartDate,ADTime,ADPrice)
+		values( #{ADType}, #{otherId}, #{ADStatus}, #{adminId}, #{ADName},#{ADPhotoUrl}, #{ADDescription} ,#{ADStartDate},#{ADTime},#{ADPrice})
+	</insert>
   
 
 </mapper>

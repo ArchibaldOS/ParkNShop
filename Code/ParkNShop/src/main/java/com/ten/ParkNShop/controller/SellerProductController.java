@@ -135,7 +135,6 @@ public class SellerProductController {
 
 		if (file.getSize() > 0) {
 			String path = session.getServletContext().getRealPath("/upload/productPicture");
-			System.out.println(path);
 			String filePath = FileUtil.uploadFile(file, path);
 			Product product = sellerProductService.getProductById(productId);
 			product.setProductName(productName);

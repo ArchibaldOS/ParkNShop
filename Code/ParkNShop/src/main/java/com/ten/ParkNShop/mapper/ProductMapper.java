@@ -31,7 +31,7 @@ public interface ProductMapper {
 
 	List<Product> searchBySearchType(@Param("searchType")int searchType,@Param("start")int start,@Param("pageSize")int pageSize);
 
-	List<Product> searchByProductNameAndSearchType(SearchInfo searchInfo);
+	List<Product> searchByProductNameAndSearchType(@Param("productName")String productName,@Param("searchType")int searchType);
 
 	List<Product> searchTopSalesProducts(int topNum);
 

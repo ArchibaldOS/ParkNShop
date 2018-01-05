@@ -30,10 +30,15 @@ public class AdminCommissionServiceImp implements AdminCommissionService{
         return i;
     }
 
-    public List<Commission> selectSomneCommission(int start, int pageSize) {
+    public List<Commission> selectSomeCommission(int start, int pageSize) {
         List<Commission> commissions = commissionMapper.selectSomeCommission(start, pageSize);
         return commissions;
     }
+
+    public float getCommissionById(int commissionId) {
+        return commissionMapper.selectByPrimaryKey(commissionId).getCommission();
+    }
+
     /**
      * @Author tad
      * @Date created in 3:43 PM 12/16/2017

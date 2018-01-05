@@ -33,24 +33,23 @@ public class BuyerPurchaseController {
 	private CommissionMapper commissionMapper;
     @Autowired
 	private ProductMapper productMapper;
-    
+
     @RequestMapping("/onConfirmClick")
     public String confirmClick(HttpSession session) {
         Buyer buyer = (Buyer) session.getAttribute("Buyer");
         if(buyer == null) return "Buyer/BuyerLogin";
-        //鏈櫥褰曪紝杞嚦鐧诲綍椤甸潰
+
 
 
         BuyerCart cart = (BuyerCart) session.getAttribute("buyerCart");
         List<BuyerItem> items = cart.getItems();
         List<Order> orders = new ArrayList<Order>();
+        Integer commissionId = (Integer) session.getAttribute("commissionId");
 
 
-        //璐墿杞﹂潪绌�
         if (cart != null && !cart.getItems().isEmpty()) {
             for (BuyerItem item : items) {
                 Order order = new Order();
-                //璁剧疆璁㈠崟鐨勬�婚,鍦板潃锛屼拱瀹秈d锛屾暟閲忥紝璁㈠崟鐘舵�侊紝鍒涘缓鏃堕棿锛屼骇鍝乮d锛屽崠瀹秈dorder.setTotalprice(item.getAmount()*item.getProduct().getProductPrice());
                 order.setAddress(buyer.getbuyerAddress());
                 order.setBuyerId(buyer.getbuyerId());
                 order.setCount(item.getAmount());
@@ -59,6 +58,7 @@ public class BuyerPurchaseController {
                 order.setProductId(item.getProduct().getProductId());
                 order.setSellerId(item.getProduct().getSellerId());
                 order.setTotalPrice(item.getAmount()*item.getProduct().getProductPrice());
+                order.setOrderCommissionId(commissionId);
                 orders.add(order);
                 int productId = item.getProduct().getProductId();
                 productMapper.updateStock(productId, item.getAmount());
@@ -71,7 +71,6 @@ public class BuyerPurchaseController {
 
         }
 
-        //璐墿杞︽病娣诲姞涓滆タ
         else if(cart.getItems().isEmpty())
         {
             return "Buyer/cartIsEmpty";
@@ -139,7 +138,7 @@ public class BuyerPurchaseController {
         float AdminCurrentBalance = adminMapper.selectByPrimaryKey(1).getAdminbalance();
         float sellerCurrentBalance = seller.getSellerBalance();
         adminMapper.updateBalance( AdminCurrentBalance-amount );
-        sellerMapper.updateBalance(seller.getsellerId(),sellerCurrentBalance + amount);
+        sellerMapper.updateBalance(seller.getsellerId(),sellerCurrentBalance + order.getTotalPrice() - amount);
         return "forward:/viewMyOrdersClick";
     }
 }

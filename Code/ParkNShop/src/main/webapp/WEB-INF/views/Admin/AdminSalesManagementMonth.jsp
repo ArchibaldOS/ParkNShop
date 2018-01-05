@@ -96,7 +96,7 @@
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <span>Commission:0.2</span>
+                    <span>Income: <c:out value="${totalIncome}"></c:out>$</span>
                     <table class="table table-bordered">
                         <thead>
                         <tr>
@@ -107,15 +107,14 @@
                         <tbody>
                         <tr>
                             <th scope="row">Sales</th>
-                            <td>50000</td>
+                            <td><c:out value="${income[0]}"></c:out></td>
                         </tr>
                         <tr>
                             <th scope="row">ADs</th>
-                            <td>10000</td>
+                            <td><c:out value="${income[1]}"></c:out></td>
                         </tr>
                         </tbody>
                     </table>
-                    <span>Income:60000</span>
                 </div>
             </div>
         </div>
@@ -150,7 +149,7 @@
         var currentTime = new Date();
         var currentYear = currentTime.getFullYear();
         var currentMonth = (currentTime.getMonth() + 1) < 10 ? "0" + (currentTime.getMonth()+ 1): "" + (currentTime.getMonth() + 1);
-        var currentWeek = (((new Date())-(new Date("2017-01-01")))/(24*60*60*7*1000)|0) +1;
+        var currentWeek = (((new Date())-(new Date("2017-01-01")))/(24*60*60*7*1000)|0) - 51;// 2018 年减去 2017 的周数
         var currentDay = currentTime.getDate() < 10 ? "0" + currentTime.getDate(): "" + currentTime.getDate();
         time.hidden = false;
         time_year.hidden = true;
@@ -162,7 +161,13 @@
             }
             case "Weekly": {
                 time.type="week";
-                time.value = currentYear + "-W" + currentWeek;
+                if(currentWeek < 10){
+                    time.value = currentYear + "-W0" + currentWeek;
+                }else{
+                    time.value = currentYear + "-W" + currentWeek;
+                }
+                console.log(currentYear);
+                console.log(currentWeek);
                 break;
             }
             case "Monthly": {

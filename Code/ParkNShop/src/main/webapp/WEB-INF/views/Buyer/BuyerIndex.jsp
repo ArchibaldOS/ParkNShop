@@ -273,9 +273,9 @@
                   </span> 
                   
                   
-                  <div><a href="/ProductDetail?productId=${featuredProduct.productId}" class="tittle">${featuredProduct.productName}</a>
+                  <div><a href="/ProductDetail?productId=${featuredProduct.productId}" class="tittle">${featuredProduct.productName}</a></div>
                   <!-- Reviews -->
-                  <div class="price">$${featuredProduct.productPrice} </div>
+                  <div class="price">HK$${featuredProduct.productPrice} </div>
                   <a href="/AddToCart?buyerId=${sessionScope.Buyer.buyerId}&productId=${featuredProduct.productId}" class="cart-btn"><i class="icon-basket-loaded"></i></a> </article>
               </div>
               </c:forEach>

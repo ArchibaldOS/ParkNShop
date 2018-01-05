@@ -122,6 +122,7 @@ border-radius: 20px;
             <li><a href="/sellerOrderPage">Order</a></li>
             <li><a href="/sellerSalesIncome">Sales</a></li>
             <li><a href="/listCommentBySellerId">Comment</a></li>
+            <li><a href="/sellerADPage">Advertisement</a></li>
           </ul>
         </div>
 		</div>

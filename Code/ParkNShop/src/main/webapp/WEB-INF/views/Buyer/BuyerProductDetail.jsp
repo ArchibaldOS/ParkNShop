@@ -201,7 +201,7 @@
                       </ul>
                       <!-- Compare Wishlist -->
                       <ul class="cmp-list">
-                        <li><a href="#."><i class="fa fa-heart"></i> Add to Wishlist</a></li>
+                        <a href="/sellerFontHome?sellerId=${p.sellerId }" style="font-size: 20px;color: blue;">view shop>>></a>
                       </ul>
                       <!-- Quinty -->
                       <form action="/AddToCart" method="get" onsubmit="return checkNum();">

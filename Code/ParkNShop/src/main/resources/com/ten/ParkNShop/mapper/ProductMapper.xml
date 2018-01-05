@@ -16,7 +16,7 @@
 		<result column="productIntroduction" property="productIntroduction" jdbcType="VARCHAR" />
 		<result column="productPicture" property="productPicture" jdbcType="VARCHAR" />
 	</resultMap>
-	<parameterMap id="SearchInfo" type="com.ten.ParkNShop.entity.SearchInfo">
+	<parameterMap id="SearchInfos" type="com.ten.ParkNShop.entity.SearchInfo">
 		<parameter property="productName" />
 		<parameter property="searchType" />
 	</parameterMap>
@@ -104,12 +104,12 @@
 		LIMIT #{start},#{pageSize}
 	</select>
 
-	<select id="searchByProductNameAndSearchType" parameterMap="SearchInfo" resultMap="BaseResultMap">
+	<select id="searchByProductNameAndSearchType" resultMap="BaseResultMap">
 		SELECT
 		productId, sellerId, productName, productType, productPrice, storeCount, soldCount,
 		productIntroduction, productPicture
 		FROM product
-		WHERE productName = #{searchInfo.productName} AND productType = #{searchInfo.searchType}
+		WHERE  productName LIKE CONCAT(CONCAT('%',#{productName}),'%') AND productType = #{searchType}
 	</select>
 
 	<select id="searchTopSalesProducts" parameterType="int" resultMap="BaseResultMap">

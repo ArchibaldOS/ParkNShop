@@ -267,4 +267,11 @@
     SELECT COUNT(1)
     FROM buyer
   </select>
+
+  <update id="addBalance" >
+    update buyer
+    set buyerBalance = buyerBalance + #{amount}
+    where buyerId = #{buyerId}
+
+  </update>
 </mapper>

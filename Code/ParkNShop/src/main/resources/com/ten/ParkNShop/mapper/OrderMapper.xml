@@ -121,7 +121,7 @@
       )
     values (#{orderId,jdbcType=INTEGER}, #{sellerId,jdbcType=INTEGER}, #{buyerId,jdbcType=INTEGER},
       #{productId,jdbcType=INTEGER}, #{count,jdbcType=INTEGER}, #{totalPrice,jdbcType=REAL},
-      #{address,jdbcType=VARCHAR}, #{orderStatus,jdbcType=INTEGER}, #{orderTime,jdbcType=TIMESTAMP}
+      #{address,jdbcType=VARCHAR}, #{orderStatus,jdbcType=INTEGER}, #{orderTime,jdbcType=TIMESTAMP},#{orderCommissionId,jdbcType=INTEGER}
       )
   </insert>
   <select id="countOrdersByBuyerId" parameterType="java.lang.Integer" resultType="java.lang.Integer" resultMap="BaseResultMap">
@@ -368,6 +368,14 @@
   </update>
     <update id="changeToCommented" parameterType="int">
         update orders set orderStatus = 9
+        where orderId = #{orderId}
+    </update>
+    <update id="changeToRefunding" parameterType="int">
+        update orders set orderStatus = 7
+        where orderId = #{orderId}
+    </update>
+    <update id="changeToRefundAndReturning" parameterType="int">
+        update orders set orderStatus = 6
         where orderId = #{orderId}
     </update>
     <select id="countAllOrder" resultType="int">

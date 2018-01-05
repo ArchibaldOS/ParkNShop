@@ -1,6 +1,7 @@
 package com.ten.ParkNShop.controller;
 
 import com.ten.ParkNShop.entity.Order;
+import com.ten.ParkNShop.service.AdminADService;
 import com.ten.ParkNShop.service.AdminCommissionService;
 import com.ten.ParkNShop.service.AdminOrderService;
 import com.ten.ParkNShop.service.AdminService;
@@ -27,53 +28,66 @@ public class AdminSalesManagementController {
     @Autowired
     AdminOrderService adminOrderService;
 
+    @Autowired
+    AdminADService adminADService;
+
     @RequestMapping("/AdminSalesManagement")
     public String adminSalesManagement(HttpServletRequest httpServletRequest, Model model){
         String timeType = httpServletRequest.getParameter("select_type");
         String time = httpServletRequest.getParameter("time");
 
-        // 濡傛灉鐩存帴璁块棶椤甸潰閭ｄ箞澶勭悊涓哄綋鍓嶆棩鏈熺殑鏃ラ攢鍞儏鍐�
+        // 如果直接访问页面那么处理为当前日期的日销售情况
         if(timeType == null){
             SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
             timeType = "Daily";
             time = df.format(new Date());
         }
 
-        // 鎵�閫夋椂闂寸被鍨嬩紶閫掑洖鍘�
+        // 所选时间类型传递回去
         model.addAttribute("timeType", timeType);
 
         if(timeType.equals("Daily")){
             model.addAttribute("time", time);
             String[] labels = {"0:00", "4:00", "8:00", "12:00", "16:00", "20:00", "24:00"};
             model.addAttribute("labels", labels);
-            // 鑾峰彇淇℃伅
+            // 获取信息
             List<Object> salesCondition= getDaysCountAndSales(time);
             List<Integer> counts = (List<Integer>) salesCondition.get(0);
             List<Float> moneys = (List<Float>) salesCondition.get(1);
+            List<Float> income = (List<Float>) salesCondition.get(2);
 
             model.addAttribute("counts", counts);
             model.addAttribute("moneys", moneys);
+            model.addAttribute("income", income);
+            // 直接传递总价过去，否则出现精度问题
+            model.addAttribute("totalIncome", income.get(0)+income.get(1));
+
 
         }else if(timeType.equals("Weekly")){
             model.addAttribute("time", time);
             String[] labels = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
             model.addAttribute("labels", labels);
 
-            // 鑾峰彇閿�鍞儏鍐� 浼犲叆鍙傛暟涓哄舰鐘朵负 2017-W51
+            // 获取销售情况 传入参数为形状为 2017-W5
             List<Object> salesCondition = getWeeksCountAndSales(time);
 
             List<Integer> counts = (List<Integer>) salesCondition.get(0);
             List<Float> moneys = (List<Float>) salesCondition.get(1);
+            List<Float> income = (List<Float>) salesCondition.get(2);
 
             model.addAttribute("counts", counts);
             model.addAttribute("moneys", moneys);
+
+            model.addAttribute("income", income);
+            // 直接传递总价过去，否则出现精度问题
+            model.addAttribute("totalIncome", income.get(0)+income.get(1));
 
 
         }else if(timeType.equals("Monthly")){
 
             model.addAttribute("time", time);
 
-            // 鑾峰彇涓�涓湀鐨勬渶鍚庝竴澶�
+            // 获取一个月的最后一天
             int year = Integer.valueOf(time.split("-")[0]);
             int month = Integer.valueOf(time.split("-")[1]);
 
@@ -82,14 +96,19 @@ public class AdminSalesManagementController {
             String[] labels = {"1", "4", "7", "10", "13", "16", "19","22","25",String.valueOf(dayOfMonth)};
             model.addAttribute("labels", labels);
 
-            // 鑾峰彇閿�鍞儏鍐� 浼犲叆鍙傛暟涓哄舰鐘朵负 year month
+            // 获取销售情况 传入参数为形状为 year month
             List<Object> salesCondition = getMonthCountAndSales(year, month);
 
             List<Integer> counts = (List<Integer>) salesCondition.get(0);
             List<Float> moneys = (List<Float>) salesCondition.get(1);
+            List<Float> income = (List<Float>) salesCondition.get(2);
 
             model.addAttribute("counts", counts);
             model.addAttribute("moneys", moneys);
+
+            model.addAttribute("income", income);
+            // 直接传递总价过去，否则出现精度问题
+            model.addAttribute("totalIncome", income.get(0)+income.get(1));
 
             return "Admin/AdminSalesManagementMonth";
 
@@ -105,12 +124,13 @@ public class AdminSalesManagementController {
 
             List<Integer> counts = (List<Integer>) salesCondition.get(0);
             List<Float> moneys = (List<Float>) salesCondition.get(1);
-
-            System.out.println(counts);
-            System.out.println(moneys);
+            List<Float> income = (List<Float>) salesCondition.get(2);
 
             model.addAttribute("counts", counts);
             model.addAttribute("moneys", moneys);
+            model.addAttribute("income", income);
+            // 直接传递总价过去，否则出现精度问题
+            model.addAttribute("totalIncome", income.get(0)+income.get(1));
 
             return "Admin/AdminSalesManagementYear";
 
@@ -118,71 +138,99 @@ public class AdminSalesManagementController {
         return "Admin/AdminSalesManagement";
     }
 
-    // 鑾峰彇涓�骞寸殑閿�鍞儏鍐� 12涓爣绛�
+    // 获取一年的销售情况 12个标签
     private List<Object> getYearCountAndSales(int year) {
 
         List<Integer> counts = new ArrayList<Integer>();
         List<Float> moneys = new ArrayList<Float>();
+        List<Float> income = new ArrayList<Float>();
+        float incomeCommission = 0;
 
         for(int i = 0; i < 12; i++){
             String startTime = "" + year + "-" + (i+1) + "-1";
             String endTime =  "" + year + "-" + (i+1) + "-" + getDayOfMonth(year, i+1);
 
-            System.out.println(startTime + " " + endTime);
             List<Order> orders = adminOrderService.selectAllOrdersBetweenTime(startTime, endTime, 1);
 
             float money = 0;
             for(Order order: orders){
                 money += order.getTotalPrice();
+                // 获取此订单的佣金收入
+                incomeCommission += order.getTotalPrice() * adminCommissionService.getCommissionById(order.getOrderCommissionId());
             }
             counts.add(orders.size());
             moneys.add(money);
         }
 
+        incomeCommission = (float)Math.round(incomeCommission * 100) / 100;
+        income.add(incomeCommission);
+
+        // 获取广告收入
+
+        float incomeAD = adminADService.getADTotalIncomeWithTime("" + year + "-01-01 0:00", ""+ year +  "-12-31 23:59");
+        income.add(incomeAD);
+
         List<Object> salesCondition = new ArrayList<Object>();
         salesCondition.add(counts);
         salesCondition.add(moneys);
+        salesCondition.add(income);
         return salesCondition;
     }
 
-    // 鑾峰彇涓�涓湀鐨勫叿浣撻攢鍞儏鍐� 鍒嗕负 10 涓爣绛撅紝鍓嶄節涓负3澶╋紝鍚庨潰涓�涓负杩欎釜鏈堝墿浣欑殑澶╂暟鐨勬�昏
+    // 获取一个月的具体销售情况 分为 10 个标签，前九个为3天，后面一个为这个月剩余的天数的总计
     private List<Object> getMonthCountAndSales(int year, int month) {
 
-        // 瀛樺偍缁熻鐨勬儏鍐�
-        List<Integer> counts = new ArrayList<Integer>();
-        List<Float> moneys = new ArrayList<Float>();
-
-        // 璁剧疆涓�涓紑濮嬫椂闂�
+        // 设置一个开始时间
         Calendar calendar = Calendar.getInstance();
         calendar.set(year, month - 1, 1);
 
-        //鍓嶄節涓樁娈佃偗瀹氭槸婊＄殑
+        // 存储统计的情况
+        List<Integer> counts = new ArrayList<Integer>();
+        List<Float> moneys = new ArrayList<Float>();
+        List<Float> income = new ArrayList<Float>();
+
+        float incomeCommission = 0;
+
+
+
+        // 前九个阶段肯定是满的
         for(int i = 0; i < 10; i++){
             String startTime ="" +  year + "-" + month + "-" + calendar.get(Calendar.DAY_OF_MONTH);
             String endTime = null;
-            // 鏃ユ湡鍚戝墠绉诲姩涓ゅぉ
+            // 日期向前移动两天
             if (i < 9){
-                // 鏃ユ湡鍚戝墠绉诲姩涓ゅぉ
                 calendar.add(Calendar.DAY_OF_MONTH, 2);
                 endTime = "" +  year + "-" + month + "-" + calendar.get(Calendar.DAY_OF_MONTH);
             } else{
-                // 鐩存帴浣跨敤鏈�鍚庝竴澶�
+                // 直接使用最后一天
                 endTime = "" +  year + "-" + month + "-" + getDayOfMonth(year, month);
             }
             List<Order> orders = adminOrderService.selectAllOrdersBetweenTime(startTime, endTime, 1);
             float money = 0;
             for(Order order: orders){
                 money += order.getTotalPrice();
+                // 获取此订单的佣金收入
+                incomeCommission += order.getTotalPrice() * adminCommissionService.getCommissionById(order.getOrderCommissionId());
             }
+
             counts.add(orders.size());
             moneys.add(money);
-            //鏃ユ湡鍚戝墠绉诲姩涓�澶�
+            // Move forward one day
             calendar.add(Calendar.DAY_OF_WEEK, 1);
         }
+        incomeCommission = (float)Math.round(incomeCommission * 100) / 100;
+        income.add(incomeCommission);
+
+        // 获取广告收入
+
+        float incomeAD = adminADService.getADTotalIncomeWithTime("" + year + "-" + month + "-" + "01 0:00",
+                "" +  year + "-" + month + "-" + getDayOfMonth(year, month) + " 23:59");
+        income.add(incomeAD);
 
         List<Object> salesCondition = new ArrayList<Object>();
         salesCondition.add(counts);
         salesCondition.add(moneys);
+        salesCondition.add(income);
         return salesCondition;
     }
 
@@ -191,58 +239,80 @@ public class AdminSalesManagementController {
     /**
      * @Author tad
      * @Date created in 3:23 PM 12/19/2017
-     * @Description 鑾峰彇涓�鍛ㄧ殑璁㈠崟鎯呭喌
+     * @Description 获取一周的订单情况
      *
-     * @params [time]  String 涓�骞寸殑鏌愪竴鍛ㄧ殑琛ㄨ揪锛屼緥濡� 2017-W51
+     * @params [time]  String 一年的某一周的表达，例如 2017-W51
      * @return java.util.List<java.lang.Object>
      */
     private List<Object> getWeeksCountAndSales(String time) {
-        // 鑾峰彇 Integer 鐨勫勾鍜屽懆
+        // 获取 Integer 的年和周
         int week = Integer.valueOf(time.split("W")[1]);
         int year = Integer.valueOf(time.split("-")[0]);
 
-        // 鑾峰彇鏌愪竴骞寸殑鏌愪竴鍛ㄧ殑寮�濮嬫棩鏈�
+        // 获取某一年的某一周的开始日期
         Calendar calendar = Calendar.getInstance();
-        // 璁剧疆涓�鍛ㄧ殑寮�濮嬫椂闂翠负 鍛ㄤ竴 榛樿鍛ㄤ簩
+        // 设置一周的开始时间为 周一 默认周二
         calendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
         calendar.set(Calendar.YEAR, year);
         calendar.set(Calendar.WEEK_OF_YEAR, week);
 
-        // 瀛樺偍缁熻鐨勬儏鍐�
+
+        // 存储统计的情况
         List<Integer> counts = new ArrayList<Integer>();
         List<Float> moneys = new ArrayList<Float>();
+        List<Float> income = new ArrayList<Float>();
+        float incomeCommission = 0;
+        // 广告开始统计时间
+        String adStartTime = calendar.get(Calendar.YEAR) + "-" + (calendar.get(Calendar.MONTH) + 1) + "-" + calendar.get(Calendar.DAY_OF_MONTH);
 
-        // 鑾峰彇涓�鍛ㄧ殑鍏蜂綋閿�鍞儏鍐碉紝浠ュぉ涓哄崟浣�
+        // 获取一周的具体销售情况，以天为单位
         for(int i = 0; i < 7; i++){
             String startTime = calendar.get(Calendar.YEAR) + "-" + (calendar.get(Calendar.MONTH) + 1) + "-" + calendar.get(Calendar.DAY_OF_MONTH);
             List<Order> orders = adminOrderService.selectAllOrdersBetweenTime(startTime, startTime, 1);
             float money = 0;
             for(Order order: orders){
                 money += order.getTotalPrice();
+                // 获取此订单的佣金收入
+                incomeCommission += order.getTotalPrice() * adminCommissionService.getCommissionById(order.getOrderCommissionId());
             }
             counts.add(orders.size());
             moneys.add(money);
-            //鏃ユ湡鍚戝墠绉诲姩涓�澶�
+            //日期向前移动一天
             calendar.add(Calendar.DAY_OF_WEEK, 1);
         }
+        incomeCommission = (float)Math.round(incomeCommission * 100) / 100;
+        income.add(incomeCommission);
+
+        // 获得这段时间的广告收
+
+        // 多加的一天减去
+        calendar.add(Calendar.DATE, -1);
+        String adEndTime = calendar.get(Calendar.YEAR) + "-" + (calendar.get(Calendar.MONTH) + 1) + "-" + calendar.get(Calendar.DAY_OF_MONTH);
+
+        float incomeAD = adminADService.getADTotalIncomeWithTime(adStartTime + " 0:00", adEndTime + " 23:59");
+        income.add(incomeAD);
         List<Object> salesCondition = new ArrayList<Object>();
         salesCondition.add(counts);
         salesCondition.add(moneys);
+        salesCondition.add(income);
         return salesCondition;
     }
 
     /**
      * @Author tad
      * @Date created in 9:32 PM 12/18/2017
-     * @Description 鑾峰彇涓�娈靛悇涓皬鏃跺唴鐨勯攢鍞噺鍜岄攢鍞
+     * @Description 获取一段各个小时内的销售量和销售额
      *
      * @params []
-     * @return List<Object> 鍖呭惈涓ゆ潯鏁版嵁锛岀涓�鏉℃暟鎹槸List<Integer> 琛ㄧず閿�閲忔儏鍐� 绗簩鏉℃槸 List<Float> 琛ㄧず 閿�鍞鐨勬儏鍐�
+     * @return List<Object> 包含两条数据，第一条数据是List<Integer> 表示销量情况 第二条是 List<Float> 表示 销售额的情况
      * @param time
      */
     private List<Object> getDaysCountAndSales(String time) {
         List<Integer> counts = new ArrayList<Integer>();
         List<Float> moneys = new ArrayList<Float>();
+        // 传递收入情况 第一个为订单佣金，第二个为广告收入
+        List<Float> income = new ArrayList<Float>();
+        float incomeCommission = 0;
         counts.add(0);
         moneys.add(Float.valueOf(0));
         for(int hour = 0; hour < 24; hour = hour + 4 ){
@@ -252,21 +322,29 @@ public class AdminSalesManagementController {
             float money = 0;
             for(Order order: orders){
                 money += order.getTotalPrice();
+                // 获取此订单的佣金收入
+                incomeCommission += order.getTotalPrice() * adminCommissionService.getCommissionById(order.getOrderCommissionId());
             }
             counts.add(orders.size());
             moneys.add(money);
         }
+        // 结果保留两位小数
+        incomeCommission = (float)Math.round(incomeCommission * 100) / 100;
+        income.add(incomeCommission);
+        // 获得这段时间的广告收入
+        float incomeAD = adminADService.getADTotalIncomeWithTime(time + " 0:00", time + " 23:59");
+        income.add(incomeAD);
         List<Object> salesCondition = new ArrayList<Object>();
         salesCondition.add(counts);
         salesCondition.add(moneys);
+        salesCondition.add(income);
         return salesCondition;
-
     }
 
     /**
      * @Author tad
      * @Date created in 2:57 PM 12/16/2017
-     * @Description 璇锋眰淇敼浣ｉ噾姣斾緥鐨勯〉闈�
+     * @Description 请求修改佣金比例的页面
      *
      * @params []
      * @return java.lang.String
@@ -282,8 +360,8 @@ public class AdminSalesManagementController {
         String submitAdminAccount = httpServletRequest.getParameter("adminAccount");
         String submitAdminPassWord = httpServletRequest.getParameter("adminPassWord");
         float newCommission = Float.valueOf(httpServletRequest.getParameter("newCommission"));
-        // 濡傛灉瀵嗙爜浜夋纭紝杩涜鏂扮殑浣ｉ噾姣斾緥鐨勬煡璇�
-        // TODO 瀵嗙爜閿欒鐨勫鐞�
+        // 如果密码争正确，进行新的佣金比例的查询
+        // TODO 密码错误的处理
         if(submitAdminPassWord.equals(adminService.selectAdminPassword(submitAdminAccount))){
             adminCommissionService.insertLast(newCommission, submitAdminAccount, new java.sql.Date(new Date().getTime()));
         }
@@ -293,7 +371,7 @@ public class AdminSalesManagementController {
     /**
      * @Author tad
      * @Date created in 2:45 PM 12/17/2017
-     * @Description 杩涜浣ｉ噾姣斾緥鐨勫巻鍙茶褰曟煡璇�
+     * @Description 查看佣金历史记录
      *
      * @params [httpServletRequest, model]
      * @return java.lang.String
@@ -301,18 +379,18 @@ public class AdminSalesManagementController {
     @RequestMapping("/AdminSalesCommissionHistory")
     public String adminSalesCommissionHistory(HttpServletRequest httpServletRequest, Model model){
         if(httpServletRequest.getParameter("start") == null){
-            model.addAttribute("commissions", adminCommissionService.selectSomneCommission(0, 20));
+            model.addAttribute("commissions", adminCommissionService.selectSomeCommission(0, 20));
         }else{
             int start = Integer.valueOf(httpServletRequest.getParameter("start"));
             int pageSize = Integer.valueOf(httpServletRequest.getParameter("pageSize"));
-            model.addAttribute("commissions", adminCommissionService.selectSomneCommission(start, pageSize));
+            model.addAttribute("commissions", adminCommissionService.selectSomeCommission(start, pageSize));
         }
         return "Admin/AdminSalesCommissionHistory";
     }
 
 
     /**
-     * 鑾峰彇鏌愬勾鐨勬煇涓�涓湀鐨勫ぉ鏁�
+     *  获取某年的某一个月的天数
      * @param year
      * @param month
      * @return

@@ -61,4 +61,13 @@ public class AdminADServiceImpl implements AdminADService {
     public List<AD> selectAllAD(int start, int pageSize) {
         return adMapper.selectAllAD(start, pageSize);
     }
+
+    public float getADTotalIncomeWithTime(String startTime, String endTime) {
+        Object object = adMapper.getADTotalIncomeWithTime(startTime, endTime);
+        if(object == null){
+            return 0;
+        }else{
+            return ((Double)object).floatValue();
+        }
+    }
 }

@@ -48,6 +48,7 @@ color:white;
 font-size:15px;
 width:120px;height:30px;
 border:1px solid #1e7db9;
+    border-radius: 3px;
 box-shadow: 0 1px 2px #8fcaee inset,0 -1px 0 #497897 inset,0 -2px 3px #8fcaee inset;
 background: -webkit-linear-gradient(top,#42a4e0,#2e88c0);
 background: -moz-linear-gradient(top,#42a4e0,#2e88c0);
@@ -258,7 +259,7 @@ background: linear-gradient(top,#42a4e0,#2e88c0);
                     		<td class="goods-page-image">
                       			<a href="javascript:;"><img src="${pageContext.request.contextPath}/upload/productPicture/${buyerItem.getProduct().getProductPicture()}" alt="shopping"></a>
                     		</td>
-                    		<td class="goods-page-description" style="width:500px">
+                    		<td class="goods-page-description" style="width:480px">
                       			<h3><a href="/ProductDetail?productId=${buyerItem.getProduct().getProductId()}">${buyerItem.getProduct().getProductName()}</a></h3><br />
                       				${buyerItem.getProduct().getProductIntroduction()}<br />
                     		</td>
@@ -281,19 +282,27 @@ background: linear-gradient(top,#42a4e0,#2e88c0);
                                 	<c:when test="${buyerItem.getOrder().getOrderStatus() eq 3}">Paid</c:when>
                                 	<c:when test="${buyerItem.getOrder().getOrderStatus() eq 4}">Shipped</c:when>
                                 	<c:when test="${buyerItem.getOrder().getOrderStatus() eq 5}">Success</c:when>
-                                	<c:when test="${buyerItem.getOrder().getOrderStatus() eq 6}"></c:when>
-                                	<c:when test="${buyerItem.getOrder().getOrderStatus() eq 7}"></c:when>
-                                	<c:when test="${buyerItem.getOrder().getOrderStatus() eq 8}"></c:when>
-                                    <c:when test="${buyerItem.getOrder().getOrderStatus() eq 9}">Commmented</c:when>
+                                	<c:when test="${buyerItem.getOrder().getOrderStatus() eq 6}">RefundAndReturning</c:when>
+                                	<c:when test="${buyerItem.getOrder().getOrderStatus() eq 7}">Refund succeed</c:when>
+                                	<c:when test="${buyerItem.getOrder().getOrderStatus() eq 8}">Refund failed</c:when>
+                                    <c:when test="${buyerItem.getOrder().getOrderStatus() eq 9}">Commented</c:when>
                                 </c:choose>
                    			</td>
                     		<td class="goods-page-ref-no">
                     		 	<c:choose>
-                               		<c:when test="${buyerItem.getOrder().getOrderStatus() eq 1}"><a href='/onPaidSingleClick?orderId=${buyerItem.getOrder().getOrderId()}' ><font size="5px">Pay</font></a><br/><br/></c:when>
-                                	<c:when test="${buyerItem.getOrder().getOrderStatus() eq 3}">To be Shipped</c:when>
-                                	<c:when test="${buyerItem.getOrder().getOrderStatus() eq 4}"><a href='/onConfirmReceivedClick?orderId=${buyerItem.getOrder().getOrderId()}' ><font size="5px">Confirm receipt</font></a><br/><br/></c:when>
-                                	<c:when test="${buyerItem.getOrder().getOrderStatus() eq 5}"><a href='/buyerComment?orderId=${buyerItem.getOrder().getOrderId()}' ><font size="5px">Comment</font></a><br/><br/> </c:when>
-                                </c:choose>
+                               		<c:when test="${buyerItem.getOrder().getOrderStatus() eq 1}"><a href='/onPaidSingleClick?orderId=${buyerItem.getOrder().getOrderId()}' ><button class="but">Pay</button></a><br/><br/></c:when>
+                                	<c:when test="${buyerItem.getOrder().getOrderStatus() eq 3}">To be Shipped<br/><br/>
+                                        <a href='/buyerReturns?orderId=${buyerItem.getOrder().getOrderId()}' ><button class="but">Refunds</button></a><br/>
+                                    </c:when>
+                                	<c:when test="${buyerItem.getOrder().getOrderStatus() eq 4}"><a href='/onConfirmReceivedClick?orderId=${buyerItem.getOrder().getOrderId()}' ><button class="but">Confirm receipt</button></a><br/><br/>
+                                        <a href='/buyerReturns?orderId=${buyerItem.getOrder().getOrderId()}' ><button class="but">Refunds</button></a><br/>
+                                    </c:when>
+                                	<c:when test="${buyerItem.getOrder().getOrderStatus() eq 5}"><a href='/buyerComment?orderId=${buyerItem.getOrder().getOrderId()}' ><button class="but">Comment</button></a><br/><br/>
+                                        <a href='/buyerReturns?orderId=${buyerItem.getOrder().getOrderId()}' ><button class="but">Refunds</button></a><br/>
+                                    </c:when>
+                                    <c:when test="${buyerItem.getOrder().getOrderStatus() eq 9}"><a href='/buyerReturns?orderId=${buyerItem.getOrder().getOrderId()}' ><button class="but">Refunds</button></a><br/>
+                                    </c:when>
+                                    </c:choose>
                     		</td>
                  		 </tr>
 

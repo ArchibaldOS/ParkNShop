@@ -63,6 +63,11 @@ public class AdminADServiceImpl implements AdminADService {
     }
 
     public float getADTotalIncomeWithTime(String startTime, String endTime) {
-        return adMapper.getADTotalIncomeWithTime(startTime, endTime);
+        Object object = adMapper.getADTotalIncomeWithTime(startTime, endTime);
+        if(object == null){
+            return 0;
+        }else{
+            return ((Double)object).floatValue();
+        }
     }
 }

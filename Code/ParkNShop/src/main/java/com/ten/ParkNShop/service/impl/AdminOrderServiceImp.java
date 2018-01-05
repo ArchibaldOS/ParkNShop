@@ -129,10 +129,11 @@ public class AdminOrderServiceImp implements AdminOrderService{
         List<Order> orders = null;
         if(type == 1){
             orders = orderMapper.selectAllOrdersBetweenTime(startTime + " 0:00", endTime + " 23:59");
+            System.out.println("orders");
         }else{
             orders = orderMapper.selectAllOrdersBetweenTime(startTime, endTime);
         }
-
+        System.out.println("orders111");
         return orders;
     }
 }

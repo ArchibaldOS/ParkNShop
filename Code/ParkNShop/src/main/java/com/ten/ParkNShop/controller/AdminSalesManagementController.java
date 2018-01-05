@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -32,7 +33,7 @@ public class AdminSalesManagementController {
     AdminADService adminADService;
 
     @RequestMapping("/AdminSalesManagement")
-    public String adminSalesManagement(HttpServletRequest httpServletRequest, Model model){
+    public String adminSalesManagement(HttpServletRequest httpServletRequest, Model model, HttpSession httpSession){
         String timeType = httpServletRequest.getParameter("select_type");
         String time = httpServletRequest.getParameter("time");
 
@@ -81,6 +82,9 @@ public class AdminSalesManagementController {
             model.addAttribute("income", income);
             // 直接传递总价过去，否则出现精度问题
             model.addAttribute("totalIncome", income.get(0)+income.get(1));
+
+            // 将数据传给首页使用
+            httpSession.setAttribute("counts", counts);
 
 
         }else if(timeType.equals("Monthly")){
@@ -269,14 +273,20 @@ public class AdminSalesManagementController {
         for(int i = 0; i < 7; i++){
             String startTime = calendar.get(Calendar.YEAR) + "-" + (calendar.get(Calendar.MONTH) + 1) + "-" + calendar.get(Calendar.DAY_OF_MONTH);
             List<Order> orders = adminOrderService.selectAllOrdersBetweenTime(startTime, startTime, 1);
-            float money = 0;
-            for(Order order: orders){
-                money += order.getTotalPrice();
-                // 获取此订单的佣金收入
-                incomeCommission += order.getTotalPrice() * adminCommissionService.getCommissionById(order.getOrderCommissionId());
+            if(orders != null){
+                float money = 0;
+                for(Order order: orders){
+                    money += order.getTotalPrice();
+                    // 获取此订单的佣金收入
+                    incomeCommission += order.getTotalPrice() * adminCommissionService.getCommissionById(order.getOrderCommissionId());
+                }
+                counts.add(orders.size());
+                moneys.add(money);
+            }else{
+                counts.add(0);
+                moneys.add((float)0);
             }
-            counts.add(orders.size());
-            moneys.add(money);
+
             //日期向前移动一天
             calendar.add(Calendar.DAY_OF_WEEK, 1);
         }
@@ -400,4 +410,5 @@ public class AdminSalesManagementController {
         calendar.set(year, month - 1, 1);
         return calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
     }
+
 }

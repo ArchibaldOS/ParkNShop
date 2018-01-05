@@ -94,7 +94,7 @@
 					<div class="panel panel-default">
 						  <div class="panel-heading">Today's visitor statistics</div>
 						  <div class="panel-body">
-						  	<canvas id="canvas" class="col-md-12"></canvas>
+						  	<canvas id="canvas-index" class="col-md-12"></canvas>
 						  </div>
 					</div>
 				</div>
@@ -184,6 +184,36 @@
 		<script src="assets/javascripts/jquery.min.js"></script>
 		<script src="assets/javascripts/bootstrap.min.js"></script>
 		<script src="assets/javascripts/Chart.js"></script>
-		<script src="assets/javascripts/script.js"></script>
+		<script>
+            var ctx = document.getElementById("canvas-index").getContext("2d");
+            var lineChartData = {
+                //X坐标数据
+                labels : ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+                datasets : [
+                    {
+                        //统计表的背景颜色
+                        fillColor : "rgba(255,255,255,0.5)",
+                        //统计表画笔颜色
+                        strokeColor : "#000",
+                        //点的颜色
+                        pointColor : "#000;",
+                        //点边框的颜色
+                        pointStrokeColor : "black",
+                        //鼠标触发时点的颜色
+                        pointHighlightFill : "black",
+                        //鼠标触发时点边框的颜色
+                        pointHighlightStroke : "#000",
+                        //Y坐标数据,以数组中的最大值来确定y轴的最大值
+                        data : [${sessionScope.counts[0]}, ${sessionScope.counts[1]},${sessionScope.counts[2]},
+							${sessionScope.counts[3]},${sessionScope.counts[4]},${sessionScope.counts[5]}, ${sessionScope.counts[6]}]
+                    }
+                ]
+            };
+            var myNewChart = new Chart(ctx).Line(lineChartData, {
+                responsive: true
+            });
+
+
+		</script>
 	</body>
 </html>

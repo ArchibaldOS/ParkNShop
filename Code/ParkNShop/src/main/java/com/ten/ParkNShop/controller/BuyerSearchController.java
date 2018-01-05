@@ -58,10 +58,7 @@ public class BuyerSearchController {
             
             return "Buyer/ListProducts";
         }
-        SearchInfo searchInfo = new SearchInfo();
-        searchInfo.setProductName(productName);
-        searchInfo.setSearchType(searchType);
-        model.addAttribute("searchProducts",buyerProductService.searchByProductNameAndSearchType(searchInfo));
+        model.addAttribute("searchProducts",buyerProductService.searchByProductNameAndSearchType(productName,searchType));
         return "Buyer/ListProducts";
     }
 

@@ -138,7 +138,7 @@ public class BuyerPurchaseController {
         float AdminCurrentBalance = adminMapper.selectByPrimaryKey(1).getAdminbalance();
         float sellerCurrentBalance = seller.getSellerBalance();
         adminMapper.updateBalance( AdminCurrentBalance-amount );
-        sellerMapper.updateBalance(seller.getsellerId(),sellerCurrentBalance + amount);
+        sellerMapper.updateBalance(seller.getsellerId(),sellerCurrentBalance + order.getTotalPrice() - amount);
         return "forward:/viewMyOrdersClick";
     }
 }

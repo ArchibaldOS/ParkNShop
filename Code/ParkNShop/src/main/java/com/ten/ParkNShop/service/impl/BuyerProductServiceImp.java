@@ -30,8 +30,8 @@ public class BuyerProductServiceImp implements BuyerProductService{
         return products;
     }
 
-    public List<Product> searchByProductNameAndSearchType(SearchInfo searchInfo){
-        List<Product>products = productMapper.searchByProductNameAndSearchType(searchInfo);
+    public List<Product> searchByProductNameAndSearchType(String productName,int searchType){
+        List<Product>products = productMapper.searchByProductNameAndSearchType(productName,searchType);
         return products;
     }
 

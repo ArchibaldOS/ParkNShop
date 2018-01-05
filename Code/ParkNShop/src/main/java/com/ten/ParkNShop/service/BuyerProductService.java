@@ -16,7 +16,7 @@ public interface BuyerProductService {
 
     List<Product> searchBySearchType(int searchType,int offset, int size);
 
-    List<Product> searchByProductNameAndSearchType(SearchInfo searchInfo);
+    List<Product> searchByProductNameAndSearchType(String productName,int searchType);
 
     List<Product> searchTopSalesProducts(int topNum);
 

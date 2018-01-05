@@ -41,6 +41,42 @@
   <script src="assets/js/myCart.js"></script>
   <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <style type="text/css">
+    .newAdd{
+      border: 1px solid #DADADA;
+      color: #000;
+      height:50px;
+      margin-bottom: 16px;
+      margin-right: 6px;
+      outline: 0 none;
+      padding: 3px 3px 3px 5px;
+      width: 400px;
+      font-size: 13px;
+      line-height:15px;
+      box-shadow: inset 0px 1px 4px #ECECEC;
+      -moz-box-shadow: inset 0px 1px 4px #ECECEC;
+      -webkit-box-shadow: inset 0px 1px 4px #ECECEC;
+      resize:none;
+    }
+  </style>
+  <script type="text/javascript">
+      function divClick(){
+
+          var show="";
+          var apm = document.getElementsByName("Address");
+          for(var i=0;i<apm.length;i++){
+              if(apm[i].checked)
+                  show = apm[i].value;
+          }
+          if(show == 2){
+              document.getElementById("newAddress").style.display="block";
+          }
+          else{
+              document.getElementById("newAddress").style.display="none";
+          }
+
+      }
+  </script>
 </head>
 
 <body>
@@ -212,8 +248,19 @@
        			 </c:otherwise>
        			 </c:choose>
        			 <c:if test="${buyerCart.getItems().size() gt 0}">
+
    					<tr>
-    					<td colspan="5" class="shopend" style="color: #e84d1c;font-size: 18px;font-weight: normal">Total：$<label id="total" class="yellow"></label><br />
+                      <td colspan="2">
+
+                        <input type="radio"  name="Address" value="1"  onclick="divClick();" checked="checked" ><span style="font-size:15px;color:#000000;">&nbsp;&nbsp;Using Default Address </span><br/>
+                        <input type="radio"  name="Address" value="2"  onclick="divClick();" ><span style="font-size:15px;color:#000000;">&nbsp;&nbsp;Using New Address</span><br/>
+
+                        <div id="newAddress" style="display: none;margin: 10px 30px;">
+                          <textarea class="newAdd" name="newAddress" placeholder="Please input new address..."></textarea>
+                        </div>
+
+                      </td>
+    					<td colspan="3" class="shopend" style="color: #e84d1c;font-size: 18px;font-weight: normal">Total：$<label id="total" class="yellow"></label><br />
                             <button class="btn btn-primary" onclick="window.location.href='/onConfirmClick'">Purchase<i class="fa fa-check"></i></button>
 
                         </td>

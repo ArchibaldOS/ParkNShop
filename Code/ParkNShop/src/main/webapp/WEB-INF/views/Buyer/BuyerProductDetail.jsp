@@ -37,6 +37,18 @@
   <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 </head>
+<style type="text/css">
+        #comment{
+            border:1px solid #E4E4E4;
+        }
+        .comment-content{
+            width:700px;
+        }
+        .comment-buyer{
+            width: 200px;
+            text-align:center
+        }
+    </style>
 <body>
 
 <!-- Page Wrapper -->
@@ -190,7 +202,7 @@
                       <h5>${p.productName}</h5>
                      
                       <div class="row">
-                        <div class="col-sm-6"><span class="price">HK$${p.productPrice} </span></div>
+                        <div class="col-sm-6"><span class="price">$${p.productPrice} </span></div>
                         <div class="col-sm-6">
                           <p>Availability: <span class="in-stock">In stock(${p.storeCount})</span></p>
                         </div>
@@ -201,15 +213,15 @@
                       </ul>
                       <!-- Compare Wishlist -->
                       <ul class="cmp-list">
-                        <a href="/sellerFontHome?sellerId=${p.sellerId }" style="font-size: 20px;color: blue;">view shop>>></a>
+                        <li><a href="#."><i class="fa fa-heart"></i> Add to Wishlist</a></li>
                       </ul>
                       <!-- Quinty -->
-                      <form action="/AddToCart" method="get" onsubmit="return checkNum();">
+                      <form action="/AddToCart" method="get">
                       <div class="quinty">
-                        <input type="number" name="productNum" id="productNum" value="1" onchange="checkNum();"/>
+                        <input type="number" name="productNum" value="1"/>
                         <input type="hidden" name="productId" value="${p.productId}">
                       </div>
-                        <button type="submit" class="btn-default" ><i class="icon-basket-loaded margin-right-5"></i> Add to Cart</button>
+                        <button type="submit" class="btn-default"><i class="icon-basket-loaded margin-right-5"></i> Add to Cart</button>
                       </form>
                   </div>
 
@@ -236,8 +248,30 @@
 
             <!-- Tab panes -->
             <div class="tab-content">
+				    <table id="comment">
+        <tr>
+            <th colspan="2" class="comment-content" style="font-size:25px;text-align:center;">Content</th>
+            <th class="comment-buyer" style="font-size:25px;text-align:center;">Buyer</th>
+        </tr>
+        <tr>
+            <td colspan="3"><hr style="width:100%; text-align:center; border:1px solid #E4E4E4" /></td>
+        </tr>
+                      <c:forEach items="${commentsItem.list}" var="commentItem">
+        <tr>
+            <td style="width: 100px;"></td>
+            <td class="comment-content"><p style="font-size: 18px">${commentItem.comments.content}</p><br/>
+                <div style="background-color:#E4E4E4;padding:5px 10px;"><span style="color: orangered">Reply:&nbsp;&nbsp;&nbsp;&nbsp;${commentItem.comments.reply}</span></div><br/>
+                <span style="color:#808080 ">${commentItem.comments.commentTime}</span>
+            </td>
+            <td class="comment-buyer"style="font-size: 20px">${commentItem.buyer.buyerName}</td>
+        </tr>
+        <tr>
+            <td colspan="3"><hr style="width:100%; text-align:center; border:1px solid #E4E4E4" /></td>
+        </tr>
+                      </c:forEach>
 
-
+    </table> 	
+			
             </div>
           </div>
         </div>
@@ -253,23 +287,7 @@
     <!-- GO TO TOP End -->
 </div>
 <!-- End Page Wrapper -->
-<script>
-	function checkNum(){
-		
-		var num = document.getElementById("productNum").value;
-		var store = ${p.storeCount};
-		if(num>store){
-			alert("The quantity of goods exceeds the stock!");
-			return false;
-		}else if(num<1){
-			alert("The quantity of goods must be greater than zero!");
-			return false;
-		}else
-			return true;
-	}
 
-
-</script>
 <script src="assets/js2/vendors/jquery/jquery.min.js"></script>
 <script src="assets/js2/vendors/wow.min.js"></script>
 <script src="assets/js2/vendors/bootstrap.min.js"></script>

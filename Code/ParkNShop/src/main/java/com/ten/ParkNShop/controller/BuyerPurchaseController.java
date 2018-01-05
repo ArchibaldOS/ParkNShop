@@ -35,7 +35,7 @@ public class BuyerPurchaseController {
 	private ProductMapper productMapper;
 
     @RequestMapping("/onConfirmClick")
-    public String confirmClick(HttpSession session) {
+    public String confirmClick(HttpSession session,String newAddress) {
         Buyer buyer = (Buyer) session.getAttribute("Buyer");
         if(buyer == null) return "Buyer/BuyerLogin";
 
@@ -46,11 +46,17 @@ public class BuyerPurchaseController {
         List<Order> orders = new ArrayList<Order>();
         Integer commissionId = (Integer) session.getAttribute("commissionId");
 
-
         if (cart != null && !cart.getItems().isEmpty()) {
             for (BuyerItem item : items) {
                 Order order = new Order();
-                order.setAddress(buyer.getbuyerAddress());
+                if(newAddress != null && newAddress.length() > 0)
+                {
+                    order.setAddress(newAddress);
+                }
+                else
+                {
+                    order.setAddress(buyer.getbuyerAddress());
+                }
                 order.setBuyerId(buyer.getbuyerId());
                 order.setCount(item.getAmount());
                 order.setOrderStatus(1);

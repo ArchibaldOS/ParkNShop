@@ -13,10 +13,11 @@
 		<result column="productPrice" property="productPrice" jdbcType="REAL" />
 		<result column="storeCount" property="storeCount" jdbcType="INTEGER" />
 		<result column="soldCount" property="soldCount" jdbcType="INTEGER" />
+		<result column="productStatus" property="productStatus" jdbcType="INTEGER" />
 		<result column="productIntroduction" property="productIntroduction" jdbcType="VARCHAR" />
 		<result column="productPicture" property="productPicture" jdbcType="VARCHAR" />
 	</resultMap>
-	<parameterMap id="SearchInfo" type="com.ten.ParkNShop.entity.SearchInfo">
+	<parameterMap id="SearchInfos" type="com.ten.ParkNShop.entity.SearchInfo">
 		<parameter property="productName" />
 		<parameter property="searchType" />
 	</parameterMap>
@@ -30,13 +31,13 @@
 	</sql>
 
 	<insert id="addProduct" parameterType="com.ten.ParkNShop.entity.Product" keyProperty="productId">
-		insert into product(sellerId,productName,productType,productPrice,storeCount,soldCount,productIntroduction,productPicture)
-		values( #{sellerId}, #{productName}, #{productType}, #{productPrice}, #{storeCount}, 0,#{productIntroduction}, #{productPicture} )
+		insert into product(sellerId,productName,productType,productPrice,storeCount,soldCount,productIntroduction,productStatus,productPicture)
+		values( #{sellerId}, #{productName}, #{productType}, #{productPrice}, #{storeCount}, 0,#{productIntroduction}, 0, #{productPicture} )
 	</insert>
 	
-    <delete id="delete" parameterType="int">
-		delete from product where productId = ${productId} 
-	</delete>
+    <update id="delete" parameterType="int">
+		update product set productStatus = 1 where productId = ${productId} 
+	</update>
 	
 	<update id="updateProduct1" parameterType="com.ten.ParkNShop.entity.Product">
 		update product set productName = #{productName}, productType = #{productType}, productPrice = #{productPrice}, storeCount = #{storeCount}, productIntroduction = #{productIntroduction}, productPicture = #{productPicture}
@@ -65,7 +66,7 @@
 		SELECT 
 			*
 		FROM product
-		WHERE sellerId = #{sellerId}
+		WHERE sellerId = #{sellerId} and productStatus = 0
 		ORDER BY productId
 	</select> 
 	
@@ -92,7 +93,7 @@
 		productId, sellerId, productName, productType, productPrice, storeCount, soldCount,
 		productIntroduction, productPicture
 		FROM product
-		WHERE productName LIKE CONCAT(CONCAT('%',#{productName}),'%')
+		WHERE productName LIKE CONCAT(CONCAT('%',#{productName}),'%') and productStatus = 0
 	</select>
 
 	<select id="searchBySearchType" parameterType="int" resultMap="BaseResultMap">
@@ -100,16 +101,16 @@
 		productId, sellerId, productName, productType, productPrice, storeCount, soldCount,
 		productIntroduction, productPicture
 		FROM product
-		WHERE productType = #{searchType}
+		WHERE productType = #{searchType} and productStatus = 0
 		LIMIT #{start},#{pageSize}
 	</select>
 
-	<select id="searchByProductNameAndSearchType" parameterMap="SearchInfo" resultMap="BaseResultMap">
+	<select id="searchByProductNameAndSearchType" resultMap="BaseResultMap">
 		SELECT
-		productId, sellerId, productName, productType, productPrice, storeCount, soldCount,
+		productId, sellerId, productName, productType,productStatus, productPrice, storeCount, soldCount,
 		productIntroduction, productPicture
 		FROM product
-		WHERE productName = #{searchInfo.productName} AND productType = #{searchInfo.searchType}
+		WHERE  productName LIKE CONCAT(CONCAT('%',#{productName}),'%') AND productType = #{searchType} and productStatus = 0
 	</select>
 
 	<select id="searchTopSalesProducts" parameterType="int" resultMap="BaseResultMap">
@@ -117,6 +118,7 @@
 			productId, sellerId, productName, productType, productPrice, storeCount, soldCount,
 			productIntroduction, productPicture
 			FROM product
+			WHERE productStatus = 0
 		GROUP BY
 			soldCount
 		DESC
@@ -126,7 +128,7 @@
 	<select id="countByProductName" parameterType="java.lang.String" resultType="int">
 		SELECT COUNT(1)
 		FROM product
-		WHERE productName LIKE CONCAT(CONCAT('%',#{productName}),'%')
+		WHERE productName LIKE CONCAT(CONCAT('%',#{productName}),'%') and productStatus = 0
 	</select>
 
 

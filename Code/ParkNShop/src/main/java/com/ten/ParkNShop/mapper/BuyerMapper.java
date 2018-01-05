@@ -66,6 +66,8 @@ public interface BuyerMapper {
 
     int updatebuyerStatusToBlacklist(int buyerId);
 
+    int addBalance(@Param("buyerId")int buyerId,@Param("amount")float amount);
+
     List<Buyer> selectAllNormalBuyer(@Param("start")int start,@Param("pageSize")int pageSize);
     List<Buyer> selectAllFrozenBuyer(@Param("start")int start,@Param("pageSize")int pageSize);
     List<Buyer> selectAllBlacklistBuyer(@Param("start")int start,@Param("pageSize")int pageSize);

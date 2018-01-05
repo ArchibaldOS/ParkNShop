@@ -25,4 +25,13 @@ public class SearchInfo {
     public void setSearchType(int searchType) {
         this.searchType = searchType;
     }
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "SearchInfo [productName=" + productName + ", searchType=" + searchType + "]";
+	}
+    
 }

@@ -11,6 +11,7 @@ public class Product {
 	private int soldCount;
 	private String productIntroduction;
 	private String productPicture;
+	private int productStatus;
 	
 	public int getProductId() {
 		return productId;
@@ -82,6 +83,22 @@ public class Product {
 	
 	public void setProductPicture(String productPicture) {
 		this.productPicture = productPicture;
+	}
+	
+	
+
+	/**
+	 * @return the productStatus
+	 */
+	public int getProductStatus() {
+		return productStatus;
+	}
+
+	/**
+	 * @param productStatus the productStatus to set
+	 */
+	public void setProductStatus(int productStatus) {
+		this.productStatus = productStatus;
 	}
 
 	@Override

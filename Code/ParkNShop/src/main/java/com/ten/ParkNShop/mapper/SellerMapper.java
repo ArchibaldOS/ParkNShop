@@ -86,6 +86,8 @@ public interface SellerMapper {
 
     void updateBalance(@Param("sellerId")int sellerId, @Param("sellerBalance")float sellerBalance);
 
+    int deleteBalance(@Param("sellerId")int sellerId,@Param("amount")float amount);
+    
     int countSellerByStatus(int shopStatus);
 
 }

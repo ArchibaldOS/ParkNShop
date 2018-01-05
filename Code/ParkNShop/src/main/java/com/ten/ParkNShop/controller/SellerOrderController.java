@@ -10,8 +10,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.ten.ParkNShop.entity.Buyer;
+import com.ten.ParkNShop.entity.Order;
 import com.ten.ParkNShop.entity.Seller;
+import com.ten.ParkNShop.mapper.BuyerMapper;
 import com.ten.ParkNShop.mapper.CommissionMapper;
+import com.ten.ParkNShop.mapper.SellerMapper;
+import com.ten.ParkNShop.service.AdminBuyerService;
+import com.ten.ParkNShop.service.AdminOrderService;
 import com.ten.ParkNShop.service.SellerOrderService;
 import com.ten.ParkNShop.util.Page;
 
@@ -20,6 +26,14 @@ public class SellerOrderController {
 	
 	@Autowired
 	private SellerOrderService sellerOrderService; 
+	@Autowired
+	private AdminBuyerService adminBuyerService;
+	@Autowired
+	private AdminOrderService adminOrderService;
+	@Autowired
+	private BuyerMapper buyerMapper;
+	@Autowired
+	private SellerMapper sellerMapper;
 	
 	@RequestMapping(value = "/sellerOrderPage")
 	public String orderPage(HttpSession session,Model model){
@@ -91,10 +105,12 @@ public class SellerOrderController {
 	
 	@RequestMapping(value = "/sellerRefundSucceed", method = RequestMethod.GET)
 	public String refundSucceed(int orderId){
-		
+		Order order = adminOrderService.selectOrderById(orderId);
 		int result = sellerOrderService.changeToRefundSucceed(orderId);
-		System.out.println(result);
 		
+		Buyer buyer = adminBuyerService.selectBuyerById(order.getBuyerId());
+		buyerMapper.addBalance(order.getSellerId(), order.getTotalPrice());
+		sellerMapper.deleteBalance(order.getSellerId(),order.getTotalPrice());
 		return "forward:/sellerUncompletedOrder";
 	}
 	
@@ -102,7 +118,6 @@ public class SellerOrderController {
 	public String refundFailed(int orderId){
 		
 		int result = sellerOrderService.changeToRefundFailed(orderId);
-		System.out.println(result);
 		
 		return "forward:/sellerUncompletedOrder";
 	}

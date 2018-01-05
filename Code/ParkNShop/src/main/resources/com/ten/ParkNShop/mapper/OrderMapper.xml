@@ -370,6 +370,14 @@
         update orders set orderStatus = 9
         where orderId = #{orderId}
     </update>
+    <update id="changeToRefunding" parameterType="int">
+        update orders set orderStatus = 7
+        where orderId = #{orderId}
+    </update>
+    <update id="changeToRefundAndReturning" parameterType="int">
+        update orders set orderStatus = 6
+        where orderId = #{orderId}
+    </update>
     <select id="countAllOrder" resultType="int">
         SELECT COUNT(1)
         FROM orders

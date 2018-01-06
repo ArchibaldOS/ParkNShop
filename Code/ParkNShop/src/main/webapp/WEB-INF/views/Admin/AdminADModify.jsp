@@ -55,7 +55,7 @@
                 <a href="/AdminADApplyingList" class="list-group-item">Applying AD</a>
                 <a href="/AdminADList" class="list-group-item">AD List</a>
                 <a href="/AdminADManagement" class="list-group-item">Top10 Products Management</a>
-                <a href="/AdminADTop5StoriesManagement" class="list-group-item">Top5 Stories Management</a>
+                <a href="/AdminADTop5StoriesManagement" class="list-group-item">Top5 Stores Management</a>
                 <a href="/AdminADManagementHistory" class="list-group-item">AD Management History</a>
             </div>
         </div>
@@ -71,7 +71,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label">AD Other ID</label>
+                    <label class="col-sm-2 control-label">Shop/Product ID</label>
                     <div class="col-sm-10">
                         <input class="form-control" id="focusedInput10" type="text" name="adId" value="${ad.otherId}" READONLY>
                     </div>

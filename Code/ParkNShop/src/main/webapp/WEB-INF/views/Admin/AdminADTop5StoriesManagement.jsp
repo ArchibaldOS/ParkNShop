@@ -55,7 +55,7 @@
                 <a href="/AdminADApplyingList" class="list-group-item">Applying AD</a>
                 <a href="/AdminADList" class="list-group-item">AD List</a>
                 <a href="/AdminADManagement" class="list-group-item">Top10 Products Management</a>
-                <a href="/AdminADTop5StoriesManagement" class="list-group-item active">Top5 Stories Management</a>
+                <a href="/AdminADTop5StoriesManagement" class="list-group-item active">Top5 Stores Management</a>
                 <a href="/AdminADManagementHistory" class="list-group-item">AD Management History</a>
             </div>
         </div>
@@ -68,7 +68,7 @@
                 <tr>
                     <th hidden>ADID</th>
                     <th>AD Type</th>
-                    <th>Other ID</th>
+                    <th>Shop/Product ID</th>
                     <th>AD Price</th>
                     <th>AD Start Time</th>
                     <th>AD Time</th>
@@ -86,13 +86,13 @@
                             <c:when test="${ad.ADType eq 2}">
                                 <td><c:out value="Top5Store"></c:out></td>
                             </c:when>
-                            <c:when test="${ad.ADType eq 1}">
+                            <c:when test="${ad.ADType eq 3}">
                                 <td><c:out value="Featured"></c:out></td>
                             </c:when>
-                            <c:when test="${ad.ADType eq 1}">
+                            <c:when test="${ad.ADType eq 4}">
                                 <td><c:out value="Special"></c:out></td>
                             </c:when>
-                            <c:when test="${ad.ADType eq 1}">
+                            <c:when test="${ad.ADType eq 5}">
                                 <td><c:out value="OnSale"></c:out></td>
                             </c:when>
                         </c:choose>

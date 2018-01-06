@@ -55,7 +55,7 @@
                 <a href="/AdminADApplyingList" class="list-group-item">Applying AD</a>
                 <a href="/AdminADList" class="list-group-item">AD List</a>
                 <a href="/AdminADManagement" class="list-group-item">Top10 Products Management</a>
-                <a href="/AdminADTop5StoriesManagement" class="list-group-item">Top5 Stories Management</a>
+                <a href="/AdminADTop5StoriesManagement" class="list-group-item">Top5 Stores Management</a>
                 <a href="/AdminADManagementHistory" class="list-group-item">AD Management History</a>
             </div>
         </div>
@@ -113,7 +113,7 @@
                     </c:choose>
                 </tr>
                 <tr>
-                    <td>AD OtherID</td>
+                    <td>Shop/Product ID</td>
                     <td>${ad.otherId}</td>
                 </tr>
                 <tr>
@@ -125,8 +125,8 @@
                     <td>${ad.ADName}</td>
                 </tr>
                 <tr>
-                    <td>AD PhotoUrl</td>
-                    <td><a href="${ad.ADPhotoUrl}">Click to See</a></td>
+                    <td>AD Photo</td>
+                    <td><div style="width:60%;"><img src="${pageContext.request.contextPath}/upload/productPicture/${ad.ADPhotoUrl}"></div></td>
                 </tr>
                 <tr>
                     <td>AD Description</td>

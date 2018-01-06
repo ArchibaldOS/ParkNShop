@@ -146,8 +146,8 @@
               <ul class="dropdown-menu">
                 <c:forEach var="buyerItem" items="${buyerCart.getItems()}">
                   <li>
-                    <div class="media-left"> <a href="/BuyerProductDetail?productId=${buyerItem.getProduct().productId}" class="thumb"> <img src="${pageContext.request.contextPath}/upload/productPicture/${buyerItem.getProduct().productPicture}" class="img-responsive" alt="" > </a> </div>
-                    <div class="media-body"> <a href="/BuyerProductDetail?productId=${buyerItem.getProduct().productId}" class="tittle"></a> <span> ${buyerItem.getProduct().getProductPrice()}* ${buyerItem.getAmount()}</span> </div>
+                    <div class="media-left"> <a href="/ProductDetail?productId=${buyerItem.getProduct().productId}" class="thumb"> <img src="${pageContext.request.contextPath}/upload/productPicture/${buyerItem.getProduct().productPicture}" class="img-responsive" alt="" > </a> </div>
+                    <div class="media-body"> <a href="/ProductDetail?productId=${buyerItem.getProduct().productId}" class="tittle"></a> <span> ${buyerItem.getProduct().getProductPrice()}* ${buyerItem.getAmount()}</span> </div>
                   </li></c:forEach>
                 <li class="btn-cart"> <a href="/BuyerCart?buyerId=${sessionScope.Buyer.buyerId}" class="btn-round">View Cart</a> </li>
               </ul>
@@ -202,7 +202,7 @@
                       <h5>${p.productName}</h5>
                      
                       <div class="row">
-                        <div class="col-sm-6"><span class="price">$${p.productPrice} </span></div>
+                        <div class="col-sm-6"><span class="price">HK$${p.productPrice} </span></div>
                         <div class="col-sm-6">
                           <p>Availability: <span class="in-stock">In stock(${p.storeCount})</span></p>
                         </div>
@@ -213,12 +213,13 @@
                       </ul>
                       <!-- Compare Wishlist -->
                       <ul class="cmp-list">
-                        <li><a href="#."><i class="fa fa-heart"></i> Add to Wishlist</a></li>
+                        <li><a href="/sellerFontHome?sellerId=${p.sellerId }" style="font-size: 20px;color:blue;">view shop>>></a></li>
                       </ul>
                       <!-- Quinty -->
-                      <form action="/AddToCart" method="get">
+                      <form action="/AddToCart" method="get" onsubmit="return checkNum();">
                       <div class="quinty">
-                        <input type="number" name="productNum" value="1"/>
+                      <input type="number" name="productNum" id="productNum" value="1" onchange="checkNum();"/>
+
                         <input type="hidden" name="productId" value="${p.productId}">
                       </div>
                         <button type="submit" class="btn-default"><i class="icon-basket-loaded margin-right-5"></i> Add to Cart</button>
@@ -287,7 +288,23 @@
     <!-- GO TO TOP End -->
 </div>
 <!-- End Page Wrapper -->
+<script>
+	function checkNum(){
+		
+		var num = document.getElementById("productNum").value;
+		var store = ${p.storeCount};
+		if(num>store){
+			alert("The quantity of goods exceeds the stock!");
+			return false;
+		}else if(num<1){
+			alert("The quantity of goods must be greater than zero!");
+			return false;
+		}else
+			return true;
+	}
 
+
+</script>
 <script src="assets/js2/vendors/jquery/jquery.min.js"></script>
 <script src="assets/js2/vendors/wow.min.js"></script>
 <script src="assets/js2/vendors/bootstrap.min.js"></script>

@@ -143,14 +143,13 @@
                 <div class="page-header">
                     <h4>Order Management</h4>
                 </div>
-                <c:set var="orders" value="${requestScope.page }" />
+                <c:set var="orderItems" value="${requestScope.page }" />
                 <table class="table">
                     <thead>
                     <tr>
                         <th>orderId</th>
-                        <th>Seller</th>
                         <th>Buyer</th>
-                        <th>productId</th>
+                        <th>product</th>
                         <th>Count</th>
                         <th>totalPrice</th>
                         <th>Address</th>
@@ -158,35 +157,34 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <c:forEach var="order" items="${orders.list}">
+                    <c:forEach var="orderItem" items="${orderItems.list}">
                         <tr>
-                            <td><c:out value="${order.orderId}"></c:out></td>
-                            <td><c:out value="${order.sellerId}"></c:out></td>
-                            <td><c:out value="${order.buyerId}"></c:out></td>
-                            <td><c:out value="${order.productId}"></c:out></td>
-                            <td><c:out value="${order.count}"></c:out></td>
-                            <td><c:out value="HK$${order.totalPrice}"></c:out></td>
-                            <td><c:out value="${order.address}"></c:out></td>
-                            <td><c:out value="${order.orderTime}"></c:out></td>
+                            <td><c:out value="${orderItem.order.orderId}"></c:out></td>
+                            <td><c:out value="${orderItem.buyer.buyerName}"></c:out></td>
+                            <td><c:out value="${orderItem.product.productName}"></c:out></td>
+                            <td><c:out value="${orderItem.order.count}"></c:out></td>
+                            <td><c:out value="HK$${orderItem.order.totalPrice}"></c:out></td>
+                            <td><c:out value="${orderItem.order.address}"></c:out></td>
+                            <td><c:out value="${orderItem.order.orderTime}"></c:out></td>
                         </tr>
                     </c:forEach>
                     </tbody>
                 </table>
                 <nav class="pull-right">
                     <ul class="pagination">
-						<c:if test="${orders.current gt 1 }">
-							<li >
-                            	<a href="/sellerOrderManagement?cur=${orders.current-1 }" aria-label="Previous">
+						<c:if test="${orderItems.current gt 1 }">
+							<li>
+                            	<a href="/sellerUncompletedOrder?cur=${orderItems.current-1 }" aria-label="Previous">
                                 	<span aria-hidden="true">&laquo;</span>
                             	</a>
                         	</li>
                         </c:if>
-                        <c:forEach begin="1" end="${orders.total }" var="cur">
-                        	<li><a href="/sellerOrderManagement?cur=${cur}">${cur }</a></li>
+                        <c:forEach begin="1" end="${orderItems.total }" var="cur">
+                        	<li><a href="/sellerUncompletedOrder?cur=${cur}">${cur }</a></li>
                         </c:forEach>
-                        <c:if test="${orders.current lt orders.total }">
+                        <c:if test="${orderItems.current lt orderItems.total }">
                         	<li>
-                            	<a href="/sellerOrderManagement?cur=${orders.current+1 }" aria-label="Next">
+                            	<a href="/sellerUncompletedOrder?cur=${orderItems.current+1 }" aria-label="Next">
                                 	<span aria-hidden="true">&raquo;</span>
                             	</a>
                         	</li>

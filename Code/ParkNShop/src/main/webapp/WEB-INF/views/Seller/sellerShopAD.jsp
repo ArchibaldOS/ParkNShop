@@ -189,27 +189,27 @@ background-color: blue;
                 <h4>Shop Advertising Application</h4>
           </div> 
             <div style="float:left;margin-left:150px;">
-            <form class="form-horizontal" role="form" action="/sellerAD" method="post" enctype="multipart/form-data" name="formen">
+            <form class="form-horizontal" role="form" onsubmit="return check()" action="/sellerAD" method="post" enctype="multipart/form-data" name="formen">
 
                 <div class="form-group">
 
                     <label class="col-sm-5 control-label" for="fileInput">AD Name</label>
                     <div class="col-sm-3">
-                        <input type="text" class="form-control" name="ADName" autocomplete="off">
+                        <input id="ADName" type="text" class="form-control" name="ADName" autocomplete="off">
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="lastname" class="col-sm-5 control-label" >AD Photo</label>
                     <div class="col-sm-5">
-                        <input type="file" name="file" id="picpath" style="display:none" onChange="document.formen.path.value=this.value"/>
+                        <input type="file" name="file" id="file" style="display:none" onChange="document.formen.path.value=this.value"/>
                         <input name="path" readonly/> <input type="button" value="Browse" onclick="document.formen.file.click()"/>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="lastname" class="col-sm-5 control-label" >AD Time</label>
                     <div class="col-sm-5" style="display: inline-block;">
-                        <input id="adtime" type="text" class="form-control" name="ADTime" autocomplete="off" value="1" onchange="priceChange()">
+                        <input id="ADTime" onChange="clearStore(this)" type="number" max="90" class="form-control" name="ADTime" autocomplete="off" value="1">
                     </div>
                 </div>
                 <div class="form-group">
@@ -222,7 +222,7 @@ background-color: blue;
                 <div class="form-group">
                     <label for="lastname" class="col-sm-5 control-label" >AD Description</label>
                     <div class="col-sm-5">
-                        <textarea class="input-xlarge" id="textarea2" rows="3" cols="37" name="ADDescription" style="overflow-x:hidden;"></textarea>
+                        <textarea class="input-xlarge" id="ADDescription" rows="3" cols="37" name="ADDescription" style="overflow-x:hidden;"></textarea>
                     </div>
                 </div>
 
@@ -240,7 +240,40 @@ background-color: blue;
 		var price = document.getElementById("adprice");
 		price.innerHTML = 'HK$' + time * 200;
 	}
-
+	function check(){
+		var name = document.getElementById("ADName");
+		var file = document.getElementById("file");
+		var time = document.getElementById("ADTime");
+		var introduction = document.getElementById("ADDescription");
+		
+		if(name.value == ''){
+			alert("please input AD name!");
+			return false;
+		}else if(file.value == ''){
+			alert("please upload AD picture!");
+			return false;
+		}else if(time.value == ''){
+			alert("please input AD time!");
+			return false;
+		}else if(introduction.value == ''){
+			alert("please input AD description!");
+			return false;
+		}else{
+			return true;
+		}
+		
+		
+	}
+	function clearStore(obj){ 
+	    obj.value = obj.value.replace(/[^\d]/g,"");  //清除“数字”和“.”以外的字符  
+	   
+	   
+	    if(obj.value.indexOf(".")< 0 && obj.value !=""){//以上已经过滤，此处控制的是如果没有小数点，首位不能为类似于 01、02的金额 
+	        obj.value= parseFloat(obj.value); 
+	    } 
+	    var price = document.getElementById("adprice");
+		price.innerHTML = 'HK$' + obj.value * 200;
+	} 
 
 </script>
 <script src="assets/js2/vendors/jquery/jquery.min.js"></script>

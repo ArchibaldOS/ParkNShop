@@ -143,14 +143,13 @@
                 <div class="page-header">
                     <h4>Order Management</h4>
                 </div>
-                <c:set var="orders" value="${requestScope.page }" />
+                <c:set var="orderItems" value="${requestScope.page }" />
                 <table class="table">
                     <thead>
                     <tr>
                         <th>orderId</th>
-                        <th>Seller</th>
                         <th>Buyer</th>
-                        <th>productId</th>
+                        <th>product</th>
                         <th>Count</th>
                         <th>totalPrice</th>
                         <th>Address</th>
@@ -160,46 +159,45 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <c:forEach var="order" items="${orders.list}">
+                    <c:forEach var="orderItem" items="${orderItems.list}">
                         <tr>
-                            <td><c:out value="${order.orderId}"></c:out></td>
-                            <td><c:out value="${order.sellerId}"></c:out></td>
-                            <td><c:out value="${order.buyerId}"></c:out></td>
-                            <td><c:out value="${order.productId}"></c:out></td>
-                            <td><c:out value="${order.count}"></c:out></td>
-                            <td><c:out value="HK$${order.totalPrice}"></c:out></td>
-                            <td><c:out value="${order.address}"></c:out></td>
+                            <td><c:out value="${orderItem.order.orderId}"></c:out></td>
+                            <td><c:out value="${orderItem.buyer.buyerName}"></c:out></td>
+                            <td><c:out value="${orderItem.product.productName}"></c:out></td>
+                            <td><c:out value="${orderItem.order.count}"></c:out></td>
+                            <td><c:out value="HK$${orderItem.order.totalPrice}"></c:out></td>
+                            <td><c:out value="${orderItem.order.address}"></c:out></td>
                             <c:choose>
-                                <c:when test="${order.orderStatus eq 3}"><td>Paid,Unshipped</td></c:when>
-                                <c:when test="${order.orderStatus eq 4}"><td>Paid,Shipped</td></c:when>
-                                <c:when test="${order.orderStatus eq 6}"><td>Refunding</td></c:when>
-                                <c:when test="${order.orderStatus eq 7}"><td>Refund Succeed</td></c:when>
-                                <c:when test="${order.orderStatus eq 8}"><td>Refund Failed</td></c:when>
+                                <c:when test="${orderItem.order.orderStatus eq 3}"><td>Paid,Unshipped</td></c:when>
+                                <c:when test="${orderItem.order.orderStatus eq 4}"><td>Paid,Shipped</td></c:when>
+                                <c:when test="${orderItem.order.orderStatus eq 6}"><td>Refunding</td></c:when>
+                                <c:when test="${orderItem.order.orderStatus eq 7}"><td>Refund Succeed</td></c:when>
+                                <c:when test="${orderItem.order.orderStatus eq 8}"><td>Refund Failed</td></c:when>
                             </c:choose>
-                            <td><c:out value="${order.orderTime}"></c:out></td>
+                            <td><c:out value="${orderItem.order.orderTime}"></c:out></td>
                             <c:choose>
-                            	<c:when test="${order.orderStatus eq 3}">
+                            	<c:when test="${orderItem.order.orderStatus eq 3}">
                             	<td><div role="presentation" class="dropdown">
                                 	<button class="dropdown-toggle btn-default" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Onclick <span class="caret"></span>
                                 	</button>
                                 	<ul class="dropdown-menu">
-                                    	<li><a href="/sellerShip?orderId=${order.orderId}">Ship</a></li>
+                                    	<li><a href="/sellerShip?orderId=${orderItem.order.orderId}">Ship</a></li>
                                 	</ul>
                             	</div></td>
                            		</c:when>
-                           		<c:when test="${order.orderStatus eq 6}">
+                           		<c:when test="${orderItem.order.orderStatus eq 6}">
                             	<td><div role="presentation" class="dropdown">
                                 	<button class="dropdown-toggle  btn-default" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Onclick <span class="caret"></span>
                                 	</button>
                                 	<ul class="dropdown-menu">
-                                    	<li><a href="/sellerRefundSucceed?orderId=${order.orderId}">Refund Succeed</a></li>
-                                    	<li><a href="/sellerRefundFailed?orderId=${order.orderId}">Refund Failed</a></li>
+                                    	<li><a href="/sellerRefundSucceed?orderId=${orderItem.order.orderId}">Refund Succeed</a></li>
+                                    	<li><a href="/sellerRefundFailed?orderId=${orderItem.order.orderId}">Refund Failed</a></li>
                                 	</ul>
                             	</div></td>
                            		</c:when>
-                           		<c:when test="${order.orderStatus eq 4}"><td></td></c:when>
-                           		<c:when test="${order.orderStatus eq 7}"><td></td></c:when>
-                           		<c:when test="${order.orderStatus eq 8}"><td></td></c:when>
+                           		<c:when test="${orderItem.order.orderStatus eq 4}"><td></td></c:when>
+                           		<c:when test="${orderItem.order.orderStatus eq 7}"><td></td></c:when>
+                           		<c:when test="${orderItem.order.orderStatus eq 8}"><td></td></c:when>
                             </c:choose>
                         </tr>
                     </c:forEach>
@@ -207,19 +205,19 @@
                 </table>
                 <nav class="pull-right">
                     <ul class="pagination">
-						<c:if test="${orders.current gt 1 }">
+						<c:if test="${orderItems.current gt 1 }">
 							<li>
-                            	<a href="/sellerUncompletedOrder?cur=${orders.current-1 }" aria-label="Previous">
+                            	<a href="/sellerUncompletedOrder?cur=${orderItems.current-1 }" aria-label="Previous">
                                 	<span aria-hidden="true">&laquo;</span>
                             	</a>
                         	</li>
                         </c:if>
-                        <c:forEach begin="1" end="${orders.total }" var="cur">
+                        <c:forEach begin="1" end="${orderItems.total }" var="cur">
                         	<li><a href="/sellerUncompletedOrder?cur=${cur}">${cur }</a></li>
                         </c:forEach>
-                        <c:if test="${orders.current lt orders.total }">
+                        <c:if test="${orderItems.current lt orderItems.total }">
                         	<li>
-                            	<a href="/sellerUncompletedOrder?cur=${orders.current+1 }" aria-label="Next">
+                            	<a href="/sellerUncompletedOrder?cur=${orderItems.current+1 }" aria-label="Next">
                                 	<span aria-hidden="true">&raquo;</span>
                             	</a>
                         	</li>

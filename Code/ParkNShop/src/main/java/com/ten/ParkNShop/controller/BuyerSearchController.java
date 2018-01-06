@@ -46,8 +46,9 @@ public class BuyerSearchController {
         model.addAttribute("type3products",buyerProductService.searchBySearchType(3,0,5));
         model.addAttribute("type4products",buyerProductService.searchBySearchType(4,0,5));
         model.addAttribute("type5products",buyerProductService.searchBySearchType(5,0,5));
-        model.addAttribute("type7products",buyerProductService.searchBySearchType(7,0,5));
+        model.addAttribute("type8products",buyerProductService.searchBySearchType(8,0,5));
 
+        
         model.addAttribute("bigADs",adminADService.selectADTop5Store());
 
         return "Buyer/BuyerIndex";

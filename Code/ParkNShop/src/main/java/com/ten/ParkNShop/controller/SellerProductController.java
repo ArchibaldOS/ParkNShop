@@ -40,7 +40,6 @@ public class SellerProductController {
 
 		if (file.getSize() > 0) {
 			String path = session.getServletContext().getRealPath("/upload/productPicture");
-			System.out.println(path);
 			String filePath = FileUtil.uploadFile(file, path);
 			Product product = new Product();
 			int sellerId = ((Seller)session.getAttribute("seller")).getsellerId();
@@ -57,7 +56,7 @@ public class SellerProductController {
 				return "redirect:/sellerProductList";
 			}
 		}
-		return "Seller/sellerTestFaild";
+		return "Seller/productAdd";
 	}
 	
 	@RequestMapping(value = "/sellerProductList", method = RequestMethod.GET)

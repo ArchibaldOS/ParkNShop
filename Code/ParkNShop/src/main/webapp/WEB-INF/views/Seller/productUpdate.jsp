@@ -105,13 +105,13 @@ background-color: blue;
 
     </header>
   <c:set var="p" value="${requestScope.product }" /> 
-   <form class="form-horizontal" role="form" action="/updateProduct" method="post" enctype="multipart/form-data" name="formen">
+   <form class="form-horizontal" role="form" onsubmit="return check();" action="/updateProduct" method="post" enctype="multipart/form-data" name="formen">
    <input type="hidden" name="productId" value="${p.productId }"  />
    
    <div class="form-group" style="margin-top:20px">
       <label class="col-sm-5 control-label">product name</label>
       <div class="col-sm-3">
-         <input class="form-control" type="text" name="productName" autocomplete="off" value="${p.productName}"/>
+         <input id="productName" class="form-control" type="text" name="productName" autocomplete="off" value="${p.productName}"/>
       </div>
    </div>
 
@@ -135,21 +135,21 @@ background-color: blue;
     <div class="form-group">
       <label class="col-sm-5 control-label">product price</label>
       <div class="col-sm-3">
-         <input type="text" class="form-control" name="productPrice"  value="${p.productPrice}"/>
+         <input id="productPrice" type="text" class="form-control" onkeyup="clearNoNum(this)" name="productPrice"  value="${p.productPrice}"/>
       </div>
    </div>
 
    <div class="form-group">
       <label for="firstname" class="col-sm-5 control-label">store count</label>
       <div class="col-sm-3">
-         <input type="text" class="form-control" name="storeCount" value="${p.storeCount}" />
+         <input id="storeCount" onkeyup="clearStore(this)" type="number" max="10000"  class="form-control" name="storeCount" value="${p.storeCount}" />
       </div>
    </div>
 
    <div class="form-group">
       <label for="lastname" class="col-sm-5 control-label" >product introduction</label>
       <div class="col-sm-5">
-         <textarea class="input-xlarge" id="textarea" rows="3" cols="37" name="productIntroduction" style="overflow-x:hidden;">${p.productIntroduction}</textarea>
+         <textarea id="productIntroduction" class="input-xlarge" id="textarea" rows="3" cols="37" name="productIntroduction" style="overflow-x:hidden;">${p.productIntroduction}</textarea>
       </div>
    </div>
    
@@ -170,8 +170,52 @@ background-color: blue;
 	
 	
 </form>
+</div>
+<script>
+function check(){
+	var name = document.getElementById("productName");
+	var price = document.getElementById("productPrice");
+	var store = document.getElementById("storeCount");
+	var introduction = document.getElementById("productIntroduction");
+	
+	if(name.value == ''){
+		alert("please input product name!");
+		return false;
+	}else if(price.value == ''){
+		alert("please input product price!");
+		return false;
+	}else if(store.value == ''){
+		alert("please input product store count!");
+		return false;
+	}else if(introduction.value == ''){
+		alert("please input product introduction!");
+		return false;
+	}else{
+		return true;
+	}
+	
+	
+}
 
+function clearNoNum(obj){ 
+    obj.value = obj.value.replace(/[^\d.]/g,"");  //清除“数字”和“.”以外的字符  
+    obj.value = obj.value.replace(/\.{2,}/g,"."); //只保留第一个. 清除多余的  
+    obj.value = obj.value.replace(".","$#$").replace(/\./g,"").replace("$#$","."); 
+    obj.value = obj.value.replace(/^(\-)*(\d+)\.(\d\d).*$/,'$1$2.$3');//只能输入两个小数  
+    if(obj.value.indexOf(".")< 0 && obj.value !=""){//以上已经过滤，此处控制的是如果没有小数点，首位不能为类似于 01、02的金额 
+        obj.value= parseFloat(obj.value); 
+    } 
+} 
+function clearStore(obj){ 
+    obj.value = obj.value.replace(/[^\d]/g,"");  //清除“数字”和“.”以外的字符  
+   
+   
+    if(obj.value.indexOf(".")< 0 && obj.value !=""){//以上已经过滤，此处控制的是如果没有小数点，首位不能为类似于 01、02的金额 
+        obj.value= parseFloat(obj.value); 
+    } 
+} 
 
+</script>
   <script src="assets/js2/vendors/jquery/jquery.min.js"></script>
 <script src="assets/js2/vendors/wow.min.js"></script>
 <script src="assets/js2/vendors/bootstrap.min.js"></script>

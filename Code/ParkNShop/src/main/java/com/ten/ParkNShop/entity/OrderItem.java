@@ -7,6 +7,7 @@ public class OrderItem {
     public Product product;
     public Order order;
     public Seller seller;
+    public Buyer buyer;
     public Product getProduct() {
         return product;
     }
@@ -31,4 +32,20 @@ public class OrderItem {
     public void setSeller(Seller seller) {
         this.seller = seller;
     }
+
+	/**
+	 * @return the buyer
+	 */
+	public Buyer getBuyer() {
+		return buyer;
+	}
+
+	/**
+	 * @param buyer the buyer to set
+	 */
+	public void setBuyer(Buyer buyer) {
+		this.buyer = buyer;
+	}
+    
+    
 }

@@ -204,7 +204,7 @@
                                 <div class="refunds">
                                     <label>
                                         <span>The return address:</span>
-                                        <span>${orderItem.seller.shopAddress}</span>
+                                        <span>${orderItem.seller.sellerAddress}</span>
                                     </label>
                                 </div>
                             </c:when>

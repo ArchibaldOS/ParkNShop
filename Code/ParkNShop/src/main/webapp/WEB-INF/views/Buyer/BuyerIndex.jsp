@@ -135,8 +135,8 @@
           <ul class="dropdown-menu">
             <c:forEach var="buyerItem" items="${buyerCart.getItems()}">
             <li>
-              <div class="media-left"> <a href="/BuyerProductDetail?productId=${buyerItem.getProduct().productId}" class="thumb"> <img src="${pageContext.request.contextPath}/upload/productPicture/${buyerItem.getProduct().productPicture}" class="img-responsive" alt="" > </a> </div>
-              <div class="media-body"> <a href="/BuyerProductDetail?productId=${buyerItem.getProduct().productId}" class="tittle"></a> <span> ${buyerItem.getProduct().getProductPrice()}* ${buyerItem.getAmount()}</span> </div>
+              <div class="media-left"> <a href="/ProductDetail?productId=${buyerItem.getProduct().productId}" class="thumb"> <img src="${pageContext.request.contextPath}/upload/productPicture/${buyerItem.getProduct().productPicture}" class="img-responsive" alt="" > </a> </div>
+              <div class="media-body"> <a href="/ProductDetail?productId=${buyerItem.getProduct().productId}" class="tittle"></a> <span> ${buyerItem.getProduct().getProductPrice()}* ${buyerItem.getAmount()}</span> </div>
             </li></c:forEach>
             <li class="btn-cart"> <a href="/BuyerCart?buyerId=${sessionScope.Buyer.buyerId}" class="btn-round">View Cart</a> </li>
           </ul>
@@ -277,9 +277,26 @@
                 <div class="product">
                   <article> <img class="img-responsive" src="${pageContext.request.contextPath}/upload/productPicture/${specialProduct.productPicture}" alt="" >
                     <!-- Content -->
-                    <span class="tag">${specialProduct.productType}</span> <a href="/BuyerProductDetail?productId=${specialProduct.productId}" class="tittle">${specialProduct.productName}</a>
+                    <span class="tag">
+                    <c:choose>
+                      <c:when test="${specialProduct.productType eq 1}">TV& Home Theater</c:when>
+                      <c:when test="${specialProduct.productType eq 2}">Computers & Tablets</c:when>
+                      <c:when test="${specialProduct.productType eq 3}">Cell Phones</c:when>
+                      <c:when test="${specialProduct.productType eq 4}">Cameras & Camcorders</c:when>
+                      <c:when test="${specialProduct.productType eq 5}">Audio</c:when>
+                      <c:when test="${specialProduct.productType eq 6}">Car Electronics & GPS</c:when>
+                      <c:when test="${specialProduct.productType eq 7}">Video, Games, Movies & Music</c:when>
+                      <c:when test="${specialProduct.productType eq 8}">Health, Fitness & Sports</c:when>
+                      <c:when test="${specialProduct.productType eq 9}">Home & Office</c:when>
+                    </c:choose>
+                    
+                    
+                  </span> 
+                    
+                    
+                     <a href="/ProductDetail?productId=${specialProduct.productId}" class="tittle">${specialProduct.productName}</a>
                     <!-- Reviews -->
-                    <div class="price">${specialProduct.productPrice} </div>
+                    <div class="price">HK$${specialProduct.productPrice} </div>
                     <a href="/AddToCart?buyerId=${sessionScope.Buyer.buyerId}&productId=${specialProduct.productId}" class="cart-btn"><i class="icon-basket-loaded"></i></a> </article>
                 </div>
               </c:forEach>
@@ -295,9 +312,26 @@
                 <div class="product">
                   <article> <img class="img-responsive" src="${pageContext.request.contextPath}/upload/productPicture/${onsaleProduct.productPicture}" alt="" >
                     <!-- Content -->
-                    <span class="tag">${onsaleProduct.productType}</span> <a href="/BuyerProductDetail?productId=${onsaleProduct.productId}" class="tittle">${onsaleProduct.productName}</a>
+                    <span class="tag">
+                    <c:choose>
+                      <c:when test="${onsaleProduct.productType eq 1}">TV& Home Theater</c:when>
+                      <c:when test="${onsaleProduct.productType eq 2}">Computers & Tablets</c:when>
+                      <c:when test="${onsaleProduct.productType eq 3}">Cell Phones</c:when>
+                      <c:when test="${onsaleProduct.productType eq 4}">Cameras & Camcorders</c:when>
+                      <c:when test="${onsaleProduct.productType eq 5}">Audio</c:when>
+                      <c:when test="${onsaleProduct.productType eq 6}">Car Electronics & GPS</c:when>
+                      <c:when test="${onsaleProduct.productType eq 7}">Video, Games, Movies & Music</c:when>
+                      <c:when test="${onsaleProduct.productType eq 8}">Health, Fitness & Sports</c:when>
+                    </c:choose>
+                    
+                    
+                  </span> 
+                    
+                    
+                    
+                    <a href="/ProductDetail?productId=${onsaleProduct.productId}" class="tittle">${onsaleProduct.productName}</a>
                     <!-- Reviews -->
-                    <div class="price">${onsaleProduct.productPrice} </div>
+                    <div class="price">HK$${onsaleProduct.productPrice} </div>
                     <a href="/AddToCart?buyerId=${sessionScope.Buyer.buyerId}&productId=${onsaleProduct.productId}" class="cart-btn"><i class="icon-basket-loaded"></i></a> </article>
                 </div>
               </c:forEach>
@@ -326,13 +360,30 @@
               <%--打折标识--%>
               <%--<span class="sale-tag">-25%</span>--%>
               <!-- Content -->
-              <span class="tag">${topSellingProduct.productType}</span> <a href="/BuyerProductDetail?productId=${topSellingProduct.productId}" class="tittle">${topSellingProduct.productName}</a>
+              <span class="tag">
+                    <c:choose>
+                      <c:when test="${topSellingProduct.productType eq 1}">TV& Home Theater</c:when>
+                      <c:when test="${topSellingProduct.productType eq 2}">Computers & Tablets</c:when>
+                      <c:when test="${topSellingProduct.productType eq 3}">Cell Phones</c:when>
+                      <c:when test="${topSellingProduct.productType eq 4}">Cameras & Camcorders</c:when>
+                      <c:when test="${topSellingProduct.productType eq 5}">Audio</c:when>
+                      <c:when test="${topSellingProduct.productType eq 6}">Car Electronics & GPS</c:when>
+                      <c:when test="${topSellingProduct.productType eq 7}">Video, Games, Movies & Music</c:when>
+                      <c:when test="${topSellingProduct.productType eq 8}">Health, Fitness & Sports</c:when>
+                    </c:choose>
+                    
+                    
+              </span>
+              
+              
+              <a href="/ProductDetail?productId=${topSellingProduct.productId}" class="tittle">${topSellingProduct.productName}</a>
               <!-- Reviews -->
-              <div class="price">${topSellingProduct.productPrice} </div>
+              <div class="price">HK$${topSellingProduct.productPrice} </div>
               <a href="/AddToCart?buyerId=${sessionScope.Buyer.buyerId}&productId=${topSellingProduct.productId}" class="cart-btn"><i class="icon-basket-loaded"></i></a> </article>
           </div>
-        </div>
+       
         </c:forEach>
+      </div>
       </div>
     </section>
     <!-- Top Sales Shop Week -->
@@ -360,8 +411,8 @@
               <div class="price">${topSalesShop.shopIntroduction} </div>
             </article>
           </div>
-        </div>
         </c:forEach>
+      </div>
       </div>
     </section>
 
@@ -369,12 +420,12 @@
     <section class="main-tabs-sec padding-top-60 padding-bottom-0">
       <div class="container">
         <ul class="nav margin-bottom-40" role="tablist">
-          <li role="presentation" class="active"><a href="#tv-au" aria-controls="featur" role="tab" data-toggle="tab"> <i class="flaticon-computer"></i> TV& Home Theater <span>236 item(s)</span></a></li>
-          <li role="presentation"><a href="#smart" aria-controls="special" role="tab" data-toggle="tab"><i class="flaticon-smartphone"></i>Computers & Tablets <span>150 item(s)</span></a></li>
-          <li role="presentation"><a href="#deks-lap" aria-controls="on-sal" role="tab" data-toggle="tab"><i class="flaticon-laptop"></i>Cell Phones <span>268 item(s)</span></a></li>
-          <li role="presentation"><a href="#game-com" aria-controls="special" role="tab" data-toggle="tab"><i class="flaticon-gamepad-1"></i>Cameras & Camcorders<span>79 item(s)</span></a></li>
-          <li role="presentation"><a href="#watches" aria-controls="on-sal" role="tab" data-toggle="tab"><i class="flaticon-computer-1"></i>Audio<span>105 item(s)</span></a></li>
-          <li role="presentation"><a href="#access" aria-controls="on-sal" role="tab" data-toggle="tab"><i class="flaticon-keyboard"></i>Video, Games, Movies & Music<span>816 item(s)</span></a></li>
+          <li role="presentation" class="active"><a href="#tv-au" aria-controls="featur" role="tab" data-toggle="tab"> <i class="flaticon-computer"></i> TV& Home Theater </a></li>
+          <li role="presentation"><a href="#smart" aria-controls="special" role="tab" data-toggle="tab"><i class="flaticon-smartphone"></i>Computers & Tablets </a></li>
+          <li role="presentation"><a href="#deks-lap" aria-controls="on-sal" role="tab" data-toggle="tab"><i class="flaticon-laptop"></i>Cell Phones </a></li>
+          <li role="presentation"><a href="#game-com" aria-controls="special" role="tab" data-toggle="tab"><i class="flaticon-gamepad-1"></i>Cameras & Camcorders</a></li>
+          <li role="presentation"><a href="#watches" aria-controls="on-sal" role="tab" data-toggle="tab"><i class="flaticon-computer-1"></i>Audio</a></li>
+          <li role="presentation"><a href="#access" aria-controls="on-sal" role="tab" data-toggle="tab"><i class="flaticon-keyboard"></i>Health, Fitness & Sports</a></li>
         </ul>
 
         <!-- Tab panes -->
@@ -390,9 +441,26 @@
                 <article> <img class="img-responsive" src="${pageContext.request.contextPath}/upload/productPicture/${type1product.productPicture}" alt="" >
 
                   <!-- Content -->
-                  <span class="tag">${type1product.productType}</span> <a href="/BuyerProductDetail?productId=${type1product.productId}" class="tittle">${type1product.productName}</a>
+                  <span class="tag">
+                    <c:choose>
+                      <c:when test="${type1product.productType eq 1}">TV& Home Theater</c:when>
+                      <c:when test="${type1product.productType eq 2}">Computers & Tablets</c:when>
+                      <c:when test="${type1product.productType eq 3}">Cell Phones</c:when>
+                      <c:when test="${type1product.productType eq 4}">Cameras & Camcorders</c:when>
+                      <c:when test="${type1product.productType eq 5}">Audio</c:when>
+                      <c:when test="${type1product.productType eq 6}">Car Electronics & GPS</c:when>
+                      <c:when test="${type1product.productType eq 7}">Video, Games, Movies & Music</c:when>
+                      <c:when test="${type1product.productType eq 8}">Health, Fitness & Sports</c:when>
+                    </c:choose>
+                    
+                    
+              </span>
+                  
+                  
+                  
+                  <a href="/ProductDetail?productId=${type1product.productId}" class="tittle">${type1product.productName}</a>
                   <!-- Reviews -->
-                  <div class="price">${type1product.productPrice}</div>
+                  <div class="price">HK$${type1product.productPrice}</div>
                   <a href="/AddToCart?buyerId=${sessionScope.Buyer.buyerId}&productId=${type1product.productId}" class="cart-btn"><i class="icon-basket-loaded"></i></a> </article>
               </div>
               </c:forEach>
@@ -409,16 +477,16 @@
                   <article> <img class="img-responsive" src="${pageContext.request.contextPath}/upload/productPicture/${type2product.productPicture}" alt="" >
 
                     <!-- Content -->
-                    <span class="tag">${type2product.productType}</span> <a href="/BuyerProductDetail?productId=${type2product.productId}" class="tittle">${type2product.productName}</a>
+                    <span class="tag">Computers & Tablets</span> <a href="/ProductDetail?productId=${type2product.productId}" class="tittle">${type2product.productName}</a>
                     <!-- Reviews -->
-                    <div class="price">${type2product.productPrice}</div>
+                    <div class="price">HK$${type2product.productPrice}</div>
                     <a href="/AddToCart?buyerId=${sessionScope.Buyer.buyerId}&productId=${type2product.productId}" class="cart-btn"><i class="icon-basket-loaded"></i></a> </article>
                 </div>
               </c:forEach>
             </div>
           </div>
           <!-- Cell Phones -->
-          <div role="tabpanel" class="tab-pane fade" id="game-com">
+          <div role="tabpanel" class="tab-pane fade" id="deks-lap">
 
             <!-- Items -->
             <div class="item-col-5">
@@ -429,16 +497,16 @@
                   <article> <img class="img-responsive" src="${pageContext.request.contextPath}/upload/productPicture/${type3product.productPicture}" alt="" >
 
                     <!-- Content -->
-                    <span class="tag">${type3product.productType}</span> <a href="/BuyerProductDetail?productId=${type3product.productId}" class="tittle">${type3product.productName}</a>
+                    <span class="tag">Cell Phones</span> <a href="/ProductDetail?productId=${type3product.productId}" class="tittle">${type3product.productName}</a>
                     <!-- Reviews -->
-                    <div class="price">${type3product.productPrice}</div>
+                    <div class="price">HK$${type3product.productPrice}</div>
                     <a href="/AddToCart?buyerId=${sessionScope.Buyer.buyerId}&productId=${type3product.productId}" class="cart-btn"><i class="icon-basket-loaded"></i></a> </article>
                 </div>
               </c:forEach>
             </div>
           </div>
           <!-- Cameras & Camcorders -->
-          <div role="tabpanel" class="tab-pane fade" id="watches">
+          <div role="tabpanel" class="tab-pane fade" id="game-com">
 
             <!-- Items -->
             <div class="item-col-5">
@@ -449,9 +517,9 @@
                   <article> <img class="img-responsive" src="${pageContext.request.contextPath}/upload/productPicture/${type4product.productPicture}" alt="" >
 
                     <!-- Content -->
-                    <span class="tag">${type4product.productType}</span> <a href="/BuyerProductDetail?productId=${type4product.productId}" class="tittle">${type4product.productName}</a>
+                    <span class="tag">Cameras & Camcorders</span> <a href="/ProductDetail?productId=${type4product.productId}" class="tittle">${type4product.productName}</a>
                     <!-- Reviews -->
-                    <div class="price">${type4product.productPrice}</div>
+                    <div class="price">HK$${type4product.productPrice}</div>
                     <a href="/AddToCart?buyerId=${sessionScope.Buyer.buyerId}&productId=${type4product.productId}" class="cart-btn"><i class="icon-basket-loaded"></i></a> </article>
                 </div>
               </c:forEach>
@@ -459,7 +527,7 @@
             </div>
           </div>
           <!-- Audio  -->
-          <div role="tabpanel" class="tab-pane fade" id="access">
+          <div role="tabpanel" class="tab-pane fade" id="watches">
 
             <!-- Items -->
             <div class="item-col-5">
@@ -470,9 +538,9 @@
                   <article> <img class="img-responsive" src="${pageContext.request.contextPath}/upload/productPicture/${type5product.productPicture}" alt="" >
 
                     <!-- Content -->
-                    <span class="tag">${type5product.productType}</span> <a href="/BuyerProductDetail?productId=${type5product.productId}" class="tittle">${type5product.productName}</a>
+                    <span class="tag">Audio</span> <a href="/ProductDetail?productId=${type5product.productId}" class="tittle">${type5product.productName}</a>
                     <!-- Reviews -->
-                    <div class="price">${type5product.productPrice}</div>
+                    <div class="price">HK$${type5product.productPrice}</div>
                     <a href="/AddToCart?buyerId=${sessionScope.Buyer.buyerId}&productId=${type5product.productId}" class="cart-btn"><i class="icon-basket-loaded"></i></a> </article>
                 </div>
               </c:forEach>
@@ -481,28 +549,28 @@
             </div>
           </div>
 
-          <!-- Video, Games, Movies & Music  -->
-          <div role="tabpanel" class="tab-pane fade" id="fun">
+          <!-- Health, Fitness & Sports  -->
+          <div role="tabpanel" class="tab-pane fade" id="access">
 
             <!-- Items -->
             <div class="item-col-5">
 
-              <c:forEach var="type7product" items="${type7products}">
+              <c:forEach var="type8product" items="${type8products}">
                 <!-- Product -->
                 <div class="product">
-                  <article> <img class="img-responsive" src="${pageContext.request.contextPath}/upload/productPicture/${type7product.productPicture}" alt="" >
+                  <article> <img class="img-responsive" src="${pageContext.request.contextPath}/upload/productPicture/${type8product.productPicture}" alt="" >
 
                     <!-- Content -->
-                    <span class="tag">${type7product.productType}</span> <a href="/BuyerProductDetail?productId=${type7product.productId}" class="tittle">${type7product.productName}</a>
+                    <span class="tag">Health, Fitness & Sports</span> <a href="/ProductDetail?productId=${type8product.productId}" class="tittle">${type8product.productName}</a>
                     <!-- Reviews -->
-                    <div class="price">${type7product.productPrice}</div>
-                    <a href="/AddToCart?buyerId=${sessionScope.Buyer.buyerId}&productId=${type7product.productId}" class="cart-btn"><i class="icon-basket-loaded"></i></a> </article>
+                    <div class="price">HK$${type8product.productPrice}</div>
+                    <a href="/AddToCart?buyerId=${sessionScope.Buyer.buyerId}&productId=${type8product.productId}" class="cart-btn"><i class="icon-basket-loaded"></i></a> </article>
                 </div>
               </c:forEach>
 
 
             </div>
-          </div>
+          </div> 
         </div>
       </div>
     </section>

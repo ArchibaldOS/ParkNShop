@@ -82,7 +82,6 @@ public class SellerOrderController {
 		int sellerId = ((Seller)session.getAttribute("seller")).getsellerId();
         
 		Page page = sellerOrderService.getUncompletedOrders(sellerId,cur);
-		System.out.println(page.getList());
 		model.addAttribute("page",page);
 		return "Seller/listUncompletedOrders";
 	}
@@ -109,7 +108,7 @@ public class SellerOrderController {
 		int result = sellerOrderService.changeToRefundSucceed(orderId);
 		
 		Buyer buyer = adminBuyerService.selectBuyerById(order.getBuyerId());
-		buyerMapper.addBalance(order.getSellerId(), order.getTotalPrice());
+		buyerMapper.addBalance(order.getBuyerId(), order.getTotalPrice());
 		sellerMapper.deleteBalance(order.getSellerId(),order.getTotalPrice());
 		return "forward:/sellerUncompletedOrder";
 	}

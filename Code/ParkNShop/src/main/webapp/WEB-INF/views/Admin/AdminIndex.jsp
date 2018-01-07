@@ -153,12 +153,12 @@
 
 											<c:forEach var="backupHistory" items="${backupHistorys}">
 												<tr>
-													<td hidden>${backupHistory.backupid}</td>
+													<td>${backupHistory.backupid}</td>
 													<td>${backupHistory.backupaccount}</td>
 													<td>${backupHistory.backupdate}</td>
 													<td>
-														<%--<button class="btn btn-success" onclick="location='/AdminRecover?backupId=${backupHistory.backupid}'">recover</button>--%>
-														<button class="btn btn-success" onclick="recover()">recover</button>
+														<button class="btn btn-success" onclick="location='/AdminRecover?backupId=${backupHistory.backupid}'">recover</button>
+														<%--<button class="btn btn-success" onclick="recover()">recover</button>--%>
                                                             <script>
                                                                 function recover() {
                                                                     bootbox.confirm({
@@ -178,7 +178,8 @@
                                                                                 return;
                                                                             }
                                                                             else{
-                                                                                window.location="/AdminRecover?backupId=${backupHistory.backupid}";
+                                                                                window.location="/AdminRecover?backupId=${backupHistory.backupdate}";
+
                                                                             }
                                                                         }
                                                                     });
@@ -237,6 +238,8 @@
 		<script src="assets/javascripts/jquery.min.js"></script>
 		<script src="assets/javascripts/bootstrap.min.js"></script>
 		<script src="assets/javascripts/Chart.js"></script>
+		<script src="assets/javascripts/bootbox.min.js"></script>
+
 		<script>
             var ctx = document.getElementById("canvas-index").getContext("2d");
             var lineChartData = {

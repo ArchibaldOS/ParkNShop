@@ -65,23 +65,25 @@ public class AdminIndexController {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss");
         String dateString = formatter.format(date);
 
-        String filePath = request.getServletContext().getRealPath("/");
-        filePath = filePath+"/config/backup.properties";
+        String basePath = request.getServletContext().getRealPath("/");
+        String propertiesPath = basePath+"/config/backup.properties";
+        basePath=basePath.substring(0,basePath.length()-31);
+        basePath=basePath+"Backup/";
+        System.out.println(basePath);
+        System.out.println(propertiesPath);
 //        System.out.println(filePath);
 
         String file = adminAccount+"_"+dateString+".sql";
         try {
             System.out.println(file);
-            BackupUtil.backup(file,filePath);
+            BackupUtil.backup(file,propertiesPath,basePath);
             BackupHistory backupHistory = new BackupHistory();
             backupHistory.setBackupaccount(adminAccount);
             backupHistory.setBackupdate(date);
 //            System.out.println(System.getProperty("user.home")+"/Desktop/GitProject/ParkNShop/Backup/"+adminAccount+"_"+dateString+".sql");
             //System.getProperty("user.home")为获取用户的主目录
-            String basePath =request.getServletContext().getRealPath("/");
-            basePath=basePath.substring(0,basePath.length()-31);
             System.out.println(basePath);
-            backupHistory.setBackupfilepath(basePath+"Backup/"+adminAccount+"_"+dateString+".sql");
+            backupHistory.setBackupfilepath(basePath+adminAccount+"_"+dateString+".sql");
             backupHistoryMapper.insert(backupHistory);
 
         } catch (InterruptedException e) {
@@ -96,6 +98,7 @@ public class AdminIndexController {
         BackupHistory backupHistory =backupHistoryMapper.selectByPrimaryKey(backupId);
         String propertiesPath = request.getServletContext().getRealPath("/");
         propertiesPath = propertiesPath+"/config/backup.properties";
+        System.out.println(propertiesPath);
         BackupUtil.recover(propertiesPath,backupHistory.getBackupfilepath());
         return "redirect:/AdminIndex";
     }

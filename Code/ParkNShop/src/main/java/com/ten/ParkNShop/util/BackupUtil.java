@@ -24,7 +24,7 @@ public class BackupUtil {
      * avePath 数据库导出文件保存路径
      * databaseName 要导出的数据库名
      */
-    public static boolean backup(String fileName,String filePath) throws InterruptedException {
+    public static boolean backup(String fileName,String propertiesPath,String savePath) throws InterruptedException {
 //        System.out.println(filePath);
 
         Properties properties = new Properties();
@@ -43,14 +43,13 @@ public class BackupUtil {
 //            InputStream in = new BufferedInputStream (new FileInputStream(dir2));
 //            properties.load(in);
 
-            properties.load(new FileInputStream(new File(filePath)));
+            properties.load(new FileInputStream(new File(propertiesPath)));
         } catch (IOException e) {
             e.printStackTrace();
         }
         String hostIP = properties.getProperty("hostIP");
         String userName = properties.getProperty("userName");
         String password = properties.getProperty("password");
-        String savePath = properties.getProperty("savePath");
         String databaseName = properties.getProperty("databaseName");
 //        System.out.println(hostIP+userName);
         File saveFile = new File(savePath);

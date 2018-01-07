@@ -64,7 +64,7 @@
 
             }
           %>
-          <li><a href="/BuyerAccount">My Account</a></li>
+          
           <li><a href="/sellerLogin">Seller Center</a></li>
           <li><a href="/ContactManager">Contact Manager</a></li>
         </ul>

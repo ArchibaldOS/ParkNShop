@@ -81,7 +81,6 @@ background: linear-gradient(top,#42a4e0,#2e88c0);
             }
           %>
           <li><a href="/viewMyOrdersClick">View orders</a></li>
-          <li><a href="/ContactManager">Contact Manager</a></li>
         </ul>
       </div>
     </div>

@@ -93,6 +93,8 @@
                                 <c:when test="${order.orderStatus eq 6}"><td>Refunding</td></c:when>
                                 <c:when test="${order.orderStatus eq 7}"><td>Refund Succeed</td></c:when>
                                 <c:when test="${order.orderStatus eq 8}"><td>Refund Failed</td></c:when>
+                                <c:when test="${order.orderStatus eq 9}"><td>Commented</td></c:when>
+
                             </c:choose>
                             <td class="hidden"><c:out value="${order.orderTime}"></c:out></td>
                             <td><div role="presentation" class="dropdown">
@@ -108,25 +110,6 @@
                     </c:forEach>
                     </tbody>
                 </table>
-                <nav class="pull-right">
-                    <ul class="pagination">
-                        <li class="disabled">
-                            <a href="#" aria-label="Previous">
-                                <span aria-hidden="true">&laquo;</span>
-                            </a>
-                        </li>
-                        <li class="active"><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                        <li>
-                            <a href="#" aria-label="Next">
-                                <span aria-hidden="true">&raquo;</span>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
             </div>
         </div>
     </div>

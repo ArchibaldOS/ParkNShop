@@ -285,7 +285,7 @@
         orders
         WHERE
         orderTime BETWEEN #{startTime} AND #{endTime}
-        AND orderStatus = 5
+        AND orderStatus > 4
     </select>
     
     <select id="sellerSelectOrdersBetweenTime" resultMap="BaseResultMap">

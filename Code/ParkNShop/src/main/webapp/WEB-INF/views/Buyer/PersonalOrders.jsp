@@ -32,6 +32,7 @@
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="assets/css/bootstrap.min2.css" />
   <link rel="stylesheet" href="assets/css/font-awesome.min2.css" />
+
   <!-- Custom CSS -->
   <link href="assets/css/style3.css" rel="stylesheet">
 	<!-- Latest Bootstrap min CSS -->

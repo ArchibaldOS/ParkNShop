@@ -25,7 +25,8 @@ import java.io.IOException;
  * @time: 12/16/2017.
  */
 @Controller
-public class BuyerCartController {
+public class
+BuyerCartController {
     @Autowired
     private BuyerCartService buyerCartService;
     @Autowired
@@ -51,14 +52,19 @@ public class BuyerCartController {
             buyerCart = new BuyerCart();
         }
         Product product = sellerProductService.getProductById(productId);
-        buyerCart.addProduct(product,productNumber);
-        session.setAttribute("buyerCart",buyerCart);
-        int commissionId = commissionMapper.selectLastCommission().getId();
-        session.setAttribute("commissionId",commissionId);
-        if (request.getSession().getAttribute("Buyer")==null){
-            return "Buyer/BuyerLogin";
+        if (product.getProductStatus()==0){
+            buyerCart.addProduct(product,productNumber);
+            session.setAttribute("buyerCart",buyerCart);
+            int commissionId = commissionMapper.selectLastCommission().getId();
+            session.setAttribute("commissionId",commissionId);
+            if (request.getSession().getAttribute("Buyer")==null){
+                return "Buyer/BuyerLogin";
+            }
+            return "Buyer/BuyerCart";
+        }else {
+            return "Buyer/NotOnSale";
         }
-        return "Buyer/BuyerCart";
+
     }
 
     @RequestMapping("/DelFromBuyerCart")

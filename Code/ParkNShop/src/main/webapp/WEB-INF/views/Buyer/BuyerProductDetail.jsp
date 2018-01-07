@@ -203,7 +203,7 @@
                       <div class="row">
                         <div class="col-sm-6"><span class="price">HK$${p.productPrice} </span></div>
                         <div class="col-sm-6">
-                          <p>Availability: <span class="in-stock">In stock(${p.storeCount})</span></p>
+                        <c:if test="${p.productStatus eq 0}">  <p>Availability: <span class="in-stock">In stock(${p.storeCount})</span></p></c:if>
                         </div>
                       </div>
                       <!-- List Details -->
@@ -221,7 +221,8 @@
 
                         <input type="hidden" name="productId" value="${p.productId}">
                       </div>
-                        <button type="submit" class="btn-default"><i class="icon-basket-loaded margin-right-5"></i> Add to Cart</button>
+                        <c:if test="${p.productStatus eq 1}"><button onclick="this.disabled='1'" class="btn btn-danger"><i class="icon-basket-loaded margin-right-5"></i> Out of stock</button></c:if>
+                        <c:if test="${p.productStatus eq 0}"><button type="submit" class="btn-default"><i class="icon-basket-loaded margin-right-5"></i> Add to Cart</button></c:if>
                       </form>
                   </div>
 

@@ -25,7 +25,7 @@ public class BuyerOrderSearchController {
 
     @RequestMapping("/BuyerOrderSearch")
     public String buyerMOrdersSearch(HttpServletRequest httpServletRequest, Model model, HttpSession session){
-        System.out.println("ttttttttttttttttttt");
+       // System.out.println("ttttttttttttttttttt");
         String timeType = httpServletRequest.getParameter("select_type");
         String time = httpServletRequest.getParameter("time");
         List<OrderItem> orders;
@@ -64,7 +64,7 @@ public class BuyerOrderSearchController {
             orders = getYearOrder(time,buyerId);
         }
         session.setAttribute("orders", orders);
-        System.out.println("ttttttttttttttttttt11111111111------------------");
+      //  System.out.println("ttttttttttttttttttt11111111111------------------");
         return "Buyer/PersonalOrders";
 
     }

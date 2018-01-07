@@ -103,7 +103,6 @@ public class SellerOrderServiceImpl implements SellerOrderService {
         return orders;
     }
 
-	@Override
 	public float countIncome(int sellerId) {
 		List<Order> orders = orderMapper.findCompletedNoPage(sellerId);
 		float totalIncome = 0;

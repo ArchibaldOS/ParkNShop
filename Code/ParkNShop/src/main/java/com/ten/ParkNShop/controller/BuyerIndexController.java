@@ -41,7 +41,7 @@ public class BuyerIndexController {
 
     @RequestMapping("/BuyerLogout")
     public String buyerLogout(HttpSession session){
-        session.setAttribute("Buyer",null);
+        session.invalidate();
         return "redirect:/BuyerIndex";
     }
 

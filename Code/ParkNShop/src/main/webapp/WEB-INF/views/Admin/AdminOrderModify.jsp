@@ -157,6 +157,7 @@
                             <option value="6">Refunding</option>
                             <option value="7">Refund Succeed</option>
                             <option value="8">Refund Failed</option>
+                            <option value="9">Commented</option>
                         </select>
                     </div>
                 </div>

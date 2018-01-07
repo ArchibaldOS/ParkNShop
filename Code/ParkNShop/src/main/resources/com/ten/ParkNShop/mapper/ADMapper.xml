@@ -254,7 +254,7 @@
     select
     *
     from ad
-    where ADType IN (1,3,4) and otherId IN
+    where ADType IN (1,3,4,5) and otherId IN
     	(select
 			 productId
 	     from

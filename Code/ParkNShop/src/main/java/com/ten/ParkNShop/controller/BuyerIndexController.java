@@ -14,6 +14,11 @@ public class BuyerIndexController {
     @Autowired
     private BuyerIndexService buyerService;
 
+
+    @RequestMapping("/")
+    public String index(){
+        return "redirect:/BuyerIndex";
+    }
     /**
      * @Author: Archibald
      * @Date: 4:36 PM 12/6/2017
@@ -37,7 +42,7 @@ public class BuyerIndexController {
     @RequestMapping("/BuyerLogout")
     public String buyerLogout(HttpSession session){
         session.setAttribute("Buyer",null);
-        return "redirect:index.jsp";
+        return "redirect:/BuyerIndex";
     }
 
     @RequestMapping("/BuyerRegister")

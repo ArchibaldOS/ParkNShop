@@ -40,7 +40,7 @@ public class SellerIndexController {
 	@RequestMapping(value="/sellerLogout",method=RequestMethod.GET)
 	public String sellLogout(HttpSession session){
 		session.setAttribute("seller", null);
-		return "redirect:index.jsp";
+		return "redirect:/BuyerIndex";
 	}
 
 	@RequestMapping(value="/registSeller",method=RequestMethod.POST)

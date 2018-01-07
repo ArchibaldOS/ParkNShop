@@ -226,7 +226,7 @@
 
         <!-- heading -->
         <div class="heading">
-          <h2>Top Selling of the Week</h2>
+          <h2>Top 10 Products</h2>
           <hr>
         </div>
 
@@ -273,7 +273,7 @@
         <ul class="nav nav-tabs nav-pills margin-bottom-40" role="tablist">
           <li role="presentation" class="active"><a href="#featured" aria-controls="featured" role="tab" data-toggle="tab">Featured</a></li>
           <li role="presentation"><a href="#special" aria-controls="special" role="tab" data-toggle="tab">Special</a></li>
-          <li role="presentation"><a href="#on-sal" aria-controls="on-sal" role="tab" data-toggle="tab">Onsale</a></li>
+          <li role="presentation"><a href="#onsaled" aria-controls="onsaled" role="tab" data-toggle="tab">Onsale</a></li>
         </ul>
 
         <!-- Tab panes -->
@@ -341,7 +341,7 @@
           </div>
 
           <!-- on sale -->
-          <div role="tabpanel" class="tab-pane fade" id="on-sal">
+          <div role="tabpanel" class="tab-pane fade" id="onsaled">
             <!-- Items Slider -->
             <div class="item-col-5">
               <c:forEach var="onsaleProduct" items="${onsaleProducts}">
@@ -381,8 +381,8 @@
           <li role="presentation"><a href="#smart" aria-controls="special" role="tab" data-toggle="tab"><i class="flaticon-laptop"></i>Computers & Tablets </a></li>
           <li role="presentation"><a href="#deks-lap" aria-controls="on-sal" role="tab" data-toggle="tab"><i class="flaticon-smartphone"></i>Cell Phones </a></li>
           <li role="presentation"><a href="#game-com" aria-controls="special" role="tab" data-toggle="tab"><i class="flaticon-gamepad-1"></i>Cameras & Camcorders</a></li>
-          <li role="presentation"><a href="#watches" aria-controls="on-sal" role="tab" data-toggle="tab"><i class="flaticon-computer-1"></i>Audio</a></li>
-          <li role="presentation"><a href="#access" aria-controls="on-sal" role="tab" data-toggle="tab"><i class="flaticon-keyboard"></i>Health, Fitness & Sports</a></li>
+          <li role="presentation"><a href="#watches" aria-controls="on-sal" role="tab" data-toggle="tab"><i class="flaticon-keyboard"></i>Audio</a></li>
+          <li role="presentation"><a href="#access" aria-controls="on-sal" role="tab" data-toggle="tab"><i class="flaticon-computer-1"></i>Health, Fitness & Sports</a></li>
         </ul>
 
         <!-- Tab panes -->

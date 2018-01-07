@@ -62,7 +62,7 @@ public class BuyerSearchController {
         }
 
         List<Product> onsaleProducts = new ArrayList<Product>();
-        for (AD ad:adMapper.selectADByADType("4")) {
+        for (AD ad:adMapper.selectADByADType("5")) {
             onsaleProducts.add(sellerProductService.getProductById(ad.getOtherId()));
         }
 

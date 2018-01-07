@@ -208,6 +208,7 @@
     <include refid="Base_Column_List" />
     from ad
     where ADType=#{adType}
+    LIMIT 0,10
   </select>
 
   <select id="selectADByADStatus" parameterType="java.lang.String" resultMap="BaseResultMap">
@@ -232,7 +233,7 @@
   from ad
   where adType="2" and ADStatus="2"
   ORDER BY ADPrice
-  LIMIT 0, 10
+  LIMIT 0, 5
 </select>
 
   <select id="selectAllAD" parameterType="java.lang.Integer" resultMap="BaseResultMap">

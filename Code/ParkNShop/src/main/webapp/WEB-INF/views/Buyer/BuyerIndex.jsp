@@ -220,13 +220,58 @@
       </div>
     </section>
 
+    <!-- Top Selling Week -->
+    <section class=" padding-top-60 padding-bottom-30">
+      <div class="container">
+
+        <!-- heading -->
+        <div class="heading">
+          <h2>Top Selling of the Week</h2>
+          <hr>
+        </div>
+
+        <!-- Items -->
+        <div class="item-col-5">
+          <c:forEach var="topSellingProduct" items="${topSellingProducts}">
+            <!-- Product -->
+            <div class="product">
+              <article> <img class="img-responsive" src="${pageContext.request.contextPath}/upload/productPicture/${topSellingProduct.productPicture}" alt="" >
+                  <%--打折标识--%>
+                  <%--<span class="sale-tag">-25%</span>--%>
+                <!-- Content -->
+                <span class="tag">
+                    <c:choose>
+                      <c:when test="${topSellingProduct.productType eq 1}">TV& Home Theater</c:when>
+                      <c:when test="${topSellingProduct.productType eq 2}">Computers & Tablets</c:when>
+                      <c:when test="${topSellingProduct.productType eq 3}">Cell Phones</c:when>
+                      <c:when test="${topSellingProduct.productType eq 4}">Cameras & Camcorders</c:when>
+                      <c:when test="${topSellingProduct.productType eq 5}">Audio</c:when>
+                      <c:when test="${topSellingProduct.productType eq 6}">Car Electronics & GPS</c:when>
+                      <c:when test="${topSellingProduct.productType eq 7}">Video, Games, Movies & Music</c:when>
+                      <c:when test="${topSellingProduct.productType eq 8}">Health, Fitness & Sports</c:when>
+                    </c:choose>
+
+
+              </span>
+
+
+                <a href="/ProductDetail?productId=${topSellingProduct.productId}" class="tittle">${topSellingProduct.productName}</a>
+                <!-- Reviews -->
+                <div class="price">HK$${topSellingProduct.productPrice} </div>
+                <a href="/AddToCart?buyerId=${sessionScope.Buyer.buyerId}&productId=${topSellingProduct.productId}" class="cart-btn"><i class="icon-basket-loaded"></i></a> </article>
+            </div>
+
+          </c:forEach>
+        </div>
+      </div>
+    </section>
     <!-- tab Section -->
     <section class="featur-tabs padding-top-60 padding-bottom-60">
       <div class="container">
 
         <!-- Nav tabs -->
         <ul class="nav nav-tabs nav-pills margin-bottom-40" role="tablist">
-          <li role="presentation" class="active"><a href="#featur" aria-controls="featured" role="tab" data-toggle="tab">Featured</a></li>
+          <li role="presentation" class="active"><a href="#featured" aria-controls="featured" role="tab" data-toggle="tab">Featured</a></li>
           <li role="presentation"><a href="#special" aria-controls="special" role="tab" data-toggle="tab">Special</a></li>
           <li role="presentation"><a href="#on-sal" aria-controls="on-sal" role="tab" data-toggle="tab">Onsale</a></li>
         </ul>
@@ -254,11 +299,7 @@
                       <c:when test="${featuredProduct.productType eq 8}">Health, Fitness & Sports</c:when>
                       <c:when test="${featuredProduct.productType eq 9}">Home & Office</c:when>
                     </c:choose>
-                    
-                    
-                  </span> 
-                  
-                  
+                  </span>
                   <div><a href="/ProductDetail?productId=${featuredProduct.productId}" class="tittle">${featuredProduct.productName}</a></div>
                   <!-- Reviews -->
                   <div class="price">HK$${featuredProduct.productPrice} </div>
@@ -289,11 +330,7 @@
                       <c:when test="${specialProduct.productType eq 8}">Health, Fitness & Sports</c:when>
                       <c:when test="${specialProduct.productType eq 9}">Home & Office</c:when>
                     </c:choose>
-                    
-                    
-                  </span> 
-                    
-                    
+                  </span>
                      <a href="/ProductDetail?productId=${specialProduct.productId}" class="tittle">${specialProduct.productName}</a>
                     <!-- Reviews -->
                     <div class="price">HK$${specialProduct.productPrice} </div>
@@ -323,12 +360,7 @@
                       <c:when test="${onsaleProduct.productType eq 7}">Video, Games, Movies & Music</c:when>
                       <c:when test="${onsaleProduct.productType eq 8}">Health, Fitness & Sports</c:when>
                     </c:choose>
-                    
-                    
-                  </span> 
-                    
-                    
-                    
+                  </span>
                     <a href="/ProductDetail?productId=${onsaleProduct.productId}" class="tittle">${onsaleProduct.productName}</a>
                     <!-- Reviews -->
                     <div class="price">HK$${onsaleProduct.productPrice} </div>
@@ -338,81 +370,6 @@
             </div>
           </div>
         </div>
-      </div>
-    </section>
-
-    <!-- Top Selling Week -->
-    <section class="light-gry-bg padding-top-60 padding-bottom-30">
-      <div class="container">
-
-        <!-- heading -->
-        <div class="heading">
-          <h2>Top Selling of the Week</h2>
-          <hr>
-        </div>
-
-        <!-- Items -->
-        <div class="item-col-5">
-          <c:forEach var="topSellingProduct" items="${topSellingProducts}">
-          <!-- Product -->
-          <div class="product">
-            <article> <img class="img-responsive" src="${pageContext.request.contextPath}/upload/productPicture/${topSellingProduct.productPicture}" alt="" >
-              <%--打折标识--%>
-              <%--<span class="sale-tag">-25%</span>--%>
-              <!-- Content -->
-              <span class="tag">
-                    <c:choose>
-                      <c:when test="${topSellingProduct.productType eq 1}">TV& Home Theater</c:when>
-                      <c:when test="${topSellingProduct.productType eq 2}">Computers & Tablets</c:when>
-                      <c:when test="${topSellingProduct.productType eq 3}">Cell Phones</c:when>
-                      <c:when test="${topSellingProduct.productType eq 4}">Cameras & Camcorders</c:when>
-                      <c:when test="${topSellingProduct.productType eq 5}">Audio</c:when>
-                      <c:when test="${topSellingProduct.productType eq 6}">Car Electronics & GPS</c:when>
-                      <c:when test="${topSellingProduct.productType eq 7}">Video, Games, Movies & Music</c:when>
-                      <c:when test="${topSellingProduct.productType eq 8}">Health, Fitness & Sports</c:when>
-                    </c:choose>
-                    
-                    
-              </span>
-              
-              
-              <a href="/ProductDetail?productId=${topSellingProduct.productId}" class="tittle">${topSellingProduct.productName}</a>
-              <!-- Reviews -->
-              <div class="price">HK$${topSellingProduct.productPrice} </div>
-              <a href="/AddToCart?buyerId=${sessionScope.Buyer.buyerId}&productId=${topSellingProduct.productId}" class="cart-btn"><i class="icon-basket-loaded"></i></a> </article>
-          </div>
-       
-        </c:forEach>
-      </div>
-      </div>
-    </section>
-    <!-- Top Sales Shop Week -->
-    <section class="light-gry-bg padding-top-60 padding-bottom-30">
-      <div class="container">
-
-        <!-- heading -->
-        <div class="heading">
-          <h2>Top Sales Shop Week</h2>
-          <hr>
-        </div>
-
-        <!-- Items -->
-        <div class="item-col-5">
-          <c:forEach var="topSalesShop" items="${topSalesShops}">
-          <!-- Product -->
-          <div class="product">
-            <article> <img class="img-responsive" src="${pageContext.request.contextPath}/upload/productPicture/${topSalesShop.productPicture}" alt="" >
-                <%--打折标识--%>
-                <%--<span class="sale-tag">-25%</span>--%>
-              <!-- Content -->
-              <%--记得添加店铺链接--%>
-               <a href="#." class="tittle">${topSalesShop.shopName}</a>
-              <!-- Reviews -->
-              <div class="price">${topSalesShop.shopIntroduction} </div>
-            </article>
-          </div>
-        </c:forEach>
-      </div>
       </div>
     </section>
 

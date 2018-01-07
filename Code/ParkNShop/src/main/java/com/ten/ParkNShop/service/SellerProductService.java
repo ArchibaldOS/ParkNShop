@@ -3,6 +3,8 @@ package com.ten.ParkNShop.service;
 import com.ten.ParkNShop.util.Page;
 import com.ten.ParkNShop.entity.Product;
 
+import java.util.List;
+
 public interface SellerProductService {
 	
 	public int addProduct(Product product);
@@ -18,5 +20,6 @@ public interface SellerProductService {
 	public int updateProduct2(Product product);
 
 	public Page getProductsByPage(int sellerId, int cur);
+
 	
 }

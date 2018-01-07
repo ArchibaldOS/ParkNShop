@@ -230,6 +230,22 @@ background: linear-gradient(top,#42a4e0,#2e88c0);
           <!-- BEGIN CONTENT -->
           <div class="col-md-12 col-sm-12">
             <h1>Shopping Orders</h1>
+              <form action="/BuyerOrderSearch">
+                  <div class="panel-body" id="select_time_div">
+                      <span>Please Select the Time of Orders</span><br>
+                      <Span>Type</Span>
+                      <select id="select_time_type" onchange="selected_type()" name="select_type" style="height:25px">
+                          <option value=""></option>
+                          <option value="Daily">Daily</option>
+                          <option value="Weekly">Weekly</option>
+                          <option value="Monthly">Monthly</option>
+                          <option value="Yearly">Yearly</option>
+                      </select>
+                      <select id="time_select_year" name="time_year" hidden></select>
+                      <input type="date" name="time" id="time_select" style="height:25px"hidden>
+                      <input type="submit" value="Search" id="search_submit"  href="" hidden>
+                  </div>
+              </form>
             <div class="goods-page">
               <div class="goods-data clearfix">
                 <div class="table-wrapper-responsive">
@@ -401,5 +417,48 @@ background: linear-gradient(top,#42a4e0,#2e88c0);
 <script src="assets/js/plugins.js"></script>
 <!-- main js -->
 <script src="assets/js/main2.js"></script>
+    <script src="assets/js/main2.js"></script>
+    <script>
+        // 时间选择控制代码
+        function selected_type() {
+            var type = document.getElementById("select_time_type");
+            var time = document.getElementById("time_select");
+            var time_year = document.getElementById("time_select_year");
+            var submit = document.getElementById("search_submit");
+            var currentTime = new Date();
+            var currentYear = currentTime.getFullYear();
+            var currentMonth = (currentTime.getMonth() + 1) < 10 ? "0" + (currentTime.getMonth()+ 1): "" + (currentTime.getMonth() + 1);
+            var currentWeek = (((new Date())-(new Date("2017-01-01")))/(24*60*60*7*1000)|0) +1;
+            var currentDay = currentTime.getDate() < 10 ? "0" + currentTime.getDate(): "" + currentTime.getDate();
+            time.hidden = false;
+            time_year.hidden = true;
+            switch (type.value){
+                case "Daily": {
+                    time.type="date";
+                    time.value = currentYear + "-" + currentMonth + "-"+ currentDay;
+                    break;
+                }
+                case "Weekly": {
+                    time.type="week";
+                    time.value = currentYear + "-W" + currentWeek;
+                    break;
+                }
+                case "Monthly": {
+                    time.type="month";
+                    time.value = currentYear + "-" + currentMonth;
+                    break;
+                }
+                case "Yearly": {
+                    time.hidden=true;
+                    time_year.hidden = false;
+                    for(var i = currentYear; i >= 2014; i--){
+                        time_year.appendChild(new Option(i + "", i + ""));
+                    }
+                    break;
+                }
+            }
+            submit.hidden = false;
+        }
+    </script>
 </body>
 </html>

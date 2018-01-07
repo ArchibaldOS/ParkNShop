@@ -23,8 +23,9 @@ public class BuyerOrderSearchController {
     @Autowired
     BuyerOrderService buyerOrderService;
 
-    @RequestMapping("/")
-    public String adminSalesManagement(HttpServletRequest httpServletRequest, Model model, HttpSession session){
+    @RequestMapping("/BuyerOrderSearch")
+    public String buyerMOrdersSearch(HttpServletRequest httpServletRequest, Model model, HttpSession session){
+        System.out.println("ttttttttttttttttttt");
         String timeType = httpServletRequest.getParameter("select_type");
         String time = httpServletRequest.getParameter("time");
         List<OrderItem> orders;
@@ -36,7 +37,7 @@ public class BuyerOrderSearchController {
         }
         Buyer buyer = (Buyer) session.getAttribute("Buyer");
         int buyerId = buyer.getbuyerId();
-            //添加时间类型的属性
+        //添加时间类型的属性
         model.addAttribute("timeType", timeType);
 
         if(timeType.equals("Daily")){
@@ -59,9 +60,11 @@ public class BuyerOrderSearchController {
         }
         else
         {
-            orders = new LinkedList<OrderItem>();
+            time = httpServletRequest.getParameter("time_year");
+            orders = getYearOrder(time,buyerId);
         }
-        model.addAttribute("orders", orders);
+        session.setAttribute("orders", orders);
+        System.out.println("ttttttttttttttttttt11111111111------------------");
         return "Buyer/PersonalOrders";
 
     }
@@ -73,11 +76,11 @@ public class BuyerOrderSearchController {
 
         // 设置好日期实例
         Calendar calendar = Calendar.getInstance();
-        calendar.set(year, month - 1, 1);
+        calendar.set(year, month - 1, 0);
 
-        String startTime ="" +  year + "-" + month + "-" + calendar.get(Calendar.DAY_OF_MONTH);
-        calendar.add(Calendar.DAY_OF_MONTH,getDayOfMonth(year,month));
-        String  endTime = "" +  year + "-" + month + "-" + calendar.get(Calendar.DAY_OF_MONTH);
+        String startTime ="" +  year + "-" + month  + "-1"  +" 00:00";
+        calendar.add(Calendar.MONTH,1);
+        String  endTime = "" +  year + "-" + month  + "-" + calendar.get(Calendar.DAY_OF_MONTH)+" 23:59";
         List<OrderItem> orders = buyerOrderService.selectBuyerOrdersBetweenTime(startTime, endTime, buyerId);
         return orders;
     }
@@ -92,18 +95,27 @@ public class BuyerOrderSearchController {
 
         calendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
         calendar.set(Calendar.YEAR, year);
-        calendar.set(Calendar.WEEK_OF_YEAR, week);
+        calendar.set(Calendar.WEEK_OF_YEAR, week );
         //设置calendar事例
-        String startTime = calendar.get(Calendar.YEAR) + "-" + (calendar.get(Calendar.MONTH) + 6) + "-" + calendar.get(Calendar.DAY_OF_MONTH);
-        List<OrderItem> orders = buyerOrderService.selectBuyerOrdersBetweenTime(startTime, startTime, buyerId);
+        String startTime = calendar.get(Calendar.YEAR) + "-" + (calendar.get(Calendar.MONTH)+1 ) + "-" + calendar.get(Calendar.DAY_OF_MONTH)+" 00:00";
+        calendar.add(Calendar.DAY_OF_MONTH,7);
+        String endTime = calendar.get(Calendar.YEAR) + "-" + (calendar.get(Calendar.MONTH) +1 ) + "-" + calendar.get(Calendar.DAY_OF_MONTH)+" 00:00";
+        List<OrderItem> orders = buyerOrderService.selectBuyerOrdersBetweenTime(startTime, endTime, buyerId);
         return orders;
- }
+    }
 
     private List<OrderItem> getDaysOrder(String time,int buyerId) {
-            String startTime = time + " " + 00 + ":00";
-            String endTime = time + " " + 23 + ":59";
-            List<OrderItem> orders = buyerOrderService.selectBuyerOrdersBetweenTime(startTime, endTime, buyerId);
-            return orders;
+        String startTime = time + " " + "00"+ ":00";
+        String endTime = time + " " + "23"+ ":59";
+        List<OrderItem> orders = buyerOrderService.selectBuyerOrdersBetweenTime(startTime, endTime, buyerId);
+        return orders;
+
+    }
+    private List<OrderItem> getYearOrder(String time,int buyerId) {
+        String startTime = time + "-1-1" + " 00:00";
+        String endTime = time +"-12-31"+ " 23:59";
+        List<OrderItem> orders = buyerOrderService.selectBuyerOrdersBetweenTime(startTime, endTime, buyerId);
+        return orders;
 
     }
     private int getDayOfMonth(int year, int month) {

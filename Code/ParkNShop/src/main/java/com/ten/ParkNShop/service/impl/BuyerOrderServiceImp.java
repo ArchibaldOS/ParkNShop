@@ -28,7 +28,7 @@ public class BuyerOrderServiceImp implements BuyerOrderService{
 
 
         List<OrderItem> result = new LinkedList<OrderItem>();
-        List<Order> orders = orders = orderMapper.buyerSelectOrdersBetweenTime(startTime + " 0:00", endTime + " 23:59",BuyerId);
+        List<Order> orders = orders = orderMapper.buyerSelectOrdersBetweenTime(startTime , endTime ,BuyerId);
 
         //找到规定时间区间的用户订单
         for(Order temp : orders)

@@ -387,4 +387,15 @@
         FROM orders
         WHERE orderStatus = 2 OR orderStatus = 5 OR orderStatus = 7
     </select>
+    <select id="buyerSelectOrdersBetweenTime" resultMap="BaseResultMap">
+        SELECT
+        *
+        FROM
+        orders
+        WHERE
+        orderTime BETWEEN #{startTime} AND #{endTime}
+        AND buyerId = #{buyerId}
+
+        ORDER BY orderTime DESC
+    </select>
 </mapper>

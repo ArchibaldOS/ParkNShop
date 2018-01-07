@@ -66,8 +66,8 @@ public class AdminIndexController {
         String dateString = formatter.format(date);
 
         String basePath = request.getServletContext().getRealPath("/");
-        String propertiesPath = basePath+"/config/backup.properties";
-        basePath=basePath.substring(0,basePath.length()-31);
+        String propertiesPath = basePath+"config/backup.properties";
+        basePath=basePath.substring(0,basePath.length()-32);
         basePath=basePath+"Backup/";
         System.out.println(basePath);
         System.out.println(propertiesPath);
@@ -97,8 +97,8 @@ public class AdminIndexController {
         int backupId = Integer.parseInt(request.getParameter("backupId"));
         BackupHistory backupHistory =backupHistoryMapper.selectByPrimaryKey(backupId);
         String propertiesPath = request.getServletContext().getRealPath("/");
-        propertiesPath = propertiesPath+"/config/backup.properties";
-        System.out.println(propertiesPath);
+        propertiesPath = propertiesPath+"config/backup.properties";
+//        System.out.println(propertiesPath);
         BackupUtil.recover(propertiesPath,backupHistory.getBackupfilepath());
         return "redirect:/AdminIndex";
     }

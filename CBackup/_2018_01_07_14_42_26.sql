@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.7.13, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.20, for macos10.12 (x86_64)
 --
 -- Host: localhost    Database: parknshop
 -- ------------------------------------------------------
--- Server version	5.7.13-log
+-- Server version	5.7.20
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -37,7 +37,7 @@ CREATE TABLE `ad` (
   PRIMARY KEY (`ADId`),
   KEY `FK_Reference_16` (`adminId`),
   CONSTRAINT `FK_Reference_166` FOREIGN KEY (`adminId`) REFERENCES `admins` (`adminId`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -46,7 +46,7 @@ CREATE TABLE `ad` (
 
 LOCK TABLES `ad` WRITE;
 /*!40000 ALTER TABLE `ad` DISABLE KEYS */;
-INSERT INTO `ad` VALUES (15,2,2,1,1,'qweqwe','33540c1e6ba249e9b98908ec03154156.png','qweqweqwe',200,'2018-01-05 19:26:02',1),(16,2,2,1,1,'123123','e3d8e240e92b40c58e6c654bc210fa2d.png','1231231',200,'2018-01-05 19:26:35',1),(17,2,2,1,1,'123123','1258e52aaf574bb18a963acb4181d77a.png','31123123213',22462400,'2018-01-05 19:36:24',112312),(18,1,2,33,1,'123','5250a301289d45ad95fdf49a3cffcdc0.jpg','1231',100,'2018-01-07 13:31:41',1),(19,1,2,34,1,'ooo','6eca723b37d744cf86a0db75121772cb.jpg','yugyuvu',700,'2018-01-07 13:33:46',7),(20,3,2,36,1,'samsung','91063e8a38594a85b22e08b239ff9307.jpg','123',1100,'2018-01-07 13:42:48',11);
+INSERT INTO `ad` VALUES (15,2,2,1,1,'qweqwe','33540c1e6ba249e9b98908ec03154156.png','qweqweqwe',200,'2018-01-05 19:26:02',1),(16,2,2,1,1,'123123','e3d8e240e92b40c58e6c654bc210fa2d.png','1231231',200,'2018-01-05 19:26:35',1),(17,2,2,1,1,'123123','1258e52aaf574bb18a963acb4181d77a.png','31123123213',22462400,'2018-01-05 19:36:24',112312);
 /*!40000 ALTER TABLE `ad` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -76,7 +76,7 @@ CREATE TABLE `admins` (
 
 LOCK TABLES `admins` WRITE;
 /*!40000 ALTER TABLE `admins` DISABLE KEYS */;
-INSERT INTO `admins` VALUES (1,'admin','admin','admin',3527.46,'12345678910',1),(2,'admin2','admin2','admin2',0,'110',0),(3,'admin3','admin3','admin3',0,'1111111111',0);
+INSERT INTO `admins` VALUES (1,'admin','admin','admin',3527.46,'12345678910',1),(2,'admin2','admin2','admin2',0,'110',1),(3,'admin3','admin3','admin3',0,'1111111111',0);
 /*!40000 ALTER TABLE `admins` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -93,7 +93,7 @@ CREATE TABLE `backuphistory` (
   `backupDate` datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP,
   `backupFilePath` varchar(255) NOT NULL,
   PRIMARY KEY (`backupId`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -102,7 +102,7 @@ CREATE TABLE `backuphistory` (
 
 LOCK TABLES `backuphistory` WRITE;
 /*!40000 ALTER TABLE `backuphistory` DISABLE KEYS */;
-INSERT INTO `backuphistory` VALUES (24,'','2018-01-07 14:39:54','C:\\Users\\Kevin_coco\\Desktop\\GitProject\\ParkNShop\\Backup/_2018_01_07_14_39_54.sql');
+INSERT INTO `backuphistory` VALUES (1,'','2017-12-31 16:46:41','C:/Users/Kevin_coco/Desktop/GitProject/ParkNShop/Backup/_2017-12-31_16:46:41.sql'),(2,'','2017-12-31 16:48:27','C:/Users/Kevin_coco/Desktop/GitProject/ParkNShop/Backup/_2017-12-31_16:48:27.sql'),(3,'','2017-12-31 16:49:33','C:/Users/Kevin_coco/Desktop/GitProject/ParkNShop/Backup/_2017-12-31_16:49:32.sql'),(4,'','2017-12-31 16:52:03','C:/Users/Kevin_coco/Desktop/GitProject/ParkNShop/Backup/_2017-12-31_16:52:02.sql'),(5,'admin2','2017-12-31 16:53:31','C:/Users/Kevin_coco/Desktop/GitProject/ParkNShop/Backup/admin2_2017_12_31_16_53_30.sql'),(8,'admin','2018-01-02 11:40:27','C:\\Users\\Kevin_coco/Desktop/GitProject/ParkNShop/Backup/admin_2018_01_02_11_40_27.sql'),(9,'admin2','2018-01-02 11:47:12','C:\\Users\\Kevin_coco/Desktop/GitProject/ParkNShop/Backup/admin2_2018_01_02_11_47_12.sql');
 /*!40000 ALTER TABLE `backuphistory` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -491,4 +491,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-01-07 14:39:57
+-- Dump completed on 2018-01-07 14:42:26

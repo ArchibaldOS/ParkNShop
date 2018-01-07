@@ -92,7 +92,7 @@
 
 				<div class="col-md-6">
 					<div class="panel panel-default">
-						  <div class="panel-heading">Today's visitor statistics</div>
+						  <div class="panel-heading">Sales's Money Condition</div>
 						  <div class="panel-body">
 						  	<canvas id="canvas-index" class="col-md-12"></canvas>
 						  </div>
@@ -157,8 +157,8 @@
 													<td>${backupHistory.backupaccount}</td>
 													<td>${backupHistory.backupdate}</td>
 													<td>
-														<button class="btn btn-success" onclick="location='/AdminRecover?backupId=${backupHistory.backupid}'">recover</button>
-														<%--<button class="btn btn-success" onclick="recover()">recover</button>--%>
+														<%--<button class="btn btn-success" onclick="location='/AdminRecover?backupId=${backupHistory.backupid}'">recover</button>--%>
+														<button class="btn btn-success" onclick="recover()">recover</button>
                                                             <script>
                                                                 function recover() {
                                                                     bootbox.confirm({
@@ -178,7 +178,7 @@
                                                                                 return;
                                                                             }
                                                                             else{
-                                                                                window.location="/AdminRecover?backupId=${backupHistory.backupdate}";
+                                                                                window.location="/AdminRecover?backupId=${backupHistory.backupid}";
 
                                                                             }
                                                                         }
@@ -201,11 +201,10 @@
 						  			<div class="panel-body">
 						  				<ul class="list-group">
 											<li class="list-group-item">Bin Liu：<span class="glyphicon glyphicon-phone"></span>&nbsp;&nbsp;13772463395</li>
-											<li class="list-group-item">TianFei Wei：<span class="glyphicon glyphicon-phone"></span>&nbsp;&nbsp;15002970314</li>
-											<li class="list-group-item">YingJing Wu：<span class="glyphicon glyphicon-phone"></span>&nbsp;&nbsp;13772191265</li>
-											<li class="list-group-item">XuDong Wang：<span class="glyphicon glyphicon-phone"></span>&nbsp;&nbsp;15002972015</li>
 											<li class="list-group-item">HongYang Cai：<span class="glyphicon glyphicon-phone"></span>&nbsp;&nbsp;15829295904</li>
-											<li class="list-group-item">XiuHuang Chen：<span class="glyphicon glyphicon-phone"></span>&nbsp;&nbsp;13022875541</li>
+											<li class="list-group-item">XueZhen Liu：<span class="glyphicon glyphicon-phone"></span>&nbsp;&nbsp;15029070297</li>
+											<li class="list-group-item">ChengHui Wang：<span class="glyphicon glyphicon-phone"></span>&nbsp;&nbsp;15091488177</li>
+											<li class="list-group-item">Xiaowu Zhang：<span class="glyphicon glyphicon-phone"></span>&nbsp;&nbsp;13772405418</li>
 										</ul>
 						  			</div>
 						  		</div>

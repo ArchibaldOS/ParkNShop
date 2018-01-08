@@ -307,7 +307,9 @@ background: linear-gradient(top,#42a4e0,#2e88c0);
                    			</td>
                     		<td class="goods-page-ref-no">
                     		 	<c:choose>
-                               		<c:when test="${buyerItem.getOrder().getOrderStatus() eq 1}"><a href='/onPaidSingleClick?orderId=${buyerItem.getOrder().getOrderId()}' ><button class="but">Pay</button></a><br/><br/></c:when>
+                               		<c:when test="${buyerItem.getOrder().getOrderStatus() eq 1}"><a href='/onPaidSingleClick?orderId=${buyerItem.getOrder().getOrderId()}' ><button class="but">Pay</button></a><br/><br/>
+                                        <a href='/onCancelClick?orderId=${buyerItem.getOrder().getOrderId()}' ><button class="but">Cancel</button></a><br/>
+                                    </c:when>
                                 	<c:when test="${buyerItem.getOrder().getOrderStatus() eq 3}">To be Shipped<br/><br/>
                                         <a href='/buyerReturns?orderId=${buyerItem.getOrder().getOrderId()}' ><button class="but">Refunds</button></a><br/>
                                     </c:when>

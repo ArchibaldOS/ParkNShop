@@ -159,6 +159,6 @@ public class BuyerPurchaseController {
         {
             return "Buyer/OrderNotFound";
         }
-        return "viewMyOrdersClick";
+        return "redirect:viewMyOrdersClick";
     }
 }

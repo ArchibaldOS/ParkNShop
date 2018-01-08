@@ -296,7 +296,7 @@
         WHERE
         	orderTime BETWEEN #{startTime} AND #{endTime}
          AND sellerId = #{sellerId}
-         AND orderStatus = 5
+         AND orderStatus IN (5,6,8,9)
          ORDER BY orderTime DESC
     </select>
     
@@ -306,7 +306,7 @@
 		FROM
 			orders
 		WHERE
-		    sellerId = #{sellerId} AND orderStatus = 5
+		    sellerId = #{sellerId} AND orderStatus IN (5,9)
 	</select>
 	
 	<select id="countUncompleted" parameterType="int" resultType="int">
@@ -323,7 +323,7 @@
         *
         FROM
         orders
-        WHERE sellerId=#{sellerId} AND orderStatus = 5
+        WHERE sellerId=#{sellerId} AND orderStatus IN (5,9)
         LIMIT #{start},#{pageSize}
     </select>
     
@@ -332,7 +332,7 @@
         *
         FROM
         orders
-        WHERE sellerId=#{sellerId} AND orderStatus = 5
+        WHERE sellerId=#{sellerId} AND orderStatus IN (5,9)
     </select>
     
     <select id="findUncompleted" resultMap="BaseResultMap" parameterType="int">

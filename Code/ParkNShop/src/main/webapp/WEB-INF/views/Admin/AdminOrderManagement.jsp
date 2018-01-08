@@ -62,12 +62,12 @@
                 <table class="table">
                     <thead>
                     <tr>
-                        <th>orderId</th>
+                        <th>OrderID</th>
                         <th>Seller</th>
                         <th>Buyer</th>
-                        <th>productId</th>
+                        <th>ProductID</th>
                         <th>Count</th>
-                        <th>totalPrice</th>
+                        <th>TotalPrice</th>
                         <th class="hidden">Address</th>
                         <th>Status</th>
                         <th class="hidden">Time</th>

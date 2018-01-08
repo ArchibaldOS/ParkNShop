@@ -80,9 +80,10 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label">AdminPassWord</label>
+                    <label class="col-sm-2 control-label">AdminPassword</label>
                     <div class="col-sm-10">
-                        <input class="form-control" id="focusedInput4" type="text" name="adminPassWord" value="">
+
+                        <input type="password" class="password" id="focusedInput4" type="text" name="adminPassWord" value="">
                     </div>
                 </div>
                 <div style="margin:0 auto;width:200px;">

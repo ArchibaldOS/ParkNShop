@@ -89,7 +89,7 @@
                     <td>${order.count}</td>
                 </tr>
                 <tr>
-                    <td>totalPrice</td>
+                    <td>Total Price</td>
                     <td>${order.totalPrice}</td>
                 </tr>
                 <tr>
@@ -98,7 +98,22 @@
                 </tr>
                 <tr>
                     <td>Status</td>
-                    <td>${order.orderStatus}</td>
+                    <c:choose>
+
+                        <c:when test="${order.orderStatus eq 1}"><td>Submitted,Unpaid</td></c:when>
+                        <c:when test="${order.orderStatus eq 2}"><td>Cancelled</td></c:when>
+                        <c:when test="${order.orderStatus eq 3}"><td>Paid,Unshipped</td></c:when>
+                        <c:when test="${order.orderStatus eq 4}"><td>Paid,Shipped</td></c:when>
+                        <c:when test="${order.orderStatus eq 5}"><td>Success</td></c:when>
+                        <c:when test="${order.orderStatus eq 6}"><td>Refunding</td></c:when>
+                        <c:when test="${order.orderStatus eq 7}"><td>Refund Succeed</td></c:when>
+                        <c:when test="${order.orderStatus eq 8}"><td>Refund Failed</td></c:when>
+                        <c:when test="${order.orderStatus eq 9}"><td>Commented</td></c:when>
+
+
+                    </c:choose>
+
+
                 </tr>
                 <tr>
                     <td>Time</td>

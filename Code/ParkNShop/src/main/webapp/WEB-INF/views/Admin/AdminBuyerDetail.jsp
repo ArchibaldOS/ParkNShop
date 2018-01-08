@@ -95,7 +95,7 @@
                     <td>${buyer.buyerBalance}</td>
                 </tr>
                 <tr>
-                    <td>shopStatus</td>
+                    <td>Buyer Status</td>
                     <c:choose>
                         <c:when test="${buyer.buyerStatus eq 1}"><td>Normal</td></c:when>
                         <c:when test="${buyer.buyerStatus eq 2}"><td>Frozen</td></c:when>

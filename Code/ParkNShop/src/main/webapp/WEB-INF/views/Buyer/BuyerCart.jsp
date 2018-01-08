@@ -109,6 +109,7 @@
             }
           %>
           <li><a href="/viewMyOrdersClick">View orders</a></li>
+          <li><a href="/buyerPersonalCenter">Personal Center</a></li>
         </ul>
       </div>
     </div>
@@ -259,7 +260,7 @@
                         </div>
 
                       </td>
-    					<td colspan="3" class="shopend" style="color: #e84d1c;font-size: 18px;font-weight: normal">Total：$<label id="total" class="yellow"></label><br />
+    					<td colspan="3" class="shopend" style="color: #e84d1c;font-size: 18px;font-weight: normal">Total：HK$<label id="total" class="yellow"></label><br />
                             <button class="btn btn-primary" onclick="window.location.href='/onConfirmClick'">Purchase<i class="fa fa-check"></i></button>
 
                         </td>

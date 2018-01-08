@@ -141,7 +141,7 @@ background: linear-gradient(top,#42a4e0,#2e88c0);
         <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
           <span class="itm-cont">${buyerCart.getProductAmount()}</span> <i class="flaticon-shopping-bag"></i>
           <strong>My Cart</strong> <br>
-          <span>${buyerCart.getProductAmount()} item(s) - HK$${buyerCart.getTotalPrice()}</span></a>
+          <span>${buyerCart.getProductAmount()} item(s) - ${buyerCart.getTotalPrice()}</span></a>
           <ul class="dropdown-menu">
             <c:forEach var="buyerItem" items="${buyerCart.getItems()}">
             <li>
@@ -157,8 +157,31 @@ background: linear-gradient(top,#42a4e0,#2e88c0);
     </div>
     <br>
   </header>
-<div style="margin:0;text-align:center"><br/><br/><br/><h2>Cart is Empty! </h2><br/><br/><br/>
-</div>
+	<div style="text-align: center;">
+         <c:set var="b" value="${sessionScope.Buyer }" />
+        	<table class="table table-striped hovertable" style="width:80%;margin-left:10%;margin-right:10%;margin-top:5%;">
+        		<tr onmouseover="this.style.backgroundColor='#ADD8E6';" onmouseout="this.style.backgroundColor='#F7F7F7';">
+        			<td width="300px" style="text-align: left; font-size: 20px;">Your Account</td>
+        			<td>${b.buyerAccount }</td>
+        		</tr>
+        		<tr  onmouseover="this.style.backgroundColor='#ADD8E6';" onmouseout="this.style.backgroundColor='#FFFFFF';">
+        			<td width="300px" style="text-align: left;font-size: 20px;">Your Name</td>
+        			<td>${b.buyerName }</td>
+        		</tr>
+        		<tr  onmouseover="this.style.backgroundColor='#ADD8E6';" onmouseout="this.style.backgroundColor='#F7F7F7';">
+        			<td width="300px" style="text-align: left;font-size: 20px;">Your PhoneNumber</td>
+        			<td>${b.buyerPhone }</td>
+        		</tr>
+        		<tr  onmouseover="this.style.backgroundColor='#ADD8E6';" onmouseout="this.style.backgroundColor='#FFFFFF';">
+        			<td width="300px" style="text-align: left;font-size: 20px;">Your Default Address </td>
+        			<td>${b.buyerAddress }</td>
+        		</tr>
+        		<tr  onmouseover="this.style.backgroundColor='#ADD8E6';" onmouseout="this.style.backgroundColor='#F7F7F7';">
+        			<td width="300px" style="text-align: left; font-size: 20px;">Your Balance</td>
+        			<td>${b.buyerBalance }</td>
+        		</tr>
+        	</table>
+        </div>    
   <footer>
     <div class="container">
 

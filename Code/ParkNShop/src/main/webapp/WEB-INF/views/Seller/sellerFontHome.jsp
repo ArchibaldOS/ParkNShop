@@ -82,6 +82,7 @@
             }
           %>
           <li><a href="/viewMyOrdersClick">View orders</a></li>
+            <li><a href="/buyerPersonalCenter">Personal Center</a></li>
           <li><a href="/ContactManager">Contact Manager</a></li>
         </ul>
       </div>

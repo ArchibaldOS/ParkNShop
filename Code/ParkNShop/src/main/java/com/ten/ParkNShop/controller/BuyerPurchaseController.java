@@ -147,4 +147,18 @@ public class BuyerPurchaseController {
         sellerMapper.updateBalance(seller.getsellerId(),sellerCurrentBalance + amount);
         return "forward:/viewMyOrdersClick";
     }
+    @RequestMapping("onCancelClick")
+    public String onCancelClick(int orderId)
+    {
+        Order order = orderMapper.selectByPrimaryKey(orderId);
+        if(order != null)
+        {
+            orderMapper.deleteByPrimaryKey(orderId);
+        }
+        else
+        {
+            return "Buyer/OrderNotFound";
+        }
+        return "viewMyOrders";
+    }
 }

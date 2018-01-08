@@ -178,7 +178,7 @@ background: linear-gradient(top,#42a4e0,#2e88c0);
         		</tr>
         		<tr  onmouseover="this.style.backgroundColor='#ADD8E6';" onmouseout="this.style.backgroundColor='#F7F7F7';">
         			<td width="300px" style="text-align: left; font-size: 20px;">Your Balance</td>
-        			<td>${b.buyerBalance }</td>
+        			<td>HK$${b.buyerBalance }</td>
         		</tr>
         	</table>
         </div>    

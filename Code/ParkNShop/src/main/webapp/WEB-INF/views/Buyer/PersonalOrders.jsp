@@ -180,7 +180,7 @@ background: linear-gradient(top,#42a4e0,#2e88c0);
                     <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                         <span class="itm-cont">${buyerCart.getProductAmount()}</span> <i class="flaticon-shopping-bag"></i>
                         <strong>My Cart</strong> <br>
-                        <span>${buyerCart.getProductAmount()} item(s) - ${buyerCart.getTotalPrice()}</span></a>
+                        <span>${buyerCart.getProductAmount()} item(s) - HK$${buyerCart.getTotalPrice()}</span></a>
                         <ul class="dropdown-menu">
                             <c:forEach var="buyerItem" items="${buyerCart.getItems()}">
                                 <li>

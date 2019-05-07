@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>items</key>
+        <array>
+            <dict>
+                <key>assets</key>
+                <array>
+                    <dict>
+                        <key>kind</key>
+                        <string>software-package</string>
+                        <key>url</key>
+                        <string>https://10.200.110.140:86/upgrade/Odin-UC (1).ipa</string>
+                    </dict>
+                    <dict>
+                        <key>kind</key>
+                        <string>full-size-image</string>
+                        <key>needs-shine</key>
+                        <true/>
+                        <key>url</key>
+                        <string>https://uc-download.yealinkcloud.com/api/v1/file/download/76e2c240850747d799549a67e0e84af0</string>
+                    </dict>
+                    <dict>
+                        <key>kind</key>
+                        <string>display-image</string>
+                        <key>needs-shine</key>
+                        <true/>
+                        <key>url</key>
+                        <string>https://uc-download.yealinkcloud.com/api/v1/file/download/76e2c240850747d799549a67e0e84af0</string>
+                    </dict>
+                </array>
+                <key>metadata</key>
+                <dict>
+                    <key>bundle-identifier</key>
+                    <string>enterprise.yealink.Odin-UC</string>
+                    <key>bundle-version</key>
+                    <string>1.1.2.34</string>
+                    <key>kind</key>
+                    <string>software</string>
+                    <key>title</key>
+                    <string>UME</string>
+                </dict>
+            </dict>
+        </array>
+    </dict>
+</plist>

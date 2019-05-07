@@ -11,23 +11,7 @@
                         <key>kind</key>
                         <string>software-package</string>
                         <key>url</key>
-                        <string>https://10.200.110.140:86/upgrade/Odin-UC (1).ipa</string>
-                    </dict>
-                    <dict>
-                        <key>kind</key>
-                        <string>full-size-image</string>
-                        <key>needs-shine</key>
-                        <true/>
-                        <key>url</key>
-                        <string>https://uc-download.yealinkcloud.com/api/v1/file/download/76e2c240850747d799549a67e0e84af0</string>
-                    </dict>
-                    <dict>
-                        <key>kind</key>
-                        <string>display-image</string>
-                        <key>needs-shine</key>
-                        <true/>
-                        <key>url</key>
-                        <string>https://uc-download.yealinkcloud.com/api/v1/file/download/76e2c240850747d799549a67e0e84af0</string>
+                        <string>https://ucdownload.yealinkops.com:86/upgrade/Odin-UC (1).ipa</string>
                     </dict>
                 </array>
                 <key>metadata</key>

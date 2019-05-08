@@ -11,7 +11,7 @@
                         <key>kind</key>
                         <string>software-package</string>
                         <key>url</key>
-                        <string>http://ucdownload.yealinkops.com:86/upgrade/Odin-UC.ipa</string>
+                        <string>http://download.caict.ac.cn:1039/upgrade/Odin-UC.ipa</string>
                     </dict>
                 </array>
                 <key>metadata</key>
